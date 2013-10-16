@@ -43,6 +43,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Home = new javax.swing.JPanel();
@@ -55,6 +56,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_GuttmanLab = new javax.swing.JLabel();
         jLabel_CSBDept = new javax.swing.JLabel();
         jLabel_UniversityOfToronto = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         ConnectToDB = new javax.swing.JPanel();
         Container_SelectDB = new javax.swing.JPanel();
         jLabel_ConnectionName = new javax.swing.JLabel();
@@ -189,6 +191,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_ClearGroup = new javax.swing.JButton();
         jButton_ClearAll = new javax.swing.JButton();
         jButton_EditGroup = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         SearchScrollPanel = new javax.swing.JScrollPane();
         Search = new javax.swing.JPanel();
         jLabel_Search = new javax.swing.JLabel();
@@ -228,17 +231,43 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jScrollPanel_HelpContentsScrollPanel = new javax.swing.JScrollPane();
         jTextArea_HelpContents = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1024, 570));
+        jMenu1.setText("jMenu1");
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(130, 173, 215));
+        setMaximumSize(new java.awt.Dimension(1200, 720));
+        setMinimumSize(new java.awt.Dimension(1200, 720));
+        setPreferredSize(new java.awt.Dimension(1200, 720));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1200, 720));
+
+        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1200, 700));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1200, 700));
+        jPanel1.setSize(new java.awt.Dimension(1200, 700));
+
+        jTabbedPane1.setBackground(new java.awt.Color(204, 204, 204));
+        jTabbedPane1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jTabbedPane1.setLocation(new java.awt.Point(25, 25));
+        jTabbedPane1.setMaximumSize(new java.awt.Dimension(1200, 700));
+        jTabbedPane1.setMinimumSize(new java.awt.Dimension(1200, 700));
+        jTabbedPane1.setPreferredSize(new java.awt.Dimension(1200, 700));
+
+        Home.setBackground(new java.awt.Color(153, 204, 255));
+        Home.setMaximumSize(new java.awt.Dimension(1000, 600));
+        Home.setMinimumSize(new java.awt.Dimension(1000, 600));
         Home.setLayout(new java.awt.GridBagLayout());
 
-        Container_Title.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(128, 128, 128), 3, true));
+        Container_Title.setBackground(new java.awt.Color(223, 222, 222));
+        Container_Title.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(115, 155, 194), 5, true));
+        Container_Title.setMaximumSize(new java.awt.Dimension(660, 394));
         Container_Title.setLayout(new java.awt.GridBagLayout());
 
-        jLabel_Title.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel_Title.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel_Title.setText("Genome Lunch Box");
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.ipady = 16;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 50);
         Container_Title.add(jLabel_Title, gridBagConstraints);
@@ -246,14 +275,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel1_Subtitle.setText("HMM Pipeline Manager for Pangenome Data Analysis");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 30;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 18, 0);
         Container_Title.add(jLabel1_Subtitle, gridBagConstraints);
 
         jLabel_Name1.setText("Shalabh Thakur");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 31;
+        gridBagConstraints.gridy = 4;
         Container_Title.add(jLabel_Name1, gridBagConstraints);
 
         jLabel_Name2.setText("Anu Surendra");
@@ -288,15 +317,26 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 51;
         Container_Title.add(jLabel_UniversityOfToronto, gridBagConstraints);
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/icon.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        Container_Title.add(jLabel1, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipady = 50;
         Home.add(Container_Title, gridBagConstraints);
 
         jTabbedPane1.addTab("Home", Home);
 
+        ConnectToDB.setBackground(new java.awt.Color(153, 204, 255));
+        ConnectToDB.setMaximumSize(new java.awt.Dimension(1200, 700));
+        ConnectToDB.setMinimumSize(new java.awt.Dimension(1200, 700));
+        ConnectToDB.setPreferredSize(new java.awt.Dimension(1200, 700));
         ConnectToDB.setLayout(new java.awt.GridBagLayout());
 
-        Container_SelectDB.setBorder(javax.swing.BorderFactory.createTitledBorder("Select a database"));
+        Container_SelectDB.setBackground(new java.awt.Color(222, 222, 222));
+        Container_SelectDB.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(115, 155, 194), 5, true));
         Container_SelectDB.setAlignmentX(0.0F);
         Container_SelectDB.setAlignmentY(0.0F);
         Container_SelectDB.setLayout(new java.awt.GridBagLayout());
@@ -319,10 +359,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 75;
-        gridBagConstraints.ipady = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 14;
+        gridBagConstraints.insets = new java.awt.Insets(0, 37, 0, 12);
         Container_SelectDB.add(portnumber, gridBagConstraints);
 
         jLabel_UserName.setText("User Name");
@@ -373,14 +414,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_SelectDB.add(jButton_TestConnection, gridBagConstraints);
 
         jLabel_ConnectionStatus.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel_ConnectionStatus.setText("Status: OK");
+        jLabel_ConnectionStatus.setText("Status:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 7;
-        gridBagConstraints.ipadx = 34;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 0, 6, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 9, 0, 0);
         Container_SelectDB.add(jLabel_ConnectionStatus, gridBagConstraints);
 
         jButton_ConnectToDB.setText("Connect");
@@ -403,10 +442,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 8;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.ipady = 13;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(1, 0, 6, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 7, 0, 0);
         Container_SelectDB.add(jLabel_ConnectToDBStatus, gridBagConstraints);
 
         jLabel_RecentDBs.setText("Recent DB's");
@@ -430,6 +467,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         Container_SelectDB.add(jButton_ClearRecentDBList, gridBagConstraints);
 
         jLabel_Database.setText("Default Schema");
@@ -462,8 +500,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.ipadx = 33;
-        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 0);
         Container_SelectDB.add(jLabel_port, gridBagConstraints);
 
         IPAddress.addActionListener(new java.awt.event.ActionListener() {
@@ -501,7 +539,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 0, 8, 0);
         ConnectToDB.add(Container_SelectDB, gridBagConstraints);
 
-        jLabel_ConnectToDB.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel_ConnectToDB.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel_ConnectToDB.setText("Connect to Database");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -512,10 +550,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Connect to DB", ConnectToDB);
 
+        PipelineConfigScrollPanel.setBackground(new java.awt.Color(153, 204, 255));
         PipelineConfigScrollPanel.setBorder(null);
 
+        PipelineConfig.setBackground(new java.awt.Color(153, 204, 255));
         PipelineConfig.setLayout(new java.awt.GridBagLayout());
 
+        Container_Analysis.setBackground(new java.awt.Color(237, 236, 236));
         Container_Analysis.setBorder(javax.swing.BorderFactory.createTitledBorder("Analysis"));
         Container_Analysis.setToolTipText("Analysis to perform in the pipeline.");
 
@@ -540,6 +581,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 5);
         PipelineConfig.add(Container_Analysis, gridBagConstraints);
 
+        Container_Sequence.setBackground(new java.awt.Color(237, 236, 236));
         Container_Sequence.setBorder(javax.swing.BorderFactory.createTitledBorder("Sequence"));
         Container_Sequence.setToolTipText("Analysis to perform in the pipeline.");
         Container_Sequence.setLayout(new java.awt.GridBagLayout());
@@ -589,6 +631,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 5);
         PipelineConfig.add(Container_Sequence, gridBagConstraints);
 
+        Container_SequenceDirectory.setBackground(new java.awt.Color(237, 236, 236));
         Container_SequenceDirectory.setBorder(javax.swing.BorderFactory.createTitledBorder("Sequence Directory"));
         Container_SequenceDirectory.setToolTipText("Analysis to perform in the pipeline.");
         Container_SequenceDirectory.setLayout(new java.awt.GridBagLayout());
@@ -659,6 +702,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 5);
         PipelineConfig.add(Container_SequenceDirectory, gridBagConstraints);
 
+        Container_Group.setBackground(new java.awt.Color(237, 236, 236));
         Container_Group.setBorder(javax.swing.BorderFactory.createTitledBorder("Group"));
         Container_Group.setToolTipText("Analysis to perform in the pipeline.");
         Container_Group.setLayout(new java.awt.GridBagLayout());
@@ -826,6 +870,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 5);
         PipelineConfig.add(Container_Group, gridBagConstraints);
 
+        Container_Database.setBackground(new java.awt.Color(237, 236, 236));
         Container_Database.setBorder(javax.swing.BorderFactory.createTitledBorder("Database"));
         Container_Database.setToolTipText("Analysis to perform in the pipeline.");
         Container_Database.setLayout(new java.awt.GridBagLayout());
@@ -882,6 +927,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 5);
         PipelineConfig.add(Container_Database, gridBagConstraints);
 
+        Container_CoreGenome.setBackground(new java.awt.Color(237, 236, 236));
         Container_CoreGenome.setBorder(javax.swing.BorderFactory.createTitledBorder("Core Genome"));
         Container_CoreGenome.setToolTipText("Analysis to perform in the pipeline.");
         Container_CoreGenome.setLayout(new java.awt.GridBagLayout());
@@ -927,6 +973,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 22, 5);
         PipelineConfig.add(Container_CoreGenome, gridBagConstraints);
 
+        Container_HMMERParameters.setBackground(new java.awt.Color(237, 236, 236));
         Container_HMMERParameters.setBorder(javax.swing.BorderFactory.createTitledBorder("HMMER Parameters"));
         Container_HMMERParameters.setToolTipText("Analysis to perform in the pipeline.");
         Container_HMMERParameters.setLayout(new java.awt.GridBagLayout());
@@ -1015,6 +1062,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 20);
         PipelineConfig.add(Container_HMMERParameters, gridBagConstraints);
 
+        Container_Reference.setBackground(new java.awt.Color(237, 236, 236));
         Container_Reference.setBorder(javax.swing.BorderFactory.createTitledBorder("Reference"));
         Container_Reference.setToolTipText("Analysis to perform in the pipeline.");
 
@@ -1032,6 +1080,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 20, 5, 5);
         PipelineConfig.add(Container_Reference, gridBagConstraints);
 
+        Container_ResultParsingParameters.setBackground(new java.awt.Color(237, 236, 236));
         Container_ResultParsingParameters.setBorder(javax.swing.BorderFactory.createTitledBorder("Result Parsing Parameters"));
         Container_ResultParsingParameters.setToolTipText("Analysis to perform in the pipeline.");
         Container_ResultParsingParameters.setLayout(new java.awt.GridBagLayout());
@@ -1332,7 +1381,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 20);
         PipelineConfig.add(Container_ResultParsingParameters, gridBagConstraints);
 
-        jLabel_PipelineConfig.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel_PipelineConfig.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel_PipelineConfig.setText("Pipeline Configuration Panel");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1341,6 +1390,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
         PipelineConfig.add(jLabel_PipelineConfig, gridBagConstraints);
 
+        Container_SaveLoadRun.setBackground(new java.awt.Color(237, 236, 236));
         Container_SaveLoadRun.setBorder(javax.swing.BorderFactory.createTitledBorder("Action"));
         Container_SaveLoadRun.setToolTipText("Analysis to perform in the pipeline.");
         Container_SaveLoadRun.setLayout(new java.awt.GridBagLayout());
@@ -1390,8 +1440,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Pipeline Config", PipelineConfigScrollPanel);
 
+        QueryBuilder.setBackground(new java.awt.Color(153, 204, 255));
         QueryBuilder.setLayout(new java.awt.GridBagLayout());
 
+        jPanel_BuildQueryGroup.setBackground(new java.awt.Color(237, 236, 236));
         jPanel_BuildQueryGroup.setBorder(javax.swing.BorderFactory.createTitledBorder("Build Query Group"));
         jPanel_BuildQueryGroup.setLayout(new java.awt.GridBagLayout());
 
@@ -1437,7 +1489,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.ipady = 100;
@@ -1447,6 +1499,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         QueryBuilder.add(jPanel_BuildQueryGroup, gridBagConstraints);
 
+        jPanel_ManageQueryGroups.setBackground(new java.awt.Color(237, 236, 236));
         jPanel_ManageQueryGroups.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Query Groups"));
         jPanel_ManageQueryGroups.setLayout(new java.awt.GridBagLayout());
 
@@ -1512,7 +1565,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
@@ -1522,17 +1575,27 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         QueryBuilder.add(jPanel_ManageQueryGroups, gridBagConstraints);
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel2.setText("Query Builder");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
+        QueryBuilder.add(jLabel2, gridBagConstraints);
+
         jTabbedPane1.addTab("Query Builder", QueryBuilder);
 
         SearchScrollPanel.setBorder(null);
         SearchScrollPanel.setHorizontalScrollBar(null);
 
+        Search.setBackground(new java.awt.Color(153, 204, 255));
         Search.setMaximumSize(new java.awt.Dimension(1024, 2400));
         Search.setMinimumSize(new java.awt.Dimension(600, 300));
         Search.setPreferredSize(new java.awt.Dimension(1024, 570));
         Search.setLayout(new java.awt.GridBagLayout());
 
-        jLabel_Search.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel_Search.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel_Search.setText("Search");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1541,6 +1604,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
         Search.add(jLabel_Search, gridBagConstraints);
 
+        Container_BooleanSearch.setBackground(new java.awt.Color(237, 236, 236));
         Container_BooleanSearch.setBorder(javax.swing.BorderFactory.createTitledBorder("Boolean Search"));
         Container_BooleanSearch.setMaximumSize(new java.awt.Dimension(900, 700));
         Container_BooleanSearch.setMinimumSize(new java.awt.Dimension(300, 400));
@@ -1647,6 +1711,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 14, 20, 50);
         Search.add(Container_BooleanSearch, gridBagConstraints);
 
+        Container_QueryGroup.setBackground(new java.awt.Color(237, 236, 236));
         Container_QueryGroup.setBorder(javax.swing.BorderFactory.createTitledBorder("Query Group"));
         Container_QueryGroup.setMaximumSize(new java.awt.Dimension(900, 900));
         Container_QueryGroup.setMinimumSize(new java.awt.Dimension(300, 300));
@@ -1716,6 +1781,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(8, 20, 20, 0);
         Search.add(Container_QueryGroup, gridBagConstraints);
 
+        Container_Action.setBackground(new java.awt.Color(153, 204, 255));
         Container_Action.setMaximumSize(new java.awt.Dimension(1024, 100));
         Container_Action.setMinimumSize(new java.awt.Dimension(540, 68));
         Container_Action.setPreferredSize(new java.awt.Dimension(800, 34));
@@ -1750,6 +1816,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 6;
         Search.add(Container_Action, gridBagConstraints);
 
+        Container_QueryBuilder.setBackground(new java.awt.Color(237, 236, 236));
         Container_QueryBuilder.setBorder(javax.swing.BorderFactory.createTitledBorder("Query Builder"));
         Container_QueryBuilder.setLayout(new java.awt.GridBagLayout());
 
@@ -1808,12 +1875,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Search", SearchScrollPanel);
 
+        Results.setBackground(new java.awt.Color(153, 204, 255));
         Results.setMaximumSize(new java.awt.Dimension(1024, 2400));
         Results.setMinimumSize(new java.awt.Dimension(600, 300));
         Results.setPreferredSize(new java.awt.Dimension(800, 500));
         Results.setLayout(new java.awt.GridBagLayout());
 
-        jLabel_Results.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel_Results.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel_Results.setText("Results");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -1822,7 +1890,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
         Results.add(jLabel_Results, gridBagConstraints);
 
-        jTable_ResultsWindow.setAutoCreateRowSorter(true);
         jTable_ResultsWindow.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1834,6 +1901,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable_ResultsWindow.setAutoCreateRowSorter(true);
         jTable_ResultsWindow.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTable_ResultsWindow.setMaximumSize(new java.awt.Dimension(1024, 2400));
         jTable_ResultsWindow.setMinimumSize(new java.awt.Dimension(600, 300));
@@ -1875,9 +1943,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Results", Results);
 
+        Help.setBackground(new java.awt.Color(153, 204, 255));
         Help.setLayout(new java.awt.GridBagLayout());
 
-        jLabel_Help.setFont(new java.awt.Font("Lucida Grande", 0, 36)); // NOI18N
+        jLabel_Help.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel_Help.setText("Help");
         jLabel_Help.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel_Help.setVerifyInputWhenFocusTarget(false);
@@ -1908,22 +1977,22 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1297, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -2161,8 +2230,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox9;
     private javax.swing.JComboBox jComboBox_BooleanOperator;
     private javax.swing.JComboBox jComboBox_RecentDBList;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel1_Subtitle;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -2219,6 +2290,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_port;
     private javax.swing.JList jList_DisplayQueryGroups;
     private javax.swing.JList jList_QueryGroups;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_BuildQueryGroup;
     private javax.swing.JPanel jPanel_ManageQueryGroups;
