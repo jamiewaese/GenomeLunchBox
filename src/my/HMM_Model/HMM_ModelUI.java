@@ -1459,6 +1459,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel_BuildQueryGroup.setLayout(new java.awt.GridBagLayout());
 
         jButton_MakeQueryGroup.setText("Make Query Group");
+        jButton_MakeQueryGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_MakeQueryGroupActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
@@ -1578,7 +1583,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             jPanel_ManageQueryGroupsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ManageQueryGroupsLayout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_ManageQueryGroupsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_SaveGroup)
@@ -2185,6 +2190,17 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton_LoadGroupActionPerformed
+
+    private void jButton_MakeQueryGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_MakeQueryGroupActionPerformed
+        // TODO add your handling code here:
+        String queryGroupName;
+        //queryGroupName = JOptionPane.showInputDialog("Enter a name for your query group :");
+       queryGroupName = JOptionPane.showInputDialog(this, "Enter a name for your query group :" ,"Query Group Name", JOptionPane.PLAIN_MESSAGE);
+       
+       connect.createQueryGroupTable(db);
+       
+       
+    }//GEN-LAST:event_jButton_MakeQueryGroupActionPerformed
 
     /**
      * @param args the command line arguments

@@ -126,4 +126,21 @@ public class DBConnect {
         }
         return speciesList;
     }
+    
+    
+     public void createQueryGroupTable(String db) {
+        
+        String query = "CREATE TABLE IF NOT EXISTS `"+db+"`.`querygrpinfo` (" +
+                       "`querygrp_pk` int(11) NOT NULL AUTO_INCREMENT," +
+                       "`querygrpname` varchar(255) NOT NULL," +
+                       "`querygrpvalue` varchar(255) NOT NULL," +
+                       "  PRIMARY KEY (`querygrp_pk`))";
+        //setting up query resultset
+             try {
+                   st.executeUpdate(query);
+                   
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,ex);
+        }
+    }
 }
