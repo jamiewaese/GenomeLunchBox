@@ -3,9 +3,11 @@
  * and open the template in the editor.
  */
 package my.HMM_Model;
+
 import java.sql.ResultSet;
 import java.util.*;
 import javax.swing.*;
+
 /**
  *
  * @author anu
@@ -13,7 +15,6 @@ import javax.swing.*;
 public class HMM_ModelUI extends javax.swing.JFrame {
 
     //** Global Variables
-    
     // ** Global Database Variables
     String ip;
     String passStr;
@@ -24,8 +25,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     String ConnectionName;
     ArrayList taxonomyFields;
     //JLabel jLabel_ConnectionStatus;
-    
-    
+
     /**
      * Creates new form HMM_ModelUI
      */
@@ -2014,28 +2014,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         db = DBName.getText().trim();
         dbport = portnumber.getText().trim();
         ConnectionName = DBConnection.getText().trim();
-        connect = new DBConnect(ip,dbport,passStr, user, db, jLabel_ConnectToDBStatus,ConnectionName,jComboBox_RecentDBList);
-        String query = "SELECT COLUMN_NAME" + "FROM INFORMATION_SCHEMA.COLUMNS" +
-                       " WHERE TABLE_SCHEMA='"+db+"'" + 
-                        " AND TABLE_NAME='Taxonomy'";
-        ResultSet resultSet;
-        resultSet = connect.getData(query);
-        taxonomyFields = new ArrayList();
-        try{
-                while (resultSet.next()) {
-                    String columnName = resultSet.getString("COLUMN_NAME");
-                    System.out.println("Column Name: "+columnName);
-                    taxonomyFields.add(columnName);
-                }
-        }
-        catch(Exception ex){
-               System.out.println("Error"+ex);
-        }
-        
+        connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
 
-        System.out.println("Username: "+user+"  Password Length: "+passStr);
-        
-        //jLabel_ConnectionStatus.setText("new Value");
+        connect.buildTaxonomyTree(connect, db);
+
+
+        System.out.println("Username: " + user + "  Password Length: " + passStr);
     }//GEN-LAST:event_jButton_ConnectToDBActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
