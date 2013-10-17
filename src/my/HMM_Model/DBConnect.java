@@ -9,15 +9,14 @@ package my.HMM_Model;
  * @author anu
  */
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import javax.swing.*;
+import java.util.*;
 
 public class DBConnect {
  
        private Connection con;
-       private Statement queryStatement;
-       private ResultSet resultSet;
+       private Statement st;
+       private ResultSet rs;
        
        public DBConnect(String ip, String port, String password, String username, String db ,JLabel jLabel_ConnectToDBStatus,String connectionName,JComboBox jComboBox_RecentDBList){
            //Boolean connected= false;
@@ -45,85 +44,90 @@ public class DBConnect {
                try{
                //String query = "SELECT gender FROM CF.patient_information";
                
-               resultSet = queryStatement.executeQuery(query);
+               rs = st.executeQuery(query);
                
                }catch(Exception ex){
                System.out.println("Error"+ex);
            }
-         return resultSet;
+         return rs;
         }
        
        
-       
+public LinkedHashMap <String, ArrayList <String>> buildTaxonomyTree (DBConnect connect,String db){
     
-       public LinkedHashMap <String, ArrayList <String>> buildTaxonomyTree (DBConnect connect,String db){
-          
-           LinkedHashMap <String, ArrayList <String>> taxomonyTree = new LinkedHashMap <> ();
-          
-            try{
-            String query = "SELECT taxonomy_id, kingdom_name, phylum_name, class_name, order_name, family_name, genus_name, species_name " +
+    //create the hashmap to store results
+    LinkedHashMap <String, ArrayList <String>> taxomonyTree = new LinkedHashMap <> ();
+    try{
+          String query = "SELECT taxonomy_id, kingdom_name, phylum_name, class_name, order_name, family_name, genus_name, species_name " +
                          "FROM "+db+".Taxonomy";
-            ResultSet tfrs;
-            tfrs=connect.getData(query);
-            
-                 while (tfrs.next()) {
-                  ArrayList taxonomyList = new ArrayList ();
-                 String taxid = tfrs.getString("taxonomy_id");
-                 String kingdom = tfrs.getString("kingdom_name");
-                 String phylum = tfrs.getString("phylum_name");
-                 String classname = tfrs.getString("class_name");
-                 String order = tfrs.getString("order_name");
-                 String family = tfrs.getString("family_name");
-                 String genus = tfrs.getString("genus_name");
-                 String species = tfrs.getString("species_name");
-                 //System.out.println("Column Name: "+columnName);               
-                 taxonomyList.add(kingdom);
-                 taxonomyList.add(phylum);
-                 taxonomyList.add(classname);
-                 taxonomyList.add(order);
-                 taxonomyList.add(family);
-                 taxonomyList.add(genus);
-                 taxonomyList.add(species);
-                 System.out.println("taxid"+taxid);
-                 System.out.println("genus"+genus);
-                 taxomonyTree.put(taxid,taxonomyList);
-                 
-                }
-              }catch(Exception ex){
-               System.out.println("Error"+ex);
-             }   
-           
-           return taxomonyTree;
-       }
-       
-       
-       public ArrayList createSpeciesList (DBConnect connect,String db,String spiecesname){
-   
-           String query = "SELECT abbreviation_name FROM "+db+".OrganismInfo "+
-                                 "WHERE species_name='"+spiecesname+"'";
-                 ResultSet speciesrs;
-                 ArrayList speciesList = new ArrayList ();
-          try{
-                 speciesrs=connect.getData(query);
-                 
-                 while (speciesrs.next()) {
-                   String aname = speciesrs.getString("abbreviation_name");
-                   speciesList.add(aname);
-                    System.out.println("spiecesname"+spiecesname);
-                 System.out.println("aname"+aname);
-                    
-                 }
-          }
-          catch(Exception ex){
-               System.out.println("Error"+ex);
+          
+          //setting up a query result set
+          ResultSet taxonomyTreeResultset;
+          
+          //run the query and store into resultset
+          taxonomyTreeResultset=connect.getData(query);
+          
+           //iterate through the resultset and populate the taxomonyTree variable 
+           while (taxonomyTreeResultset.next()) {
+               
+               //create an arraylist to hold the query output
+               ArrayList taxonomyList = new ArrayList ();
+               
+               //getting the values from the resultset
+               String taxid = taxonomyTreeResultset.getString("taxonomy_id");
+               String kingdom = taxonomyTreeResultset.getString("kingdom_name");
+               String phylum = taxonomyTreeResultset.getString("phylum_name");
+               String classname = taxonomyTreeResultset.getString("class_name");
+               String order = taxonomyTreeResultset.getString("order_name");
+               String family = taxonomyTreeResultset.getString("family_name");
+               String genus = taxonomyTreeResultset.getString("genus_name");
+               String species = taxonomyTreeResultset.getString("species_name");
+               //System.out.println("Column Name: "+columnName);               
+               
+               //adding the data to arraylist
+               taxonomyList.add(kingdom);
+               taxonomyList.add(phylum);
+               taxonomyList.add(classname);
+               taxonomyList.add(order);
+               taxonomyList.add(family);
+               taxonomyList.add(genus);
+               taxonomyList.add(species);
+               //System.out.println("taxid"+taxid);
+               //System.out.println("genus"+genus);
+               
+               //adding the arraylist to the linkedhashmap
+               taxomonyTree.put(taxid,taxonomyList);
            }
-               return speciesList;
-           
-           
-    }    
-       
-       
-       
-       
-       
+    }catch(Exception ex){
+        System.out.println("Error"+ex);
+    }
+      return taxomonyTree;
+}
+
+
+
+public ArrayList createSpeciesList (DBConnect connect,String db,String spiecesname){
+    String query = "SELECT organism_name FROM "+db+".OrganismInfo "+
+                   "WHERE species_name='"+spiecesname+"'";
+    //setting up query resultset
+    ResultSet speciesResultSet;
+    //creating the arraylist to store the results
+    ArrayList speciesList = new ArrayList ();
+    try{
+          //run the query and store into resultset
+          speciesResultSet=connect.getData(query);
+          //iterate through the resultset and populate the speciesList variable 
+          while (speciesResultSet.next()) {
+              //getting the values from the resultset
+              String organismName = speciesResultSet.getString("organism_name");
+              speciesList.add(organismName);
+              System.out.println("spiecesname"+spiecesname);
+              System.out.println("organismName"+organismName);
+          }
+    }
+    catch(Exception ex){
+        System.out.println("Error"+ex);
+    }
+    return speciesList;
+  }
 }
