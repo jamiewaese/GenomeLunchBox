@@ -57,6 +57,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_CSBDept = new javax.swing.JLabel();
         jLabel_UniversityOfToronto = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
         ConnectToDB = new javax.swing.JPanel();
         Container_SelectDB = new javax.swing.JPanel();
         jLabel_ConnectionName = new javax.swing.JLabel();
@@ -235,13 +236,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(130, 173, 215));
-        setMaximumSize(new java.awt.Dimension(1200, 720));
         setMinimumSize(new java.awt.Dimension(1200, 720));
-        setPreferredSize(new java.awt.Dimension(1200, 720));
         setResizable(false);
-        setSize(new java.awt.Dimension(1200, 720));
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(130, 170, 210));
         jPanel1.setMaximumSize(new java.awt.Dimension(1200, 700));
         jPanel1.setMinimumSize(new java.awt.Dimension(1200, 700));
         jPanel1.setSize(new java.awt.Dimension(1200, 700));
@@ -275,14 +273,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel1_Subtitle.setText("HMM Pipeline Manager for Pangenome Data Analysis");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(18, 0, 18, 0);
         Container_Title.add(jLabel1_Subtitle, gridBagConstraints);
 
         jLabel_Name1.setText("Shalabh Thakur");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 7;
         Container_Title.add(jLabel_Name1, gridBagConstraints);
 
         jLabel_Name2.setText("Anu Surendra");
@@ -322,6 +320,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         Container_Title.add(jLabel1, gridBagConstraints);
+
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/icon.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        Container_Title.add(logo, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.ipady = 50;
@@ -2347,6 +2351,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextField_SQLsearchQuery;
     private javax.swing.JTree jTree_SearchFields;
+    private javax.swing.JLabel logo;
     private javax.swing.JTextField portnumber;
     // End of variables declaration//GEN-END:variables
 }
