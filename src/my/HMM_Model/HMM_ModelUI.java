@@ -3,17 +3,26 @@
  * and open the template in the editor.
  */
 package my.HMM_Model;
+<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
+=======
+
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
 import java.sql.ResultSet;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+<<<<<<< HEAD
 
 
 
+=======
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
 
 /**
  *
@@ -22,11 +31,14 @@ import javax.swing.*;
 public class HMM_ModelUI extends javax.swing.JFrame {
 
     //** Global Variables
+<<<<<<< HEAD
     
     // Jamie:
     // Global search variables:
     String booleanSearchMode = "AND"; // preset starting value as AND
     
+=======
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
     // ** Global Database Variables
     String ip;
     String passStr;
@@ -38,7 +50,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     ArrayList taxonomyFields;
     //JLabel jLabel_ConnectionStatus;
     
+     
+    //** Manage Query Group Variables 
+    TreePath[] query_groups;
     
+    //** Query Group List 
+    DefaultListModel listModel = new DefaultListModel();  
+
     /**
      * Creates new form HMM_ModelUI
      */
@@ -197,13 +215,16 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jTree_SearchFields = new javax.swing.JTree();
         jLabel3 = new javax.swing.JLabel();
         jPanel_ManageQueryGroups = new javax.swing.JPanel();
-        jScrollPanel_DisplayQueryGroups = new javax.swing.JScrollPane();
-        jList_DisplayQueryGroups = new javax.swing.JList();
         jButton_SaveGroup = new javax.swing.JButton();
         jButton_LoadGroup = new javax.swing.JButton();
         jButton_ClearGroup = new javax.swing.JButton();
         jButton_EditGroup = new javax.swing.JButton();
+<<<<<<< HEAD
         jButton1 = new javax.swing.JButton();
+=======
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTreeManageQueryGroup = new javax.swing.JTree();
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
         jLabel2 = new javax.swing.JLabel();
         SearchScrollPanel = new javax.swing.JScrollPane();
         Search = new javax.swing.JPanel();
@@ -263,6 +284,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(130, 170, 210));
+<<<<<<< HEAD
         jPanel1.setMaximumSize(new java.awt.Dimension(1250, 715));
         jPanel1.setMinimumSize(new java.awt.Dimension(1250, 715));
         jPanel1.setPreferredSize(new java.awt.Dimension(1230, 715));
@@ -272,6 +294,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setAlignmentX(0.0F);
         jTabbedPane1.setAlignmentY(0.0F);
+=======
+        jPanel1.setMaximumSize(new java.awt.Dimension(1200, 700));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1200, 700));
+
+        jTabbedPane1.setBackground(new java.awt.Color(204, 204, 204));
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
         jTabbedPane1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTabbedPane1.setMaximumSize(new java.awt.Dimension(1200, 700));
         jTabbedPane1.setMinimumSize(new java.awt.Dimension(1200, 700));
@@ -1545,6 +1573,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel_BuildQueryGroup.setLayout(new java.awt.GridBagLayout());
 
         jButton_MakeQueryGroup.setText("Make Query Group");
+        jButton_MakeQueryGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_MakeQueryGroupActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -1607,6 +1640,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jPanel_ManageQueryGroups.setBackground(new java.awt.Color(237, 236, 236));
         jPanel_ManageQueryGroups.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Query Groups"));
+<<<<<<< HEAD
         jPanel_ManageQueryGroups.setLayout(new java.awt.GridBagLayout());
 
         jList_DisplayQueryGroups.setModel(new javax.swing.AbstractListModel() {
@@ -1652,17 +1686,93 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel_ManageQueryGroups.add(jButton_ClearGroup, gridBagConstraints);
 
         jButton_EditGroup.setText("Combine");
+=======
+
+        jButton_SaveGroup.setText("Save Group");
+
+        jButton_LoadGroup.setText("Load Group");
+        jButton_LoadGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_LoadGroupActionPerformed(evt);
+            }
+        });
+
+        jButton_ClearGroup.setText("Clear Group");
+
+        jButton_ClearAll.setText("Clear All");
+
+        jButton_EditGroup.setText("Edit Group");
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
         jButton_EditGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_EditGroupActionPerformed(evt);
             }
         });
+<<<<<<< HEAD
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 20);
         jPanel_ManageQueryGroups.add(jButton_EditGroup, gridBagConstraints);
+=======
+
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("QueryGroup1");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Pseudomonas syringae pv. tomato DC3000");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("PSeudomonas syringae pv. syringae B728a");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("QueryGroup2");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Pseudomonas syringae pv. phaseolicola 1448A");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jTreeManageQueryGroup.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jTreeManageQueryGroup.setMaximumSize(new java.awt.Dimension(500, 500));
+        jTreeManageQueryGroup.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
+            public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
+                jTreeManageQueryGroupValueChanged(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTreeManageQueryGroup);
+
+        javax.swing.GroupLayout jPanel_ManageQueryGroupsLayout = new javax.swing.GroupLayout(jPanel_ManageQueryGroups);
+        jPanel_ManageQueryGroups.setLayout(jPanel_ManageQueryGroupsLayout);
+        jPanel_ManageQueryGroupsLayout.setHorizontalGroup(
+            jPanel_ManageQueryGroupsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_ManageQueryGroupsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 50, Short.MAX_VALUE))
+            .addGroup(jPanel_ManageQueryGroupsLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jButton_SaveGroup)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton_LoadGroup)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_ClearGroup)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton_ClearAll)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton_EditGroup)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_ManageQueryGroupsLayout.setVerticalGroup(
+            jPanel_ManageQueryGroupsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_ManageQueryGroupsLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 459, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_ManageQueryGroupsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_SaveGroup)
+                    .addComponent(jButton_LoadGroup)
+                    .addComponent(jButton_ClearGroup)
+                    .addComponent(jButton_ClearAll)
+                    .addComponent(jButton_EditGroup))
+                .addGap(21, 21, 21))
+        );
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
 
         jButton1.setText("Edit");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1673,8 +1783,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel_ManageQueryGroups.add(jButton1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+<<<<<<< HEAD
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
+=======
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 20;
         gridBagConstraints.ipady = 20;
@@ -1803,6 +1918,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         Container_BooleanSearch.add(jButton_ClearBinA, gridBagConstraints);
 
+<<<<<<< HEAD
         jButton_BuildSQLquery.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton_BuildSQLquery.setText("Build SQL Query");
         jButton_BuildSQLquery.addActionListener(new java.awt.event.ActionListener() {
@@ -1810,6 +1926,23 @@ public class HMM_ModelUI extends javax.swing.JFrame {
                 jButton_BuildSQLqueryActionPerformed(evt);
             }
         });
+=======
+        jList_QueryGroups.setModel(listModel);
+        jScrollPanel_QueryGroups.setViewportView(jList_QueryGroups);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(6, 26, 0, 26);
+        Container_QueryGroup.add(jScrollPanel_QueryGroups, gridBagConstraints);
+
+        jButton_AssignToBinA.setText("Bin A");
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
@@ -2210,7 +2343,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         db = DBName.getText().trim();
         dbport = portnumber.getText().trim();
         ConnectionName = DBConnection.getText().trim();
+        connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
 
+        connect.buildTaxonomyTree(connect, db);
+
+
+        System.out.println("Username: " + user + "  Password Length: " + passStr);
     }//GEN-LAST:event_jButton_ConnectToDBActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -2305,6 +2443,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_IPAddressActionPerformed
 
+<<<<<<< HEAD
     private void vennDiagramPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_vennDiagramPropertyChange
         // Jamie:
         //
@@ -2362,6 +2501,73 @@ public class HMM_ModelUI extends javax.swing.JFrame {
                 break;
         }
     }//GEN-LAST:event_jComboBox_BooleanOperatorActionPerformed
+=======
+    private void jTreeManageQueryGroupValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeManageQueryGroupValueChanged
+        // TODO add your handling code here:
+         // Stores object of TreePath for every query group or species name selected in Manage Group Structure         
+        query_groups= jTreeManageQueryGroup.getSelectionPaths(); 
+    }//GEN-LAST:event_jTreeManageQueryGroupValueChanged
+
+    private void jButton_LoadGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LoadGroupActionPerformed
+        // TODO add your handling code here:
+         // When LoadGroup Button is clicked this event is executed
+        
+        int num_selected_nodes=query_groups.length;  // Size of array storing TreePath Objects       
+       
+        // Get value of last index in JList LisQueryGroup on Search Panel 
+        int current_index = jList_QueryGroups.getSelectedIndex();
+            // If list is empty current_index will be -1, 
+            // else it will return index value of last element in the list 
+            if(current_index==-1){                
+               current_index=0; 
+            }else{ // last position
+               current_index++;   //Increment of index value to insert next element              
+            } 
+                    
+        // Loop through array of TreePath object and get the information for selected query groups //
+        for(int i=0;i<num_selected_nodes;i++){
+            
+            TreePath selectedGroup=query_groups[i]; //give TreePath Object for each selected query group in index i 
+            
+            // selected_node is the object to 
+            DefaultMutableTreeNode selected_node = ((DefaultMutableTreeNode)selectedGroup.getLastPathComponent()); 
+            
+            // gets value for selected query group and stores in nodeInfo
+            Object nodeInfo= selected_node.getUserObject();
+                      
+            if(nodeInfo == null) return;                                
+            
+            if(!selected_node.isLeaf()){               
+               System.out.println(nodeInfo+" is Branch Node");
+               
+               // Populate Query List in Search Page with selected query groups 
+               listModel.addElement(nodeInfo);
+               
+               //DefaultTreeModel treeModel=(DefaultTreeModel) jTreeManageQueryGroup.getModel();
+               //int genome_in_group=treeModel.getChildCount(nodeInfo);
+               
+               //if(genome_in_group>0){
+               //  for(int j=0;j<genome_in_group;j++){  
+               //     Object genome_name=treeModel.getChild(nodeInfo, j);
+               //     System.out.println(genome_name+" is added to "+nodeInfo);
+               //  }               
+               //}
+               
+            }
+        }
+    }//GEN-LAST:event_jButton_LoadGroupActionPerformed
+
+    private void jButton_MakeQueryGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_MakeQueryGroupActionPerformed
+        // TODO add your handling code here:
+        String queryGroupName;
+        //queryGroupName = JOptionPane.showInputDialog("Enter a name for your query group :");
+       queryGroupName = JOptionPane.showInputDialog(this, "Enter a name for your query group :" ,"Query Group Name", JOptionPane.PLAIN_MESSAGE);
+       
+       connect.createQueryGroupTable(db);
+       
+       
+    }//GEN-LAST:event_jButton_MakeQueryGroupActionPerformed
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
 
     /**
      * @param args the command line arguments
@@ -2530,9 +2736,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_UniversityOfToronto;
     private javax.swing.JLabel jLabel_UserName;
     private javax.swing.JLabel jLabel_port;
+<<<<<<< HEAD
     private javax.swing.JList jList_DisplayQueryGroups;
     private javax.swing.JList jList_QueryGroups1;
     private javax.swing.JList jList_QueryGroups3;
+=======
+    private javax.swing.JList jList_QueryGroups;
+>>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -2546,6 +2756,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane_ResultsWindowScrollPanel;
     private javax.swing.JScrollPane jScrollPane_SearchFieldsScrollPanel;
     private javax.swing.JScrollPane jScrollPanel_HelpContentsScrollPanel;
@@ -2592,6 +2803,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextField_SQLsearchQuery;
+    private javax.swing.JTree jTreeManageQueryGroup;
     private javax.swing.JTree jTree_SearchFields;
     private javax.swing.JTextField portnumber;
     private javax.swing.JLabel vennDiagram;
