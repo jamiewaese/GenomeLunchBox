@@ -50,8 +50,7 @@ public class DBConnect {
                System.out.println("Error"+ex);
            }
          return resultSet;
-
-    private Connection con;
+       }
    
  
        public LinkedHashMap<String, ArrayList<String>> buildTaxonomyTree(DBConnect connect, String db) {
@@ -139,7 +138,7 @@ public class DBConnect {
                        "  PRIMARY KEY (`querygrp_pk`))";
         //setting up query resultset
              try {
-                   st.executeUpdate(query);
+                   //st.executeUpdate(query);
                    
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,ex);
