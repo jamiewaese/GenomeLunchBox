@@ -29,7 +29,6 @@ public class DBConnect {
                Class.forName("com.mysql.jdbc.Driver");
                String connectorStr= "jdbc:mysql://"+ip+":"+port+"/"+db;
                con = DriverManager.getConnection(connectorStr,username,password);
-               st = con.createStatement();
                //st = con.createStatement();
                //connected=true;
                jComboBox_RecentDBList.addItem(connectionName);
