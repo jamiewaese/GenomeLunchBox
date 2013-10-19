@@ -13,7 +13,6 @@ import javax.swing.*;
 import java.util.*;
 
 public class DBConnect {
-<<<<<<< HEAD
  
        private Connection con;
        private Statement queryStatement;
@@ -51,47 +50,11 @@ public class DBConnect {
                System.out.println("Error"+ex);
            }
          return resultSet;
-=======
 
     private Connection con;
-    private Statement st;
-    private ResultSet rs;
-
-    public DBConnect(String ip, String port, String password, String username, String db, JLabel jLabel_ConnectToDBStatus, String connectionName, JComboBox jComboBox_RecentDBList) {
-        //Boolean connected= false;
-        //String connectorStr= "jdbc:mysql://"+ip+":"+port+"/"+db;
-        //System.out.println("CONSTR"+connectorStr);
-        //System.out.println("IP: "+ip);
-        try {
-
-            Class.forName("com.mysql.jdbc.Driver");
-            String connectorStr = "jdbc:mysql://" + ip + ":" + port + "/" + db;
-            con = DriverManager.getConnection(connectorStr, username, password);
-            st = con.createStatement();
-            //connected=true;
-            jComboBox_RecentDBList.addItem(connectionName);
-            jLabel_ConnectToDBStatus.setText("Connected");
-        } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println("Error" + ex);
-            jLabel_ConnectToDBStatus.setText("Not Connected");
-        }
-        //return connected;
-    }
-
-    public ResultSet getData(String query) {
-
-        try {
-            //String query = "SELECT gender FROM CF.patient_information";
-
-            rs = st.executeQuery(query);
-
-        } catch (Exception ex) {
-            System.out.println("Error" + ex);
-        }
-        return rs;
-    }
-
-    public LinkedHashMap<String, ArrayList<String>> buildTaxonomyTree(DBConnect connect, String db) {
+   
+ 
+       public LinkedHashMap<String, ArrayList<String>> buildTaxonomyTree(DBConnect connect, String db) {
 
         //create the hashmap to store results
         LinkedHashMap<String, ArrayList<String>> taxomonyTree = new LinkedHashMap<>();
@@ -142,7 +105,7 @@ public class DBConnect {
         return taxomonyTree;
     }
 
-    public ArrayList createSpeciesList(DBConnect connect, String db, String spiecesname) {
+       public ArrayList createSpeciesList(DBConnect connect, String db, String spiecesname) {
         String query = "SELECT organism_name FROM " + db + ".OrganismInfo "
                 + "WHERE species_name='" + spiecesname + "'";
         //setting up query resultset
@@ -162,7 +125,6 @@ public class DBConnect {
             }
         } catch (Exception ex) {
             System.out.println("Error" + ex);
->>>>>>> 58a9e0014d47230d88f9258494d4a896bba9af2e
         }
         return speciesList;
     }
