@@ -2210,28 +2210,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         db = DBName.getText().trim();
         dbport = portnumber.getText().trim();
         ConnectionName = DBConnection.getText().trim();
-        connect = new DBConnect(ip,dbport,passStr, user, db, jLabel_ConnectToDBStatus,ConnectionName,jComboBox_RecentDBList);
-        String query = "SELECT COLUMN_NAME" + "FROM INFORMATION_SCHEMA.COLUMNS" +
-                       " WHERE TABLE_SCHEMA='"+db+"'" + 
-                        " AND TABLE_NAME='Taxonomy'";
-        ResultSet resultSet;
-        resultSet = connect.getData(query);
-        taxonomyFields = new ArrayList();
-        try{
-                while (resultSet.next()) {
-                    String columnName = resultSet.getString("COLUMN_NAME");
-                    System.out.println("Column Name: "+columnName);
-                    taxonomyFields.add(columnName);
-                }
-        }
-        catch(Exception ex){
-               System.out.println("Error"+ex);
-        }
-        
 
-        System.out.println("Username: "+user+"  Password Length: "+passStr);
-        
-        //jLabel_ConnectionStatus.setText("new Value");
     }//GEN-LAST:event_jButton_ConnectToDBActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -2569,7 +2548,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane_ResultsWindowScrollPanel;
     private javax.swing.JScrollPane jScrollPane_SearchFieldsScrollPanel;
-    private javax.swing.JScrollPane jScrollPanel_DisplayQueryGroups;
     private javax.swing.JScrollPane jScrollPanel_HelpContentsScrollPanel;
     private javax.swing.JScrollPane jScrollPanel_QueryGroups1;
     private javax.swing.JScrollPane jScrollPanel_QueryGroups3;
