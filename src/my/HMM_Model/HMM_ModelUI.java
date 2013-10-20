@@ -284,7 +284,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Home.setPreferredSize(new java.awt.Dimension(1200, 700));
         Home.setLayout(new java.awt.GridBagLayout());
 
-        Container_Title.setBackground(new java.awt.Color(223, 222, 222));
+        Container_Title.setBackground(new java.awt.Color(237, 237, 237));
         Container_Title.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(115, 155, 194), 5, true));
         Container_Title.setMaximumSize(new java.awt.Dimension(660, 394));
         Container_Title.setLayout(new java.awt.GridBagLayout());
@@ -362,7 +362,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         ConnectToDB.setPreferredSize(new java.awt.Dimension(1200, 700));
         ConnectToDB.setLayout(new java.awt.GridBagLayout());
 
-        Container_SelectDB.setBackground(new java.awt.Color(222, 222, 222));
+        Container_SelectDB.setBackground(new java.awt.Color(237, 237, 237));
         Container_SelectDB.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(115, 155, 194), 5, true));
         Container_SelectDB.setAlignmentX(0.0F);
         Container_SelectDB.setAlignmentY(0.0F);
@@ -2060,7 +2060,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
