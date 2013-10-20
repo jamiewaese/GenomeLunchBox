@@ -1146,4 +1146,1476 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_Reference.add(jLabel40, gridBagConstraints);
 
         jComboBox9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
-        jComboBox9.setToolTipText("Number of genomes to be used 
+        jComboBox9.setToolTipText("Number of genomes to be used as reference.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 25);
+        Container_Reference.add(jComboBox9, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
+        PipelineConfig.add(Container_Reference, gridBagConstraints);
+
+        Container_ResultParsingParameters.setBackground(new java.awt.Color(237, 236, 236));
+        Container_ResultParsingParameters.setBorder(javax.swing.BorderFactory.createTitledBorder("Result Parsing Parameters"));
+        Container_ResultParsingParameters.setToolTipText("Analysis to perform in the pipeline.");
+        Container_ResultParsingParameters.setLayout(new java.awt.GridBagLayout());
+
+        jLabel52.setText("Number Domain");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 0, 15);
+        Container_ResultParsingParameters.add(jLabel52, gridBagConstraints);
+
+        jLabel53.setText("Accuracy Threshold");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
+        Container_ResultParsingParameters.add(jLabel53, gridBagConstraints);
+
+        jLabel54.setText("Sequence Identity");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
+        Container_ResultParsingParameters.add(jLabel54, gridBagConstraints);
+
+        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
+        jComboBox10.setToolTipText("Maximum number of domains allowed in a hit sequence.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 0);
+        Container_ResultParsingParameters.add(jComboBox10, gridBagConstraints);
+
+        jLabel55.setText("Query Coverage");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
+        Container_ResultParsingParameters.add(jLabel55, gridBagConstraints);
+
+        jSlider11.setMajorTickSpacing(99);
+        jSlider11.setMinimum(1);
+        jSlider11.setMinorTickSpacing(25);
+        jSlider11.setPaintTicks(true);
+        jSlider11.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 0.85.");
+        jSlider11.setValue(85);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider11, gridBagConstraints);
+
+        jSlider12.setMajorTickSpacing(99);
+        jSlider12.setMinimum(1);
+        jSlider12.setMinorTickSpacing(25);
+        jSlider12.setPaintTicks(true);
+        jSlider12.setToolTipText("Minimum sequence identity threshold. Default is 70.");
+        jSlider12.setValue(70);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider12, gridBagConstraints);
+
+        jSlider13.setMajorTickSpacing(99);
+        jSlider13.setMinimum(1);
+        jSlider13.setMinorTickSpacing(25);
+        jSlider13.setPaintTicks(true);
+        jSlider13.setToolTipText("Minimum sequence similarity threshold. Default is 60.");
+        jSlider13.setValue(60);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider13, gridBagConstraints);
+
+        jSlider14.setMajorTickSpacing(99);
+        jSlider14.setMinimum(1);
+        jSlider14.setMinorTickSpacing(25);
+        jSlider14.setPaintTicks(true);
+        jSlider14.setToolTipText("Minimum query coverage threshold. Default is 70.");
+        jSlider14.setValue(70);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider14, gridBagConstraints);
+
+        jSlider15.setMajorTickSpacing(99);
+        jSlider15.setMinimum(1);
+        jSlider15.setMinorTickSpacing(25);
+        jSlider15.setPaintTicks(true);
+        jSlider15.setToolTipText("Minimum target coverage threshold. Default is 70.");
+        jSlider15.setValue(70);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider15, gridBagConstraints);
+
+        jSlider16.setMajorTickSpacing(99);
+        jSlider16.setMinimum(1);
+        jSlider16.setMinorTickSpacing(25);
+        jSlider16.setPaintTicks(true);
+        jSlider16.setToolTipText("Minimum threshold for partial homolog prediction. Default is 5.");
+        jSlider16.setValue(5);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider16, gridBagConstraints);
+
+        jSlider17.setMajorTickSpacing(99);
+        jSlider17.setMinimum(1);
+        jSlider17.setMinorTickSpacing(25);
+        jSlider17.setPaintTicks(true);
+        jSlider17.setToolTipText("Minimum identity for chimera prediction. Default is 1.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider17, gridBagConstraints);
+
+        jSlider18.setMajorTickSpacing(99);
+        jSlider18.setMinimum(1);
+        jSlider18.setMinorTickSpacing(25);
+        jSlider18.setPaintTicks(true);
+        jSlider18.setToolTipText("Minumum accuracy threshold for chimera prediction. Default is 0.85.");
+        jSlider18.setValue(85);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 25, 25);
+        Container_ResultParsingParameters.add(jSlider18, gridBagConstraints);
+
+        jLabel56.setText("Sequence Similarity");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
+        Container_ResultParsingParameters.add(jLabel56, gridBagConstraints);
+
+        jLabel57.setText("Target Coverage");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
+        Container_ResultParsingParameters.add(jLabel57, gridBagConstraints);
+
+        jLabel58.setText("Minimum Partial Coverage");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
+        Container_ResultParsingParameters.add(jLabel58, gridBagConstraints);
+
+        jLabel59.setText("Chimera Accuracy");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 25, 15);
+        Container_ResultParsingParameters.add(jLabel59, gridBagConstraints);
+
+        jLabel60.setText("Chimera Similarity");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
+        Container_ResultParsingParameters.add(jLabel60, gridBagConstraints);
+
+        jTextField17.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField17.setText("0.85");
+        jTextField17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField17ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        Container_ResultParsingParameters.add(jTextField17, gridBagConstraints);
+
+        jTextField18.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField18.setText("70");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        Container_ResultParsingParameters.add(jTextField18, gridBagConstraints);
+
+        jTextField19.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField19.setText("60");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        Container_ResultParsingParameters.add(jTextField19, gridBagConstraints);
+
+        jTextField31.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField31.setText("70");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        Container_ResultParsingParameters.add(jTextField31, gridBagConstraints);
+
+        jTextField32.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField32.setText("0.85");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 25, 0);
+        Container_ResultParsingParameters.add(jTextField32, gridBagConstraints);
+
+        jTextField33.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField33.setText("70");
+        jTextField33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField33ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        Container_ResultParsingParameters.add(jTextField33, gridBagConstraints);
+
+        jTextField34.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField34.setText("5");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        Container_ResultParsingParameters.add(jTextField34, gridBagConstraints);
+
+        jTextField35.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField35.setText("50");
+        jTextField35.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField35ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        Container_ResultParsingParameters.add(jTextField35, gridBagConstraints);
+
+        jLabel61.setText("Chimera Identity");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
+        Container_ResultParsingParameters.add(jLabel61, gridBagConstraints);
+
+        jTextField36.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField36.setText("50");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
+        Container_ResultParsingParameters.add(jTextField36, gridBagConstraints);
+
+        jSlider19.setMajorTickSpacing(99);
+        jSlider19.setMinimum(1);
+        jSlider19.setMinorTickSpacing(25);
+        jSlider19.setPaintTicks(true);
+        jSlider19.setToolTipText("Minimum identity for chimera prediction. Default is 50.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider19, gridBagConstraints);
+
+        jSlider20.setMajorTickSpacing(99);
+        jSlider20.setMinimum(1);
+        jSlider20.setMinorTickSpacing(25);
+        jSlider20.setPaintTicks(true);
+        jSlider20.setToolTipText("Minimum similarity for chimera prediction. Default is 50.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider20, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
+        PipelineConfig.add(Container_ResultParsingParameters, gridBagConstraints);
+
+        jLabel_PipelineConfig.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel_PipelineConfig.setText("Pipeline Configuration Panel");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 16, 0);
+        PipelineConfig.add(jLabel_PipelineConfig, gridBagConstraints);
+
+        Container_SaveLoadRun.setBackground(new java.awt.Color(237, 236, 236));
+        Container_SaveLoadRun.setBorder(javax.swing.BorderFactory.createTitledBorder("Action"));
+        Container_SaveLoadRun.setToolTipText("Analysis to perform in the pipeline.");
+        Container_SaveLoadRun.setLayout(new java.awt.GridBagLayout());
+
+        jButton_SaveSettings.setText("Save Settings");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(15, 25, 15, 0);
+        Container_SaveLoadRun.add(jButton_SaveSettings, gridBagConstraints);
+
+        jButton_LoadSettings.setText("Load Settings");
+        jButton_LoadSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_LoadSettingsActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        Container_SaveLoadRun.add(jButton_LoadSettings, gridBagConstraints);
+
+        jButton_DefaultSettings.setText("Default Settings");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        Container_SaveLoadRun.add(jButton_DefaultSettings, gridBagConstraints);
+
+        jButton_RunPipeline.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton_RunPipeline.setText("Run Pipeline");
+        jButton_RunPipeline.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RunPipelineActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 8;
+        gridBagConstraints.ipady = 4;
+        gridBagConstraints.insets = new java.awt.Insets(4, 21, 4, 25);
+        Container_SaveLoadRun.add(jButton_RunPipeline, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(5, 300, 22, 300);
+        PipelineConfig.add(Container_SaveLoadRun, gridBagConstraints);
+
+        PipelineConfigScrollPanel.setViewportView(PipelineConfig);
+
+        jTabbedPane1.addTab("Pipeline Config", PipelineConfigScrollPanel);
+
+        QueryBuilder.setBackground(new java.awt.Color(153, 204, 255));
+        QueryBuilder.setLayout(new java.awt.GridBagLayout());
+
+        jPanel_BuildQueryGroup.setBackground(new java.awt.Color(237, 236, 236));
+        jPanel_BuildQueryGroup.setBorder(javax.swing.BorderFactory.createTitledBorder("Build Query Group"));
+        jPanel_BuildQueryGroup.setLayout(new java.awt.GridBagLayout());
+
+        jButton_MakeQueryGroup.setText("Make Query Group");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
+        jPanel_BuildQueryGroup.add(jButton_MakeQueryGroup, gridBagConstraints);
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Bacteria");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Proteobacteria");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Gammaproteobacteria");
+        javax.swing.tree.DefaultMutableTreeNode treeNode4 = new javax.swing.tree.DefaultMutableTreeNode("Pseudomonadales");
+        javax.swing.tree.DefaultMutableTreeNode treeNode5 = new javax.swing.tree.DefaultMutableTreeNode("Pseudomonadaceae");
+        javax.swing.tree.DefaultMutableTreeNode treeNode6 = new javax.swing.tree.DefaultMutableTreeNode("Pseudomonas");
+        javax.swing.tree.DefaultMutableTreeNode treeNode7 = new javax.swing.tree.DefaultMutableTreeNode("Pseudomonas syringae");
+        javax.swing.tree.DefaultMutableTreeNode treeNode8 = new javax.swing.tree.DefaultMutableTreeNode("Pseudomonas syringae pv. tomato  DC3000");
+        treeNode7.add(treeNode8);
+        treeNode8 = new javax.swing.tree.DefaultMutableTreeNode("Pseudomonas syringae pv. phaseolicola 1448A");
+        treeNode7.add(treeNode8);
+        treeNode8 = new javax.swing.tree.DefaultMutableTreeNode("Pseudomonas syringae pv. syringae B728a");
+        treeNode7.add(treeNode8);
+        treeNode6.add(treeNode7);
+        treeNode5.add(treeNode6);
+        treeNode4.add(treeNode5);
+        treeNode3.add(treeNode4);
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jTree_SearchFields.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane_SearchFieldsScrollPanel.setViewportView(jTree_SearchFields);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.1;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        jPanel_BuildQueryGroup.add(jScrollPane_SearchFieldsScrollPanel, gridBagConstraints);
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jLabel3.setText("Select items of interest from tree to create query groups.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
+        jPanel_BuildQueryGroup.add(jLabel3, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 100;
+        gridBagConstraints.ipady = 100;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 50, 50, 20);
+        QueryBuilder.add(jPanel_BuildQueryGroup, gridBagConstraints);
+
+        jPanel_ManageQueryGroups.setBackground(new java.awt.Color(237, 236, 236));
+        jPanel_ManageQueryGroups.setBorder(javax.swing.BorderFactory.createTitledBorder("Manage Query Groups"));
+        jPanel_ManageQueryGroups.setLayout(new java.awt.GridBagLayout());
+
+        jList_DisplayQueryGroups.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Query Group 1", "Query Group 2", "Query Group 3", "Query Group 4", "Query Group 5", "Query Group 6", " ", " " };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPanel_DisplayQueryGroups.setViewportView(jList_DisplayQueryGroups);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 20);
+        jPanel_ManageQueryGroups.add(jScrollPanel_DisplayQueryGroups, gridBagConstraints);
+
+        jButton_SaveGroup.setText("Save");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 0);
+        jPanel_ManageQueryGroups.add(jButton_SaveGroup, gridBagConstraints);
+
+        jButton_LoadGroup.setText("Load");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
+        jPanel_ManageQueryGroups.add(jButton_LoadGroup, gridBagConstraints);
+
+        jButton_ClearGroup.setText("Delete");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
+        jPanel_ManageQueryGroups.add(jButton_ClearGroup, gridBagConstraints);
+
+        jButton_EditGroup.setText("Combine");
+        jButton_EditGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_EditGroupActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 20);
+        jPanel_ManageQueryGroups.add(jButton_EditGroup, gridBagConstraints);
+
+        jButton1.setText("Edit");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
+        jPanel_ManageQueryGroups.add(jButton1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 20;
+        gridBagConstraints.ipady = 20;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 50, 50);
+        QueryBuilder.add(jPanel_ManageQueryGroups, gridBagConstraints);
+
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel2.setText("Query Groups");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
+        QueryBuilder.add(jLabel2, gridBagConstraints);
+
+        jTabbedPane1.addTab("Query Groups", QueryBuilder);
+
+        SearchScrollPanel.setBorder(null);
+        SearchScrollPanel.setHorizontalScrollBar(null);
+
+        Search.setBackground(new java.awt.Color(153, 204, 255));
+        Search.setMaximumSize(new java.awt.Dimension(1024, 2400));
+        Search.setMinimumSize(new java.awt.Dimension(600, 300));
+        Search.setPreferredSize(new java.awt.Dimension(1024, 570));
+        java.awt.GridBagLayout SearchLayout = new java.awt.GridBagLayout();
+        SearchLayout.columnWidths = new int[] {0, 5, 0};
+        SearchLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
+        Search.setLayout(SearchLayout);
+
+        jLabel_Search.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel_Search.setText("Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
+        Search.add(jLabel_Search, gridBagConstraints);
+
+        Container_BooleanSearch.setBackground(new java.awt.Color(237, 236, 236));
+        Container_BooleanSearch.setBorder(javax.swing.BorderFactory.createTitledBorder("Boolean Search"));
+        Container_BooleanSearch.setMaximumSize(new java.awt.Dimension(900, 700));
+        Container_BooleanSearch.setMinimumSize(new java.awt.Dimension(300, 400));
+        Container_BooleanSearch.setPreferredSize(new java.awt.Dimension(338, 227));
+        Container_BooleanSearch.setLayout(new java.awt.GridBagLayout());
+
+        jLabel_A.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel_A.setText("A");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 0);
+        Container_BooleanSearch.add(jLabel_A, gridBagConstraints);
+
+        jComboBox_BooleanOperator.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "A NOT B", "B NOT A", "!AND", "!OR" }));
+        jComboBox_BooleanOperator.setSelectedItem("OR");
+        jComboBox_BooleanOperator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_BooleanOperatorActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.weightx = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(9, 8, 9, 8);
+        Container_BooleanSearch.add(jComboBox_BooleanOperator, gridBagConstraints);
+
+        jLabel_B.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel_B.setText("B");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(14, 0, 14, 0);
+        Container_BooleanSearch.add(jLabel_B, gridBagConstraints);
+
+        jTextArea_SearchBinA.setColumns(20);
+        jTextArea_SearchBinA.setRows(5);
+        jTextArea_SearchBinA.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(120, 120, 120), 1, true));
+        jTextArea_SearchBinA.setMaximumSize(new java.awt.Dimension(250, 250));
+        jTextArea_SearchBinA.setMinimumSize(new java.awt.Dimension(100, 50));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 0.6;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 10, 10);
+        Container_BooleanSearch.add(jTextArea_SearchBinA, gridBagConstraints);
+
+        jTextArea_SearchBinB.setColumns(20);
+        jTextArea_SearchBinB.setRows(5);
+        jTextArea_SearchBinB.setAutoscrolls(false);
+        jTextArea_SearchBinB.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(120, 120, 120), 1, true));
+        jTextArea_SearchBinB.setMaximumSize(new java.awt.Dimension(250, 250));
+        jTextArea_SearchBinB.setMinimumSize(new java.awt.Dimension(100, 50));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 0.6;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 20);
+        Container_BooleanSearch.add(jTextArea_SearchBinB, gridBagConstraints);
+
+        jButton_ClearBinB.setText("Clear");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        Container_BooleanSearch.add(jButton_ClearBinB, gridBagConstraints);
+
+        jButton_ClearBinA.setText("Clear");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        Container_BooleanSearch.add(jButton_ClearBinA, gridBagConstraints);
+
+        jButton_BuildSQLquery.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton_BuildSQLquery.setText("Build SQL Query");
+        jButton_BuildSQLquery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BuildSQLqueryActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.weightx = 0.7;
+        Container_BooleanSearch.add(jButton_BuildSQLquery, gridBagConstraints);
+
+        vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-or-B.png"))); // NOI18N
+        vennDiagram.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                vennDiagramPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 2.5;
+        gridBagConstraints.insets = new java.awt.Insets(31, 8, 31, 8);
+        Container_BooleanSearch.add(vennDiagram, gridBagConstraints);
+
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jLabel5.setText("Place query groups in either bin then select a Boolean operator.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        Container_BooleanSearch.add(jLabel5, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 87;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 50, 50);
+        Search.add(Container_BooleanSearch, gridBagConstraints);
+
+        Container_Action.setBackground(new java.awt.Color(153, 204, 255));
+        Container_Action.setMaximumSize(new java.awt.Dimension(1024, 100));
+        Container_Action.setMinimumSize(new java.awt.Dimension(540, 68));
+        Container_Action.setPreferredSize(new java.awt.Dimension(800, 34));
+        Container_Action.setLayout(new java.awt.GridBagLayout());
+
+        jButton_NewSearch.setText("New Search");
+        jButton_NewSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_NewSearchActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 11, 25);
+        Container_Action.add(jButton_NewSearch, gridBagConstraints);
+
+        jButton_LoadSearch.setText("Load Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 11, 25);
+        Container_Action.add(jButton_LoadSearch, gridBagConstraints);
+
+        jButton_SaveSearch.setText("Save Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 11, 25);
+        Container_Action.add(jButton_SaveSearch, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 7, 0);
+        Search.add(Container_Action, gridBagConstraints);
+
+        Container_QueryBuilder.setBackground(new java.awt.Color(237, 236, 236));
+        Container_QueryBuilder.setBorder(javax.swing.BorderFactory.createTitledBorder("SQL Query"));
+        Container_QueryBuilder.setLayout(new java.awt.GridBagLayout());
+
+        jButton_SubmitSearch.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jButton_SubmitSearch.setText("Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 8;
+        gridBagConstraints.ipady = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(12, 7, 12, 50);
+        Container_QueryBuilder.add(jButton_SubmitSearch, gridBagConstraints);
+
+        jTextField_SQLsearchQuery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField_SQLsearchQueryActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.insets = new java.awt.Insets(14, 15, 14, 15);
+        Container_QueryBuilder.add(jTextField_SQLsearchQuery, gridBagConstraints);
+
+        jLabel_SearchString.setText("Search String");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 50, 20, 0);
+        Container_QueryBuilder.add(jLabel_SearchString, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 50);
+        Search.add(Container_QueryBuilder, gridBagConstraints);
+
+        jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
+
+        jPanel3_QueryGroups.setLayout(new java.awt.GridBagLayout());
+
+        jList_QueryGroups1.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "QueryGroup1", "QueryGroup2", "QueryGroup3", "QueryGroup4", "QueryGroup5", "QueryGroup6", "QueryGroup7", " " };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPanel_QueryGroups1.setViewportView(jList_QueryGroups1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 20);
+        jPanel3_QueryGroups.add(jScrollPanel_QueryGroups1, gridBagConstraints);
+
+        jLabel_InstructionsLine3.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jLabel_InstructionsLine3.setText("assign to Boolean search bins A or B.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        jPanel3_QueryGroups.add(jLabel_InstructionsLine3, gridBagConstraints);
+
+        jLabel_InstructionsLine4.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jLabel_InstructionsLine4.setText("Drag items or use the buttons to");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 0, 0);
+        jPanel3_QueryGroups.add(jLabel_InstructionsLine4, gridBagConstraints);
+
+        jButton_AssignToBinA1.setText("Bin A");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 20);
+        jPanel3_QueryGroups.add(jButton_AssignToBinA1, gridBagConstraints);
+
+        jButton_AssignToBinB1.setText("Bin B");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 20);
+        jPanel3_QueryGroups.add(jButton_AssignToBinB1, gridBagConstraints);
+
+        jTabbedPane2.addTab("Query Groups", jPanel3_QueryGroups);
+
+        jPanel3_ResultGroups.setLayout(new java.awt.GridBagLayout());
+
+        jList_QueryGroups3.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "ResultGroup1", "ResultGroup2", "ResultGroup3", "ResultGroup4", "ResultGroup5", "ResultGroup6", "ResultGroup7" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPanel_QueryGroups3.setViewportView(jList_QueryGroups3);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 20);
+        jPanel3_ResultGroups.add(jScrollPanel_QueryGroups3, gridBagConstraints);
+
+        jLabel_InstructionsLine7.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jLabel_InstructionsLine7.setText("assign to Boolean search bins A or B.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 4;
+        jPanel3_ResultGroups.add(jLabel_InstructionsLine7, gridBagConstraints);
+
+        jLabel_InstructionsLine8.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jLabel_InstructionsLine8.setText("Drag items or use the buttons to");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.insets = new java.awt.Insets(8, 0, 0, 0);
+        jPanel3_ResultGroups.add(jLabel_InstructionsLine8, gridBagConstraints);
+
+        jButton_AssignToBinA3.setText("Bin A");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 20);
+        jPanel3_ResultGroups.add(jButton_AssignToBinA3, gridBagConstraints);
+
+        jButton_AssignResultsToBinB.setText("Bin B");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 20);
+        jPanel3_ResultGroups.add(jButton_AssignResultsToBinB, gridBagConstraints);
+
+        jTabbedPane2.addTab("Result Groups", jPanel3_ResultGroups);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 27;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 50, 50, 20);
+        Search.add(jPanel2, gridBagConstraints);
+
+        SearchScrollPanel.setViewportView(Search);
+
+        jTabbedPane1.addTab("Search", SearchScrollPanel);
+
+        Results.setBackground(new java.awt.Color(153, 204, 255));
+        Results.setMaximumSize(new java.awt.Dimension(1024, 2400));
+        Results.setMinimumSize(new java.awt.Dimension(600, 300));
+        Results.setPreferredSize(new java.awt.Dimension(800, 500));
+        Results.setLayout(new java.awt.GridBagLayout());
+
+        jLabel_Results.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel_Results.setText("Results");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
+        Results.add(jLabel_Results, gridBagConstraints);
+
+        jTable_ResultsWindow.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jTable_ResultsWindow.setAutoCreateRowSorter(true);
+        jTable_ResultsWindow.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable_ResultsWindow.setMaximumSize(new java.awt.Dimension(1024, 2400));
+        jTable_ResultsWindow.setMinimumSize(new java.awt.Dimension(600, 300));
+        jTable_ResultsWindow.setPreferredSize(new java.awt.Dimension(900, 300));
+        jTable_ResultsWindow.setRequestFocusEnabled(false);
+        jTable_ResultsWindow.setRowMargin(2);
+        jTable_ResultsWindow.setRowSelectionAllowed(false);
+        jScrollPane_ResultsWindowScrollPanel.setViewportView(jTable_ResultsWindow);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 3;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(20, 50, 50, 50);
+        Results.add(jScrollPane_ResultsWindowScrollPanel, gridBagConstraints);
+
+        jButton_SaveResults.setText("Save Results");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        Results.add(jButton_SaveResults, gridBagConstraints);
+
+        jButton_ClearResults.setText("Clear Results");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 50, 0, 0);
+        Results.add(jButton_ClearResults, gridBagConstraints);
+
+        ResultsGroup.setText("Make Query Group From Results Set");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
+        Results.add(ResultsGroup, gridBagConstraints);
+
+        jTabbedPane1.addTab("Results", Results);
+
+        Help.setBackground(new java.awt.Color(153, 204, 255));
+        Help.setLayout(new java.awt.GridBagLayout());
+
+        jLabel_Help.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel_Help.setText("Help");
+        jLabel_Help.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        jLabel_Help.setVerifyInputWhenFocusTarget(false);
+        jLabel_Help.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
+        Help.add(jLabel_Help, gridBagConstraints);
+
+        jTextArea_HelpContents.setColumns(20);
+        jTextArea_HelpContents.setRows(5);
+        jScrollPanel_HelpContentsScrollPanel.setViewportView(jTextArea_HelpContents);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
+        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weighty = 2.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 50, 50, 50);
+        Help.add(jScrollPanel_HelpContentsScrollPanel, gridBagConstraints);
+
+        jTabbedPane1.addTab("Help", Help);
+
+        jPanel1.add(jTabbedPane1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void portnumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_portnumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_portnumberActionPerformed
+
+    private void jButton_ConnectToDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConnectToDBActionPerformed
+        user = UserName.getText().trim();
+        char[] pass = Password.getPassword();
+        passStr = new String(pass);
+        ip = IPAddress.getText().trim();
+        db = DBName.getText().trim();
+        dbport = portnumber.getText().trim();
+        ConnectionName = DBConnection.getText().trim();
+        connect = new DBConnect(ip,dbport,passStr, user, db, jLabel_ConnectToDBStatus,ConnectionName,jComboBox_RecentDBList);
+        String query = "SELECT COLUMN_NAME" + "FROM INFORMATION_SCHEMA.COLUMNS" +
+                       " WHERE TABLE_SCHEMA='"+db+"'" + 
+                        " AND TABLE_NAME='Taxonomy'";
+        ResultSet resultSet;
+        resultSet = connect.getData(query);
+        taxonomyFields = new ArrayList();
+        try{
+                while (resultSet.next()) {
+                    String columnName = resultSet.getString("COLUMN_NAME");
+                    System.out.println("Column Name: "+columnName);
+                    taxonomyFields.add(columnName);
+                }
+        }
+        catch(Exception ex){
+               System.out.println("Error"+ex);
+        }
+        
+
+        System.out.println("Username: "+user+"  Password Length: "+passStr);
+        
+        //jLabel_ConnectionStatus.setText("new Value");
+    }//GEN-LAST:event_jButton_ConnectToDBActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
+
+    private void jTextField10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField10ActionPerformed
+
+    private void jRadioButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton6ActionPerformed
+
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12ActionPerformed
+
+    private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField13ActionPerformed
+
+    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField15ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField20ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField20ActionPerformed
+
+    private void jTextField21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField21ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField21ActionPerformed
+
+    private void jTextField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField22ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField22ActionPerformed
+
+    private void jTextField23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField23ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField23ActionPerformed
+
+    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField17ActionPerformed
+
+    private void jTextField33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField33ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField33ActionPerformed
+
+    private void jTextField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField35ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField35ActionPerformed
+
+    private void jButton_LoadSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LoadSettingsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_LoadSettingsActionPerformed
+
+    private void jButton_RunPipelineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RunPipelineActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_RunPipelineActionPerformed
+
+    private void jButton_EditGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EditGroupActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_EditGroupActionPerformed
+
+    private void jButton_BuildSQLqueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuildSQLqueryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_BuildSQLqueryActionPerformed
+
+    private void jButton_NewSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NewSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_NewSearchActionPerformed
+
+    private void jTextField_SQLsearchQueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_SQLsearchQueryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField_SQLsearchQueryActionPerformed
+
+    private void IPAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IPAddressActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IPAddressActionPerformed
+
+    private void vennDiagramPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_vennDiagramPropertyChange
+        // Jamie:
+        //
+        // This is vestigial. It can be removed if you remove the call to it as well.
+        
+    }//GEN-LAST:event_vennDiagramPropertyChange
+
+    private void jComboBox_BooleanOperatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorActionPerformed
+        // Jamie:
+        //
+        // This function responds to the jComboBox_BooleanOperator action event (user adjusts the AND / OR / NOT combo box)
+        // and stores the value in the global String booleanSearchMode.
+        //
+        // It also replaces the vennDiagram icon according to the selected mode.
+        
+        // First, let's get the current value of the combobox and store in a temporary variable called booleanOperator
+        String booleanOperator = jComboBox_BooleanOperator.getSelectedItem().toString();
+        
+        // Then, we update booleanSearchMode according to the switch case.
+        switch (booleanOperator) {
+            case "AND":
+                booleanSearchMode = "AND";
+                // Change the image icon accordingly
+                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-and-B.png")));
+                break;
+                
+            case "OR":
+                booleanSearchMode = "OR";
+                // Change the image icon accordingly
+                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-or-B.png"))); 
+                break;
+                
+            case "A NOT B":
+                booleanSearchMode = "A NOT B";
+                // Change the image icon accordingly
+                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-not-B.png")));
+                break;
+                
+             case "B NOT A":
+                booleanSearchMode = "B NOT A";
+                // Change the image icon accordingly
+                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-B-not-A.png")));
+                break;
+                
+            case "!AND":
+                booleanSearchMode = "!AND";
+                // Change the image icon accordingly
+                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-or-B-not-A-and-B.png")));
+                break;
+                
+            case "!OR":
+                booleanSearchMode = "!OR";
+                // Change the image icon accordingly
+                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn.png")));
+                break;
+        }
+    }//GEN-LAST:event_jComboBox_BooleanOperatorActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(HMM_ModelUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(HMM_ModelUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(HMM_ModelUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(HMM_ModelUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new HMM_ModelUI().setVisible(true);
+            }
+        });
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ConnectToDB;
+    private javax.swing.JPanel Container_Action;
+    private javax.swing.JPanel Container_Analysis;
+    private javax.swing.JPanel Container_BooleanSearch;
+    private javax.swing.JPanel Container_CoreGenome;
+    private javax.swing.JPanel Container_Database;
+    private javax.swing.JPanel Container_Group;
+    private javax.swing.JPanel Container_HMMERParameters;
+    private javax.swing.JPanel Container_QueryBuilder;
+    private javax.swing.JPanel Container_Reference;
+    private javax.swing.JPanel Container_ResultParsingParameters;
+    private javax.swing.JPanel Container_SaveLoadRun;
+    private javax.swing.JPanel Container_SelectDB;
+    private javax.swing.JPanel Container_Sequence;
+    private javax.swing.JPanel Container_SequenceDirectory;
+    private javax.swing.JPanel Container_Title;
+    private javax.swing.JTextField DBConnection;
+    private javax.swing.JTextField DBName;
+    private javax.swing.JPanel Help;
+    private javax.swing.JPanel Home;
+    private javax.swing.JTextField IPAddress;
+    private javax.swing.JPasswordField Password;
+    private javax.swing.JPanel PipelineConfig;
+    private javax.swing.JScrollPane PipelineConfigScrollPanel;
+    private javax.swing.JPanel QueryBuilder;
+    private javax.swing.JPanel Results;
+    private javax.swing.JButton ResultsGroup;
+    private javax.swing.JPanel Search;
+    private javax.swing.JScrollPane SearchScrollPanel;
+    private javax.swing.JTextField UserName;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton22;
+    private javax.swing.JButton jButton25;
+    private javax.swing.JButton jButton28;
+    private javax.swing.JButton jButton29;
+    private javax.swing.JButton jButton32;
+    private javax.swing.JButton jButton33;
+    private javax.swing.JButton jButton34;
+    private javax.swing.JButton jButton35;
+    private javax.swing.JButton jButton36;
+    private javax.swing.JButton jButton_AssignResultsToBinB;
+    private javax.swing.JButton jButton_AssignToBinA1;
+    private javax.swing.JButton jButton_AssignToBinA3;
+    private javax.swing.JButton jButton_AssignToBinB1;
+    private javax.swing.JButton jButton_BuildSQLquery;
+    private javax.swing.JButton jButton_ClearBinA;
+    private javax.swing.JButton jButton_ClearBinB;
+    private javax.swing.JButton jButton_ClearGroup;
+    private javax.swing.JButton jButton_ClearRecentDBList;
+    private javax.swing.JButton jButton_ClearResults;
+    private javax.swing.JButton jButton_ConnectToDB;
+    private javax.swing.JButton jButton_DefaultSettings;
+    private javax.swing.JButton jButton_EditGroup;
+    private javax.swing.JButton jButton_LoadGroup;
+    private javax.swing.JButton jButton_LoadSearch;
+    private javax.swing.JButton jButton_LoadSettings;
+    private javax.swing.JButton jButton_MakeQueryGroup;
+    private javax.swing.JButton jButton_NewSearch;
+    private javax.swing.JButton jButton_RunPipeline;
+    private javax.swing.JButton jButton_SaveGroup;
+    private javax.swing.JButton jButton_SaveResults;
+    private javax.swing.JButton jButton_SaveSearch;
+    private javax.swing.JButton jButton_SaveSettings;
+    private javax.swing.JButton jButton_SubmitSearch;
+    private javax.swing.JButton jButton_TestConnection;
+    private javax.swing.JComboBox jComboBox10;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JComboBox jComboBox9;
+    private javax.swing.JComboBox jComboBox_BooleanOperator;
+    private javax.swing.JComboBox jComboBox_RecentDBList;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel1_Subtitle;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel52;
+    private javax.swing.JLabel jLabel53;
+    private javax.swing.JLabel jLabel54;
+    private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel_A;
+    private javax.swing.JLabel jLabel_B;
+    private javax.swing.JLabel jLabel_CSBDept;
+    private javax.swing.JLabel jLabel_ConnectToDB;
+    private javax.swing.JLabel jLabel_ConnectToDBStatus;
+    private javax.swing.JLabel jLabel_ConnectionName;
+    private javax.swing.JLabel jLabel_ConnectionStatus;
+    private javax.swing.JLabel jLabel_Database;
+    private javax.swing.JLabel jLabel_GuttmanLab;
+    private javax.swing.JLabel jLabel_Help;
+    private javax.swing.JLabel jLabel_IPAddress2;
+    private javax.swing.JLabel jLabel_InstructionsLine3;
+    private javax.swing.JLabel jLabel_InstructionsLine4;
+    private javax.swing.JLabel jLabel_InstructionsLine7;
+    private javax.swing.JLabel jLabel_InstructionsLine8;
+    private javax.swing.JLabel jLabel_Name1;
+    private javax.swing.JLabel jLabel_Name2;
+    private javax.swing.JLabel jLabel_Name3;
+    private javax.swing.JLabel jLabel_Password;
+    private javax.swing.JLabel jLabel_PipelineConfig;
+    private javax.swing.JLabel jLabel_RecentDBs;
+    private javax.swing.JLabel jLabel_Results;
+    private javax.swing.JLabel jLabel_Search;
+    private javax.swing.JLabel jLabel_SearchString;
+    private javax.swing.JLabel jLabel_Title;
+    private javax.swing.JLabel jLabel_UniversityOfToronto;
+    private javax.swing.JLabel jLabel_UserName;
+    private javax.swing.JLabel jLabel_port;
+    private javax.swing.JList jList_DisplayQueryGroups;
+    private javax.swing.JList jList_QueryGroups1;
+    private javax.swing.JList jList_QueryGroups3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3_QueryGroups;
+    private javax.swing.JPanel jPanel3_ResultGroups;
+    private javax.swing.JPanel jPanel_BuildQueryGroup;
+    private javax.swing.JPanel jPanel_ManageQueryGroups;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JScrollPane jScrollPane_ResultsWindowScrollPanel;
+    private javax.swing.JScrollPane jScrollPane_SearchFieldsScrollPanel;
+    private javax.swing.JScrollPane jScrollPanel_DisplayQueryGroups;
+    private javax.swing.JScrollPane jScrollPanel_HelpContentsScrollPanel;
+    private javax.swing.JScrollPane jScrollPanel_QueryGroups1;
+    private javax.swing.JScrollPane jScrollPanel_QueryGroups3;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider11;
+    private javax.swing.JSlider jSlider12;
+    private javax.swing.JSlider jSlider13;
+    private javax.swing.JSlider jSlider14;
+    private javax.swing.JSlider jSlider15;
+    private javax.swing.JSlider jSlider16;
+    private javax.swing.JSlider jSlider17;
+    private javax.swing.JSlider jSlider18;
+    private javax.swing.JSlider jSlider19;
+    private javax.swing.JSlider jSlider20;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTable jTable_ResultsWindow;
+    private javax.swing.JTextArea jTextArea_HelpContents;
+    private javax.swing.JTextArea jTextArea_SearchBinA;
+    private javax.swing.JTextArea jTextArea_SearchBinB;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
+    private javax.swing.JTextField jTextField20;
+    private javax.swing.JTextField jTextField21;
+    private javax.swing.JTextField jTextField22;
+    private javax.swing.JTextField jTextField23;
+    private javax.swing.JTextField jTextField24;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField31;
+    private javax.swing.JTextField jTextField32;
+    private javax.swing.JTextField jTextField33;
+    private javax.swing.JTextField jTextField34;
+    private javax.swing.JTextField jTextField35;
+    private javax.swing.JTextField jTextField36;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField jTextField_SQLsearchQuery;
+    private javax.swing.JTree jTree_SearchFields;
+    private javax.swing.JTextField portnumber;
+    private javax.swing.JLabel vennDiagram;
+    // End of variables declaration//GEN-END:variables
+}
