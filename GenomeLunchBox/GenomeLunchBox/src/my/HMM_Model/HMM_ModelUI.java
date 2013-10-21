@@ -3,7 +3,6 @@
  * and open the template in the editor.
  */
 package my.HMM_Model;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -140,9 +139,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton36 = new javax.swing.JButton();
         Container_CoreGenome = new javax.swing.JPanel();
         jLabel38 = new javax.swing.JLabel();
-        CoreGenomeAccuracyThresholdSlider = new javax.swing.JSlider();
-        CoreGenomeAccuracyThresholdTextBox = new javax.swing.JTextField();
-        CoreGenomeAccuracyThresholdDefault = new javax.swing.JButton();
+        jSlider1 = new javax.swing.JSlider();
+        jTextField3 = new javax.swing.JTextField();
         Container_HMMERParameters = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
         jTextField20 = new javax.swing.JTextField();
@@ -161,41 +159,31 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel54 = new javax.swing.JLabel();
         jComboBox10 = new javax.swing.JComboBox();
         jLabel55 = new javax.swing.JLabel();
-        AccuracyThresholdSlider = new javax.swing.JSlider();
-        SequenceIdentitySlider = new javax.swing.JSlider();
-        SequenceSimilaritySlider = new javax.swing.JSlider();
-        QueryCoverageSlider = new javax.swing.JSlider();
-        TargetCoverageSlider = new javax.swing.JSlider();
-        MinimumPartialCoverageSlider = new javax.swing.JSlider();
+        jSlider11 = new javax.swing.JSlider();
+        jSlider12 = new javax.swing.JSlider();
+        jSlider13 = new javax.swing.JSlider();
+        jSlider14 = new javax.swing.JSlider();
+        jSlider15 = new javax.swing.JSlider();
+        jSlider16 = new javax.swing.JSlider();
         jSlider17 = new javax.swing.JSlider();
-        ChimeraAccuracySlider = new javax.swing.JSlider();
+        jSlider18 = new javax.swing.JSlider();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jLabel59 = new javax.swing.JLabel();
         jLabel60 = new javax.swing.JLabel();
-        AccuracyThresholdTextBox = new javax.swing.JTextField();
-        SequenceIdentityTextBox = new javax.swing.JTextField();
-        SequenceSimilarityTextBox = new javax.swing.JTextField();
-        QueryCoverageTextBox = new javax.swing.JTextField();
-        ChimeraAccuracyTextBox = new javax.swing.JTextField();
-        TargetCoverageTextBox = new javax.swing.JTextField();
-        MinimumPartialCoverageTextBox = new javax.swing.JTextField();
-        ChimeraSimilarityTextBox = new javax.swing.JTextField();
+        jTextField17 = new javax.swing.JTextField();
+        jTextField18 = new javax.swing.JTextField();
+        jTextField19 = new javax.swing.JTextField();
+        jTextField31 = new javax.swing.JTextField();
+        jTextField32 = new javax.swing.JTextField();
+        jTextField33 = new javax.swing.JTextField();
+        jTextField34 = new javax.swing.JTextField();
+        jTextField35 = new javax.swing.JTextField();
         jLabel61 = new javax.swing.JLabel();
-        ChimeraIdentityTextBox = new javax.swing.JTextField();
-        ChimeraIdentitySlider = new javax.swing.JSlider();
-        ChimeraSimilaritySlider = new javax.swing.JSlider();
-        NumberDomainDefault = new javax.swing.JButton();
-        AccuracyThresholdDefault = new javax.swing.JButton();
-        SequenceIdentityDefault = new javax.swing.JButton();
-        SequenceSimilarityDefault = new javax.swing.JButton();
-        QueryCoverageDefault = new javax.swing.JButton();
-        TargetCoverageDefault = new javax.swing.JButton();
-        ChimeraIdentityDefault = new javax.swing.JButton();
-        ChimaraSimilarityDefault = new javax.swing.JButton();
-        ChimeraAccuaracyDefault = new javax.swing.JButton();
-        MinimumPartialCoverageDefault = new javax.swing.JButton();
+        jTextField36 = new javax.swing.JTextField();
+        jSlider19 = new javax.swing.JSlider();
+        jSlider20 = new javax.swing.JSlider();
         jLabel_PipelineConfig = new javax.swing.JLabel();
         Container_SaveLoadRun = new javax.swing.JPanel();
         jButton_SaveSettings = new javax.swing.JButton();
@@ -204,19 +192,20 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_RunPipeline = new javax.swing.JButton();
         QueryBuilder = new javax.swing.JPanel();
         jPanel_BuildQueryGroup = new javax.swing.JPanel();
+        jButton_MakeQueryGroup = new javax.swing.JButton();
         jScrollPane_SearchFieldsScrollPanel = new javax.swing.JScrollPane();
         jTree_SearchFields = new javax.swing.JTree();
         jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         jPanel_ManageQueryGroups = new javax.swing.JPanel();
         jScrollPanel_DisplayQueryGroups = new javax.swing.JScrollPane();
         jList_DisplayQueryGroups = new javax.swing.JList();
         jButton_SaveGroup = new javax.swing.JButton();
+        jButton_LoadGroup = new javax.swing.JButton();
         jButton_ClearGroup = new javax.swing.JButton();
         jButton_EditGroup = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        SearchScrollPanel = new javax.swing.JScrollPane();
         Search = new javax.swing.JPanel();
         jLabel_Search = new javax.swing.JLabel();
         Container_BooleanSearch = new javax.swing.JPanel();
@@ -229,7 +218,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_ClearBinA = new javax.swing.JButton();
         jButton_BuildSQLquery = new javax.swing.JButton();
         vennDiagram = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         Container_Action = new javax.swing.JPanel();
         jButton_NewSearch = new javax.swing.JButton();
@@ -295,7 +283,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Home.setPreferredSize(new java.awt.Dimension(1200, 700));
         Home.setLayout(new java.awt.GridBagLayout());
 
-        Container_Title.setBackground(new java.awt.Color(237, 237, 237));
+        Container_Title.setBackground(new java.awt.Color(223, 222, 222));
         Container_Title.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(115, 155, 194), 5, true));
         Container_Title.setMaximumSize(new java.awt.Dimension(660, 394));
         Container_Title.setLayout(new java.awt.GridBagLayout());
@@ -373,7 +361,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         ConnectToDB.setPreferredSize(new java.awt.Dimension(1200, 700));
         ConnectToDB.setLayout(new java.awt.GridBagLayout());
 
-        Container_SelectDB.setBackground(new java.awt.Color(237, 237, 237));
+        Container_SelectDB.setBackground(new java.awt.Color(222, 222, 222));
         Container_SelectDB.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(115, 155, 194), 5, true));
         Container_SelectDB.setAlignmentX(0.0F);
         Container_SelectDB.setAlignmentY(0.0F);
@@ -1015,83 +1003,34 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(15, 21, 15, 54);
+        gridBagConstraints.insets = new java.awt.Insets(15, 25, 15, 88);
         Container_CoreGenome.add(jLabel38, gridBagConstraints);
 
-        CoreGenomeAccuracyThresholdSlider.setMajorTickSpacing(99);
-        CoreGenomeAccuracyThresholdSlider.setMinimum(1);
-        CoreGenomeAccuracyThresholdSlider.setMinorTickSpacing(25);
-        CoreGenomeAccuracyThresholdSlider.setPaintTicks(true);
-        CoreGenomeAccuracyThresholdSlider.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 90.");
-        CoreGenomeAccuracyThresholdSlider.setValue(90);
-        CoreGenomeAccuracyThresholdSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                CoreGenomeAccuracyThresholdSliderStateChanged(evt);
-            }
-        });
+        jSlider1.setMajorTickSpacing(99);
+        jSlider1.setMinimum(1);
+        jSlider1.setMinorTickSpacing(25);
+        jSlider1.setPaintTicks(true);
+        jSlider1.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 90.");
+        jSlider1.setValue(90);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 17, 0, 0);
-        Container_CoreGenome.add(CoreGenomeAccuracyThresholdSlider, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 25);
+        Container_CoreGenome.add(jSlider1, gridBagConstraints);
 
-        CoreGenomeAccuracyThresholdTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        CoreGenomeAccuracyThresholdTextBox.setText("90");
-        CoreGenomeAccuracyThresholdTextBox.addActionListener(new java.awt.event.ActionListener() {
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField3.setText("90");
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CoreGenomeAccuracyThresholdTextBoxActionPerformed(evt);
-            }
-        });
-        CoreGenomeAccuracyThresholdTextBox.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
-                CoreGenomeAccuracyThresholdTextBoxInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
-        });
-        CoreGenomeAccuracyThresholdTextBox.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                CoreGenomeAccuracyThresholdTextBoxPropertyChange(evt);
-            }
-        });
-        CoreGenomeAccuracyThresholdTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CoreGenomeAccuracyThresholdTextBoxKeyPressed(evt);
+                jTextField3ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.ipadx = 32;
-        Container_CoreGenome.add(CoreGenomeAccuracyThresholdTextBox, gridBagConstraints);
-
-        CoreGenomeAccuracyThresholdDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        CoreGenomeAccuracyThresholdDefault.setForeground(new java.awt.Color(102, 102, 102));
-        CoreGenomeAccuracyThresholdDefault.setText("default");
-        CoreGenomeAccuracyThresholdDefault.setToolTipText("Restore default setting.");
-        CoreGenomeAccuracyThresholdDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        CoreGenomeAccuracyThresholdDefault.setIconTextGap(0);
-        CoreGenomeAccuracyThresholdDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        CoreGenomeAccuracyThresholdDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        CoreGenomeAccuracyThresholdDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        CoreGenomeAccuracyThresholdDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        CoreGenomeAccuracyThresholdDefault.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                CoreGenomeAccuracyThresholdDefaultMouseClicked(evt);
-            }
-        });
-        CoreGenomeAccuracyThresholdDefault.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CoreGenomeAccuracyThresholdDefaultActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 8, 0, 25);
-        Container_CoreGenome.add(CoreGenomeAccuracyThresholdDefault, gridBagConstraints);
+        Container_CoreGenome.add(jTextField3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1263,113 +1202,83 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
         Container_ResultParsingParameters.add(jLabel55, gridBagConstraints);
 
-        AccuracyThresholdSlider.setMajorTickSpacing(99);
-        AccuracyThresholdSlider.setMinimum(1);
-        AccuracyThresholdSlider.setMinorTickSpacing(25);
-        AccuracyThresholdSlider.setPaintTicks(true);
-        AccuracyThresholdSlider.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 0.85.");
-        AccuracyThresholdSlider.setValue(85);
-        AccuracyThresholdSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                AccuracyThresholdSliderStateChanged(evt);
-            }
-        });
+        jSlider11.setMajorTickSpacing(99);
+        jSlider11.setMinimum(1);
+        jSlider11.setMinorTickSpacing(25);
+        jSlider11.setPaintTicks(true);
+        jSlider11.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 0.85.");
+        jSlider11.setValue(85);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
-        Container_ResultParsingParameters.add(AccuracyThresholdSlider, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider11, gridBagConstraints);
 
-        SequenceIdentitySlider.setMajorTickSpacing(99);
-        SequenceIdentitySlider.setMinimum(1);
-        SequenceIdentitySlider.setMinorTickSpacing(25);
-        SequenceIdentitySlider.setPaintTicks(true);
-        SequenceIdentitySlider.setToolTipText("Minimum sequence identity threshold. Default is 70.");
-        SequenceIdentitySlider.setValue(70);
-        SequenceIdentitySlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                SequenceIdentitySliderStateChanged(evt);
-            }
-        });
+        jSlider12.setMajorTickSpacing(99);
+        jSlider12.setMinimum(1);
+        jSlider12.setMinorTickSpacing(25);
+        jSlider12.setPaintTicks(true);
+        jSlider12.setToolTipText("Minimum sequence identity threshold. Default is 70.");
+        jSlider12.setValue(70);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
-        Container_ResultParsingParameters.add(SequenceIdentitySlider, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider12, gridBagConstraints);
 
-        SequenceSimilaritySlider.setMajorTickSpacing(99);
-        SequenceSimilaritySlider.setMinimum(1);
-        SequenceSimilaritySlider.setMinorTickSpacing(25);
-        SequenceSimilaritySlider.setPaintTicks(true);
-        SequenceSimilaritySlider.setToolTipText("Minimum sequence similarity threshold. Default is 60.");
-        SequenceSimilaritySlider.setValue(60);
-        SequenceSimilaritySlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                SequenceSimilaritySliderStateChanged(evt);
-            }
-        });
+        jSlider13.setMajorTickSpacing(99);
+        jSlider13.setMinimum(1);
+        jSlider13.setMinorTickSpacing(25);
+        jSlider13.setPaintTicks(true);
+        jSlider13.setToolTipText("Minimum sequence similarity threshold. Default is 60.");
+        jSlider13.setValue(60);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
-        Container_ResultParsingParameters.add(SequenceSimilaritySlider, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider13, gridBagConstraints);
 
-        QueryCoverageSlider.setMajorTickSpacing(99);
-        QueryCoverageSlider.setMinimum(1);
-        QueryCoverageSlider.setMinorTickSpacing(25);
-        QueryCoverageSlider.setPaintTicks(true);
-        QueryCoverageSlider.setToolTipText("Minimum query coverage threshold. Default is 70.");
-        QueryCoverageSlider.setValue(70);
-        QueryCoverageSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                QueryCoverageSliderStateChanged(evt);
-            }
-        });
+        jSlider14.setMajorTickSpacing(99);
+        jSlider14.setMinimum(1);
+        jSlider14.setMinorTickSpacing(25);
+        jSlider14.setPaintTicks(true);
+        jSlider14.setToolTipText("Minimum query coverage threshold. Default is 70.");
+        jSlider14.setValue(70);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
-        Container_ResultParsingParameters.add(QueryCoverageSlider, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider14, gridBagConstraints);
 
-        TargetCoverageSlider.setMajorTickSpacing(99);
-        TargetCoverageSlider.setMinimum(1);
-        TargetCoverageSlider.setMinorTickSpacing(25);
-        TargetCoverageSlider.setPaintTicks(true);
-        TargetCoverageSlider.setToolTipText("Minimum target coverage threshold. Default is 70.");
-        TargetCoverageSlider.setValue(70);
-        TargetCoverageSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                TargetCoverageSliderStateChanged(evt);
-            }
-        });
+        jSlider15.setMajorTickSpacing(99);
+        jSlider15.setMinimum(1);
+        jSlider15.setMinorTickSpacing(25);
+        jSlider15.setPaintTicks(true);
+        jSlider15.setToolTipText("Minimum target coverage threshold. Default is 70.");
+        jSlider15.setValue(70);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
-        Container_ResultParsingParameters.add(TargetCoverageSlider, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider15, gridBagConstraints);
 
-        MinimumPartialCoverageSlider.setMajorTickSpacing(99);
-        MinimumPartialCoverageSlider.setMinimum(1);
-        MinimumPartialCoverageSlider.setMinorTickSpacing(25);
-        MinimumPartialCoverageSlider.setPaintTicks(true);
-        MinimumPartialCoverageSlider.setToolTipText("Minimum threshold for partial homolog prediction. Default is 5.");
-        MinimumPartialCoverageSlider.setValue(5);
-        MinimumPartialCoverageSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                MinimumPartialCoverageSliderStateChanged(evt);
-            }
-        });
+        jSlider16.setMajorTickSpacing(99);
+        jSlider16.setMinimum(1);
+        jSlider16.setMinorTickSpacing(25);
+        jSlider16.setPaintTicks(true);
+        jSlider16.setToolTipText("Minimum threshold for partial homolog prediction. Default is 5.");
+        jSlider16.setValue(5);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
-        Container_ResultParsingParameters.add(MinimumPartialCoverageSlider, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider16, gridBagConstraints);
 
         jSlider17.setMajorTickSpacing(99);
         jSlider17.setMinimum(1);
@@ -1378,26 +1287,21 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jSlider17.setToolTipText("Minimum identity for chimera prediction. Default is 1.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(25, 11, 0, 11);
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 25);
         Container_ResultParsingParameters.add(jSlider17, gridBagConstraints);
 
-        ChimeraAccuracySlider.setMajorTickSpacing(99);
-        ChimeraAccuracySlider.setMinimum(1);
-        ChimeraAccuracySlider.setMinorTickSpacing(25);
-        ChimeraAccuracySlider.setPaintTicks(true);
-        ChimeraAccuracySlider.setToolTipText("Minumum accuracy threshold for chimera prediction. Default is 0.85.");
-        ChimeraAccuracySlider.setValue(85);
-        ChimeraAccuracySlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ChimeraAccuracySliderStateChanged(evt);
-            }
-        });
+        jSlider18.setMajorTickSpacing(99);
+        jSlider18.setMinimum(1);
+        jSlider18.setMinorTickSpacing(25);
+        jSlider18.setPaintTicks(true);
+        jSlider18.setToolTipText("Minumum accuracy threshold for chimera prediction. Default is 0.85.");
+        jSlider18.setValue(85);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 25, 11);
-        Container_ResultParsingParameters.add(ChimeraAccuracySlider, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 25, 25);
+        Container_ResultParsingParameters.add(jSlider18, gridBagConstraints);
 
         jLabel56.setText("Sequence Similarity");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1439,16 +1343,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
         Container_ResultParsingParameters.add(jLabel60, gridBagConstraints);
 
-        AccuracyThresholdTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        AccuracyThresholdTextBox.setText("0.85");
-        AccuracyThresholdTextBox.addActionListener(new java.awt.event.ActionListener() {
+        jTextField17.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField17.setText("0.85");
+        jTextField17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AccuracyThresholdTextBoxActionPerformed(evt);
-            }
-        });
-        AccuracyThresholdTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                AccuracyThresholdTextBoxKeyPressed(evt);
+                jTextField17ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1456,74 +1355,49 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        Container_ResultParsingParameters.add(AccuracyThresholdTextBox, gridBagConstraints);
+        Container_ResultParsingParameters.add(jTextField17, gridBagConstraints);
 
-        SequenceIdentityTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        SequenceIdentityTextBox.setText("70");
-        SequenceIdentityTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                SequenceIdentityTextBoxKeyPressed(evt);
-            }
-        });
+        jTextField18.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField18.setText("70");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        Container_ResultParsingParameters.add(SequenceIdentityTextBox, gridBagConstraints);
+        Container_ResultParsingParameters.add(jTextField18, gridBagConstraints);
 
-        SequenceSimilarityTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        SequenceSimilarityTextBox.setText("60");
-        SequenceSimilarityTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                SequenceSimilarityTextBoxKeyPressed(evt);
-            }
-        });
+        jTextField19.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField19.setText("60");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        Container_ResultParsingParameters.add(SequenceSimilarityTextBox, gridBagConstraints);
+        Container_ResultParsingParameters.add(jTextField19, gridBagConstraints);
 
-        QueryCoverageTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        QueryCoverageTextBox.setText("70");
-        QueryCoverageTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                QueryCoverageTextBoxKeyPressed(evt);
-            }
-        });
+        jTextField31.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField31.setText("70");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        Container_ResultParsingParameters.add(QueryCoverageTextBox, gridBagConstraints);
+        Container_ResultParsingParameters.add(jTextField31, gridBagConstraints);
 
-        ChimeraAccuracyTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        ChimeraAccuracyTextBox.setText("0.85");
-        ChimeraAccuracyTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ChimeraAccuracyTextBoxKeyPressed(evt);
-            }
-        });
+        jTextField32.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField32.setText("0.85");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 25, 0);
-        Container_ResultParsingParameters.add(ChimeraAccuracyTextBox, gridBagConstraints);
+        Container_ResultParsingParameters.add(jTextField32, gridBagConstraints);
 
-        TargetCoverageTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        TargetCoverageTextBox.setText("70");
-        TargetCoverageTextBox.addActionListener(new java.awt.event.ActionListener() {
+        jTextField33.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField33.setText("70");
+        jTextField33.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TargetCoverageTextBoxActionPerformed(evt);
-            }
-        });
-        TargetCoverageTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TargetCoverageTextBoxKeyPressed(evt);
+                jTextField33ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1531,32 +1405,22 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        Container_ResultParsingParameters.add(TargetCoverageTextBox, gridBagConstraints);
+        Container_ResultParsingParameters.add(jTextField33, gridBagConstraints);
 
-        MinimumPartialCoverageTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        MinimumPartialCoverageTextBox.setText("5");
-        MinimumPartialCoverageTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                MinimumPartialCoverageTextBoxKeyPressed(evt);
-            }
-        });
+        jTextField34.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField34.setText("5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        Container_ResultParsingParameters.add(MinimumPartialCoverageTextBox, gridBagConstraints);
+        Container_ResultParsingParameters.add(jTextField34, gridBagConstraints);
 
-        ChimeraSimilarityTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        ChimeraSimilarityTextBox.setText("50");
-        ChimeraSimilarityTextBox.addActionListener(new java.awt.event.ActionListener() {
+        jTextField35.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField35.setText("50");
+        jTextField35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChimeraSimilarityTextBoxActionPerformed(evt);
-            }
-        });
-        ChimeraSimilarityTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ChimeraSimilarityTextBoxKeyPressed(evt);
+                jTextField35ActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1564,7 +1428,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        Container_ResultParsingParameters.add(ChimeraSimilarityTextBox, gridBagConstraints);
+        Container_ResultParsingParameters.add(jTextField35, gridBagConstraints);
 
         jLabel61.setText("Chimera Identity");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1574,246 +1438,38 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
         Container_ResultParsingParameters.add(jLabel61, gridBagConstraints);
 
-        ChimeraIdentityTextBox.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        ChimeraIdentityTextBox.setText("50");
-        ChimeraIdentityTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ChimeraIdentityTextBoxKeyPressed(evt);
-            }
-        });
+        jTextField36.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        jTextField36.setText("50");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
-        Container_ResultParsingParameters.add(ChimeraIdentityTextBox, gridBagConstraints);
+        Container_ResultParsingParameters.add(jTextField36, gridBagConstraints);
 
-        ChimeraIdentitySlider.setMajorTickSpacing(99);
-        ChimeraIdentitySlider.setMinimum(1);
-        ChimeraIdentitySlider.setMinorTickSpacing(25);
-        ChimeraIdentitySlider.setPaintTicks(true);
-        ChimeraIdentitySlider.setToolTipText("Minimum identity for chimera prediction. Default is 50.");
-        ChimeraIdentitySlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ChimeraIdentitySliderStateChanged(evt);
-            }
-        });
+        jSlider19.setMajorTickSpacing(99);
+        jSlider19.setMinimum(1);
+        jSlider19.setMinorTickSpacing(25);
+        jSlider19.setPaintTicks(true);
+        jSlider19.setToolTipText("Minimum identity for chimera prediction. Default is 50.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 7;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
-        Container_ResultParsingParameters.add(ChimeraIdentitySlider, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider19, gridBagConstraints);
 
-        ChimeraSimilaritySlider.setMajorTickSpacing(99);
-        ChimeraSimilaritySlider.setMinimum(1);
-        ChimeraSimilaritySlider.setMinorTickSpacing(25);
-        ChimeraSimilaritySlider.setPaintTicks(true);
-        ChimeraSimilaritySlider.setToolTipText("Minimum similarity for chimera prediction. Default is 50.");
-        ChimeraSimilaritySlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                ChimeraSimilaritySliderStateChanged(evt);
-            }
-        });
+        jSlider20.setMajorTickSpacing(99);
+        jSlider20.setMinimum(1);
+        jSlider20.setMinorTickSpacing(25);
+        jSlider20.setPaintTicks(true);
+        jSlider20.setToolTipText("Minimum similarity for chimera prediction. Default is 50.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
         gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
-        Container_ResultParsingParameters.add(ChimeraSimilaritySlider, gridBagConstraints);
-
-        NumberDomainDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        NumberDomainDefault.setForeground(new java.awt.Color(102, 102, 102));
-        NumberDomainDefault.setText("default");
-        NumberDomainDefault.setToolTipText("Restore default setting.");
-        NumberDomainDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        NumberDomainDefault.setIconTextGap(0);
-        NumberDomainDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        NumberDomainDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        NumberDomainDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        NumberDomainDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(21, 0, 0, 25);
-        Container_ResultParsingParameters.add(NumberDomainDefault, gridBagConstraints);
-
-        AccuracyThresholdDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        AccuracyThresholdDefault.setForeground(new java.awt.Color(102, 102, 102));
-        AccuracyThresholdDefault.setText("default");
-        AccuracyThresholdDefault.setToolTipText("Restore default setting.");
-        AccuracyThresholdDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        AccuracyThresholdDefault.setIconTextGap(0);
-        AccuracyThresholdDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        AccuracyThresholdDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        AccuracyThresholdDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        AccuracyThresholdDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        AccuracyThresholdDefault.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                AccuracyThresholdDefaultMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 25);
-        Container_ResultParsingParameters.add(AccuracyThresholdDefault, gridBagConstraints);
-
-        SequenceIdentityDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        SequenceIdentityDefault.setForeground(new java.awt.Color(102, 102, 102));
-        SequenceIdentityDefault.setText("default");
-        SequenceIdentityDefault.setToolTipText("Restore default setting.");
-        SequenceIdentityDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        SequenceIdentityDefault.setIconTextGap(0);
-        SequenceIdentityDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        SequenceIdentityDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        SequenceIdentityDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        SequenceIdentityDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        SequenceIdentityDefault.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SequenceIdentityDefaultMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 25);
-        Container_ResultParsingParameters.add(SequenceIdentityDefault, gridBagConstraints);
-
-        SequenceSimilarityDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        SequenceSimilarityDefault.setForeground(new java.awt.Color(102, 102, 102));
-        SequenceSimilarityDefault.setText("default");
-        SequenceSimilarityDefault.setToolTipText("Restore default setting.");
-        SequenceSimilarityDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        SequenceSimilarityDefault.setIconTextGap(0);
-        SequenceSimilarityDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        SequenceSimilarityDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        SequenceSimilarityDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        SequenceSimilarityDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        SequenceSimilarityDefault.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                SequenceSimilarityDefaultMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 25);
-        Container_ResultParsingParameters.add(SequenceSimilarityDefault, gridBagConstraints);
-
-        QueryCoverageDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        QueryCoverageDefault.setForeground(new java.awt.Color(102, 102, 102));
-        QueryCoverageDefault.setText("default");
-        QueryCoverageDefault.setToolTipText("Restore default setting.");
-        QueryCoverageDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        QueryCoverageDefault.setIconTextGap(0);
-        QueryCoverageDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        QueryCoverageDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        QueryCoverageDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        QueryCoverageDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        QueryCoverageDefault.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                QueryCoverageDefaultMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 25);
-        Container_ResultParsingParameters.add(QueryCoverageDefault, gridBagConstraints);
-
-        TargetCoverageDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        TargetCoverageDefault.setForeground(new java.awt.Color(102, 102, 102));
-        TargetCoverageDefault.setText("default");
-        TargetCoverageDefault.setToolTipText("Restore default setting.");
-        TargetCoverageDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        TargetCoverageDefault.setIconTextGap(0);
-        TargetCoverageDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        TargetCoverageDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        TargetCoverageDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        TargetCoverageDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        TargetCoverageDefault.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TargetCoverageDefaultMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 25);
-        Container_ResultParsingParameters.add(TargetCoverageDefault, gridBagConstraints);
-
-        ChimeraIdentityDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        ChimeraIdentityDefault.setForeground(new java.awt.Color(102, 102, 102));
-        ChimeraIdentityDefault.setText("default");
-        ChimeraIdentityDefault.setToolTipText("Restore default setting.");
-        ChimeraIdentityDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChimeraIdentityDefault.setIconTextGap(0);
-        ChimeraIdentityDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        ChimeraIdentityDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        ChimeraIdentityDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        ChimeraIdentityDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        ChimeraIdentityDefault.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                ChimeraIdentityDefaultKeyPressed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 7;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 25);
-        Container_ResultParsingParameters.add(ChimeraIdentityDefault, gridBagConstraints);
-
-        ChimaraSimilarityDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        ChimaraSimilarityDefault.setForeground(new java.awt.Color(102, 102, 102));
-        ChimaraSimilarityDefault.setText("default");
-        ChimaraSimilarityDefault.setToolTipText("Restore default setting.");
-        ChimaraSimilarityDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChimaraSimilarityDefault.setIconTextGap(0);
-        ChimaraSimilarityDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        ChimaraSimilarityDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        ChimaraSimilarityDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        ChimaraSimilarityDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 25);
-        Container_ResultParsingParameters.add(ChimaraSimilarityDefault, gridBagConstraints);
-
-        ChimeraAccuaracyDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        ChimeraAccuaracyDefault.setForeground(new java.awt.Color(102, 102, 102));
-        ChimeraAccuaracyDefault.setText("default");
-        ChimeraAccuaracyDefault.setToolTipText("Restore default setting.");
-        ChimeraAccuaracyDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChimeraAccuaracyDefault.setIconTextGap(0);
-        ChimeraAccuaracyDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        ChimeraAccuaracyDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        ChimeraAccuaracyDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        ChimeraAccuaracyDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 9;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 25, 25);
-        Container_ResultParsingParameters.add(ChimeraAccuaracyDefault, gridBagConstraints);
-
-        MinimumPartialCoverageDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
-        MinimumPartialCoverageDefault.setForeground(new java.awt.Color(102, 102, 102));
-        MinimumPartialCoverageDefault.setText("default");
-        MinimumPartialCoverageDefault.setToolTipText("Restore default setting.");
-        MinimumPartialCoverageDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        MinimumPartialCoverageDefault.setIconTextGap(0);
-        MinimumPartialCoverageDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
-        MinimumPartialCoverageDefault.setMaximumSize(new java.awt.Dimension(18, 18));
-        MinimumPartialCoverageDefault.setMinimumSize(new java.awt.Dimension(18, 18));
-        MinimumPartialCoverageDefault.setPreferredSize(new java.awt.Dimension(15, 15));
-        MinimumPartialCoverageDefault.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                MinimumPartialCoverageDefaultMouseClicked(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 25);
-        Container_ResultParsingParameters.add(MinimumPartialCoverageDefault, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
+        Container_ResultParsingParameters.add(jSlider20, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1888,6 +1544,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel_BuildQueryGroup.setBorder(javax.swing.BorderFactory.createTitledBorder("Build Query Group"));
         jPanel_BuildQueryGroup.setLayout(new java.awt.GridBagLayout());
 
+        jButton_MakeQueryGroup.setText("Make Query Group");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
+        jPanel_BuildQueryGroup.add(jButton_MakeQueryGroup, gridBagConstraints);
+
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Bacteria");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Proteobacteria");
         javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Gammaproteobacteria");
@@ -1913,7 +1577,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.1;
@@ -1928,13 +1592,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
         jPanel_BuildQueryGroup.add(jLabel3, gridBagConstraints);
-
-        jButton2.setText("Make Query Group");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
-        jPanel_BuildQueryGroup.add(jButton2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1960,26 +1617,38 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jScrollPanel_DisplayQueryGroups.setViewportView(jList_DisplayQueryGroups);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 9;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weighty = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
+        gridBagConstraints.weightx = 0.4;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 20);
         jPanel_ManageQueryGroups.add(jScrollPanel_DisplayQueryGroups, gridBagConstraints);
 
         jButton_SaveGroup.setText("Save");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 0);
         jPanel_ManageQueryGroups.add(jButton_SaveGroup, gridBagConstraints);
+
+        jButton_LoadGroup.setText("Load");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
+        jPanel_ManageQueryGroups.add(jButton_LoadGroup, gridBagConstraints);
 
         jButton_ClearGroup.setText("Delete");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
         jPanel_ManageQueryGroups.add(jButton_ClearGroup, gridBagConstraints);
 
         jButton_EditGroup.setText("Combine");
@@ -1989,29 +1658,19 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 20);
         jPanel_ManageQueryGroups.add(jButton_EditGroup, gridBagConstraints);
 
         jButton1.setText("Edit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_EditGroupActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
-        jPanel_ManageQueryGroups.add(jButton1, gridBagConstraints);
-
-        jButton3.setText("Load");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
-        jPanel_ManageQueryGroups.add(jButton3, gridBagConstraints);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 20, 0);
+        jPanel_ManageQueryGroups.add(jButton1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -2035,13 +1694,16 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Query Groups", QueryBuilder);
 
+        SearchScrollPanel.setBorder(null);
+        SearchScrollPanel.setHorizontalScrollBar(null);
+
         Search.setBackground(new java.awt.Color(153, 204, 255));
         Search.setMaximumSize(new java.awt.Dimension(1024, 2400));
         Search.setMinimumSize(new java.awt.Dimension(600, 300));
         Search.setPreferredSize(new java.awt.Dimension(1024, 570));
         java.awt.GridBagLayout SearchLayout = new java.awt.GridBagLayout();
-        SearchLayout.columnWidths = new int[] {0, 10, 0, 10, 0};
-        SearchLayout.rowHeights = new int[] {0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0};
+        SearchLayout.columnWidths = new int[] {0, 5, 0};
+        SearchLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
         Search.setLayout(SearchLayout);
 
         jLabel_Search.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
@@ -2049,8 +1711,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
         Search.add(jLabel_Search, gridBagConstraints);
 
         Container_BooleanSearch.setBackground(new java.awt.Color(237, 236, 236));
@@ -2080,7 +1742,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.weightx = 0.7;
-        gridBagConstraints.insets = new java.awt.Insets(2, 8, 23, 8);
+        gridBagConstraints.insets = new java.awt.Insets(9, 8, 9, 8);
         Container_BooleanSearch.add(jComboBox_BooleanOperator, gridBagConstraints);
 
         jLabel_B.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
@@ -2100,11 +1762,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 2.2;
-        gridBagConstraints.weighty = 4.0;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 0.6;
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 10, 10);
         Container_BooleanSearch.add(jTextArea_SearchBinA, gridBagConstraints);
 
@@ -2117,32 +1779,32 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridheight = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.weightx = 2.2;
-        gridBagConstraints.weighty = 4.0;
+        gridBagConstraints.weightx = 2.0;
+        gridBagConstraints.weighty = 0.6;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 20);
         Container_BooleanSearch.add(jTextArea_SearchBinB, gridBagConstraints);
 
         jButton_ClearBinB.setText("Clear");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 0.7;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         Container_BooleanSearch.add(jButton_ClearBinB, gridBagConstraints);
 
         jButton_ClearBinA.setText("Clear");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.weightx = 0.7;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
         Container_BooleanSearch.add(jButton_ClearBinA, gridBagConstraints);
 
         jButton_BuildSQLquery.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jButton_BuildSQLquery.setText("Add to SQL Query");
+        jButton_BuildSQLquery.setText("Build SQL Query");
         jButton_BuildSQLquery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_BuildSQLqueryActionPerformed(evt);
@@ -2150,9 +1812,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.weightx = 0.7;
         Container_BooleanSearch.add(jButton_BuildSQLquery, gridBagConstraints);
 
         vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-or-B.png"))); // NOI18N
@@ -2164,33 +1826,29 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 50, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.weightx = 2.5;
+        gridBagConstraints.insets = new java.awt.Insets(31, 8, 31, 8);
         Container_BooleanSearch.add(vennDiagram, gridBagConstraints);
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel4.setText("Place query groups in bins");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        Container_BooleanSearch.add(jLabel4, gridBagConstraints);
-
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel5.setText("and select a Boolean operator.");
+        jLabel5.setText("Place query groups in either bin then select a Boolean operator.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.insets = new java.awt.Insets(27, 0, 0, 0);
         Container_BooleanSearch.add(jLabel5, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.weightx = 2.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
+        gridBagConstraints.ipadx = 87;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 50, 50);
         Search.add(Container_BooleanSearch, gridBagConstraints);
 
         Container_Action.setBackground(new java.awt.Color(153, 204, 255));
@@ -2206,24 +1864,24 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(11, 25, 0, 25);
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 11, 25);
         Container_Action.add(jButton_NewSearch, gridBagConstraints);
 
         jButton_LoadSearch.setText("Load Search");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(11, 25, 0, 25);
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 11, 25);
         Container_Action.add(jButton_LoadSearch, gridBagConstraints);
 
         jButton_SaveSearch.setText("Save Search");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(11, 25, 0, 25);
+        gridBagConstraints.insets = new java.awt.Insets(25, 25, 11, 25);
         Container_Action.add(jButton_SaveSearch, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 24, 10, 0);
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 7, 0);
         Search.add(Container_Action, gridBagConstraints);
 
         Container_QueryBuilder.setBackground(new java.awt.Color(237, 236, 236));
@@ -2274,14 +1932,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 50);
         Search.add(Container_QueryBuilder, gridBagConstraints);
 
-        jTabbedPane2.setBackground(new java.awt.Color(238, 237, 237));
         jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
-        jPanel3_QueryGroups.setBackground(new java.awt.Color(238, 237, 237));
         jPanel3_QueryGroups.setLayout(new java.awt.GridBagLayout());
 
         jList_QueryGroups1.setModel(new javax.swing.AbstractListModel() {
@@ -2297,7 +1954,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.1;
+        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 20);
         jPanel3_QueryGroups.add(jScrollPanel_QueryGroups1, gridBagConstraints);
@@ -2324,7 +1981,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 100, 3, 20);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 20);
         jPanel3_QueryGroups.add(jButton_AssignToBinA1, gridBagConstraints);
 
         jButton_AssignToBinB1.setText("Bin B");
@@ -2333,12 +1990,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 100);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 20);
         jPanel3_QueryGroups.add(jButton_AssignToBinB1, gridBagConstraints);
 
         jTabbedPane2.addTab("Query Groups", jPanel3_QueryGroups);
 
-        jPanel3_ResultGroups.setBackground(new java.awt.Color(238, 237, 237));
         jPanel3_ResultGroups.setLayout(new java.awt.GridBagLayout());
 
         jList_QueryGroups3.setModel(new javax.swing.AbstractListModel() {
@@ -2381,7 +2037,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 100, 3, 20);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 20);
         jPanel3_ResultGroups.add(jButton_AssignToBinA3, gridBagConstraints);
 
         jButton_AssignResultsToBinB.setText("Bin B");
@@ -2390,7 +2046,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 100);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 20);
         jPanel3_ResultGroups.add(jButton_AssignResultsToBinB, gridBagConstraints);
 
         jTabbedPane2.addTab("Result Groups", jPanel3_ResultGroups);
@@ -2399,23 +2055,26 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 27;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 50, 50, 20);
         Search.add(jPanel2, gridBagConstraints);
 
-        jTabbedPane1.addTab("Search", Search);
+        SearchScrollPanel.setViewportView(Search);
+
+        jTabbedPane1.addTab("Search", SearchScrollPanel);
 
         Results.setBackground(new java.awt.Color(153, 204, 255));
         Results.setMaximumSize(new java.awt.Dimension(1024, 2400));
@@ -2607,13 +2266,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField15ActionPerformed
 
-    private void CoreGenomeAccuracyThresholdTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdTextBoxActionPerformed
-        // Jamie: If user adjusts text in box, store the new text in box's value
-        // from: http://da2i.univ-lille1.fr/doc/tutorial-java/uiswing/components/slider.html
-        
-        
-        
-    }//GEN-LAST:event_CoreGenomeAccuracyThresholdTextBoxActionPerformed
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jTextField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField20ActionPerformed
         // TODO add your handling code here:
@@ -2631,17 +2286,17 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField23ActionPerformed
 
-    private void AccuracyThresholdTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccuracyThresholdTextBoxActionPerformed
+    private void jTextField17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField17ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_AccuracyThresholdTextBoxActionPerformed
+    }//GEN-LAST:event_jTextField17ActionPerformed
 
-    private void TargetCoverageTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TargetCoverageTextBoxActionPerformed
+    private void jTextField33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField33ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TargetCoverageTextBoxActionPerformed
+    }//GEN-LAST:event_jTextField33ActionPerformed
 
-    private void ChimeraSimilarityTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChimeraSimilarityTextBoxActionPerformed
+    private void jTextField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField35ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ChimeraSimilarityTextBoxActionPerformed
+    }//GEN-LAST:event_jTextField35ActionPerformed
 
     private void jButton_LoadSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LoadSettingsActionPerformed
         // TODO add your handling code here:
@@ -2729,251 +2384,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBox_BooleanOperatorActionPerformed
 
-    private void AccuracyThresholdSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AccuracyThresholdSliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        AccuracyThresholdTextBox.setText("0."+String.valueOf(AccuracyThresholdSlider.getValue()));
-    }//GEN-LAST:event_AccuracyThresholdSliderStateChanged
-
-    private void SequenceIdentitySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SequenceIdentitySliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        SequenceIdentityTextBox.setText(String.valueOf(SequenceIdentitySlider.getValue()));
-    }//GEN-LAST:event_SequenceIdentitySliderStateChanged
-
-    private void CoreGenomeAccuracyThresholdSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdSliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        CoreGenomeAccuracyThresholdTextBox.setText(String.valueOf(CoreGenomeAccuracyThresholdSlider.getValue())); 
-    }//GEN-LAST:event_CoreGenomeAccuracyThresholdSliderStateChanged
-
-    private void CoreGenomeAccuracyThresholdTextBoxInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdTextBoxInputMethodTextChanged
-        // Jamie -- garbage
-    }//GEN-LAST:event_CoreGenomeAccuracyThresholdTextBoxInputMethodTextChanged
-
-    private void CoreGenomeAccuracyThresholdTextBoxPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdTextBoxPropertyChange
-        // Jamie: If user adjusts value of textBox, corresponding slider should change automatically
-        // Taken from here: http://da2i.univ-lille1.fr/doc/tutorial-java/uiswing/components/slider.html
-        if ("value".equals(evt.getPropertyName())) {
-            Number value = (Number)evt.getNewValue();
-            if (CoreGenomeAccuracyThresholdSlider != null && value != null) {
-                CoreGenomeAccuracyThresholdSlider.setValue(value.intValue());
-            }
-        }    
-    }//GEN-LAST:event_CoreGenomeAccuracyThresholdTextBoxPropertyChange
-
-    private void CoreGenomeAccuracyThresholdTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            CoreGenomeAccuracyThresholdSlider.setValue(CoreGenomeAccuracyThresholdSlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            CoreGenomeAccuracyThresholdSlider.setValue(CoreGenomeAccuracyThresholdSlider.getValue()+1);
-        }        
-    }//GEN-LAST:event_CoreGenomeAccuracyThresholdTextBoxKeyPressed
-
-    private void AccuracyThresholdTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AccuracyThresholdTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            AccuracyThresholdSlider.setValue(AccuracyThresholdSlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            AccuracyThresholdSlider.setValue(AccuracyThresholdSlider.getValue()+1);
-        }
-    }//GEN-LAST:event_AccuracyThresholdTextBoxKeyPressed
-
-    private void SequenceSimilaritySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SequenceSimilaritySliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        SequenceSimilarityTextBox.setText(String.valueOf(SequenceSimilaritySlider.getValue()));
-    }//GEN-LAST:event_SequenceSimilaritySliderStateChanged
-
-    private void SequenceIdentityTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SequenceIdentityTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            SequenceIdentitySlider.setValue(SequenceIdentitySlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            SequenceIdentitySlider.setValue(SequenceIdentitySlider.getValue()+1);
-        }
-    }//GEN-LAST:event_SequenceIdentityTextBoxKeyPressed
-
-    private void SequenceSimilarityTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SequenceSimilarityTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            SequenceSimilaritySlider.setValue(SequenceSimilaritySlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            SequenceSimilaritySlider.setValue(SequenceSimilaritySlider.getValue()+1);
-        }
-    }//GEN-LAST:event_SequenceSimilarityTextBoxKeyPressed
-
-    private void QueryCoverageSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_QueryCoverageSliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        SequenceSimilarityTextBox.setText(String.valueOf(SequenceSimilaritySlider.getValue()));
-    }//GEN-LAST:event_QueryCoverageSliderStateChanged
-
-    private void QueryCoverageTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QueryCoverageTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            QueryCoverageSlider.setValue(QueryCoverageSlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            QueryCoverageSlider.setValue(QueryCoverageSlider.getValue()+1);
-        }
-    }//GEN-LAST:event_QueryCoverageTextBoxKeyPressed
-
-    private void TargetCoverageSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_TargetCoverageSliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        TargetCoverageTextBox.setText(String.valueOf(TargetCoverageSlider.getValue()));
-    }//GEN-LAST:event_TargetCoverageSliderStateChanged
-
-    private void TargetCoverageTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TargetCoverageTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            TargetCoverageSlider.setValue(TargetCoverageSlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            TargetCoverageSlider.setValue(TargetCoverageSlider.getValue()+1);
-        }
-    }//GEN-LAST:event_TargetCoverageTextBoxKeyPressed
-
-    private void MinimumPartialCoverageSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MinimumPartialCoverageSliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        MinimumPartialCoverageTextBox.setText(String.valueOf(MinimumPartialCoverageSlider.getValue()));
-    }//GEN-LAST:event_MinimumPartialCoverageSliderStateChanged
-
-    private void MinimumPartialCoverageTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MinimumPartialCoverageTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            MinimumPartialCoverageSlider.setValue(MinimumPartialCoverageSlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            MinimumPartialCoverageSlider.setValue(MinimumPartialCoverageSlider.getValue()+1);
-        }
-    }//GEN-LAST:event_MinimumPartialCoverageTextBoxKeyPressed
-
-    private void ChimeraIdentitySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ChimeraIdentitySliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        ChimeraIdentityTextBox.setText(String.valueOf(ChimeraIdentitySlider.getValue()));
-    }//GEN-LAST:event_ChimeraIdentitySliderStateChanged
-
-    private void ChimeraIdentityTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChimeraIdentityTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            ChimeraIdentitySlider.setValue(ChimeraIdentitySlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            ChimeraIdentitySlider.setValue(ChimeraIdentitySlider.getValue()+1);
-        }
-    }//GEN-LAST:event_ChimeraIdentityTextBoxKeyPressed
-
-    private void ChimeraSimilaritySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ChimeraSimilaritySliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        ChimeraSimilarityTextBox.setText(String.valueOf(ChimeraSimilaritySlider.getValue()));
-    }//GEN-LAST:event_ChimeraSimilaritySliderStateChanged
-
-    private void ChimeraSimilarityTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChimeraSimilarityTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            ChimeraSimilaritySlider.setValue(ChimeraSimilaritySlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            ChimeraSimilaritySlider.setValue(ChimeraSimilaritySlider.getValue()+1);
-        }
-    }//GEN-LAST:event_ChimeraSimilarityTextBoxKeyPressed
-
-    private void ChimeraAccuracySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ChimeraAccuracySliderStateChanged
-        // Jamie: Use the value of the Slider to adjust value in TextField
-        ChimeraAccuracyTextBox.setText(String.valueOf(ChimeraAccuracySlider.getValue()));
-    }//GEN-LAST:event_ChimeraAccuracySliderStateChanged
-
-    private void ChimeraAccuracyTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChimeraAccuracyTextBoxKeyPressed
-        // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
-        // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            ChimeraAccuracySlider.setValue(ChimeraAccuracySlider.getValue()-1);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            ChimeraAccuracySlider.setValue(ChimeraAccuracySlider.getValue()+1);
-        }
-    }//GEN-LAST:event_ChimeraAccuracyTextBoxKeyPressed
-
-    private void CoreGenomeAccuracyThresholdDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdDefaultMouseClicked
-        // Jamie: when default button is pressed, restore default values to textBox and Slider
-        // Values are hard-coded for now. Ideally there should be a lookup table.
-        CoreGenomeAccuracyThresholdSlider.setValue(90);
-        CoreGenomeAccuracyThresholdTextBox.setText("90");
-    }//GEN-LAST:event_CoreGenomeAccuracyThresholdDefaultMouseClicked
-
-    private void CoreGenomeAccuracyThresholdDefaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdDefaultActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CoreGenomeAccuracyThresholdDefaultActionPerformed
-
-    private void AccuracyThresholdDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccuracyThresholdDefaultMouseClicked
-        // Jamie: when default button is pressed, restore default values to textBox and Slider
-        // Values are hard-coded for now. Ideally there should be a lookup table.
-        AccuracyThresholdSlider.setValue(85);
-        AccuracyThresholdTextBox.setText("0.85");
-    }//GEN-LAST:event_AccuracyThresholdDefaultMouseClicked
-
-    private void SequenceIdentityDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SequenceIdentityDefaultMouseClicked
-        // Jamie: when default button is pressed, restore default values to textBox and Slider
-        // Values are hard-coded for now. Ideally there should be a lookup table.
-        SequenceIdentitySlider.setValue(70);
-        SequenceIdentityTextBox.setText("70");        
-    }//GEN-LAST:event_SequenceIdentityDefaultMouseClicked
-
-    private void SequenceSimilarityDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SequenceSimilarityDefaultMouseClicked
-        // // Jamie: when default button is pressed, restore default values to textBox and Slider
-        // Values are hard-coded for now. Ideally there should be a lookup table.
-        SequenceSimilaritySlider.setValue(60);
-        SequenceSimilarityTextBox.setText("60");       
-    }//GEN-LAST:event_SequenceSimilarityDefaultMouseClicked
-
-    private void QueryCoverageDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QueryCoverageDefaultMouseClicked
-        // Jamie: when default button is pressed, restore default values to textBox and Slider
-        // Values are hard-coded for now. Ideally there should be a lookup table.
-        QueryCoverageSlider.setValue(70);
-        QueryCoverageTextBox.setText("70");               // TODO add your handling code here:
-    }//GEN-LAST:event_QueryCoverageDefaultMouseClicked
-
-    private void TargetCoverageDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TargetCoverageDefaultMouseClicked
-        // // Jamie: when default button is pressed, restore default values to textBox and Slider
-        // Values are hard-coded for now. Ideally there should be a lookup table.
-        TargetCoverageSlider.setValue(70);
-        TargetCoverageTextBox.setText("70");       
-    }//GEN-LAST:event_TargetCoverageDefaultMouseClicked
-
-    private void MinimumPartialCoverageDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimumPartialCoverageDefaultMouseClicked
-        // // Jamie: when default button is pressed, restore default values to textBox and Slider
-        // Values are hard-coded for now. Ideally there should be a lookup table.
-        MinimumPartialCoverageSlider.setValue(5);
-        MinimumPartialCoverageTextBox.setText("5");       
-    }//GEN-LAST:event_MinimumPartialCoverageDefaultMouseClicked
-
-    private void ChimeraIdentityDefaultKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChimeraIdentityDefaultKeyPressed
-        // // Jamie: when default button is pressed, restore default values to textBox and Slider
-        // Values are hard-coded for now. Ideally there should be a lookup table.
-        ChimeraIdentitySlider.setValue(50);
-        ChimeraIdentityTextBox.setText("50");       
-    }//GEN-LAST:event_ChimeraIdentityDefaultKeyPressed
-
     /**
      * @param args the command line arguments
      */
@@ -2984,17 +2394,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            /* Jamie: This is the original 'lookandfeel' setting
-               for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                      javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-            */
-            // this is the new setting, as in: http://stackoverflow.com/questions/14968806/why-does-my-gui-never-look-right
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(HMM_ModelUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -3008,25 +2413,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
             public void run() {
                 new HMM_ModelUI().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AccuracyThresholdDefault;
-    private javax.swing.JSlider AccuracyThresholdSlider;
-    private javax.swing.JTextField AccuracyThresholdTextBox;
-    private javax.swing.JButton ChimaraSimilarityDefault;
-    private javax.swing.JButton ChimeraAccuaracyDefault;
-    private javax.swing.JSlider ChimeraAccuracySlider;
-    private javax.swing.JTextField ChimeraAccuracyTextBox;
-    private javax.swing.JButton ChimeraIdentityDefault;
-    private javax.swing.JSlider ChimeraIdentitySlider;
-    private javax.swing.JTextField ChimeraIdentityTextBox;
-    private javax.swing.JSlider ChimeraSimilaritySlider;
-    private javax.swing.JTextField ChimeraSimilarityTextBox;
     private javax.swing.JPanel ConnectToDB;
     private javax.swing.JPanel Container_Action;
     private javax.swing.JPanel Container_Analysis;
@@ -3043,45 +2435,25 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JPanel Container_Sequence;
     private javax.swing.JPanel Container_SequenceDirectory;
     private javax.swing.JPanel Container_Title;
-    private javax.swing.JButton CoreGenomeAccuracyThresholdDefault;
-    private javax.swing.JSlider CoreGenomeAccuracyThresholdSlider;
-    private javax.swing.JTextField CoreGenomeAccuracyThresholdTextBox;
     private javax.swing.JTextField DBConnection;
     private javax.swing.JTextField DBName;
     private javax.swing.JPanel Help;
     private javax.swing.JPanel Home;
     private javax.swing.JTextField IPAddress;
-    private javax.swing.JButton MinimumPartialCoverageDefault;
-    private javax.swing.JSlider MinimumPartialCoverageSlider;
-    private javax.swing.JTextField MinimumPartialCoverageTextBox;
-    private javax.swing.JButton NumberDomainDefault;
     private javax.swing.JPasswordField Password;
     private javax.swing.JPanel PipelineConfig;
     private javax.swing.JScrollPane PipelineConfigScrollPanel;
     private javax.swing.JPanel QueryBuilder;
-    private javax.swing.JButton QueryCoverageDefault;
-    private javax.swing.JSlider QueryCoverageSlider;
-    private javax.swing.JTextField QueryCoverageTextBox;
     private javax.swing.JPanel Results;
     private javax.swing.JButton ResultsGroup;
     private javax.swing.JPanel Search;
-    private javax.swing.JButton SequenceIdentityDefault;
-    private javax.swing.JSlider SequenceIdentitySlider;
-    private javax.swing.JTextField SequenceIdentityTextBox;
-    private javax.swing.JButton SequenceSimilarityDefault;
-    private javax.swing.JSlider SequenceSimilaritySlider;
-    private javax.swing.JTextField SequenceSimilarityTextBox;
-    private javax.swing.JButton TargetCoverageDefault;
-    private javax.swing.JSlider TargetCoverageSlider;
-    private javax.swing.JTextField TargetCoverageTextBox;
+    private javax.swing.JScrollPane SearchScrollPanel;
     private javax.swing.JTextField UserName;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton25;
     private javax.swing.JButton jButton28;
     private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton32;
     private javax.swing.JButton jButton33;
     private javax.swing.JButton jButton34;
@@ -3100,8 +2472,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton_ConnectToDB;
     private javax.swing.JButton jButton_DefaultSettings;
     private javax.swing.JButton jButton_EditGroup;
+    private javax.swing.JButton jButton_LoadGroup;
     private javax.swing.JButton jButton_LoadSearch;
     private javax.swing.JButton jButton_LoadSettings;
+    private javax.swing.JButton jButton_MakeQueryGroup;
     private javax.swing.JButton jButton_NewSearch;
     private javax.swing.JButton jButton_RunPipeline;
     private javax.swing.JButton jButton_SaveGroup;
@@ -3133,7 +2507,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -3200,7 +2573,17 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPanel_HelpContentsScrollPanel;
     private javax.swing.JScrollPane jScrollPanel_QueryGroups1;
     private javax.swing.JScrollPane jScrollPanel_QueryGroups3;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider11;
+    private javax.swing.JSlider jSlider12;
+    private javax.swing.JSlider jSlider13;
+    private javax.swing.JSlider jSlider14;
+    private javax.swing.JSlider jSlider15;
+    private javax.swing.JSlider jSlider16;
     private javax.swing.JSlider jSlider17;
+    private javax.swing.JSlider jSlider18;
+    private javax.swing.JSlider jSlider19;
+    private javax.swing.JSlider jSlider20;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable_ResultsWindow;
@@ -3213,11 +2596,21 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
     private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField20;
     private javax.swing.JTextField jTextField21;
     private javax.swing.JTextField jTextField22;
     private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField24;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField31;
+    private javax.swing.JTextField jTextField32;
+    private javax.swing.JTextField jTextField33;
+    private javax.swing.JTextField jTextField34;
+    private javax.swing.JTextField jTextField35;
+    private javax.swing.JTextField jTextField36;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField jTextField_SQLsearchQuery;
