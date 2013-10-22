@@ -11,6 +11,14 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
 
+// Jamie: Gradient libraries
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.BorderFactory;
+
 
 /**
  *
@@ -18,7 +26,7 @@ import javax.swing.tree.TreePath;
  */
 public class HMM_ModelUI extends javax.swing.JFrame {
 
-    //** Global Variables
+    //** Global Variables   
     
     // Jamie:
     // Global search variables:
@@ -29,6 +37,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     final JFileChooser folderSelector = new JFileChooser();
     final JFileChooser fileSelector = new JFileChooser();
     
+
+ 
     // ** Global Database Variables
     String ip;
     String passStr;
@@ -60,7 +70,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
      */
     public HMM_ModelUI() {
         // Jamie: initialize various elements that normally go in a setup() function
-        
+
        // initialize folderSelector so it only opens directories
        folderSelector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
        folderSelector.setAcceptAllFileFilterUsed(false);
@@ -83,6 +93,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         HomologScan_buttonGroup = new javax.swing.ButtonGroup();
         AdjustHeader_buttonGroup = new javax.swing.ButtonGroup();
         InputGroup_buttonGroup = new javax.swing.ButtonGroup();
+        jLabel_ConnectedIcon = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Home = new javax.swing.JPanel();
@@ -170,13 +181,17 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         CoreGenomeAccuracyThresholdDefault = new javax.swing.JButton();
         Container_HMMERParameters = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
-        jTextField20 = new javax.swing.JTextField();
+        SequenceEValueTextBox = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
-        jTextField21 = new javax.swing.JTextField();
+        DomainEValueTextBox = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
-        jTextField22 = new javax.swing.JTextField();
-        jTextField23 = new javax.swing.JTextField();
+        IncludeSequenceEValueTextBox = new javax.swing.JTextField();
+        IncludeDomainEvalueTextBox = new javax.swing.JTextField();
         jLabel44 = new javax.swing.JLabel();
+        SequenceEValueDefault = new javax.swing.JButton();
+        DomainEValueDefault = new javax.swing.JButton();
+        IncludeSequenceEvalueDefault = new javax.swing.JButton();
+        IncludeDomainDefault = new javax.swing.JButton();
         Container_Reference = new javax.swing.JPanel();
         jLabel40 = new javax.swing.JLabel();
         jComboBox9 = new javax.swing.JComboBox();
@@ -227,6 +242,16 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_LoadSettings = new javax.swing.JButton();
         jButton_DefaultSettings = new javax.swing.JButton();
         jButton_RunPipeline = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         QueryBuilder = new javax.swing.JPanel();
         jPanel_BuildQueryGroup = new javax.swing.JPanel();
         jScrollPane_SearchFieldsScrollPanel = new javax.swing.JScrollPane();
@@ -298,12 +323,29 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         setBackground(new java.awt.Color(130, 173, 215));
         setMinimumSize(new java.awt.Dimension(1200, 720));
         setResizable(false);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-connected.png"))); // NOI18N
+        jLabel_ConnectedIcon.setMaximumSize(new java.awt.Dimension(40, 40));
+        jLabel_ConnectedIcon.setMinimumSize(new java.awt.Dimension(40, 40));
+        jLabel_ConnectedIcon.setPreferredSize(new java.awt.Dimension(40, 40));
+        jLabel_ConnectedIcon.setRequestFocusEnabled(false);
+        jLabel_ConnectedIcon.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jLabel_ConnectedIconPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 50);
+        getContentPane().add(jLabel_ConnectedIcon, gridBagConstraints);
 
         jPanel1.setBackground(new java.awt.Color(130, 170, 210));
         jPanel1.setMaximumSize(new java.awt.Dimension(1250, 715));
         jPanel1.setMinimumSize(new java.awt.Dimension(1250, 715));
         jPanel1.setPreferredSize(new java.awt.Dimension(1230, 715));
-        jPanel1.setSize(new java.awt.Dimension(1230, 715));
 
         jTabbedPane1.setBackground(new java.awt.Color(153, 204, 255));
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -318,6 +360,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Home.setMaximumSize(new java.awt.Dimension(1200, 700));
         Home.setMinimumSize(new java.awt.Dimension(1200, 700));
         Home.setPreferredSize(new java.awt.Dimension(1200, 700));
+        Home.setSize(new java.awt.Dimension(40, 40));
         Home.setLayout(new java.awt.GridBagLayout());
 
         Container_Title.setBackground(new java.awt.Color(237, 237, 237));
@@ -666,6 +709,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
@@ -721,6 +765,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
@@ -797,6 +842,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
@@ -859,9 +905,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         InputGroup_buttonGroup.add(jRadioButton5);
         jRadioButton5.setText("No");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.insets = new java.awt.Insets(15, 63, 0, 0);
         Container_Group.add(jRadioButton5, gridBagConstraints);
 
         InputGroup_buttonGroup.add(jRadioButton6);
@@ -936,7 +983,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 15, 0);
@@ -1005,6 +1052,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 1.0;
@@ -1077,6 +1125,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 1.0;
@@ -1175,6 +1224,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
@@ -1191,17 +1241,22 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(12, 25, 0, 13);
         Container_HMMERParameters.add(jLabel41, gridBagConstraints);
 
-        jTextField20.setText("0.00001");
-        jTextField20.setToolTipText("E value threshold for complete sequence. ");
-        jTextField20.addActionListener(new java.awt.event.ActionListener() {
+        SequenceEValueTextBox.setText("0.00001");
+        SequenceEValueTextBox.setToolTipText("E value threshold for complete sequence. ");
+        SequenceEValueTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField20ActionPerformed(evt);
+                SequenceEValueTextBoxTextBoxActionPerformed(evt);
+            }
+        });
+        SequenceEValueTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                SequenceEValueTextBoxKeyPressed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(12, 0, 0, 25);
-        Container_HMMERParameters.add(jTextField20, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(12, 0, 0, 3);
+        Container_HMMERParameters.add(SequenceEValueTextBox, gridBagConstraints);
 
         jLabel42.setText("Domain E Value");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1211,18 +1266,24 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 13);
         Container_HMMERParameters.add(jLabel42, gridBagConstraints);
 
-        jTextField21.setToolTipText("E value threshold for domain.");
-        jTextField21.addActionListener(new java.awt.event.ActionListener() {
+        DomainEValueTextBox.setText("0.00001");
+        DomainEValueTextBox.setToolTipText("E value threshold for domain.");
+        DomainEValueTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField21ActionPerformed(evt);
+                DomainEValueTextBoxTextBoxActionPerformed(evt);
+            }
+        });
+        DomainEValueTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DomainEValueTextBoxKeyPressed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
-        Container_HMMERParameters.add(jTextField21, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 3);
+        Container_HMMERParameters.add(DomainEValueTextBox, gridBagConstraints);
 
         jLabel43.setText("Include Sequence E Value");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1232,33 +1293,43 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 13);
         Container_HMMERParameters.add(jLabel43, gridBagConstraints);
 
-        jTextField22.setText("0.00001");
-        jTextField22.setToolTipText("E value threshold to include sequence in results.");
-        jTextField22.addActionListener(new java.awt.event.ActionListener() {
+        IncludeSequenceEValueTextBox.setText("0.00001");
+        IncludeSequenceEValueTextBox.setToolTipText("E value threshold to include sequence in results.");
+        IncludeSequenceEValueTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField22ActionPerformed(evt);
+                IncludeSequenceEValueTextBoxTextBoxActionPerformed(evt);
+            }
+        });
+        IncludeSequenceEValueTextBox.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                IncludeSequenceEValueTextBoxKeyPressed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 25);
-        Container_HMMERParameters.add(jTextField22, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 3);
+        Container_HMMERParameters.add(IncludeSequenceEValueTextBox, gridBagConstraints);
 
-        jTextField23.setText("0.00001");
-        jTextField23.setToolTipText("E value threshold to include domain in results.");
-        jTextField23.addActionListener(new java.awt.event.ActionListener() {
+        IncludeDomainEvalueTextBox.setText("0.00001");
+        IncludeDomainEvalueTextBox.setToolTipText("E value threshold to include domain in results.");
+        IncludeDomainEvalueTextBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IncludeDomainEvalueTextBoxMouseClicked(evt);
+            }
+        });
+        IncludeDomainEvalueTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField23ActionPerformed(evt);
+                IncludeDomainEvalueTextBoxTextBoxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 15, 25);
-        Container_HMMERParameters.add(jTextField23, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 15, 3);
+        Container_HMMERParameters.add(IncludeDomainEvalueTextBox, gridBagConstraints);
 
         jLabel44.setText("Include Domain E Value");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1268,9 +1339,92 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 25, 15, 13);
         Container_HMMERParameters.add(jLabel44, gridBagConstraints);
 
+        SequenceEValueDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
+        SequenceEValueDefault.setForeground(new java.awt.Color(102, 102, 102));
+        SequenceEValueDefault.setText("default");
+        SequenceEValueDefault.setToolTipText("Restore default setting.");
+        SequenceEValueDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        SequenceEValueDefault.setIconTextGap(0);
+        SequenceEValueDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
+        SequenceEValueDefault.setMaximumSize(new java.awt.Dimension(18, 18));
+        SequenceEValueDefault.setMinimumSize(new java.awt.Dimension(18, 18));
+        SequenceEValueDefault.setPreferredSize(new java.awt.Dimension(15, 15));
+        SequenceEValueDefault.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SequenceEValueDefaultMouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.insets = new java.awt.Insets(5, 19, 0, 25);
+        Container_HMMERParameters.add(SequenceEValueDefault, gridBagConstraints);
+
+        DomainEValueDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
+        DomainEValueDefault.setForeground(new java.awt.Color(102, 102, 102));
+        DomainEValueDefault.setText("default");
+        DomainEValueDefault.setToolTipText("Restore default setting.");
+        DomainEValueDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        DomainEValueDefault.setIconTextGap(0);
+        DomainEValueDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
+        DomainEValueDefault.setMaximumSize(new java.awt.Dimension(18, 18));
+        DomainEValueDefault.setMinimumSize(new java.awt.Dimension(18, 18));
+        DomainEValueDefault.setPreferredSize(new java.awt.Dimension(15, 15));
+        DomainEValueDefault.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DomainEValueDefaultMouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.insets = new java.awt.Insets(5, 19, 0, 25);
+        Container_HMMERParameters.add(DomainEValueDefault, gridBagConstraints);
+
+        IncludeSequenceEvalueDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
+        IncludeSequenceEvalueDefault.setForeground(new java.awt.Color(102, 102, 102));
+        IncludeSequenceEvalueDefault.setText("default");
+        IncludeSequenceEvalueDefault.setToolTipText("Restore default setting.");
+        IncludeSequenceEvalueDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        IncludeSequenceEvalueDefault.setIconTextGap(0);
+        IncludeSequenceEvalueDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
+        IncludeSequenceEvalueDefault.setMaximumSize(new java.awt.Dimension(18, 18));
+        IncludeSequenceEvalueDefault.setMinimumSize(new java.awt.Dimension(18, 18));
+        IncludeSequenceEvalueDefault.setPreferredSize(new java.awt.Dimension(15, 15));
+        IncludeSequenceEvalueDefault.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IncludeSequenceEvalueDefaultMouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(5, 19, 0, 25);
+        Container_HMMERParameters.add(IncludeSequenceEvalueDefault, gridBagConstraints);
+
+        IncludeDomainDefault.setFont(new java.awt.Font("Lucida Grande", 0, 8)); // NOI18N
+        IncludeDomainDefault.setForeground(new java.awt.Color(102, 102, 102));
+        IncludeDomainDefault.setText("default");
+        IncludeDomainDefault.setToolTipText("Restore default setting.");
+        IncludeDomainDefault.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        IncludeDomainDefault.setIconTextGap(0);
+        IncludeDomainDefault.setMargin(new java.awt.Insets(2, 2, 0, 2));
+        IncludeDomainDefault.setMaximumSize(new java.awt.Dimension(18, 18));
+        IncludeDomainDefault.setMinimumSize(new java.awt.Dimension(18, 18));
+        IncludeDomainDefault.setPreferredSize(new java.awt.Dimension(15, 15));
+        IncludeDomainDefault.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IncludeDomainDefaultMouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(5, 19, 14, 25);
+        Container_HMMERParameters.add(IncludeDomainDefault, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
         PipelineConfig.add(Container_HMMERParameters, gridBagConstraints);
@@ -1294,6 +1448,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
@@ -1932,6 +2087,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
         PipelineConfig.add(Container_ResultParsingParameters, gridBagConstraints);
@@ -1941,6 +2097,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 16, 0);
         PipelineConfig.add(jLabel_PipelineConfig, gridBagConstraints);
 
@@ -1987,9 +2144,100 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 22, 300);
         PipelineConfig.add(Container_SaveLoadRun, gridBagConstraints);
+
+        jLabel6.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel6.setText("1.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel6, gridBagConstraints);
+
+        jLabel7.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel7.setText("2.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel7, gridBagConstraints);
+
+        jLabel8.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel8.setText("3.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel8, gridBagConstraints);
+
+        jLabel9.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel9.setText("4.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel9, gridBagConstraints);
+
+        jLabel10.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel10.setText("5.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel10, gridBagConstraints);
+
+        jLabel11.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel11.setText("6.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel11, gridBagConstraints);
+
+        jLabel12.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel12.setText("7.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel12, gridBagConstraints);
+
+        jLabel13.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel13.setText("8.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel13, gridBagConstraints);
+
+        jLabel14.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel14.setText("9.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel14, gridBagConstraints);
+
+        jLabel15.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel15.setText("10.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel15, gridBagConstraints);
 
         PipelineConfigScrollPanel.setViewportView(PipelineConfig);
 
@@ -2613,16 +2861,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jPanel1.add(jTabbedPane1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        getContentPane().add(jPanel1, gridBagConstraints);
 
         bindingGroup.bind();
 
@@ -2701,21 +2946,21 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         
     }//GEN-LAST:event_CoreGenomeAccuracyThresholdTextBoxActionPerformed
 
-    private void jTextField20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField20ActionPerformed
+    private void SequenceEValueTextBoxTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SequenceEValueTextBoxTextBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField20ActionPerformed
+    }//GEN-LAST:event_SequenceEValueTextBoxTextBoxActionPerformed
 
-    private void jTextField21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField21ActionPerformed
+    private void DomainEValueTextBoxTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DomainEValueTextBoxTextBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField21ActionPerformed
+    }//GEN-LAST:event_DomainEValueTextBoxTextBoxActionPerformed
 
-    private void jTextField22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField22ActionPerformed
+    private void IncludeSequenceEValueTextBoxTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncludeSequenceEValueTextBoxTextBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField22ActionPerformed
+    }//GEN-LAST:event_IncludeSequenceEValueTextBoxTextBoxActionPerformed
 
-    private void jTextField23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField23ActionPerformed
+    private void IncludeDomainEvalueTextBoxTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IncludeDomainEvalueTextBoxTextBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField23ActionPerformed
+    }//GEN-LAST:event_IncludeDomainEvalueTextBoxTextBoxActionPerformed
 
     private void AccuracyThresholdTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AccuracyThresholdTextBoxActionPerformed
         // TODO add your handling code here:
@@ -3325,6 +3570,99 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_GroupDistanceFileSelectorActionPerformed
 
+    private void jLabel_ConnectedIconPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLabel_ConnectedIconPropertyChange
+        // Jamie: 
+        // vestigial super.paintComponent( )
+    }//GEN-LAST:event_jLabel_ConnectedIconPropertyChange
+
+    private void SequenceEValueDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SequenceEValueDefaultMouseClicked
+        // Jamie: when default button is pressed, restore default values to textBox
+        // Values are hard-coded for now. Ideally there should be a lookup table.
+        SequenceEValueTextBox.setText("0.00001");
+    }//GEN-LAST:event_SequenceEValueDefaultMouseClicked
+
+    private void DomainEValueDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DomainEValueDefaultMouseClicked
+        // Jamie: when default button is pressed, restore default values to textBox
+        // Values are hard-coded for now. Ideally there should be a lookup table.
+        DomainEValueTextBox.setText("0.00001");
+    }//GEN-LAST:event_DomainEValueDefaultMouseClicked
+
+    private void IncludeSequenceEvalueDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncludeSequenceEvalueDefaultMouseClicked
+        // Jamie: when default button is pressed, restore default values to textBox
+        // Values are hard-coded for now. Ideally there should be a lookup table.
+        IncludeSequenceEValueTextBox.setText("0.00001");
+    }//GEN-LAST:event_IncludeSequenceEvalueDefaultMouseClicked
+
+    private void IncludeDomainDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncludeDomainDefaultMouseClicked
+        // Jamie: when default button is pressed, restore default values to textBox
+        // Values are hard-coded for now. Ideally there should be a lookup table.
+        IncludeDomainEvalueTextBox.setText("0.00001");
+    }//GEN-LAST:event_IncludeDomainDefaultMouseClicked
+
+    private void SequenceEValueTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SequenceEValueTextBoxKeyPressed
+        // Jamie: If user presses up and down arrow keys, the value in the text box adjusts accordingly.
+        /// NOTE: THIS IS BUGGY. NUMBERS DON'T ADD/SUBTRACT PROPERLY...
+        double boxValue = Double.parseDouble(SequenceEValueTextBox.getText());
+        // DOWN ARROW is keycode 40
+        if ( evt.getKeyCode() == 40  && boxValue > 0.00001){
+            boxValue = boxValue - 0.00001;
+            SequenceEValueTextBox.setText(""+boxValue);
+        }
+        // UP ARROW is keycode 38
+        if ( evt.getKeyCode() == 38 && boxValue < 1){
+            boxValue = boxValue + 0.00001;
+            SequenceEValueTextBox.setText(""+boxValue);
+        }
+    }//GEN-LAST:event_SequenceEValueTextBoxKeyPressed
+
+    private void DomainEValueTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DomainEValueTextBoxKeyPressed
+        // Jamie: If user presses up and down arrow keys, the value in the text box adjusts accordingly.
+        /// NOTE: THIS IS BUGGY. NUMBERS DON'T ADD/SUBTRACT PROPERLY...
+        double boxValue = Double.parseDouble(DomainEValueTextBox.getText());
+        // DOWN ARROW is keycode 40
+        if ( evt.getKeyCode() == 40  && boxValue > 0.00001){
+            boxValue = boxValue - 0.00001;
+            DomainEValueTextBox.setText(""+boxValue);
+        }
+        // UP ARROW is keycode 38
+        if ( evt.getKeyCode() == 38 && boxValue < 1){
+            boxValue = boxValue + 0.00001;
+            DomainEValueTextBox.setText(""+boxValue);
+        }
+    }//GEN-LAST:event_DomainEValueTextBoxKeyPressed
+
+    private void IncludeSequenceEValueTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_IncludeSequenceEValueTextBoxKeyPressed
+        // Jamie: If user presses up and down arrow keys, the value in the text box adjusts accordingly.
+        /// NOTE: THIS IS BUGGY. NUMBERS DON'T ADD/SUBTRACT PROPERLY...
+        double boxValue = Double.parseDouble(IncludeSequenceEValueTextBox.getText());
+        // DOWN ARROW is keycode 40
+        if ( evt.getKeyCode() == 40  && boxValue > 0.00001){
+            boxValue = boxValue - 0.00001;
+            IncludeSequenceEValueTextBox.setText(""+boxValue);
+        }
+        // UP ARROW is keycode 38
+        if ( evt.getKeyCode() == 38 && boxValue < 1){
+            boxValue = boxValue + 0.00001;
+            IncludeSequenceEValueTextBox.setText(""+boxValue);
+        }
+    }//GEN-LAST:event_IncludeSequenceEValueTextBoxKeyPressed
+
+    private void IncludeDomainEvalueTextBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncludeDomainEvalueTextBoxMouseClicked
+        // Jamie: If user presses up and down arrow keys, the value in the text box adjusts accordingly.
+        /// NOTE: THIS IS BUGGY. NUMBERS DON'T ADD/SUBTRACT PROPERLY...
+        double boxValue = Double.parseDouble(IncludeDomainEvalueTextBox.getText());
+        // DOWN ARROW is keycode 40
+      /*  if ( evt.getKeyCode() == 40  && boxValue > 0.00001){
+            boxValue = boxValue - 0.00001;
+            IncludeDomainEvalueTextBox.setText(""+boxValue);
+        }
+        // UP ARROW is keycode 38
+        if ( evt.getKeyCode() == 38 && boxValue < 1){
+            boxValue = boxValue + 0.00001;
+            IncludeDomainEvalueTextBox.setText(""+boxValue);
+        } */
+    }//GEN-LAST:event_IncludeDomainEvalueTextBoxMouseClicked
+
     
     // Anu:
     // This function popuates the taxonomy tree on Query Search page.
@@ -3367,12 +3705,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
          System.out.println("STRAINSTREEPATH "+strainsTreePath);
          //jTree_SearchFields.addSelectionPath(new TreePath(strains.toArray());
       }
-        jTree_SearchFields.setRootVisible(true); 
+        jTree_SearchFields.setRootVisible(true);                   
     }
-
-    
-    
-    
+      
     
     
     /**
@@ -3407,6 +3742,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -3450,6 +3786,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JTextField CoreGenomeAccuracyThresholdTextBox;
     private javax.swing.JTextField DBConnection;
     private javax.swing.JTextField DBName;
+    private javax.swing.JButton DomainEValueDefault;
+    private javax.swing.JTextField DomainEValueTextBox;
     private javax.swing.JButton GroupAlignmentDirectoryFileSelector;
     private javax.swing.JTextField GroupAlignmentDirectoryPathTextBox;
     private javax.swing.JButton GroupDistanceFileSelector;
@@ -3466,6 +3804,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JPanel Home;
     private javax.swing.ButtonGroup HomologScan_buttonGroup;
     private javax.swing.JTextField IPAddress;
+    private javax.swing.JButton IncludeDomainDefault;
+    private javax.swing.JTextField IncludeDomainEvalueTextBox;
+    private javax.swing.JTextField IncludeSequenceEValueTextBox;
+    private javax.swing.JButton IncludeSequenceEvalueDefault;
     private javax.swing.ButtonGroup InputGroup_buttonGroup;
     private javax.swing.JButton MinimumPartialCoverageDefault;
     private javax.swing.JSlider MinimumPartialCoverageSlider;
@@ -3489,6 +3831,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JPanel Search;
     private javax.swing.JButton SequenceDatabaseFileSelector;
     private javax.swing.JTextField SequenceDatabasePathTextBox;
+    private javax.swing.JButton SequenceEValueDefault;
+    private javax.swing.JTextField SequenceEValueTextBox;
     private javax.swing.JButton SequenceIdentityDefault;
     private javax.swing.JSlider SequenceIdentitySlider;
     private javax.swing.JTextField SequenceIdentityTextBox;
@@ -3530,6 +3874,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox_BooleanOperator;
     private javax.swing.JComboBox jComboBox_RecentDBList;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel1_Subtitle;
     private javax.swing.JLabel jLabel2;
@@ -3562,13 +3912,18 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_A;
     private javax.swing.JLabel jLabel_B;
     private javax.swing.JLabel jLabel_CSBDept;
     private javax.swing.JLabel jLabel_ConnectToDB;
     private javax.swing.JLabel jLabel_ConnectToDBStatus;
+    private javax.swing.JLabel jLabel_ConnectedIcon;
     private javax.swing.JLabel jLabel_ConnectionName;
     private javax.swing.JLabel jLabel_ConnectionStatus;
     private javax.swing.JLabel jLabel_Database;
@@ -3619,10 +3974,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea_HelpContents;
     private javax.swing.JTextArea jTextArea_SearchBinA;
     private javax.swing.JTextArea jTextArea_SearchBinB;
-    private javax.swing.JTextField jTextField20;
-    private javax.swing.JTextField jTextField21;
-    private javax.swing.JTextField jTextField22;
-    private javax.swing.JTextField jTextField23;
     private javax.swing.JTextField jTextField_SQLsearchQuery;
     private javax.swing.JTree jTree1;
     private javax.swing.JTree jTree_SearchFields;
