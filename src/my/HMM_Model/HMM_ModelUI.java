@@ -37,6 +37,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     final JFileChooser folderSelector = new JFileChooser();
     final JFileChooser fileSelector = new JFileChooser();
     
+    // Jamie:
+    boolean isConnected = false; // this variable indicates whether we are connected to the database
+
 
  
     // ** Global Database Variables
@@ -75,6 +78,18 @@ public class HMM_ModelUI extends javax.swing.JFrame {
        folderSelector.setAcceptAllFileFilterUsed(false);
                       
        initComponents();
+       
+       
+       
+        // Jamie: update connection icon
+        if (isConnected) {
+             jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-connected.png")));
+        }
+        else {
+             jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-idle.png"))); 
+        }
+        
+       
     }
 
     /**
@@ -86,7 +101,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jMenu1 = new javax.swing.JMenu();
         HomologScan_buttonGroup = new javax.swing.ButtonGroup();
@@ -198,15 +212,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jLabel54 = new javax.swing.JLabel();
-        NumberDomainComboBox = new javax.swing.JComboBox();
         jLabel55 = new javax.swing.JLabel();
-        AccuracyThresholdSlider = new javax.swing.JSlider();
+        NumberDomainSlider = new javax.swing.JSlider();
         SequenceIdentitySlider = new javax.swing.JSlider();
         SequenceSimilaritySlider = new javax.swing.JSlider();
         QueryCoverageSlider = new javax.swing.JSlider();
         TargetCoverageSlider = new javax.swing.JSlider();
         MinimumPartialCoverageSlider = new javax.swing.JSlider();
-        NumberDomainSlider = new javax.swing.JSlider();
         ChimeraAccuracySlider = new javax.swing.JSlider();
         jLabel56 = new javax.swing.JLabel();
         jLabel57 = new javax.swing.JLabel();
@@ -235,6 +247,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         ChimaraSimilarityDefault = new javax.swing.JButton();
         ChimeraAccuaracyDefault = new javax.swing.JButton();
         MinimumPartialCoverageDefault = new javax.swing.JButton();
+        NumberDomainComboBox = new javax.swing.JComboBox();
+        AccuracyThresholdSlider1 = new javax.swing.JSlider();
         jLabel_PipelineConfig = new javax.swing.JLabel();
         Container_SaveLoadRun = new javax.swing.JPanel();
         jButton_SaveSettings = new javax.swing.JButton();
@@ -258,19 +272,21 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         canvas1 = new java.awt.Canvas();
         jLabel3 = new javax.swing.JLabel();
+        jTextField_FindTextBox = new javax.swing.JTextField();
+        jButton_Find = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
         jPanel_ManageQueryGroups = new javax.swing.JPanel();
         jButton_ClearGroup = new javax.swing.JButton();
         jButton_EditGroup = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
-        jButton_EditGroup1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Search = new javax.swing.JPanel();
         jLabel_Search = new javax.swing.JLabel();
         Container_BooleanSearch = new javax.swing.JPanel();
         jLabel_A = new javax.swing.JLabel();
-        jComboBox_BooleanOperator = new javax.swing.JComboBox();
+        jComboBox_BooleanOperatorA = new javax.swing.JComboBox();
         jLabel_B = new javax.swing.JLabel();
         jTextArea_SearchBinA = new javax.swing.JTextArea();
         jTextArea_SearchBinB = new javax.swing.JTextArea();
@@ -280,30 +296,35 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         vennDiagram = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        Container_Action = new javax.swing.JPanel();
-        jButton_NewSearch = new javax.swing.JButton();
-        jButton_LoadSearch = new javax.swing.JButton();
-        jButton_SaveSearch = new javax.swing.JButton();
+        jLabel_C = new javax.swing.JLabel();
+        jTextArea_SearchBinC = new javax.swing.JTextArea();
+        jButton_ClearBinC = new javax.swing.JButton();
+        jComboBox_BooleanOperator2 = new javax.swing.JComboBox();
+        jComboBox_BooleanOperator1 = new javax.swing.JComboBox();
+        jComboBox_BooleanOperatorB = new javax.swing.JComboBox();
+        jComboBox_BooleanOperatorC = new javax.swing.JComboBox();
+        jLabel_Parenthesis1 = new javax.swing.JLabel();
+        jLabel_Parenthesis2 = new javax.swing.JLabel();
+        jLabel_Parenthesis3 = new javax.swing.JLabel();
+        jLabel_Parenthesis4 = new javax.swing.JLabel();
+        jLabel_Parenthesis5 = new javax.swing.JLabel();
+        jLabel_Parenthesis6 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         Container_QueryBuilder = new javax.swing.JPanel();
         jButton_SubmitSearch = new javax.swing.JButton();
         jTextField_SQLsearchQuery = new javax.swing.JTextField();
         jLabel_SearchString = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel3_QueryGroups = new javax.swing.JPanel();
+        jButton_NewSearch = new javax.swing.JButton();
+        jButton_LoadSearch = new javax.swing.JButton();
+        jButton_SaveSearch = new javax.swing.JButton();
+        Container_QueryGroups = new javax.swing.JPanel();
         jScrollPanel_QueryGroups1 = new javax.swing.JScrollPane();
         jList_QueryGroups1 = new javax.swing.JList();
         jLabel_InstructionsLine3 = new javax.swing.JLabel();
         jLabel_InstructionsLine4 = new javax.swing.JLabel();
-        jButton_AssignToBinA1 = new javax.swing.JButton();
+        jButton_AssignToBinB = new javax.swing.JButton();
+        jButton_AssignToBinA = new javax.swing.JButton();
         jButton_AssignToBinB1 = new javax.swing.JButton();
-        jPanel3_ResultGroups = new javax.swing.JPanel();
-        jScrollPanel_QueryGroups3 = new javax.swing.JScrollPane();
-        jList_QueryGroups3 = new javax.swing.JList();
-        jLabel_InstructionsLine7 = new javax.swing.JLabel();
-        jLabel_InstructionsLine8 = new javax.swing.JLabel();
-        jButton_AssignToBinA3 = new javax.swing.JButton();
-        jButton_AssignResultsToBinB = new javax.swing.JButton();
         Results = new javax.swing.JPanel();
         jLabel_Results = new javax.swing.JLabel();
         jScrollPane_ResultsWindowScrollPanel = new javax.swing.JScrollPane();
@@ -325,6 +346,23 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jPanel1.setBackground(new java.awt.Color(130, 170, 210));
+        /*
+        // Graphics g = getBackground();
+
+        // Jamie:
+        // Gradient code
+        Graphics2D g2d = (Graphics2D)g;
+        // Paint a gradient from top to bottom
+        GradientPaint gp = new GradientPaint(
+            0, 0, getBackground(),
+            0, getHeight( ), getBackground().darker() );
+
+        int w = getWidth( );
+        int h = getHeight( );
+
+        g2d.setPaint( gp );
+        g2d.fillRect( 0, 0, w, h );
+        * */
         jPanel1.setMaximumSize(new java.awt.Dimension(1250, 715));
         jPanel1.setMinimumSize(new java.awt.Dimension(1250, 715));
         jPanel1.setPreferredSize(new java.awt.Dimension(1230, 715));
@@ -342,7 +380,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 50);
@@ -1482,18 +1520,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
         Container_ResultParsingParameters.add(jLabel54, gridBagConstraints);
 
-        NumberDomainComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5" }));
-        NumberDomainComboBox.setToolTipText("Maximum number of domains allowed in a hit sequence.");
-
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, NumberDomainSlider, org.jdesktop.beansbinding.ELProperty.create("${value}"), NumberDomainComboBox, org.jdesktop.beansbinding.BeanProperty.create("selectedItem"), "");
-        bindingGroup.addBinding(binding);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 0);
-        Container_ResultParsingParameters.add(NumberDomainComboBox, gridBagConstraints);
-
         jLabel55.setText("Query Coverage");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -1502,23 +1528,23 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(6, 25, 0, 15);
         Container_ResultParsingParameters.add(jLabel55, gridBagConstraints);
 
-        AccuracyThresholdSlider.setMajorTickSpacing(99);
-        AccuracyThresholdSlider.setMinimum(1);
-        AccuracyThresholdSlider.setMinorTickSpacing(25);
-        AccuracyThresholdSlider.setPaintTicks(true);
-        AccuracyThresholdSlider.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 0.85.");
-        AccuracyThresholdSlider.setValue(85);
-        AccuracyThresholdSlider.addChangeListener(new javax.swing.event.ChangeListener() {
+        NumberDomainSlider.setMajorTickSpacing(99);
+        NumberDomainSlider.setMaximum(5);
+        NumberDomainSlider.setMinimum(1);
+        NumberDomainSlider.setMinorTickSpacing(1);
+        NumberDomainSlider.setPaintTicks(true);
+        NumberDomainSlider.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 0.85.");
+        NumberDomainSlider.setValue(1);
+        NumberDomainSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                AccuracyThresholdSliderStateChanged(evt);
+                NumberDomainSliderStateChanged(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
-        Container_ResultParsingParameters.add(AccuracyThresholdSlider, gridBagConstraints);
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 0);
+        Container_ResultParsingParameters.add(NumberDomainSlider, gridBagConstraints);
 
         SequenceIdentitySlider.setMajorTickSpacing(99);
         SequenceIdentitySlider.setMinimum(1);
@@ -1609,22 +1635,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
         Container_ResultParsingParameters.add(MinimumPartialCoverageSlider, gridBagConstraints);
-
-        NumberDomainSlider.setMajorTickSpacing(99);
-        NumberDomainSlider.setMaximum(5);
-        NumberDomainSlider.setMinimum(1);
-        NumberDomainSlider.setMinorTickSpacing(1);
-        NumberDomainSlider.setPaintTicks(true);
-        NumberDomainSlider.setToolTipText("Minimum identity for chimera prediction. Default is 1.");
-        NumberDomainSlider.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                NumberDomainSliderStateChanged(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.weighty = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(25, 11, 0, 11);
-        Container_ResultParsingParameters.add(NumberDomainSlider, gridBagConstraints);
 
         ChimeraAccuracySlider.setMajorTickSpacing(99);
         ChimeraAccuracySlider.setMinimum(1);
@@ -1888,6 +1898,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(21, 0, 0, 25);
         Container_ResultParsingParameters.add(NumberDomainDefault, gridBagConstraints);
 
@@ -2085,6 +2097,31 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 25);
         Container_ResultParsingParameters.add(MinimumPartialCoverageDefault, gridBagConstraints);
 
+        NumberDomainComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", " " }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(25, 0, 0, 0);
+        Container_ResultParsingParameters.add(NumberDomainComboBox, gridBagConstraints);
+
+        AccuracyThresholdSlider1.setMajorTickSpacing(99);
+        AccuracyThresholdSlider1.setMinimum(1);
+        AccuracyThresholdSlider1.setMinorTickSpacing(25);
+        AccuracyThresholdSlider1.setPaintTicks(true);
+        AccuracyThresholdSlider1.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 0.85.");
+        AccuracyThresholdSlider1.setValue(85);
+        AccuracyThresholdSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                AccuracyThresholdSlider1StateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.weighty = 0.3;
+        gridBagConstraints.insets = new java.awt.Insets(6, 11, 0, 11);
+        Container_ResultParsingParameters.add(AccuracyThresholdSlider1, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 9;
@@ -2254,9 +2291,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jScrollPane_SearchFieldsScrollPanel.setViewportView(jTree_SearchFields);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.1;
         gridBagConstraints.weighty = 1.0;
@@ -2266,20 +2303,44 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton2.setText("Add to query group");
         jButton2.setToolTipText("Add selected items to the selected query group branch.");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 20);
         jPanel_BuildQueryGroup.add(jButton2, gridBagConstraints);
         jPanel_BuildQueryGroup.add(canvas1, new java.awt.GridBagConstraints());
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel3.setText("Select items to build query groups.");
+        jLabel3.setText("Select items from taxonomy treen then click 'Add' to assign to a query group. ");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
+        gridBagConstraints.gridwidth = 3;
         jPanel_BuildQueryGroup.add(jLabel3, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
+        jPanel_BuildQueryGroup.add(jTextField_FindTextBox, gridBagConstraints);
+
+        jButton_Find.setText("Quick Find");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 12);
+        jPanel_BuildQueryGroup.add(jButton_Find, gridBagConstraints);
+
+        jLabel17.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jLabel17.setText("You can also drag & drop items to any query group.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.insets = new java.awt.Insets(2, 0, 9, 0);
+        jPanel_BuildQueryGroup.add(jLabel17, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2297,15 +2358,15 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel_ManageQueryGroups.setBorder(javax.swing.BorderFactory.createTitledBorder("Query Groups"));
         jPanel_ManageQueryGroups.setLayout(new java.awt.GridBagLayout());
 
-        jButton_ClearGroup.setText("Clear Group");
+        jButton_ClearGroup.setText("Delete Group");
         jButton_ClearGroup.setToolTipText("Remove branch node from Query Group tree.");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 11;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         jPanel_ManageQueryGroups.add(jButton_ClearGroup, gridBagConstraints);
 
-        jButton_EditGroup.setText("Clear Selected");
+        jButton_EditGroup.setText("Clear Selected Items");
         jButton_EditGroup.setToolTipText("Remove selected items from Query Group manager.");
         jButton_EditGroup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2313,9 +2374,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
         jPanel_ManageQueryGroups.add(jButton_EditGroup, gridBagConstraints);
 
         jScrollPane1.setViewportView(jTree1);
@@ -2323,29 +2384,16 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 14;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         jPanel_ManageQueryGroups.add(jScrollPane1, gridBagConstraints);
 
-        jButton_EditGroup1.setText("Clear All");
-        jButton_EditGroup1.setToolTipText("Remove all branches from Query Group tree.");
-        jButton_EditGroup1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_EditGroup1ActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 13;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
-        jPanel_ManageQueryGroups.add(jButton_EditGroup1, gridBagConstraints);
-
-        jButton4.setText("Add New Group");
+        jButton4.setText("Add Group");
         jButton4.setToolTipText("Add new branch node to the Query Group manager.");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
         jPanel_ManageQueryGroups.add(jButton4, gridBagConstraints);
@@ -2376,18 +2424,15 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Search.setMaximumSize(new java.awt.Dimension(1024, 2400));
         Search.setMinimumSize(new java.awt.Dimension(600, 300));
         Search.setPreferredSize(new java.awt.Dimension(1024, 570));
-        java.awt.GridBagLayout SearchLayout = new java.awt.GridBagLayout();
-        SearchLayout.columnWidths = new int[] {0, 10, 0, 10, 0};
-        SearchLayout.rowHeights = new int[] {0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0, 10, 0};
-        Search.setLayout(SearchLayout);
+        Search.setLayout(new java.awt.GridBagLayout());
 
         jLabel_Search.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel_Search.setText("Search");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(22, 258, 0, 0);
         Search.add(jLabel_Search, gridBagConstraints);
 
         Container_BooleanSearch.setBackground(new java.awt.Color(237, 236, 236));
@@ -2400,86 +2445,109 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_A.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel_A.setText("A");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 0.7;
-        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 0);
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
         Container_BooleanSearch.add(jLabel_A, gridBagConstraints);
 
-        jComboBox_BooleanOperator.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "A NOT B", "B NOT A", "!AND", "!OR" }));
-        jComboBox_BooleanOperator.setSelectedItem("OR");
-        jComboBox_BooleanOperator.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_BooleanOperatorA.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jComboBox_BooleanOperatorA.setForeground(new java.awt.Color(102, 102, 102));
+        jComboBox_BooleanOperatorA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR" }));
+        jComboBox_BooleanOperatorA.setSelectedItem("OR");
+        jComboBox_BooleanOperatorA.setToolTipText("Boolean operator for items within this bin. Default is 'or'.");
+        jComboBox_BooleanOperatorA.setMaximumSize(new java.awt.Dimension(77, 27));
+        jComboBox_BooleanOperatorA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_BooleanOperatorActionPerformed(evt);
+                jComboBox_BooleanOperatorAActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.weightx = 0.7;
-        gridBagConstraints.insets = new java.awt.Insets(2, 8, 23, 8);
-        Container_BooleanSearch.add(jComboBox_BooleanOperator, gridBagConstraints);
+        Container_BooleanSearch.add(jComboBox_BooleanOperatorA, gridBagConstraints);
 
         jLabel_B.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel_B.setText("B");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.weightx = 0.7;
-        gridBagConstraints.insets = new java.awt.Insets(14, 0, 14, 0);
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
         Container_BooleanSearch.add(jLabel_B, gridBagConstraints);
 
         jTextArea_SearchBinA.setColumns(20);
         jTextArea_SearchBinA.setRows(5);
         jTextArea_SearchBinA.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(120, 120, 120), 1, true));
-        jTextArea_SearchBinA.setMaximumSize(new java.awt.Dimension(250, 250));
-        jTextArea_SearchBinA.setMinimumSize(new java.awt.Dimension(100, 50));
+        jTextArea_SearchBinA.setMaximumSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinA.setMinimumSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinA.setPreferredSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTextArea_SearchBinAMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTextArea_SearchBinAMouseReleased(evt);
+            }
+        });
+        jTextArea_SearchBinA.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTextArea_SearchBinAPropertyChange(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 2.2;
-        gridBagConstraints.weighty = 4.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 10, 10);
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         Container_BooleanSearch.add(jTextArea_SearchBinA, gridBagConstraints);
 
         jTextArea_SearchBinB.setColumns(20);
         jTextArea_SearchBinB.setRows(5);
         jTextArea_SearchBinB.setAutoscrolls(false);
         jTextArea_SearchBinB.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(120, 120, 120), 1, true));
-        jTextArea_SearchBinB.setMaximumSize(new java.awt.Dimension(250, 250));
-        jTextArea_SearchBinB.setMinimumSize(new java.awt.Dimension(100, 50));
+        jTextArea_SearchBinB.setMaximumSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinB.setMinimumSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinB.setPreferredSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinB.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTextArea_SearchBinBMouseReleased(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.weightx = 2.2;
-        gridBagConstraints.weighty = 4.0;
-        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 20);
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         Container_BooleanSearch.add(jTextArea_SearchBinB, gridBagConstraints);
 
+        jButton_ClearBinB.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jButton_ClearBinB.setForeground(new java.awt.Color(102, 102, 102));
         jButton_ClearBinB.setText("Clear");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
         Container_BooleanSearch.add(jButton_ClearBinB, gridBagConstraints);
 
+        jButton_ClearBinA.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jButton_ClearBinA.setForeground(new java.awt.Color(102, 102, 102));
         jButton_ClearBinA.setText("Clear");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
         Container_BooleanSearch.add(jButton_ClearBinA, gridBagConstraints);
 
-        jButton_BuildSQLquery.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jButton_BuildSQLquery.setText("Add to SQL Query");
+        jButton_BuildSQLquery.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        jButton_BuildSQLquery.setText("Generate Query");
         jButton_BuildSQLquery.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_BuildSQLqueryActionPerformed(evt);
@@ -2487,81 +2555,221 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 44);
         Container_BooleanSearch.add(jButton_BuildSQLquery, gridBagConstraints);
 
-        vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-or-B.png"))); // NOI18N
+        vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/3Venn_empty.png"))); // NOI18N
         vennDiagram.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 vennDiagramPropertyChange(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 50, 0);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 11;
         Container_BooleanSearch.add(vennDiagram, gridBagConstraints);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel4.setText("Place query groups in bins");
+        jLabel4.setText("1. Place query groups in bins A, B or C.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(8, 21, 16, 0);
         Container_BooleanSearch.add(jLabel4, gridBagConstraints);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel5.setText("and select a Boolean operator.");
+        jLabel5.setText("3. Press 'Generate Query' to generate SQL string.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.insets = new java.awt.Insets(27, 0, 0, 0);
+        gridBagConstraints.gridwidth = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(38, 21, 0, 0);
         Container_BooleanSearch.add(jLabel5, gridBagConstraints);
 
+        jLabel_C.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
+        jLabel_C.setText("C");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 5;
-        gridBagConstraints.weightx = 2.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 50);
-        Search.add(Container_BooleanSearch, gridBagConstraints);
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
+        Container_BooleanSearch.add(jLabel_C, gridBagConstraints);
 
-        Container_Action.setBackground(new java.awt.Color(153, 204, 255));
-        Container_Action.setMaximumSize(new java.awt.Dimension(1024, 100));
-        Container_Action.setMinimumSize(new java.awt.Dimension(540, 68));
-        Container_Action.setPreferredSize(new java.awt.Dimension(800, 34));
-        Container_Action.setLayout(new java.awt.GridBagLayout());
-
-        jButton_NewSearch.setText("New Search");
-        jButton_NewSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_NewSearchActionPerformed(evt);
+        jTextArea_SearchBinC.setColumns(20);
+        jTextArea_SearchBinC.setRows(5);
+        jTextArea_SearchBinC.setAutoscrolls(false);
+        jTextArea_SearchBinC.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(120, 120, 120), 1, true));
+        jTextArea_SearchBinC.setMaximumSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinC.setMinimumSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinC.setPreferredSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jTextArea_SearchBinCMouseReleased(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(11, 25, 0, 25);
-        Container_Action.add(jButton_NewSearch, gridBagConstraints);
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
+        Container_BooleanSearch.add(jTextArea_SearchBinC, gridBagConstraints);
 
-        jButton_LoadSearch.setText("Load Search");
+        jButton_ClearBinC.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jButton_ClearBinC.setForeground(new java.awt.Color(102, 102, 102));
+        jButton_ClearBinC.setText("Clear");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(11, 25, 0, 25);
-        Container_Action.add(jButton_LoadSearch, gridBagConstraints);
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
+        Container_BooleanSearch.add(jButton_ClearBinC, gridBagConstraints);
 
-        jButton_SaveSearch.setText("Save Search");
+        jComboBox_BooleanOperator2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT" }));
+        jComboBox_BooleanOperator2.setSelectedIndex(2);
+        jComboBox_BooleanOperator2.setSelectedItem("NOT");
+        jComboBox_BooleanOperator2.setMaximumSize(new java.awt.Dimension(108, 27));
+        jComboBox_BooleanOperator2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_BooleanOperator2ActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.insets = new java.awt.Insets(11, 25, 0, 25);
-        Container_Action.add(jButton_SaveSearch, gridBagConstraints);
+        gridBagConstraints.gridx = 7;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weighty = 0.1;
+        Container_BooleanSearch.add(jComboBox_BooleanOperator2, gridBagConstraints);
 
+        jComboBox_BooleanOperator1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT" }));
+        jComboBox_BooleanOperator1.setSelectedItem("OR");
+        jComboBox_BooleanOperator1.setMaximumSize(new java.awt.Dimension(108, 27));
+        jComboBox_BooleanOperator1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_BooleanOperator1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weighty = 0.1;
+        Container_BooleanSearch.add(jComboBox_BooleanOperator1, gridBagConstraints);
+
+        jComboBox_BooleanOperatorB.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jComboBox_BooleanOperatorB.setForeground(new java.awt.Color(102, 102, 102));
+        jComboBox_BooleanOperatorB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR" }));
+        jComboBox_BooleanOperatorB.setSelectedItem("OR");
+        jComboBox_BooleanOperatorB.setToolTipText("Boolean operator for items within this bin. Default is 'or'.");
+        jComboBox_BooleanOperatorB.setMaximumSize(new java.awt.Dimension(77, 27));
+        jComboBox_BooleanOperatorB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_BooleanOperatorBActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 2;
+        Container_BooleanSearch.add(jComboBox_BooleanOperatorB, gridBagConstraints);
+
+        jComboBox_BooleanOperatorC.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jComboBox_BooleanOperatorC.setForeground(new java.awt.Color(102, 102, 102));
+        jComboBox_BooleanOperatorC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR" }));
+        jComboBox_BooleanOperatorC.setSelectedItem("OR");
+        jComboBox_BooleanOperatorC.setToolTipText("Boolean operator for items within this bin. Default is 'or'.");
+        jComboBox_BooleanOperatorC.setMaximumSize(new java.awt.Dimension(77, 27));
+        jComboBox_BooleanOperatorC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_BooleanOperatorCActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 9;
+        gridBagConstraints.gridy = 2;
+        Container_BooleanSearch.add(jComboBox_BooleanOperatorC, gridBagConstraints);
+
+        jLabel_Parenthesis1.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
+        jLabel_Parenthesis1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Parenthesis1.setText("(");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
+        Container_BooleanSearch.add(jLabel_Parenthesis1, gridBagConstraints);
+
+        jLabel_Parenthesis2.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
+        jLabel_Parenthesis2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Parenthesis2.setText(")");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weighty = 0.1;
+        Container_BooleanSearch.add(jLabel_Parenthesis2, gridBagConstraints);
+
+        jLabel_Parenthesis3.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
+        jLabel_Parenthesis3.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Parenthesis3.setText("(");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weighty = 0.1;
+        Container_BooleanSearch.add(jLabel_Parenthesis3, gridBagConstraints);
+
+        jLabel_Parenthesis4.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
+        jLabel_Parenthesis4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Parenthesis4.setText(")");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weighty = 0.1;
+        Container_BooleanSearch.add(jLabel_Parenthesis4, gridBagConstraints);
+
+        jLabel_Parenthesis5.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
+        jLabel_Parenthesis5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Parenthesis5.setText("(");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 8;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weighty = 0.1;
+        Container_BooleanSearch.add(jLabel_Parenthesis5, gridBagConstraints);
+
+        jLabel_Parenthesis6.setFont(new java.awt.Font("Lucida Grande", 0, 48)); // NOI18N
+        jLabel_Parenthesis6.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_Parenthesis6.setText(")");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 10;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
+        Container_BooleanSearch.add(jLabel_Parenthesis6, gridBagConstraints);
+
+        jLabel18.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        jLabel18.setText("2. Select desired Boolean operators.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(23, 21, 0, 0);
+        Container_BooleanSearch.add(jLabel18, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.insets = new java.awt.Insets(10, 24, 10, 0);
-        Search.add(Container_Action, gridBagConstraints);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 491;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 10, 50, 50);
+        Search.add(Container_BooleanSearch, gridBagConstraints);
 
         Container_QueryBuilder.setBackground(new java.awt.Color(237, 236, 236));
         Container_QueryBuilder.setBorder(javax.swing.BorderFactory.createTitledBorder("SQL Query"));
@@ -2570,9 +2778,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_SubmitSearch.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton_SubmitSearch.setText("Search");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 7;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 6;
+        gridBagConstraints.gridx = 14;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 8;
@@ -2588,9 +2795,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 13;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 0.4;
@@ -2600,26 +2806,51 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_SearchString.setText("Search String");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 50, 20, 0);
         Container_QueryBuilder.add(jLabel_SearchString, gridBagConstraints);
 
+        jButton_NewSearch.setText("New Search");
+        jButton_NewSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_NewSearchActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 15, 0, 0);
+        Container_QueryBuilder.add(jButton_NewSearch, gridBagConstraints);
+
+        jButton_LoadSearch.setText("Load Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 13;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        Container_QueryBuilder.add(jButton_LoadSearch, gridBagConstraints);
+
+        jButton_SaveSearch.setText("Save Search");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 12;
+        gridBagConstraints.gridy = 0;
+        Container_QueryBuilder.add(jButton_SaveSearch, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 50);
+        gridBagConstraints.ipadx = 343;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(20, 50, 0, 50);
         Search.add(Container_QueryBuilder, gridBagConstraints);
 
-        jTabbedPane2.setBackground(new java.awt.Color(238, 237, 237));
-        jTabbedPane2.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
-
-        jPanel3_QueryGroups.setBackground(new java.awt.Color(238, 237, 237));
-        jPanel3_QueryGroups.setLayout(new java.awt.GridBagLayout());
+        Container_QueryGroups.setBackground(new java.awt.Color(238, 237, 237));
+        Container_QueryGroups.setBorder(javax.swing.BorderFactory.createTitledBorder("Query Groups"));
+        Container_QueryGroups.setLayout(new java.awt.GridBagLayout());
 
         jList_QueryGroups1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "QueryGroup1", "QueryGroup2", "QueryGroup3", "QueryGroup4", "QueryGroup5", "QueryGroup6", "QueryGroup7", " " };
@@ -2631,126 +2862,66 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 7;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 0.1;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 20);
-        jPanel3_QueryGroups.add(jScrollPanel_QueryGroups1, gridBagConstraints);
+        Container_QueryGroups.add(jScrollPanel_QueryGroups1, gridBagConstraints);
 
         jLabel_InstructionsLine3.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel_InstructionsLine3.setText("assign to Boolean search bins A or B.");
+        jLabel_InstructionsLine3.setText("query groups to search bins A, B or C.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
-        jPanel3_QueryGroups.add(jLabel_InstructionsLine3, gridBagConstraints);
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.insets = new java.awt.Insets(2, 0, 0, 0);
+        Container_QueryGroups.add(jLabel_InstructionsLine3, gridBagConstraints);
 
         jLabel_InstructionsLine4.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel_InstructionsLine4.setText("Drag items or use the buttons to");
+        jLabel_InstructionsLine4.setText("Drag items or use the buttons to assign");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.insets = new java.awt.Insets(8, 0, 0, 0);
-        jPanel3_QueryGroups.add(jLabel_InstructionsLine4, gridBagConstraints);
+        Container_QueryGroups.add(jLabel_InstructionsLine4, gridBagConstraints);
 
-        jButton_AssignToBinA1.setText("Bin A");
+        jButton_AssignToBinB.setText("Bin B");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 3, 0);
+        Container_QueryGroups.add(jButton_AssignToBinB, gridBagConstraints);
+
+        jButton_AssignToBinA.setText("Bin A");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 100, 3, 20);
-        jPanel3_QueryGroups.add(jButton_AssignToBinA1, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 0);
+        Container_QueryGroups.add(jButton_AssignToBinA, gridBagConstraints);
 
-        jButton_AssignToBinB1.setText("Bin B");
+        jButton_AssignToBinB1.setText("Bin C");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 100);
-        jPanel3_QueryGroups.add(jButton_AssignToBinB1, gridBagConstraints);
-
-        jTabbedPane2.addTab("Query Groups", jPanel3_QueryGroups);
-
-        jPanel3_ResultGroups.setBackground(new java.awt.Color(238, 237, 237));
-        jPanel3_ResultGroups.setLayout(new java.awt.GridBagLayout());
-
-        jList_QueryGroups3.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "ResultGroup1", "ResultGroup2", "ResultGroup3", "ResultGroup4", "ResultGroup5", "ResultGroup6", "ResultGroup7" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPanel_QueryGroups3.setViewportView(jList_QueryGroups3);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 3, 20);
+        Container_QueryGroups.add(jButton_AssignToBinB1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.REMAINDER;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 27;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 20);
-        jPanel3_ResultGroups.add(jScrollPanel_QueryGroups3, gridBagConstraints);
-
-        jLabel_InstructionsLine7.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel_InstructionsLine7.setText("assign to Boolean search bins A or B.");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 4;
-        jPanel3_ResultGroups.add(jLabel_InstructionsLine7, gridBagConstraints);
-
-        jLabel_InstructionsLine8.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        jLabel_InstructionsLine8.setText("Drag items or use the buttons to");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.insets = new java.awt.Insets(8, 0, 0, 0);
-        jPanel3_ResultGroups.add(jLabel_InstructionsLine8, gridBagConstraints);
-
-        jButton_AssignToBinA3.setText("Bin A");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 100, 3, 20);
-        jPanel3_ResultGroups.add(jButton_AssignToBinA3, gridBagConstraints);
-
-        jButton_AssignResultsToBinB.setText("Bin B");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 100);
-        jPanel3_ResultGroups.add(jButton_AssignResultsToBinB, gridBagConstraints);
-
-        jTabbedPane2.addTab("Result Groups", jPanel3_ResultGroups);
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 50, 0, 0);
-        Search.add(jPanel2, gridBagConstraints);
+        gridBagConstraints.weighty = 0.2;
+        gridBagConstraints.insets = new java.awt.Insets(10, 50, 50, 0);
+        Search.add(Container_QueryGroups, gridBagConstraints);
 
         jTabbedPane1.addTab("Search", Search);
 
@@ -2863,7 +3034,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
         jPanel1.add(jTabbedPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -2873,8 +3043,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridheight = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         getContentPane().add(jPanel1, gridBagConstraints);
-
-        bindingGroup.bind();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -3009,76 +3177,122 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void vennDiagramPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_vennDiagramPropertyChange
         // Jamie:
-        //
         // This is vestigial. It can be removed if you remove the call to it as well.
-        
     }//GEN-LAST:event_vennDiagramPropertyChange
 
-    private void jComboBox_BooleanOperatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorActionPerformed
+    
+    private void whichVennDiagram() {
         // Jamie:
         //
-        // This function responds to the jComboBox_BooleanOperator action event (user adjusts the AND / OR / NOT combo box)
-        // and stores the value in the global String booleanSearchMode.
-        //
-        // It also replaces the vennDiagram icon according to the selected mode.
+        // This function gets whenever one of the BooleanOperator ComboBoxes are adjusted
+        // It examines the contents of each search bin as well as the Boolean operators
+        // and determines which Venn diagram to show.
         
-        // First, let's get the current value of the combobox and store in a temporary variable called booleanOperator
-        String booleanOperator = jComboBox_BooleanOperator.getSelectedItem().toString();
+        // First, determine the contents of each element in the window.
+        String booleanOperator1 = jComboBox_BooleanOperator1.getSelectedItem().toString();
+        String booleanOperator2 = jComboBox_BooleanOperator2.getSelectedItem().toString();
         
-        // Then, we update booleanSearchMode according to the switch case.
-        switch (booleanOperator) {
-            case "AND":
-                booleanSearchMode = "AND";
-                // Change the image icon accordingly
-                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-and-B.png")));
-                break;
-                
-            case "OR":
-                booleanSearchMode = "OR";
-                // Change the image icon accordingly
-                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-or-B.png"))); 
-                break;
-                
-            case "A NOT B":
-                booleanSearchMode = "A NOT B";
-                // Change the image icon accordingly
-                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-not-B.png")));
-                break;
-                
-             case "B NOT A":
-                booleanSearchMode = "B NOT A";
-                // Change the image icon accordingly
-                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-B-not-A.png")));
-                break;
-                
-            case "!AND":
-                booleanSearchMode = "!AND";
-                // Change the image icon accordingly
-                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn-A-or-B-not-A-and-B.png")));
-                break;
-                
-            case "!OR":
-                booleanSearchMode = "!OR";
-                // Change the image icon accordingly
-                vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/2Venn.png")));
-                break;
+        System.out.println("1: "+booleanOperator1);
+        System.out.println("2: "+booleanOperator2);
+        
+        Boolean binAEmpty = false;
+        if (jTextArea_SearchBinA.getText().equals("")) {
+            binAEmpty = true;
         }
-    }//GEN-LAST:event_jComboBox_BooleanOperatorActionPerformed
+        Boolean binBEmpty = false;
+        if (jTextArea_SearchBinB.getText().equals("")) {
+            binBEmpty = true;
+        }
+        Boolean binCEmpty = false;
+        if (jTextArea_SearchBinC.getText().equals("")) {
+            binCEmpty = true;
+        }
+        
+        // Next, establish which Venn diagram to show based on settings
+        String vennDiagramFilename = "/my/HMM_Model/";
+        // ALL EMPTY
+        if (binAEmpty && binBEmpty && binCEmpty) {
+            vennDiagramFilename += "3Venn_empty.png";
+        }
+        // SINGLE BINS
+        // Only A
+        else if (!binAEmpty && binBEmpty && binCEmpty) {
+            vennDiagramFilename += "1Venn_A.png";
+        }
+        // Only B
+        else if (binAEmpty && !binBEmpty && binCEmpty) {
+            vennDiagramFilename += "1Venn_B.png";
+        }
+        // Only C
+        else if (binAEmpty && binBEmpty && !binCEmpty) {
+            vennDiagramFilename += "1Venn_C.png";
+        }
+        // DOUBLE BINS A / B
+        // A and B (C empty)
+        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && binCEmpty) {
+            vennDiagramFilename += "2Venn_AandB.png";
+        }
+        // A or B (C empty)
+        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && binCEmpty) {
+            vennDiagramFilename += "2Venn_AorB.png";
+        }
+        // A not B (C empty)
+        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && binCEmpty) {
+            vennDiagramFilename += "2Venn_AnotB.png";
+        }
+        // DOUBLE BINS B / C
+        // B and C (A empty)
+        else if (binAEmpty && booleanOperator2.equals("AND") && !binBEmpty && !binCEmpty) {
+        //    vennDiagramFilename += "2Venn_B&C.png";
+        }
+        // B or C (A empty)
+        else if (binAEmpty && booleanOperator2.equals("OR") && !binBEmpty && !binCEmpty) {
+         //   vennDiagramFilename += "2Venn_BorC.png";
+        }
+        // B not C (A empty)
+        else if (binAEmpty && booleanOperator2.equals("NOT") && !binBEmpty && !binCEmpty) {
+          //  vennDiagramFilename += "2Venn_B!C.png";
+        }        
+        // DOUBLE BINS A / C
+        // A and C (B empty)
+        else if (!binAEmpty && booleanOperator2.equals("AND") && binBEmpty && !binCEmpty) {
+         //   vennDiagramFilename += "2Venn_A&C.png";
+        }
+        // A or C (B empty)
+        else if (!binAEmpty && booleanOperator2.equals("OR") && binBEmpty && !binCEmpty) {
+          //  vennDiagramFilename += "2Venn_AorC.png";
+        }
+        // A not C (B empty)
+        else if (!binAEmpty && booleanOperator2.equals("NOT") && binBEmpty && !binCEmpty) {
+          //  vennDiagramFilename += "2Venn_A!C.png";
+        }        
+        
+        // Finally, adjust the Venn diagram accordingly
+        System.out.println(vennDiagramFilename);
+        vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource(vennDiagramFilename)));
+        
+    }
+    
+    
+    private void jComboBox_BooleanOperatorAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorAActionPerformed
+        // Jamie:
+        // Vestigial
+    }//GEN-LAST:event_jComboBox_BooleanOperatorAActionPerformed
 
-    private void AccuracyThresholdSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AccuracyThresholdSliderStateChanged
+    private void NumberDomainSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NumberDomainSliderStateChanged
         // Jamie: Use the value of the Slider to adjust value in TextField
         // if below 10, add another zero
-        if (AccuracyThresholdSlider.getValue() < 10) {
-            AccuracyThresholdTextBox.setText("0.0"+String.valueOf(AccuracyThresholdSlider.getValue()));
+        if (NumberDomainSlider.getValue() < 10) {
+            AccuracyThresholdTextBox.setText("0.0"+String.valueOf(NumberDomainSlider.getValue()));
         }
-        else if (AccuracyThresholdSlider.getValue() < 100) {
+        else if (NumberDomainSlider.getValue() < 100) {
           // else just show value
-           AccuracyThresholdTextBox.setText("0."+String.valueOf(AccuracyThresholdSlider.getValue()));
+           AccuracyThresholdTextBox.setText("0."+String.valueOf(NumberDomainSlider.getValue()));
         }
         else {
-           AccuracyThresholdTextBox.setText(String.valueOf(AccuracyThresholdSlider.getValue()));
+           AccuracyThresholdTextBox.setText(String.valueOf(NumberDomainSlider.getValue()));
         }      
-    }//GEN-LAST:event_AccuracyThresholdSliderStateChanged
+    }//GEN-LAST:event_NumberDomainSliderStateChanged
 
     private void SequenceIdentitySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SequenceIdentitySliderStateChanged
         // Jamie: Use the value of the Slider to adjust value in TextField
@@ -3125,11 +3339,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
         if ( evt.getKeyCode() == 40){
-            AccuracyThresholdSlider.setValue(AccuracyThresholdSlider.getValue()-1);
+            NumberDomainSlider.setValue(NumberDomainSlider.getValue()-1);
         }
         // UP ARROW is keycode 38
         if ( evt.getKeyCode() == 38){
-            AccuracyThresholdSlider.setValue(AccuracyThresholdSlider.getValue()+1);
+            NumberDomainSlider.setValue(NumberDomainSlider.getValue()+1);
         }
         // if ENTER (which is keycode 10) then send value to slider
         if ( evt.getKeyCode() == 10){
@@ -3146,7 +3360,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
                 trimLeadingZero = trimLeadingZero.substring(1);
             }
                         
-            AccuracyThresholdSlider.setValue( Integer.parseInt( trimLeadingZero ) );
+            NumberDomainSlider.setValue( Integer.parseInt( trimLeadingZero ) );
         }
     }//GEN-LAST:event_AccuracyThresholdTextBoxKeyPressed
 
@@ -3346,7 +3560,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void AccuracyThresholdDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccuracyThresholdDefaultMouseClicked
         // Jamie: when default button is pressed, restore default values to textBox and Slider
         // Values are hard-coded for now. Ideally there should be a lookup table.
-        AccuracyThresholdSlider.setValue(85);
+        NumberDomainSlider.setValue(85);
         AccuracyThresholdTextBox.setText("0.85");
     }//GEN-LAST:event_AccuracyThresholdDefaultMouseClicked
 
@@ -3388,10 +3602,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void ChimeraIdentityDefaultKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChimeraIdentityDefaultKeyPressed
      // Jamie: vestigial...
     }//GEN-LAST:event_ChimeraIdentityDefaultKeyPressed
-
-    private void jButton_EditGroup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EditGroup1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_EditGroup1ActionPerformed
 
     private void ReferenceDirectoryFolderLoaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReferenceDirectoryFolderLoaderActionPerformed
         // Jamie:
@@ -3441,11 +3651,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         NumberDomainSlider.setValue(1);
         NumberDomainComboBox.setSelectedIndex(0);
     }//GEN-LAST:event_NumberDomainDefaultMouseClicked
-
-    private void NumberDomainSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NumberDomainSliderStateChanged
-        // Jamie: adjust slider automatically changes selected item in combobox
-        NumberDomainComboBox.setSelectedIndex(NumberDomainSlider.getValue()-1); //JW: minus one because indexes start at zero
-    }//GEN-LAST:event_NumberDomainSliderStateChanged
 
     private void QueryDirectoryFileLoaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryDirectoryFileLoaderActionPerformed
     // Jamie:
@@ -3606,16 +3811,17 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void SequenceEValueTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SequenceEValueTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the value in the text box adjusts accordingly.
         /// NOTE: THIS IS BUGGY. NUMBERS DON'T ADD/SUBTRACT PROPERLY...
-        double boxValue = Double.parseDouble(SequenceEValueTextBox.getText());
+        Double boxValue = Double.parseDouble(SequenceEValueTextBox.getText());
+        //boxValue.setPrecision(4);
         // DOWN ARROW is keycode 40
         if ( evt.getKeyCode() == 40  && boxValue > 0.00001){
             boxValue = boxValue - 0.00001;
-            SequenceEValueTextBox.setText(""+boxValue);
+            SequenceEValueTextBox.setText(boxValue.toString());
         }
         // UP ARROW is keycode 38
         if ( evt.getKeyCode() == 38 && boxValue < 1){
             boxValue = boxValue + 0.00001;
-            SequenceEValueTextBox.setText(""+boxValue);
+            SequenceEValueTextBox.setText(boxValue.toString());
         }
     }//GEN-LAST:event_SequenceEValueTextBoxKeyPressed
 
@@ -3666,6 +3872,58 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             IncludeDomainEvalueTextBox.setText(""+boxValue);
         } */
     }//GEN-LAST:event_IncludeDomainEvalueTextBoxMouseClicked
+
+    private void jComboBox_BooleanOperator2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperator2ActionPerformed
+        //
+        // This function calls the whichVennDiagram() function whenever a Boolean operator combo box is selected
+        // or when query groups are added or deleted from the text box bins.
+        whichVennDiagram();
+    }//GEN-LAST:event_jComboBox_BooleanOperator2ActionPerformed
+
+    private void jComboBox_BooleanOperator1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperator1ActionPerformed
+        //
+        // This function calls the whichVennDiagram() function whenever a Boolean operator combo box is selected
+        // or when query groups are added or deleted from the text box bins.
+        whichVennDiagram();
+    }//GEN-LAST:event_jComboBox_BooleanOperator1ActionPerformed
+
+    private void jComboBox_BooleanOperatorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorBActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_BooleanOperatorBActionPerformed
+
+    private void jComboBox_BooleanOperatorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_BooleanOperatorCActionPerformed
+
+    private void jTextArea_SearchBinAPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinAPropertyChange
+        // Jamie: Vestigial
+    }//GEN-LAST:event_jTextArea_SearchBinAPropertyChange
+
+    private void jTextArea_SearchBinAMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinAMouseReleased
+        // Jamie:
+        // If anything is dragged into this box, update the Venn diagramm when the mouse is released
+        whichVennDiagram();
+    }//GEN-LAST:event_jTextArea_SearchBinAMouseReleased
+
+    private void jTextArea_SearchBinAMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinAMousePressed
+        // Jamie: Vestigial
+    }//GEN-LAST:event_jTextArea_SearchBinAMousePressed
+
+    private void jTextArea_SearchBinBMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinBMouseReleased
+        // Jamie:
+        // If anything is dragged into this box, update the Venn diagramm when the mouse is released
+        whichVennDiagram();
+    }//GEN-LAST:event_jTextArea_SearchBinBMouseReleased
+
+    private void jTextArea_SearchBinCMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinCMouseReleased
+        // Jamie:
+        // If anything is dragged into this box, update the Venn diagramm when the mouse is released
+        whichVennDiagram();
+    }//GEN-LAST:event_jTextArea_SearchBinCMouseReleased
+
+    private void AccuracyThresholdSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AccuracyThresholdSlider1StateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AccuracyThresholdSlider1StateChanged
 
     
     // Anu:
@@ -3746,14 +4004,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         }
         //</editor-fold>
         
-        // Jamie: update connection icon
-        if (DBConnect.isConnected) {
-             // jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-connected.png")));
-        }
-        else {
-             // jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-idle.png"))); 
-        }
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -3764,7 +4014,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AccuracyThresholdDefault;
-    private javax.swing.JSlider AccuracyThresholdSlider;
+    private javax.swing.JSlider AccuracyThresholdSlider1;
     private javax.swing.JTextField AccuracyThresholdTextBox;
     private javax.swing.ButtonGroup AdjustHeader_buttonGroup;
     private javax.swing.JButton ChimaraSimilarityDefault;
@@ -3777,7 +4027,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JSlider ChimeraSimilaritySlider;
     private javax.swing.JTextField ChimeraSimilarityTextBox;
     private javax.swing.JPanel ConnectToDB;
-    private javax.swing.JPanel Container_Action;
     private javax.swing.JPanel Container_Analysis;
     private javax.swing.JPanel Container_BooleanSearch;
     private javax.swing.JPanel Container_CoreGenome;
@@ -3785,6 +4034,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JPanel Container_Group;
     private javax.swing.JPanel Container_HMMERParameters;
     private javax.swing.JPanel Container_QueryBuilder;
+    private javax.swing.JPanel Container_QueryGroups;
     private javax.swing.JPanel Container_Reference;
     private javax.swing.JPanel Container_ResultParsingParameters;
     private javax.swing.JPanel Container_SaveLoadRun;
@@ -3857,20 +4107,20 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private java.awt.Canvas canvas1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton_AssignResultsToBinB;
-    private javax.swing.JButton jButton_AssignToBinA1;
-    private javax.swing.JButton jButton_AssignToBinA3;
+    private javax.swing.JButton jButton_AssignToBinA;
+    private javax.swing.JButton jButton_AssignToBinB;
     private javax.swing.JButton jButton_AssignToBinB1;
     private javax.swing.JButton jButton_BuildSQLquery;
     private javax.swing.JButton jButton_ClearBinA;
     private javax.swing.JButton jButton_ClearBinB;
+    private javax.swing.JButton jButton_ClearBinC;
     private javax.swing.JButton jButton_ClearGroup;
     private javax.swing.JButton jButton_ClearRecentDBList;
     private javax.swing.JButton jButton_ClearResults;
     private javax.swing.JButton jButton_ConnectToDB;
     private javax.swing.JButton jButton_DefaultSettings;
     private javax.swing.JButton jButton_EditGroup;
-    private javax.swing.JButton jButton_EditGroup1;
+    private javax.swing.JButton jButton_Find;
     private javax.swing.JButton jButton_LoadSearch;
     private javax.swing.JButton jButton_LoadSettings;
     private javax.swing.JButton jButton_NewSearch;
@@ -3882,7 +4132,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton_TestConnection;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox9;
-    private javax.swing.JComboBox jComboBox_BooleanOperator;
+    private javax.swing.JComboBox jComboBox_BooleanOperator1;
+    private javax.swing.JComboBox jComboBox_BooleanOperator2;
+    private javax.swing.JComboBox jComboBox_BooleanOperatorA;
+    private javax.swing.JComboBox jComboBox_BooleanOperatorB;
+    private javax.swing.JComboBox jComboBox_BooleanOperatorC;
     private javax.swing.JComboBox jComboBox_RecentDBList;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -3892,6 +4146,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel1_Subtitle;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel25;
@@ -3931,6 +4187,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_A;
     private javax.swing.JLabel jLabel_B;
+    private javax.swing.JLabel jLabel_C;
     private javax.swing.JLabel jLabel_CSBDept;
     private javax.swing.JLabel jLabel_ConnectToDB;
     private javax.swing.JLabel jLabel_ConnectToDBStatus;
@@ -3943,11 +4200,15 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_IPAddress2;
     private javax.swing.JLabel jLabel_InstructionsLine3;
     private javax.swing.JLabel jLabel_InstructionsLine4;
-    private javax.swing.JLabel jLabel_InstructionsLine7;
-    private javax.swing.JLabel jLabel_InstructionsLine8;
     private javax.swing.JLabel jLabel_Name1;
     private javax.swing.JLabel jLabel_Name2;
     private javax.swing.JLabel jLabel_Name3;
+    private javax.swing.JLabel jLabel_Parenthesis1;
+    private javax.swing.JLabel jLabel_Parenthesis2;
+    private javax.swing.JLabel jLabel_Parenthesis3;
+    private javax.swing.JLabel jLabel_Parenthesis4;
+    private javax.swing.JLabel jLabel_Parenthesis5;
+    private javax.swing.JLabel jLabel_Parenthesis6;
     private javax.swing.JLabel jLabel_Password;
     private javax.swing.JLabel jLabel_PipelineConfig;
     private javax.swing.JLabel jLabel_RecentDBs;
@@ -3959,12 +4220,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_UserName;
     private javax.swing.JLabel jLabel_port;
     private javax.swing.JList jList_QueryGroups1;
-    private javax.swing.JList jList_QueryGroups3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3_QueryGroups;
-    private javax.swing.JPanel jPanel3_ResultGroups;
     private javax.swing.JPanel jPanel_BuildQueryGroup;
     private javax.swing.JPanel jPanel_ManageQueryGroups;
     private javax.swing.JRadioButton jRadioButton1;
@@ -3978,18 +4235,17 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane_SearchFieldsScrollPanel;
     private javax.swing.JScrollPane jScrollPanel_HelpContentsScrollPanel;
     private javax.swing.JScrollPane jScrollPanel_QueryGroups1;
-    private javax.swing.JScrollPane jScrollPanel_QueryGroups3;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable_ResultsWindow;
     private javax.swing.JTextArea jTextArea_HelpContents;
     private javax.swing.JTextArea jTextArea_SearchBinA;
     private javax.swing.JTextArea jTextArea_SearchBinB;
+    private javax.swing.JTextArea jTextArea_SearchBinC;
+    private javax.swing.JTextField jTextField_FindTextBox;
     private javax.swing.JTextField jTextField_SQLsearchQuery;
     private javax.swing.JTree jTree1;
     private javax.swing.JTree jTree_SearchFields;
     private javax.swing.JTextField portnumber;
     private javax.swing.JLabel vennDiagram;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }
