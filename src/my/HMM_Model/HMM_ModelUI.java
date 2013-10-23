@@ -58,7 +58,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
   //  javax.swing.JScrollPane jScrollPane_SearchFieldsScrollPanel;
   //  javax.swing.JTree jTree_SearchFields;
 
-    boolean isConnected = false; // this variable indicates whether we are connected to the database
   
     //** Query Group List 
     DefaultListModel listModel = new DefaultListModel();  
@@ -93,8 +92,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         HomologScan_buttonGroup = new javax.swing.ButtonGroup();
         AdjustHeader_buttonGroup = new javax.swing.ButtonGroup();
         InputGroup_buttonGroup = new javax.swing.ButtonGroup();
-        jLabel_ConnectedIcon = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel_ConnectedIcon = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Home = new javax.swing.JPanel();
         Container_Title = new javax.swing.JPanel();
@@ -325,7 +324,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-connected.png"))); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(130, 170, 210));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1250, 715));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1250, 715));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1230, 715));
+        jPanel1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-idle.png"))); // NOI18N
+        jLabel_ConnectedIcon.setToolTipText("Not connected to database.");
         jLabel_ConnectedIcon.setMaximumSize(new java.awt.Dimension(40, 40));
         jLabel_ConnectedIcon.setMinimumSize(new java.awt.Dimension(40, 40));
         jLabel_ConnectedIcon.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -336,16 +342,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
         gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 50);
-        getContentPane().add(jLabel_ConnectedIcon, gridBagConstraints);
-
-        jPanel1.setBackground(new java.awt.Color(130, 170, 210));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1250, 715));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1250, 715));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1230, 715));
+        jPanel1.add(jLabel_ConnectedIcon, gridBagConstraints);
 
         jTabbedPane1.setBackground(new java.awt.Color(153, 204, 255));
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
@@ -2859,7 +2860,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Help", Help);
 
-        jPanel1.add(jTabbedPane1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 3;
+        jPanel1.add(jTabbedPane1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -3572,7 +3577,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void jLabel_ConnectedIconPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLabel_ConnectedIconPropertyChange
         // Jamie: 
-        // vestigial super.paintComponent( )
     }//GEN-LAST:event_jLabel_ConnectedIconPropertyChange
 
     private void SequenceEValueDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SequenceEValueDefaultMouseClicked
@@ -3741,7 +3745,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HMM_ModelUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        // Jamie: update connection icon
+        if (DBConnect.isConnected) {
+             // jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-connected.png")));
+        }
+        else {
+             // jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-idle.png"))); 
+        }
         
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
