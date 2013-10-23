@@ -17,9 +17,7 @@ public class DBConnect {
        private Connection con;
        private Statement queryStatement;
        private ResultSet resultSet;
-       
-       public static boolean isConnected = false; // this variable indicates whether we are connected to the database
-       
+              
        public DBConnect(String ip, String port, String password, String username, String db ,JLabel jLabel_ConnectToDBStatus,String connectionName,JComboBox jComboBox_RecentDBList){
            //Boolean connected= false;
            //String connectorStr= "jdbc:mysql://"+ip+":"+port+"/"+db;
