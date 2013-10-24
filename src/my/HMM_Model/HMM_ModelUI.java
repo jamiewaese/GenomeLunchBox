@@ -310,6 +310,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_Parenthesis5 = new javax.swing.JLabel();
         jLabel_Parenthesis6 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel_bigParenthetical1 = new javax.swing.JLabel();
+        jLabel_bigParenthetical2 = new javax.swing.JLabel();
         Container_QueryBuilder = new javax.swing.JPanel();
         jButton_SubmitSearch = new javax.swing.JButton();
         jTextField_SQLsearchQuery = new javax.swing.JTextField();
@@ -2482,12 +2484,25 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jTextArea_SearchBinA.setMaximumSize(new java.awt.Dimension(100, 100));
         jTextArea_SearchBinA.setMinimumSize(new java.awt.Dimension(100, 100));
         jTextArea_SearchBinA.setPreferredSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinA.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextArea_SearchBinACaretUpdate(evt);
+            }
+        });
         jTextArea_SearchBinA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jTextArea_SearchBinAMousePressed(evt);
             }
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTextArea_SearchBinAMouseReleased(evt);
+            }
+        });
+        jTextArea_SearchBinA.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                jTextArea_SearchBinAInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                jTextArea_SearchBinACaretPositionChanged(evt);
             }
         });
         jTextArea_SearchBinA.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -2512,6 +2527,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jTextArea_SearchBinB.setMaximumSize(new java.awt.Dimension(100, 100));
         jTextArea_SearchBinB.setMinimumSize(new java.awt.Dimension(100, 100));
         jTextArea_SearchBinB.setPreferredSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinB.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextArea_SearchBinBCaretUpdate(evt);
+            }
+        });
         jTextArea_SearchBinB.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTextArea_SearchBinBMouseReleased(evt);
@@ -2529,6 +2549,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_ClearBinB.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jButton_ClearBinB.setForeground(new java.awt.Color(102, 102, 102));
         jButton_ClearBinB.setText("Clear");
+        jButton_ClearBinB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ClearBinBActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 4;
@@ -2539,6 +2564,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_ClearBinA.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jButton_ClearBinA.setForeground(new java.awt.Color(102, 102, 102));
         jButton_ClearBinA.setText("Clear");
+        jButton_ClearBinA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ClearBinAActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -2609,6 +2639,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jTextArea_SearchBinC.setMaximumSize(new java.awt.Dimension(100, 100));
         jTextArea_SearchBinC.setMinimumSize(new java.awt.Dimension(100, 100));
         jTextArea_SearchBinC.setPreferredSize(new java.awt.Dimension(100, 100));
+        jTextArea_SearchBinC.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                jTextArea_SearchBinCCaretUpdate(evt);
+            }
+        });
         jTextArea_SearchBinC.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 jTextArea_SearchBinCMouseReleased(evt);
@@ -2627,14 +2662,18 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_ClearBinC.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jButton_ClearBinC.setForeground(new java.awt.Color(102, 102, 102));
         jButton_ClearBinC.setText("Clear");
+        jButton_ClearBinC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ClearBinCActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
         Container_BooleanSearch.add(jButton_ClearBinC, gridBagConstraints);
 
-        jComboBox_BooleanOperator2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT" }));
-        jComboBox_BooleanOperator2.setSelectedIndex(2);
+        jComboBox_BooleanOperator2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT", "!AND" }));
         jComboBox_BooleanOperator2.setSelectedItem("NOT");
         jComboBox_BooleanOperator2.setMaximumSize(new java.awt.Dimension(108, 27));
         jComboBox_BooleanOperator2.addActionListener(new java.awt.event.ActionListener() {
@@ -2646,9 +2685,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weighty = 0.1;
+        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 0);
         Container_BooleanSearch.add(jComboBox_BooleanOperator2, gridBagConstraints);
 
-        jComboBox_BooleanOperator1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT" }));
+        jComboBox_BooleanOperator1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT", "!AND" }));
         jComboBox_BooleanOperator1.setSelectedItem("OR");
         jComboBox_BooleanOperator1.setMaximumSize(new java.awt.Dimension(108, 27));
         jComboBox_BooleanOperator1.addActionListener(new java.awt.event.ActionListener() {
@@ -2758,6 +2798,23 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(23, 21, 0, 0);
         Container_BooleanSearch.add(jLabel18, gridBagConstraints);
+
+        jLabel_bigParenthetical1.setFont(new java.awt.Font("Lucida Grande", 0, 54)); // NOI18N
+        jLabel_bigParenthetical1.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_bigParenthetical1.setText("(");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        Container_BooleanSearch.add(jLabel_bigParenthetical1, gridBagConstraints);
+
+        jLabel_bigParenthetical2.setFont(new java.awt.Font("Lucida Grande", 0, 54)); // NOI18N
+        jLabel_bigParenthetical2.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel_bigParenthetical2.setText(")");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(0, 17, 0, 0);
+        Container_BooleanSearch.add(jLabel_bigParenthetical2, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -3210,11 +3267,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         
         // Next, establish which Venn diagram to show based on settings
         String vennDiagramFilename = "/my/HMM_Model/";
-        // ALL EMPTY
+        ///////////// ALL EMPTY
         if (binAEmpty && binBEmpty && binCEmpty) {
             vennDiagramFilename += "3Venn_empty.png";
         }
-        // SINGLE BINS
+        //////////////// SINGLE BINS
         // Only A
         else if (!binAEmpty && binBEmpty && binCEmpty) {
             vennDiagramFilename += "1Venn_A.png";
@@ -3227,7 +3284,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         else if (binAEmpty && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "1Venn_C.png";
         }
-        // DOUBLE BINS A / B
+        ///////////////////// DOUBLE BINS A / B
         // A and B (C empty)
         else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AandB.png";
@@ -3240,32 +3297,122 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AnotB.png";
         }
-        // DOUBLE BINS B / C
+        // A not and B (C empty)
+        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && binCEmpty) {
+            vennDiagramFilename += "2Venn_AnotandB.png";
+        }
+        /////////////////// DOUBLE BINS B / C
         // B and C (A empty)
         else if (binAEmpty && booleanOperator2.equals("AND") && !binBEmpty && !binCEmpty) {
-        //    vennDiagramFilename += "2Venn_B&C.png";
+            vennDiagramFilename += "2Venn_BandC.png";
         }
         // B or C (A empty)
         else if (binAEmpty && booleanOperator2.equals("OR") && !binBEmpty && !binCEmpty) {
-         //   vennDiagramFilename += "2Venn_BorC.png";
+            vennDiagramFilename += "2Venn_BorC.png";
         }
         // B not C (A empty)
         else if (binAEmpty && booleanOperator2.equals("NOT") && !binBEmpty && !binCEmpty) {
-          //  vennDiagramFilename += "2Venn_B!C.png";
+            vennDiagramFilename += "2Venn_BnotC.png";
         }        
-        // DOUBLE BINS A / C
+        // B not and C (A empty)
+        else if (binAEmpty && booleanOperator2.equals("!AND") && !binBEmpty && !binCEmpty) {
+            vennDiagramFilename += "2Venn_BnotandC.png";
+        }
+        /////////////////// DOUBLE BINS A / C
         // A and C (B empty)
         else if (!binAEmpty && booleanOperator2.equals("AND") && binBEmpty && !binCEmpty) {
-         //   vennDiagramFilename += "2Venn_A&C.png";
+            vennDiagramFilename += "2Venn_AandC.png";
         }
         // A or C (B empty)
         else if (!binAEmpty && booleanOperator2.equals("OR") && binBEmpty && !binCEmpty) {
-          //  vennDiagramFilename += "2Venn_AorC.png";
+            vennDiagramFilename += "2Venn_AorC.png";
         }
         // A not C (B empty)
         else if (!binAEmpty && booleanOperator2.equals("NOT") && binBEmpty && !binCEmpty) {
-          //  vennDiagramFilename += "2Venn_A!C.png";
+            vennDiagramFilename += "2Venn_AnotC.png";
         }        
+        // A not and C (B empty)
+        else if (!binAEmpty && booleanOperator2.equals("!AND") && binBEmpty && !binCEmpty) {
+            vennDiagramFilename += "2Venn_AnotandC.png";
+        }   
+        ///////////////// TRIPLE BINS A / B / C
+        // A and B and C - 1
+        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && booleanOperator2.equals("AND") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AandBandC.png";
+        }   
+        // A and B or C - 2
+        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && booleanOperator2.equals("OR") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AandBorC.png";
+        }         
+        // A and B not C - 3
+        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && booleanOperator2.equals("NOT") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AandBnotC.png";
+        }            
+        // A and B not and C - 4
+        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && booleanOperator2.equals("!AND") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AandBnotandC.png";
+        }        
+        //
+        //
+        // A or B and C - 5
+        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && booleanOperator2.equals("AND") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AorBandC.png";
+        }   
+        // A or B or C - 6
+        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && booleanOperator2.equals("OR") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AorBorC.png";
+        }         
+        // A or B not C - 7
+        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && booleanOperator2.equals("NOT") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AorBnotC.png";
+        }   
+        // A or B not and C - 8
+        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && booleanOperator2.equals("!AND") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AorBnotandC.png";
+        }   
+        //
+        //
+        // A not B and C - 9
+        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && booleanOperator2.equals("AND") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AnotBandC.png";
+        }   
+        // A not B or C - 10
+        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && booleanOperator2.equals("OR") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AnotBorC.png";
+        }         
+        // A not B not C - 11
+        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && booleanOperator2.equals("NOT") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AnotBnotC.png";
+        }   
+        // A not B not not and C - 12
+        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && booleanOperator2.equals("!AND") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AnotBnotandC.png";
+        }   
+        //
+        //
+        // A not and B and C - 13
+        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && booleanOperator2.equals("AND") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AnotandBandC.png";
+        }   
+        // A not and B or C - 14
+        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && booleanOperator2.equals("OR") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AnotandBorC.png";
+        }         
+        // A not and B not C - 15
+        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && booleanOperator2.equals("NOT") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AnotandBnotC.png";
+        }   
+        // A not and B not not and C - 16
+        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && booleanOperator2.equals("!AND") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_AnotandBnotandC.png";
+        }        
+        
+        
+        
+
+        
+        
+
         
         // Finally, adjust the Venn diagram accordingly
         System.out.println(vennDiagramFilename);
@@ -3925,6 +4072,57 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_AccuracyThresholdSlider1StateChanged
 
+    private void jButton_ClearBinAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearBinAActionPerformed
+        // Jamie:
+        // Button push clears text bin.
+        jTextArea_SearchBinA.setText("");
+        whichVennDiagram();
+    }//GEN-LAST:event_jButton_ClearBinAActionPerformed
+
+    private void jButton_ClearBinBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearBinBActionPerformed
+        // Jamie:
+        // Button push clears text bin.
+        jTextArea_SearchBinB.setText("");
+        whichVennDiagram();
+
+    }//GEN-LAST:event_jButton_ClearBinBActionPerformed
+
+    private void jButton_ClearBinCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearBinCActionPerformed
+        // Jamie:
+        // Button push clears text bin.
+        jTextArea_SearchBinC.setText("");
+        whichVennDiagram();
+
+    }//GEN-LAST:event_jButton_ClearBinCActionPerformed
+
+    private void jTextArea_SearchBinAInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinAInputMethodTextChanged
+        // Jamie:
+        // vestigial
+    }//GEN-LAST:event_jTextArea_SearchBinAInputMethodTextChanged
+
+    private void jTextArea_SearchBinACaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinACaretPositionChanged
+        // Jamie:
+        // vestigial
+    }//GEN-LAST:event_jTextArea_SearchBinACaretPositionChanged
+
+    private void jTextArea_SearchBinACaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinACaretUpdate
+        // Jamie:
+        // If the cursor moves, update the Venn diagramm when the mouse is released
+        whichVennDiagram();
+    }//GEN-LAST:event_jTextArea_SearchBinACaretUpdate
+
+    private void jTextArea_SearchBinBCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinBCaretUpdate
+        // Jamie:
+        // If the cursor, update the Venn diagramm when the mouse is released
+        whichVennDiagram();
+    }//GEN-LAST:event_jTextArea_SearchBinBCaretUpdate
+
+    private void jTextArea_SearchBinCCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextArea_SearchBinCCaretUpdate
+        // Jamie:
+        // If the cursor, update the Venn diagramm when the mouse is released
+        whichVennDiagram();
+    }//GEN-LAST:event_jTextArea_SearchBinCCaretUpdate
+
     
     // Anu:
     // This function popuates the taxonomy tree on Query Search page.
@@ -4218,6 +4416,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Title;
     private javax.swing.JLabel jLabel_UniversityOfToronto;
     private javax.swing.JLabel jLabel_UserName;
+    private javax.swing.JLabel jLabel_bigParenthetical1;
+    private javax.swing.JLabel jLabel_bigParenthetical2;
     private javax.swing.JLabel jLabel_port;
     private javax.swing.JList jList_QueryGroups1;
     private javax.swing.JMenu jMenu1;
