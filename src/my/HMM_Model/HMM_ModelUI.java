@@ -3,13 +3,21 @@
  * and open the template in the editor.
  */
 package my.HMM_Model;
-import java.io.File;
+
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.MutableTreeNode;
 import javax.swing.tree.TreePath;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeSelectionModel;
+import java.lang.*;
+import javax.swing.filechooser.*;
+import javax.swing.SwingUtilities;
+import java.io.*;
+
 
 // Jamie: Gradient libraries
 import java.awt.Color;
@@ -32,7 +40,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     // Global search variables:
     String booleanSearchMode = "AND"; // preset starting value as AND
     
-    // Jamie:
+    // Anu:
+    
+    DefaultTreeModel jTreeManageQueryGroupModel;
+    DefaultTreeModel jTreeBuildQueryGroupModel;
+    DefaultMutableTreeNode searchQuerytreeNode1;
+    DefaultMutableTreeNode QueryGrouptreeNode1;
+     // Jamie:
     //Create a file chooser. Taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
     final JFileChooser folderSelector = new JFileChooser();
     final JFileChooser fileSelector = new JFileChooser();
@@ -55,8 +69,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     
     // Anu:
     //** Manage Query Group Variables 
-    javax.swing.tree.DefaultMutableTreeNode searchQuerytreeNode1;
-    // these are commented out because they were conflicting with teh JTree. Anu will address...
+      // these are commented out because they were conflicting with teh JTree. Anu will address...
   //  TreePath[] query_groups;
   //  javax.swing.JScrollPane jScrollPane_SearchFieldsScrollPanel;
   //  javax.swing.JTree jTree_SearchFields;
@@ -79,16 +92,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
                       
        initComponents();
        
-       
-       
-        // Jamie: update connection icon
-        if (isConnected) {
-             jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-connected.png")));
-        }
-        else {
-             jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-idle.png"))); 
-        }
-        
+    
        
     }
 
@@ -141,6 +145,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_port = new javax.swing.JLabel();
         IPAddress = new javax.swing.JTextField();
         jLabel_IPAddress2 = new javax.swing.JLabel();
+        jComboBox_SchemaTables = new javax.swing.JComboBox();
         jLabel_ConnectToDB = new javax.swing.JLabel();
         PipelineConfigScrollPanel = new javax.swing.JScrollPane();
         PipelineConfig = new javax.swing.JPanel();
@@ -272,15 +277,16 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         canvas1 = new java.awt.Canvas();
         jLabel3 = new javax.swing.JLabel();
-        jTextField_FindTextBox = new javax.swing.JTextField();
         jButton_Find = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
+        jScrollPane_QuickFindResultsScrollPane = new javax.swing.JScrollPane();
+        jList_QuickFindResults = new javax.swing.JList();
         jPanel_ManageQueryGroups = new javax.swing.JPanel();
         jButton_ClearGroup = new javax.swing.JButton();
         jButton_EditGroup = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
-        jButton4 = new javax.swing.JButton();
+        jTreeManageQueryGroup = new javax.swing.JTree();
+        jButtonAddQueryGroup = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         Search = new javax.swing.JPanel();
         jLabel_Search = new javax.swing.JLabel();
@@ -310,8 +316,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_Parenthesis5 = new javax.swing.JLabel();
         jLabel_Parenthesis6 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel_bigParenthetical1 = new javax.swing.JLabel();
-        jLabel_bigParenthetical2 = new javax.swing.JLabel();
+        jCheckBox_UniqueResultsOnly = new javax.swing.JCheckBox();
         Container_QueryBuilder = new javax.swing.JPanel();
         jButton_SubmitSearch = new javax.swing.JButton();
         jTextField_SQLsearchQuery = new javax.swing.JTextField();
@@ -321,7 +326,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_SaveSearch = new javax.swing.JButton();
         Container_QueryGroups = new javax.swing.JPanel();
         jScrollPanel_QueryGroups1 = new javax.swing.JScrollPane();
-        jList_QueryGroups1 = new javax.swing.JList();
+        jList_QueryGroups = new javax.swing.JList();
         jLabel_InstructionsLine3 = new javax.swing.JLabel();
         jLabel_InstructionsLine4 = new javax.swing.JLabel();
         jButton_AssignToBinB = new javax.swing.JButton();
@@ -554,7 +559,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_TestConnection.setText("Test Connection");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(1, 0, 6, 0);
@@ -564,7 +569,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_ConnectionStatus.setText("Status:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 9, 0, 0);
         Container_SelectDB.add(jLabel_ConnectionStatus, gridBagConstraints);
@@ -577,7 +582,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
@@ -588,7 +593,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_ConnectToDBStatus.setText("Not Connected");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 7, 0, 0);
         Container_SelectDB.add(jLabel_ConnectToDBStatus, gridBagConstraints);
@@ -596,7 +601,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_RecentDBs.setText("Recent DB's");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.ipadx = 54;
         gridBagConstraints.ipady = 13;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -605,7 +610,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         Container_SelectDB.add(jComboBox_RecentDBList, gridBagConstraints);
@@ -613,7 +618,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_ClearRecentDBList.setText("Clear");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         Container_SelectDB.add(jButton_ClearRecentDBList, gridBagConstraints);
 
@@ -675,6 +680,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(1, 0, 6, 0);
         Container_SelectDB.add(jLabel_IPAddress2, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        Container_SelectDB.add(jComboBox_SchemaTables, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -2308,7 +2319,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 20);
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 20);
         jPanel_BuildQueryGroup.add(jButton2, gridBagConstraints);
         jPanel_BuildQueryGroup.add(canvas1, new java.awt.GridBagConstraints());
 
@@ -2319,20 +2330,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
         jPanel_BuildQueryGroup.add(jLabel3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
-        jPanel_BuildQueryGroup.add(jTextField_FindTextBox, gridBagConstraints);
 
         jButton_Find.setText("Quick Find");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 12);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 12);
         jPanel_BuildQueryGroup.add(jButton_Find, gridBagConstraints);
 
         jLabel17.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
@@ -2343,6 +2346,23 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 5;
         gridBagConstraints.insets = new java.awt.Insets(2, 0, 9, 0);
         jPanel_BuildQueryGroup.add(jLabel17, gridBagConstraints);
+
+        jList_QuickFindResults.setModel(new javax.swing.AbstractListModel() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public Object getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane_QuickFindResultsScrollPane.setViewportView(jList_QuickFindResults);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 19;
+        jPanel_BuildQueryGroup.add(jScrollPane_QuickFindResultsScrollPane, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2381,7 +2401,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 20);
         jPanel_ManageQueryGroups.add(jButton_EditGroup, gridBagConstraints);
 
-        jScrollPane1.setViewportView(jTree1);
+        jScrollPane1.setViewportView(jTreeManageQueryGroup);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2392,13 +2412,18 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 20);
         jPanel_ManageQueryGroups.add(jScrollPane1, gridBagConstraints);
 
-        jButton4.setText("Add Group");
-        jButton4.setToolTipText("Add new branch node to the Query Group manager.");
+        jButtonAddQueryGroup.setText("Add Group");
+        jButtonAddQueryGroup.setToolTipText("Add new branch node to the Query Group manager.");
+        jButtonAddQueryGroup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddQueryGroupActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 0);
-        jPanel_ManageQueryGroups.add(jButton4, gridBagConstraints);
+        jPanel_ManageQueryGroups.add(jButtonAddQueryGroup, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -2515,7 +2540,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         Container_BooleanSearch.add(jTextArea_SearchBinA, gridBagConstraints);
@@ -2541,7 +2566,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         Container_BooleanSearch.add(jTextArea_SearchBinB, gridBagConstraints);
@@ -2654,7 +2679,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weightx = 0.3;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         Container_BooleanSearch.add(jTextArea_SearchBinC, gridBagConstraints);
@@ -2685,7 +2710,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weighty = 0.1;
-        gridBagConstraints.insets = new java.awt.Insets(0, 3, 0, 0);
         Container_BooleanSearch.add(jComboBox_BooleanOperator2, gridBagConstraints);
 
         jComboBox_BooleanOperator1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT", "!AND" }));
@@ -2799,22 +2823,19 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(23, 21, 0, 0);
         Container_BooleanSearch.add(jLabel18, gridBagConstraints);
 
-        jLabel_bigParenthetical1.setFont(new java.awt.Font("Lucida Grande", 0, 54)); // NOI18N
-        jLabel_bigParenthetical1.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel_bigParenthetical1.setText("(");
+        jCheckBox_UniqueResultsOnly.setText("Only show hits for selected genomes.");
+        jCheckBox_UniqueResultsOnly.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox_UniqueResultsOnlyActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        Container_BooleanSearch.add(jLabel_bigParenthetical1, gridBagConstraints);
-
-        jLabel_bigParenthetical2.setFont(new java.awt.Font("Lucida Grande", 0, 54)); // NOI18N
-        jLabel_bigParenthetical2.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel_bigParenthetical2.setText(")");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.insets = new java.awt.Insets(0, 17, 0, 0);
-        Container_BooleanSearch.add(jLabel_bigParenthetical2, gridBagConstraints);
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 11;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(21, 0, 0, 44);
+        Container_BooleanSearch.add(jCheckBox_UniqueResultsOnly, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -2909,12 +2930,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_QueryGroups.setBorder(javax.swing.BorderFactory.createTitledBorder("Query Groups"));
         Container_QueryGroups.setLayout(new java.awt.GridBagLayout());
 
-        jList_QueryGroups1.setModel(new javax.swing.AbstractListModel() {
+        jList_QueryGroups.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "QueryGroup1", "QueryGroup2", "QueryGroup3", "QueryGroup4", "QueryGroup5", "QueryGroup6", "QueryGroup7", " " };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPanel_QueryGroups1.setViewportView(jList_QueryGroups1);
+        jScrollPanel_QueryGroups1.setViewportView(jList_QueryGroups);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -2952,6 +2973,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_QueryGroups.add(jButton_AssignToBinB, gridBagConstraints);
 
         jButton_AssignToBinA.setText("Bin A");
+        jButton_AssignToBinA.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jButton_AssignToBinAComponentShown(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -3109,35 +3135,30 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     }//GEN-LAST:event_portnumberActionPerformed
 
     private void jButton_ConnectToDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConnectToDBActionPerformed
-        user = UserName.getText().trim();
+       user = UserName.getText().trim();
         char[] pass = Password.getPassword();
         passStr = new String(pass);
         ip = IPAddress.getText().trim();
         db = DBName.getText().trim();
         dbport = portnumber.getText().trim();
         ConnectionName = DBConnection.getText().trim();
-        connect = new DBConnect(ip,dbport,passStr, user, db, jLabel_ConnectToDBStatus,ConnectionName,jComboBox_RecentDBList);
-        String query = "SELECT COLUMN_NAME" + "FROM INFORMATION_SCHEMA.COLUMNS" +
-                       " WHERE TABLE_SCHEMA='"+db+"'" + 
-                        " AND TABLE_NAME='Taxonomy'";
-        ResultSet resultSet;
-        resultSet = connect.getData(query);
-        taxonomyFields = new ArrayList();
-        try{
-                while (resultSet.next()) {
-                    String columnName = resultSet.getString("COLUMN_NAME");
-                    System.out.println("Column Name: "+columnName);
-                    taxonomyFields.add(columnName);
-                }
+        DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+        isConnected= connect.isConnected();
+        if (isConnected) {
+            
+            connect.updateConnectionIcon(jLabel_ConnectedIcon,jLabel_ConnectToDBStatus);
+            LinkedHashMap<String, ArrayList<String>> taxomonyTree = buildTaxonomyTree(connect, db);
+            LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
+            populateTaxonomyTree(taxomonyTree, connect);
+            populateQueryGroupTree(queryGrpTree);
+            jTree_SearchFields.setModel(new javax.swing.tree.DefaultTreeModel(searchQuerytreeNode1));
+            jScrollPane_SearchFieldsScrollPanel.setViewportView(jTree_SearchFields);
+            jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
+            jScrollPane1.setViewportView(jTreeManageQueryGroup);
+            loadDBQueryGroups(connect);
         }
-        catch(Exception ex){
-               System.out.println("Error"+ex);
-        }
-        
-
-        System.out.println("Username: "+user+"  Password Length: "+passStr);
-        
-        //jLabel_ConnectionStatus.setText("new Value");
+        System.out.println("Username: " + user + "  Password Length: " + passStr);
+        connect.closeDBConnect();
     }//GEN-LAST:event_jButton_ConnectToDBActionPerformed
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -3213,7 +3234,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_RunPipelineActionPerformed
 
     private void jButton_EditGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_EditGroupActionPerformed
-        // TODO add your handling code here:
+        // Anu: 
+        removeCurrentNode(jTreeManageQueryGroup, jTreeManageQueryGroupModel);
     }//GEN-LAST:event_jButton_EditGroupActionPerformed
 
     private void jButton_BuildSQLqueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuildSQLqueryActionPerformed
@@ -3929,6 +3951,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void jLabel_ConnectedIconPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLabel_ConnectedIconPropertyChange
         // Jamie: 
+       // vestigial 
+       
     }//GEN-LAST:event_jLabel_ConnectedIconPropertyChange
 
     private void SequenceEValueDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SequenceEValueDefaultMouseClicked
@@ -4123,51 +4147,472 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         whichVennDiagram();
     }//GEN-LAST:event_jTextArea_SearchBinCCaretUpdate
 
+    private void jButton_AssignToBinAComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jButton_AssignToBinAComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_AssignToBinAComponentShown
+
+    private void jButtonAddQueryGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddQueryGroupActionPerformed
+ String queryGroupName;
+        queryGroupName = JOptionPane.showInputDialog(this, "Enter a name for your query group :", "Query Group Name", JOptionPane.PLAIN_MESSAGE);
+
+        if ((queryGroupName != null) && (queryGroupName.length() > 0)) {
+            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+            boolean isUnique = checkquerygrpindb(db, queryGroupName, connect);
+
+            if (isUnique) {
+                DefaultMutableTreeNode grpNameNode = addObject(null, (Object) queryGroupName, QueryGrouptreeNode1, jTreeManageQueryGroup, jTreeManageQueryGroupModel);
+                //jTreeManageQueryGroupModel.reload(QueryGrouptreeNode1);
+                //jTreeManageQueryGroup.setModel(new javax.swing.tree.DefaultTreeModel(QueryGrouptreeNode1));
+                jScrollPane1.setViewportView(jTreeManageQueryGroup);
+                TreePath grpNameNodePath = new TreePath(grpNameNode.getPath());
+                jTreeManageQueryGroup.setSelectionPath(grpNameNodePath);
+                System.out.println("TreePath parentPath = tree.getSelectionPath() " + grpNameNodePath.getLastPathComponent());
+            } else {
+                JOptionPane.showMessageDialog(this, "Query group with the name " + queryGroupName + " already exists.", "Query Group Warning", JOptionPane.WARNING_MESSAGE);
+            }
+            connect.closeDBConnect();
+        }
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAddQueryGroupActionPerformed
+
+    private void jCheckBox_UniqueResultsOnlyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox_UniqueResultsOnlyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox_UniqueResultsOnlyActionPerformed
+
     
     // Anu:
     // This function popuates the taxonomy tree on Query Search page.
-    public void  populateTree(LinkedHashMap<String, ArrayList<String>> taxomonyTree) {
-       searchQuerytreeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Taxonomy");  
-       
-       Set set = taxomonyTree.entrySet();
-      // Get an iterator
-      Iterator i = set.iterator();
-      // Display elements
-      while(i.hasNext()) {
-         Map.Entry taxonomy = (Map.Entry)i.next();
-         ArrayList taxonomyCategories = (ArrayList) taxonomy.getValue();
-         DefaultMutableTreeNode parentNode = null;
-         for (Object s : taxonomyCategories)
-         {
-             javax.swing.tree.DefaultMutableTreeNode treeNode = new javax.swing.tree.DefaultMutableTreeNode(s);
-           
-           TreePath parentPath= jTree_SearchFields.getSelectionPath();
-           System.out.println("PARENTPATH "+parentPath);
-           if (parentPath == null) 
-           {
-             parentNode = searchQuerytreeNode1;
           
-           } 
-           else 
-           {
-              parentNode = (DefaultMutableTreeNode) (parentPath.getLastPathComponent());
-           } 
-           parentNode.add(treeNode);
-           TreePath selectedPath =new TreePath(treeNode.getPath());
-           jTree_SearchFields.setSelectionPath(selectedPath);
-           System.out.println("TREEPATH "+jTree_SearchFields.getSelectionPath());
-         } 
-         
-         DefaultMutableTreeNode speciesNode = (DefaultMutableTreeNode) ((jTree_SearchFields.getSelectionPath()).getLastPathComponent());
-         String speciesName = speciesNode.toString();
-         List<Object> strains = (List<Object>) (connect.createSpeciesList(connect, db, speciesName));
-         TreePath  strainsTreePath = new TreePath (strains.toArray());
-         System.out.println("STRAINSTREEPATH "+strainsTreePath);
-         //jTree_SearchFields.addSelectionPath(new TreePath(strains.toArray());
-      }
-        jTree_SearchFields.setRootVisible(true);                   
+    // Anu's code...
+    /**
+     * Remove all nodes except the root node.
+     */
+    public void clear(DefaultMutableTreeNode rootNode, DefaultTreeModel treeModel) {
+        rootNode.removeAllChildren();
+        treeModel.reload();
     }
+
+    /**
+     * Remove the currently selected node.
+     */
+    public void removeCurrentNode(JTree tree, DefaultTreeModel treeModel) {
+        TreePath currentSelection = tree.getSelectionPath();
+        if (currentSelection != null) {
+            DefaultMutableTreeNode currentNode = (DefaultMutableTreeNode) (currentSelection.getLastPathComponent());
+            MutableTreeNode parent = (MutableTreeNode) (currentNode.getParent());
+            if (parent != null) {
+                treeModel.removeNodeFromParent(currentNode);
+                return;
+            }
+        }
+
+    }
+
+    public void populateTaxonomyTree(LinkedHashMap<String, ArrayList<String>> taxomonyTree, DBConnect connect) {
+        searchQuerytreeNode1 = new DefaultMutableTreeNode("Taxonomy");
+        //create a set for taxonomyTree
+        Set set = taxomonyTree.entrySet();
+        // Get an iterator to traverse the hashmap
+        Iterator i = set.iterator();
+        // Iterate through the hashmap
+        while (i.hasNext()) {
+            Map.Entry taxonomy = (Map.Entry) i.next();
+            //get the arraylist of taxonomy values
+            ArrayList taxonomyCategories = (ArrayList) taxonomy.getValue();
+            //create default parent tree node
+            DefaultMutableTreeNode parentNode = null;
+            //iterate through the taxonomy categories
+            for (Object s : taxonomyCategories) {
+                //initialize the treenode with taxonomy string
+                DefaultMutableTreeNode treeNode = new DefaultMutableTreeNode(s);
+                System.out.println("treeNode "+treeNode+" jTreeBuildQueryGroupModel "+jTreeBuildQueryGroupModel );
+                boolean isUnique = isUniqueNode(treeNode, jTreeBuildQueryGroupModel);
+                System.out.println("isUnique " + isUnique);
+                if (isUnique) {
+                    //if parentNode is null create root node. Else the parent path is the new parent path with added child
+                    if (parentNode == null) {
+                        //parentNode = searchQuerytreeNode1;
+                        parentNode = addObject(parentNode, s, searchQuerytreeNode1, jTree_SearchFields, jTreeBuildQueryGroupModel);
+                    } else {
+                        parentNode = addObject(parentNode, s, searchQuerytreeNode1, jTree_SearchFields, jTreeBuildQueryGroupModel);
+                    }
+                }
+               //add the new treenode to the parent path
+                System.out.println("parentNode " + parentNode);
+            }
+
+            //get the list of strains for each species
+            String speciesName = parentNode.toString();
+            ArrayList strains = createSpeciesList(connect, db, speciesName);
+            for (Object s : strains) {
+                DefaultMutableTreeNode strainsNode = addObject(parentNode, s, searchQuerytreeNode1, jTree_SearchFields, jTreeBuildQueryGroupModel);
+            }
+            jTree_SearchFields.setModel(new javax.swing.tree.DefaultTreeModel(searchQuerytreeNode1));
+        }
+
+    }
+
+    public void populateQueryGroupTree(LinkedHashMap<String, ArrayList<String>> queryGrpTree) {
+        //intialize the root node
+        System.out.println("populateQueryGroupTree");
+
+        QueryGrouptreeNode1 = new DefaultMutableTreeNode("Saved Query Groups");
+
+        //create a set for taxonomyTree
+        Set set = queryGrpTree.entrySet();
+        // Get an iterator to traverse the hashmap
+        Iterator i = set.iterator();
+        // Iterate through the hashmap
+        while (i.hasNext()) {
+            Map.Entry grpTree = (Map.Entry) i.next();
+            //get the arraylist of query group values
+            ArrayList grpValues = (ArrayList) grpTree.getValue();
+            String grpName = (String) grpTree.getKey();
+            //create default parent tree node
+            System.out.println("GROUP NAME: " + grpName);
+            System.out.println("GROUP VALUES:  " + grpValues);
+            //javax.swing.tree.DefaultMutableTreeNode grpNameNode = new javax.swing.tree.DefaultMutableTreeNode(grpName);
+
+            DefaultMutableTreeNode grpNamebranchNode = addObject(null, (Object) grpName, QueryGrouptreeNode1, jTreeManageQueryGroup, jTreeManageQueryGroupModel);
+            //iterate through the grpValues
+            for (Object s : grpValues) {
+                System.out.println("S: " + s);
+                //initialize the treenode with taxonomy string
+                //javax.swing.tree.DefaultMutableTreeNode treeNode = new javax.swing.tree.DefaultMutableTreeNode(s);
+                DefaultMutableTreeNode grpValueleafNode = addObject(grpNamebranchNode, s, QueryGrouptreeNode1, jTreeManageQueryGroup, jTreeManageQueryGroupModel);
+            }
+        }
+    }
+
+    public DefaultMutableTreeNode addObject(DefaultMutableTreeNode parent, Object child, DefaultMutableTreeNode rootNode, JTree tree, DefaultTreeModel treeModel) {
+        DefaultMutableTreeNode childNode = new DefaultMutableTreeNode(child);
+        System.out.println("addObject");
+        if (parent == null) {
+            parent = rootNode;
+        }
+
+        int parentCount = parent.getChildCount();
+
+        System.out.println("childNode " + childNode);
+        System.out.println("parent " + parent);
+        System.out.println("parent count " + parent.getChildCount());
+        System.out.println("new TreePath(childNode.getPath()) " + new TreePath(parent.getPath()));
+
+
+        treeModel.insertNodeInto(childNode, parent, parentCount);
+        //Make sure the user can see the lovely new node.
+        tree.scrollPathToVisible(new TreePath(childNode.getPath()));
+
+        return childNode;
+    }
+
+    public LinkedHashMap<String, ArrayList<String>> buildTaxonomyTree(DBConnect connect, String db) {
+
+        //create the hashmap to store results
+        LinkedHashMap<String, ArrayList<String>> taxomonyTree = new LinkedHashMap<>();
+        try {
+            String query = "SELECT taxonomy_id, kingdom_name, phylum_name, class_name, order_name, family_name, genus_name, species_name "
+                    + "FROM " + db + ".Taxonomy";
+
+            //setting up a query result set
+            ResultSet taxonomyTreeResultset;
+            Statement st = connect.createStatement();
+            //run the query and store into resultset
+            taxonomyTreeResultset = connect.getData(query,st);
+
+            //iterate through the resultset and populate the taxomonyTree variable 
+            while (taxonomyTreeResultset.next()) {
+
+                //create an arraylist to hold the query output
+                ArrayList taxonomyList = new ArrayList();
+
+                //getting the values from the resultset
+                String taxid = taxonomyTreeResultset.getString("taxonomy_id");
+                String kingdom = taxonomyTreeResultset.getString("kingdom_name");
+                String phylum = taxonomyTreeResultset.getString("phylum_name");
+                String classname = taxonomyTreeResultset.getString("class_name");
+                String order = taxonomyTreeResultset.getString("order_name");
+                String family = taxonomyTreeResultset.getString("family_name");
+                String genus = taxonomyTreeResultset.getString("genus_name");
+                String species = taxonomyTreeResultset.getString("species_name");
+
+
+                //adding the data to arraylist
+                taxonomyList.add(kingdom);
+                taxonomyList.add(phylum);
+                taxonomyList.add(classname);
+                taxonomyList.add(order);
+                taxonomyList.add(family);
+                taxonomyList.add(genus);
+                taxonomyList.add(species);
+
+                //adding the arraylist to the linkedhashmap
+                taxomonyTree.put(taxid, taxonomyList);
+            }
+            taxonomyTreeResultset.close();
+            st.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return taxomonyTree;
+    }
+
+    public ArrayList createSpeciesList(DBConnect connect, String db, String spiecesname) {
+
+        String query = "SELECT organism_name FROM " + db + ".OrganismInfo "
+                + "WHERE species_name='" + spiecesname + "'";
+        //setting up query resultset
+        ResultSet speciesResultSet;
+
+        //creating the arraylist to store the results
+        ArrayList<Object> speciesList = new ArrayList<Object>();
+        try {
+            Statement st = connect.createStatement();
+            //run the query and store into resultset
+            speciesResultSet = connect.getData(query,st);
+            //iterate through the resultset and populate the speciesList variable 
+            while (speciesResultSet.next()) {
+                //getting the values from the resultset
+
+                String organismName = speciesResultSet.getString("organism_name");
+                javax.swing.tree.DefaultMutableTreeNode treeNode = new javax.swing.tree.DefaultMutableTreeNode(organismName);
+                speciesList.add(treeNode);
+            }
+            speciesResultSet.close();
+            st.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return speciesList;
+    }
+
+    public LinkedHashMap<String, ArrayList<String>> buildQueryTree(DBConnect connect, String db) {
+
+        //create the hashmap to store results
+        LinkedHashMap<String, ArrayList<String>> queryTree = new LinkedHashMap<>();
+
+        try {
+            String query = "SELECT querygrpname, querygrpvalue "
+                    + "FROM " + db + ".querygrpinfo";
+            System.out.println(query);
+            //setting up a query result set
+            ResultSet queryTreeResultset;
+            Statement st = connect.createStatement();
+            //run the query and store into resultset
+            queryTreeResultset = connect.getData(query,st);
+
+            ArrayList queryGrpList = null;
+            //iterate through the resultset and populate the queryTree variable 
+            while (queryTreeResultset.next()) {
+                String querygrpname = queryTreeResultset.getString("querygrpname");
+                String querygrpvalue = queryTreeResultset.getString("querygrpvalue");
+                System.out.println("querygrpname " + querygrpname);
+                System.out.println("querygrpvalue " + querygrpvalue);
+                //create an arraylist to hold the query output
+                if (queryTree.containsKey(querygrpname)) {
+                    queryGrpList = (ArrayList) queryTree.get(querygrpname);
+                    queryGrpList.add(querygrpvalue);
+                    queryTree.put(querygrpname, queryGrpList);
+
+                } else {
+                    queryGrpList = new ArrayList();
+                    queryGrpList.add(querygrpvalue);
+                    queryTree.put(querygrpname, queryGrpList);
+
+                }
+            }
+            queryTreeResultset.close();
+            st.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+        return queryTree;
+    }
+
+    public boolean isUniqueNode(DefaultMutableTreeNode childNode, DefaultTreeModel model) {
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+
+        // Check each node
+
+        System.out.println("root "+root+" model "+model+" model.getChildCount(root) " + model.getChildCount(root));
+        boolean isUnique = true;
+        for (int i = 0; i < model.getChildCount(root); i++) {
+            Object compUserObj = ((DefaultMutableTreeNode) model.getChild(root, i)).getUserObject();
+            if (compUserObj.equals(childNode.getUserObject())) {
+                isUnique = false;
+                break;
+            }
+        }
+        return isUnique;
+    }
+
+     public void createQueryGroupTable(String db) {
+
+        String query = "CREATE TABLE IF NOT EXISTS `" + db + "`.`querygrpinfo` ("
+                + "`querygrp_pk` int(11) NOT NULL AUTO_INCREMENT,"
+                + "`querygrpname` varchar(255) NOT NULL,"
+                + "`querygrpvalue` varchar(255) NOT NULL,"
+                + "  PRIMARY KEY (`querygrp_pk`))";
+        //setting up query resultset
+        try {
+            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+            Statement st = connect.createStatement();
+            st.executeUpdate(query);
+            st.close();
+            connect.closeDBConnect();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+     public void addQuerygrptodb(String db, String querygrpname, String querygrpvalue) {
+
+        String query = "REPLACE INTO  " + db + ".querygrpinfo ("
+                + "querygrpname,querygrpvalue) VALUES ('" + querygrpname + "','" + querygrpvalue + "')";
+        //setting up query resultset
+        try {
+            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+            Statement st = connect.createStatement();
+            st.executeUpdate(query);
+            st.close();
+            
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+    
+     public boolean checkquerygrpindb(String db, String querygrpname, DBConnect connect) {
+
+        boolean newQuerygrp = false;
+        String query = "SELECT COUNT(querygrpname) AS countqgrp FROM " + db + ".querygrpinfo WHERE "
+                + "querygrpname='" + querygrpname + "'";
+        //setting up query resultset
+        try {
+            //DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+            Statement st = connect.createStatement();
+            ResultSet QuerygrpResultset = connect.getData(query,st);
+
+            while (QuerygrpResultset.next()) {
+                int count = QuerygrpResultset.getInt("countqgrp");
+
+                newQuerygrp = count > 0 ? false : true;
+
+            }
+           st.close();
+           QuerygrpResultset.close();
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+        return newQuerygrp;
+    }
+
+     public ArrayList getQueryGrpValues(String db, int taxonomycategory, String sqvalue) {
+
+        ArrayList GrpValuesList = new ArrayList();
+        String[] TaxaCategories = {"kingdom_name", "phylum_name", "class_name", "order_name", "family_name", "genus_name", "species_name"};
+
+        String query = "SELECT species_name FROM " + db + ".OrganismInfo WHERE "
+                + TaxaCategories[taxonomycategory] + "='" + sqvalue + "'";
+        //setting up query resultset
+        try {
+            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+            Statement st = connect.createStatement();
+            ResultSet QuerygrpResultset = connect.getData(query,st);
+
+            while (QuerygrpResultset.next()) {
+                String species = QuerygrpResultset.getString("species_name");
+
+                //adding the data to arraylist
+                GrpValuesList.add(species);
+
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+        return GrpValuesList;
+    }
+    
+      public ArrayList getQueryGrps(String db,DBConnect connect) {
+
+        ArrayList GrpList = new ArrayList();
       
+        String query = "SELECT DISTINCT(querygrpname) FROM "+db+".querygrpinfo";
+        //setting up query resultset
+        try {
+           
+            Statement st = connect.createStatement();
+            ResultSet QuerygrpResultset = connect.getData(query,st);
+
+            while (QuerygrpResultset.next()) {
+                String queryGrp = QuerygrpResultset.getString("querygrpname");
+
+
+                //adding the data to arraylist
+                GrpList.add(queryGrp);
+
+            }
+            st.close();
+            QuerygrpResultset.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+        return GrpList;
+    }
+     
+     
+     public void loadDBQueryGroups(DBConnect connect)
+     {
+                   
+         
+          if(connect.isConnected())
+          {
+            DefaultListModel model = new DefaultListModel();
+            ArrayList GrpList = getQueryGrps(db,connect);
+            
+             for (Object s : GrpList) {
+                System.out.println("S: " + s);
+              model.addElement(s);
+            }
+            jList_QueryGroups.setModel(model);
+          }
+         
+         
+     }
+     
+     
+     public ArrayList getSearchStrainsHits(String db, String searchvalue) {
+
+        ArrayList searchStrainsHits = new ArrayList();
+
+        String query = "SELECT organism_name FROM " + db + ".OrganismInfo WHERE organism_name LIKE '"+
+                       searchvalue + "' OR abbreviation_name LIKE '" + searchvalue + "' OR common_name LIKE '"
+                       + searchvalue +"'";
+        //setting up query resultset
+        try {
+            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+            Statement st = connect.createStatement();
+            ResultSet searchStrainsResultset = connect.getData(query,st);
+
+            while (searchStrainsResultset.next()) {
+                String organismName = searchStrainsResultset.getString("organism_name");
+                //adding the data to arraylist
+                searchStrainsHits.add(organismName);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+
+        return searchStrainsHits;
+    }
+  
     
     
     /**
@@ -4304,7 +4749,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JTextField UserName;
     private java.awt.Canvas canvas1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonAddQueryGroup;
     private javax.swing.JButton jButton_AssignToBinA;
     private javax.swing.JButton jButton_AssignToBinB;
     private javax.swing.JButton jButton_AssignToBinB1;
@@ -4328,6 +4773,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton_SaveSettings;
     private javax.swing.JButton jButton_SubmitSearch;
     private javax.swing.JButton jButton_TestConnection;
+    private javax.swing.JCheckBox jCheckBox_UniqueResultsOnly;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox9;
     private javax.swing.JComboBox jComboBox_BooleanOperator1;
@@ -4336,6 +4782,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JComboBox jComboBox_BooleanOperatorB;
     private javax.swing.JComboBox jComboBox_BooleanOperatorC;
     private javax.swing.JComboBox jComboBox_RecentDBList;
+    private javax.swing.JComboBox jComboBox_SchemaTables;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -4416,10 +4863,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel_Title;
     private javax.swing.JLabel jLabel_UniversityOfToronto;
     private javax.swing.JLabel jLabel_UserName;
-    private javax.swing.JLabel jLabel_bigParenthetical1;
-    private javax.swing.JLabel jLabel_bigParenthetical2;
     private javax.swing.JLabel jLabel_port;
-    private javax.swing.JList jList_QueryGroups1;
+    private javax.swing.JList jList_QueryGroups;
+    private javax.swing.JList jList_QuickFindResults;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel_BuildQueryGroup;
@@ -4431,6 +4877,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane_QuickFindResultsScrollPane;
     private javax.swing.JScrollPane jScrollPane_ResultsWindowScrollPanel;
     private javax.swing.JScrollPane jScrollPane_SearchFieldsScrollPanel;
     private javax.swing.JScrollPane jScrollPanel_HelpContentsScrollPanel;
@@ -4441,9 +4888,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea_SearchBinA;
     private javax.swing.JTextArea jTextArea_SearchBinB;
     private javax.swing.JTextArea jTextArea_SearchBinC;
-    private javax.swing.JTextField jTextField_FindTextBox;
     private javax.swing.JTextField jTextField_SQLsearchQuery;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JTree jTreeManageQueryGroup;
     private javax.swing.JTree jTree_SearchFields;
     private javax.swing.JTextField portnumber;
     private javax.swing.JLabel vennDiagram;
