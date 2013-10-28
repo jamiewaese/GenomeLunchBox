@@ -28,6 +28,7 @@ import java.awt.Graphics2D;
 import javax.swing.BorderFactory;
 
 
+
 /**
  *
  * @author anu
@@ -53,7 +54,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     
     // Jamie:
     boolean isConnected = false; // this variable indicates whether we are connected to the database
-
 
  
     // ** Global Database Variables
@@ -343,6 +343,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_Help = new javax.swing.JLabel();
         jScrollPanel_HelpContentsScrollPanel = new javax.swing.JScrollPane();
         jTextArea_HelpContents = new javax.swing.JTextArea();
+        gradientBackgroundImage = new javax.swing.JLabel();
 
         jMenu1.setText("jMenu1");
 
@@ -390,10 +391,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.insets = new java.awt.Insets(50, 0, 0, 50);
+        gridBagConstraints.insets = new java.awt.Insets(22, 0, 0, 29);
         jPanel1.add(jLabel_ConnectedIcon, gridBagConstraints);
 
-        jTabbedPane1.setBackground(new java.awt.Color(153, 204, 255));
+        jTabbedPane1.setBackground(new java.awt.Color(148, 197, 246));
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
         jTabbedPane1.setAlignmentX(0.0F);
         jTabbedPane1.setAlignmentY(0.0F);
@@ -405,6 +406,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Home.setBackground(new java.awt.Color(153, 204, 255));
         Home.setMaximumSize(new java.awt.Dimension(1200, 700));
         Home.setMinimumSize(new java.awt.Dimension(1200, 700));
+        Home.setOpaque(false);
         Home.setPreferredSize(new java.awt.Dimension(1200, 700));
         Home.setSize(new java.awt.Dimension(40, 40));
         Home.setLayout(new java.awt.GridBagLayout());
@@ -484,6 +486,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         ConnectToDB.setBackground(new java.awt.Color(153, 204, 255));
         ConnectToDB.setMaximumSize(new java.awt.Dimension(1200, 700));
         ConnectToDB.setMinimumSize(new java.awt.Dimension(1200, 700));
+        ConnectToDB.setOpaque(false);
         ConnectToDB.setPreferredSize(new java.awt.Dimension(1200, 700));
         ConnectToDB.setLayout(new java.awt.GridBagLayout());
 
@@ -708,13 +711,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Connect to DB", ConnectToDB);
 
-        PipelineConfigScrollPanel.setBackground(new java.awt.Color(153, 204, 255));
+        PipelineConfigScrollPanel.setBackground(new java.awt.Color(148, 197, 246));
         PipelineConfigScrollPanel.setBorder(null);
         PipelineConfigScrollPanel.setHorizontalScrollBar(null);
         PipelineConfigScrollPanel.setMaximumSize(new java.awt.Dimension(1200, 700));
         PipelineConfigScrollPanel.setMinimumSize(new java.awt.Dimension(1200, 700));
+        PipelineConfigScrollPanel.setOpaque(false);
 
-        PipelineConfig.setBackground(new java.awt.Color(153, 204, 255));
+        PipelineConfig.setBackground(new java.awt.Color(148, 197, 246));
         PipelineConfig.setMaximumSize(new java.awt.Dimension(1200, 1800));
         PipelineConfig.setMinimumSize(new java.awt.Dimension(1200, 1800));
         PipelineConfig.setPreferredSize(new java.awt.Dimension(1200, 1767));
@@ -2295,6 +2299,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jTabbedPane1.addTab("Pipeline Config", PipelineConfigScrollPanel);
 
         QueryBuilder.setBackground(new java.awt.Color(153, 204, 255));
+        QueryBuilder.setOpaque(false);
         QueryBuilder.setLayout(new java.awt.GridBagLayout());
 
         jPanel_BuildQueryGroup.setBackground(new java.awt.Color(237, 236, 236));
@@ -2450,6 +2455,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Search.setBackground(new java.awt.Color(153, 204, 255));
         Search.setMaximumSize(new java.awt.Dimension(1024, 2400));
         Search.setMinimumSize(new java.awt.Dimension(600, 300));
+        Search.setOpaque(false);
         Search.setPreferredSize(new java.awt.Dimension(1024, 570));
         Search.setLayout(new java.awt.GridBagLayout());
 
@@ -3011,6 +3017,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Results.setBackground(new java.awt.Color(153, 204, 255));
         Results.setMaximumSize(new java.awt.Dimension(1024, 2400));
         Results.setMinimumSize(new java.awt.Dimension(600, 300));
+        Results.setOpaque(false);
         Results.setPreferredSize(new java.awt.Dimension(800, 500));
         Results.setLayout(new java.awt.GridBagLayout());
 
@@ -3085,6 +3092,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jTabbedPane1.addTab("Results", Results);
 
         Help.setBackground(new java.awt.Color(153, 204, 255));
+        Help.setOpaque(false);
         Help.setLayout(new java.awt.GridBagLayout());
 
         jLabel_Help.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
@@ -3118,6 +3126,17 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         jPanel1.add(jTabbedPane1, gridBagConstraints);
+
+        gradientBackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/gradientBackground.png"))); // NOI18N
+        gradientBackgroundImage.setFocusTraversalKeysEnabled(false);
+        gradientBackgroundImage.setFocusable(false);
+        gradientBackgroundImage.setInheritsPopupMenu(false);
+        gradientBackgroundImage.setPreferredSize(new java.awt.Dimension(1180, 670));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 0, 0, 0);
+        jPanel1.add(gradientBackgroundImage, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -3429,18 +3448,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             vennDiagramFilename += "3Venn_AnotandBnotandC.png";
         }        
         
-        
-        
-
-        
-        
-
-        
         // Finally, adjust the Venn diagram accordingly
         System.out.println(vennDiagramFilename);
         vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource(vennDiagramFilename)));
         
     }
+    
+
     
     
     private void jComboBox_BooleanOperatorAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorAActionPerformed
@@ -4614,6 +4628,33 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     }
   
     
+    // Jamie: Gradient
+    public class GradientPanel extends JPanel {
+
+        private static final int N = 32;
+
+        public GradientPanel() {
+            this.setBorder(BorderFactory.createEmptyBorder(N, N, N, N));
+            this.add(new JLabel("Test:", JLabel.CENTER));
+            this.add(new JTextField("This is a test."));
+        }
+
+        @Override
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            Color color1 = getBackground();
+            Color color2 = color1.darker();
+            int w = getWidth();
+            int h = getHeight();
+            GradientPaint gp = new GradientPaint(
+                0, 0, color1, 0, h, color2);
+            g2d.setPaint(gp);
+            g2d.fillRect(0, 0, w, h);
+        }
+    }
+         
+
     
     /**
      * @param args the command line arguments
@@ -4748,6 +4789,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JTextField TargetCoverageTextBox;
     private javax.swing.JTextField UserName;
     private java.awt.Canvas canvas1;
+    private javax.swing.JLabel gradientBackgroundImage;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonAddQueryGroup;
     private javax.swing.JButton jButton_AssignToBinA;
