@@ -25,6 +25,8 @@ import java.awt.EventQueue;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.sql.SQLException;
+import java.util.logging.Level;
 import javax.swing.BorderFactory;
 import javax.swing.tree.TreeNode;
 
@@ -68,8 +70,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     ArrayList taxonomyFields;
     //JLabel jLabel_ConnectionStatus;
     
-    
-    DefaultListModel listModel = new DefaultListModel();
+    //DefaultListModel jList_QueryGroupsListModel = new DefaultListModel();
     ArrayList taxonomyCategoriesList = new ArrayList();
     LinkedHashMap<String, ArrayList<String>> DBConnections;
     DefaultListModel jList_QuickFindResultsListModel=new DefaultListModel();
@@ -85,11 +86,25 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     //** Query Group List 
     DefaultListModel JListModelBinA = new DefaultListModel();  
     DefaultListModel JListModelBinB = new DefaultListModel();  
-    DefaultListModel JListModelBinC = new DefaultListModel();  
-
+    DefaultListModel JListModelBinC = new DefaultListModel(); 
     
+    // Variable to delete items from binList    
+    int [] bin_indicesA;
+    int [] bin_indicesB;
+    int [] bin_indicesC;
     
+    // Variable to get the selected boolean operators between binList
+    String operatorAB=null;
+    String operatorBC=null;
+    String operatorA=null;
+    String operatorB=null;
+    String operatorC=null;
     
+    // String to store SQL query for getting common name from database 
+    String SQLWithQueryGroup=null;
+    
+    // Resultset object for getting list of common names for each query group
+    //ResultSet listCommonName;
     
     /**
      * Creates new form HMM_ModelUI
@@ -314,8 +329,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel_C = new javax.swing.JLabel();
         jButton_ClearBinC = new javax.swing.JButton();
-        jComboBox_BooleanOperator2 = new javax.swing.JComboBox();
-        jComboBox_BooleanOperator1 = new javax.swing.JComboBox();
+        jComboBox_BooleanOperatorBC = new javax.swing.JComboBox();
+        jComboBox_BooleanOperatorAB = new javax.swing.JComboBox();
         jComboBox_BooleanOperatorB = new javax.swing.JComboBox();
         jComboBox_BooleanOperatorC = new javax.swing.JComboBox();
         jLabel_Parenthesis1 = new javax.swing.JLabel();
@@ -327,11 +342,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jCheckBox_UniqueResultsOnly = new javax.swing.JCheckBox();
         jScrollPane_BinA = new javax.swing.JScrollPane();
-        jList_QuerySearchBinA = new javax.swing.JList();
+        jListBinB = new javax.swing.JList();
         jScrollPane_BinB = new javax.swing.JScrollPane();
-        jList_QuerySearchBinB = new javax.swing.JList();
+        jListBinC = new javax.swing.JList();
         jScrollPane_BinC = new javax.swing.JScrollPane();
-        jList_QuerySearchBinC = new javax.swing.JList();
+        jListBinA = new javax.swing.JList();
         Container_QueryBuilder = new javax.swing.JPanel();
         jButton_SubmitSearch = new javax.swing.JButton();
         jLabel_SearchString = new javax.swing.JLabel();
@@ -347,7 +362,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_InstructionsLine4 = new javax.swing.JLabel();
         jButton_AssignToBinB = new javax.swing.JButton();
         jButton_AssignToBinA = new javax.swing.JButton();
-        jButton_AssignToBinB1 = new javax.swing.JButton();
+        jButton_AssignToBinC = new javax.swing.JButton();
         Results = new javax.swing.JPanel();
         jLabel_Results = new javax.swing.JLabel();
         jScrollPane_ResultsWindowScrollPanel = new javax.swing.JScrollPane();
@@ -424,7 +439,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Home.setMinimumSize(new java.awt.Dimension(1200, 700));
         Home.setOpaque(false);
         Home.setPreferredSize(new java.awt.Dimension(1200, 700));
-        Home.setSize(new java.awt.Dimension(40, 40));
         Home.setLayout(new java.awt.GridBagLayout());
 
         Container_Title.setBackground(new java.awt.Color(237, 237, 237));
@@ -2668,33 +2682,33 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
         Container_BooleanSearch.add(jButton_ClearBinC, gridBagConstraints);
 
-        jComboBox_BooleanOperator2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT", "!AND" }));
-        jComboBox_BooleanOperator2.setSelectedItem("NOT");
-        jComboBox_BooleanOperator2.setMaximumSize(new java.awt.Dimension(108, 27));
-        jComboBox_BooleanOperator2.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_BooleanOperatorBC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT", "!AND" }));
+        jComboBox_BooleanOperatorBC.setSelectedItem("NOT");
+        jComboBox_BooleanOperatorBC.setMaximumSize(new java.awt.Dimension(108, 27));
+        jComboBox_BooleanOperatorBC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_BooleanOperator2ActionPerformed(evt);
+                jComboBox_BooleanOperatorBCActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 7;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weighty = 0.1;
-        Container_BooleanSearch.add(jComboBox_BooleanOperator2, gridBagConstraints);
+        Container_BooleanSearch.add(jComboBox_BooleanOperatorBC, gridBagConstraints);
 
-        jComboBox_BooleanOperator1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT", "!AND" }));
-        jComboBox_BooleanOperator1.setSelectedItem("OR");
-        jComboBox_BooleanOperator1.setMaximumSize(new java.awt.Dimension(108, 27));
-        jComboBox_BooleanOperator1.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_BooleanOperatorAB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT", "!AND" }));
+        jComboBox_BooleanOperatorAB.setSelectedItem("OR");
+        jComboBox_BooleanOperatorAB.setMaximumSize(new java.awt.Dimension(108, 27));
+        jComboBox_BooleanOperatorAB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_BooleanOperator1ActionPerformed(evt);
+                jComboBox_BooleanOperatorABActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.weighty = 0.1;
-        Container_BooleanSearch.add(jComboBox_BooleanOperator1, gridBagConstraints);
+        Container_BooleanSearch.add(jComboBox_BooleanOperatorAB, gridBagConstraints);
 
         jComboBox_BooleanOperatorB.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jComboBox_BooleanOperatorB.setForeground(new java.awt.Color(102, 102, 102));
@@ -2807,8 +2821,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(21, 0, 0, 44);
         Container_BooleanSearch.add(jCheckBox_UniqueResultsOnly, gridBagConstraints);
 
-        jList_QuerySearchBinA.setModel(JListModelBinB);
-        jScrollPane_BinA.setViewportView(jList_QuerySearchBinA);
+        jListBinB.setModel(JListModelBinB);
+        jListBinB.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListBinBValueChanged(evt);
+            }
+        });
+        jScrollPane_BinA.setViewportView(jListBinB);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
@@ -2818,8 +2837,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         Container_BooleanSearch.add(jScrollPane_BinA, gridBagConstraints);
 
-        jList_QuerySearchBinB.setModel(JListModelBinC);
-        jScrollPane_BinB.setViewportView(jList_QuerySearchBinB);
+        jListBinC.setModel(JListModelBinC);
+        jListBinC.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListBinCValueChanged(evt);
+            }
+        });
+        jScrollPane_BinB.setViewportView(jListBinC);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 9;
@@ -2829,8 +2853,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(9, 9, 9, 9);
         Container_BooleanSearch.add(jScrollPane_BinB, gridBagConstraints);
 
-        jList_QuerySearchBinC.setModel(JListModelBinA);
-        jScrollPane_BinC.setViewportView(jList_QuerySearchBinC);
+        jListBinA.setModel(JListModelBinA);
+        jListBinA.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListBinAValueChanged(evt);
+            }
+        });
+        jScrollPane_BinC.setViewportView(jListBinA);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -2931,10 +2960,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_QueryGroups.setBorder(javax.swing.BorderFactory.createTitledBorder("Query Groups"));
         Container_QueryGroups.setLayout(new java.awt.GridBagLayout());
 
-        jList_QueryGroups.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "QueryGroup1", "QueryGroup2", "QueryGroup3", "QueryGroup4", "QueryGroup5", "QueryGroup6", "QueryGroup7", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        jList_QueryGroups.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jList_QueryGroupsValueChanged(evt);
+            }
         });
         jScrollPanel_QueryGroups1.setViewportView(jList_QueryGroups);
 
@@ -2967,6 +2996,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_QueryGroups.add(jLabel_InstructionsLine4, gridBagConstraints);
 
         jButton_AssignToBinB.setText("Bin B");
+        jButton_AssignToBinB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AssignToBinBActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
@@ -2979,6 +3013,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
                 jButton_AssignToBinAComponentShown(evt);
             }
         });
+        jButton_AssignToBinA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AssignToBinAActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
@@ -2987,14 +3026,19 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(10, 20, 3, 0);
         Container_QueryGroups.add(jButton_AssignToBinA, gridBagConstraints);
 
-        jButton_AssignToBinB1.setText("Bin C");
+        jButton_AssignToBinC.setText("Bin C");
+        jButton_AssignToBinC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AssignToBinCActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 3, 20);
-        Container_QueryGroups.add(jButton_AssignToBinB1, gridBagConstraints);
+        Container_QueryGroups.add(jButton_AssignToBinC, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -3123,7 +3167,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel1.add(jTabbedPane1, gridBagConstraints);
 
         gradientBackgroundImage.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/gradientBackground.png"))); // NOI18N
-        gradientBackgroundImage.setFocusTraversalKeysEnabled(false);
         gradientBackgroundImage.setFocusable(false);
         gradientBackgroundImage.setInheritsPopupMenu(false);
         gradientBackgroundImage.setPreferredSize(new java.awt.Dimension(1180, 670));
@@ -3263,6 +3306,191 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void jButton_BuildSQLqueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuildSQLqueryActionPerformed
         // TODO add your handling code here:
+        // code to get list of query groups from each bin and use them to get taxa name from database
+        // It  will also create main SQL to search ortholog table //
+        
+        String BinA_query = null; // contains taxa information for query groups in BinA //
+        
+        int list_size_binA=JListModelBinA.getSize();
+        
+        if(operatorA==null){            
+            operatorA=(String)jComboBox_BooleanOperatorA.getSelectedItem();
+        }
+        
+        if(list_size_binA != 0){
+        
+          for(int i=0;i<list_size_binA;i++){
+           
+            Object inlistA=JListModelBinA.getElementAt(i); // get element in listA
+                      
+            // get the common name of all taxa in current selected query group of list A              
+          ResultSet listCommonName=getCommonNameForTaxa(db,(String) inlistA);
+          
+            String makeQueryWithCommonName=null;
+            try {
+                while(listCommonName.next()){
+                    // get common name for each resultset
+                    String commonName=listCommonName.getString("common_name");
+                    // if makeQueryWithCommonName is empty than
+                    if(makeQueryWithCommonName==null){ 
+                        // Because this is for BinA the value for profile is always 1
+                        makeQueryWithCommonName=commonName+"="+1; 
+                    }else{
+                        //Add AND operator between common names in same query group
+                        makeQueryWithCommonName=makeQueryWithCommonName+
+                                                " "+
+                                                "AND"+
+                                                " "+
+                                                commonName+"="+1;
+                    }
+                }
+                //Enclose in () brackets
+                makeQueryWithCommonName="("+makeQueryWithCommonName+")";
+                
+            } catch (SQLException ex) {
+                System.out.println("Error" + ex);
+            }
+            
+            // Merge common names from each query group that are in same bin sperated by the operatorA
+            if(BinA_query==null){
+                BinA_query=makeQueryWithCommonName;                    
+            }else{
+              BinA_query=BinA_query+" "+operatorA+" "+makeQueryWithCommonName;  
+            }                    
+          }        
+          System.out.println ("("+BinA_query+")");
+        }
+        /////////////////////////////////////////////////////////////////////////////////
+        // get all query group names from binB
+        
+        String BinB_query = null;
+        int list_size_binB=JListModelBinB.getSize();
+        
+         
+        if(operatorB==null){            
+            operatorB=(String)jComboBox_BooleanOperatorB.getSelectedItem();
+        }
+        
+        //Build su-query for binA ////
+        if(list_size_binB !=0){
+          for(int i=0;i<list_size_binB;i++){            
+            Object inlistB=JListModelBinB.getElementAt(i);
+            
+             // get the common name of all taxa in current selected query group of list B              
+            ResultSet listCommonName= getCommonNameForTaxa(db,(String) inlistB);
+            
+            String makeQueryWithCommonName=null;
+            try {
+                while(listCommonName.next()){
+                    // get common name for each resultset
+                    String commonName=listCommonName.getString("common_name");
+                    // if makeQueryWithCommonName is empty than
+                    if(makeQueryWithCommonName==null){ 
+                        // Because this is for BinA the value for profile is always 1
+                        makeQueryWithCommonName=commonName+"="+1; 
+                    }else{
+                        //Add AND operator for between common names in same query group
+                        makeQueryWithCommonName=makeQueryWithCommonName+
+                                                " "+
+                                                "AND"+
+                                                " "+
+                                                commonName+"="+1;
+                    }
+                }
+                //Enclose in () brackets
+                makeQueryWithCommonName="("+makeQueryWithCommonName+")";
+                
+            } catch (SQLException ex) {
+               System.out.println("Error" + ex);
+            }
+            
+            if(BinB_query==null){
+                BinB_query=makeQueryWithCommonName;
+            }else{
+              BinB_query=BinB_query+" "+operatorB+" "+makeQueryWithCommonName;  
+            }                    
+        }        
+           System.out.println ("("+BinB_query+")");      
+        }
+        ////////////////////////////////////////////////////////////////////////
+        
+        // get all query group names from binC
+        
+         String BinC_query = null;
+        int list_size_binC=JListModelBinC.getSize();
+        
+         
+        if(operatorC==null){            
+            operatorC=(String)jComboBox_BooleanOperatorC.getSelectedItem();
+        }
+        
+        //Build su-query for binA ////
+        if(list_size_binC !=0){
+          for(int i=0;i<list_size_binC;i++){            
+            Object inlistC=JListModelBinC.getElementAt(i);
+            
+             // get the common name of all taxa in current selected query group of list C              
+            ResultSet listCommonName= getCommonNameForTaxa(db,(String) inlistC);
+            
+             String makeQueryWithCommonName=null;
+            try {
+                while(listCommonName.next()){
+                    // get common name for each resultset
+                    String commonName=listCommonName.getString("common_name");
+                    // if makeQueryWithCommonName is empty than
+                    if(makeQueryWithCommonName==null){ 
+                        // Because this is for BinA the value for profile is always 1
+                        makeQueryWithCommonName=commonName+"="+1; 
+                    }else{
+                        //Add AND operator for between common names in same query group
+                        makeQueryWithCommonName=makeQueryWithCommonName+
+                                                " "+
+                                                "AND"+
+                                                " "+
+                                                commonName+"="+1;
+                    }
+                }
+                //Enclose in () brackets
+                makeQueryWithCommonName="("+makeQueryWithCommonName+")";
+                
+            } catch (SQLException ex) {
+                System.out.println("Error" + ex);
+            }
+            
+            if(BinC_query==null){
+                BinC_query=makeQueryWithCommonName;
+            }else{
+              BinC_query=BinC_query+" "+operatorC+" "+makeQueryWithCommonName;  
+            }                    
+          }
+        
+           System.out.println ("("+BinC_query+")");      
+        } 
+        ////////////////////////////////////////////////////////////////////////////////////
+        
+        // get operator between binA and bin B
+        
+        if(operatorAB==null){            
+            operatorAB=(String)jComboBox_BooleanOperatorAB.getSelectedItem();
+        }            
+        //get operator between binB and binC
+        if(operatorBC==null){            
+            operatorBC=(String)jComboBox_BooleanOperatorBC.getSelectedItem();
+        }        
+        if(BinA_query!=null){            
+            SQLWithQueryGroup="("+BinA_query+")";
+        }
+        if((BinB_query!=null) && (BinA_query!=null)){            
+            SQLWithQueryGroup=SQLWithQueryGroup+" "+operatorAB+" "+"("+BinB_query+")";
+        }
+        if((BinB_query!=null) && (BinC_query!=null)){            
+            SQLWithQueryGroup=SQLWithQueryGroup+" "+operatorBC+" "+"("+BinC_query+")";
+        }
+        
+        //show created query in query editor        
+        System.out.println("("+SQLWithQueryGroup+")");        
+        jTextArea_SQLsearchQuery.setText("("+SQLWithQueryGroup+")");
+         
     }//GEN-LAST:event_jButton_BuildSQLqueryActionPerformed
 
     private void jButton_NewSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NewSearchActionPerformed
@@ -3287,23 +3515,23 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // and determines which Venn diagram to show.
         
         // First, determine the contents of each element in the window.
-        String booleanOperator1 = jComboBox_BooleanOperator1.getSelectedItem().toString();
-        String booleanOperator2 = jComboBox_BooleanOperator2.getSelectedItem().toString();
+        String booleanOperatorAB = jComboBox_BooleanOperatorAB.getSelectedItem().toString();
+        String booleanOperatorBC = jComboBox_BooleanOperatorBC.getSelectedItem().toString();
         
-        //System.out.println("1: "+booleanOperator1);
-        //System.out.println("2: "+booleanOperator2);
+        //System.out.println("1: "+booleanOperatorAB);
+        //System.out.println("2: "+booleanOperatorBC);
         
-        Boolean binAEmpty = false;
-        if (jList_QuerySearchBinA.getModel().getSize() == 0) {
-            binAEmpty = true;
-        }
         Boolean binBEmpty = false;
-        if (jList_QuerySearchBinB.getModel().getSize() == 0) {
+        if (jListBinB.getModel().getSize() == 0) {
             binBEmpty = true;
         }
         Boolean binCEmpty = false;
-        if (jList_QuerySearchBinC.getModel().getSize() == 0) {
+        if (jListBinC.getModel().getSize() == 0) {
             binCEmpty = true;
+        }
+        Boolean binAEmpty = false;
+        if (jListBinA.getModel().getSize() == 0) {
+            binAEmpty = true;
         }
         
          //System.out.println(binAEmpty +" "+binAEmpty+" "+binAEmpty);
@@ -3329,124 +3557,124 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         }
         ///////////////////// DOUBLE BINS A / B
         // A and B (C empty)
-        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AandB.png";
         }
         // A or B (C empty)
-        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AorB.png";
         }
         // A not B (C empty)
-        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AnotB.png";
         }
         // A not and B (C empty)
-        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AnotandB.png";
         }
         /////////////////// DOUBLE BINS B / C
         // B and C (A empty)
-        else if (binAEmpty && booleanOperator2.equals("AND") && !binBEmpty && !binCEmpty) {
+        else if (binAEmpty && booleanOperatorBC.equals("AND") && !binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_BandC.png";
         }
         // B or C (A empty)
-        else if (binAEmpty && booleanOperator2.equals("OR") && !binBEmpty && !binCEmpty) {
+        else if (binAEmpty && booleanOperatorBC.equals("OR") && !binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_BorC.png";
         }
         // B not C (A empty)
-        else if (binAEmpty && booleanOperator2.equals("NOT") && !binBEmpty && !binCEmpty) {
+        else if (binAEmpty && booleanOperatorBC.equals("NOT") && !binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_BnotC.png";
         }        
         // B not and C (A empty)
-        else if (binAEmpty && booleanOperator2.equals("!AND") && !binBEmpty && !binCEmpty) {
+        else if (binAEmpty && booleanOperatorBC.equals("!AND") && !binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_BnotandC.png";
         }
         /////////////////// DOUBLE BINS A / C
         // A and C (B empty)
-        else if (!binAEmpty && booleanOperator2.equals("AND") && binBEmpty && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorBC.equals("AND") && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_AandC.png";
         }
         // A or C (B empty)
-        else if (!binAEmpty && booleanOperator2.equals("OR") && binBEmpty && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorBC.equals("OR") && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_AorC.png";
         }
         // A not C (B empty)
-        else if (!binAEmpty && booleanOperator2.equals("NOT") && binBEmpty && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorBC.equals("NOT") && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_AnotC.png";
         }        
         // A not and C (B empty)
-        else if (!binAEmpty && booleanOperator2.equals("!AND") && binBEmpty && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorBC.equals("!AND") && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_AnotandC.png";
         }   
         ///////////////// TRIPLE BINS A / B / C
         // A and B and C - 1
-        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && booleanOperator2.equals("AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AandBandC.png";
         }   
         // A and B or C - 2
-        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && booleanOperator2.equals("OR") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AandBorC.png";
         }         
         // A and B not C - 3
-        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && booleanOperator2.equals("NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AandBnotC.png";
         }            
         // A and B not and C - 4
-        else if (!binAEmpty && booleanOperator1.equals("AND") && !binBEmpty && booleanOperator2.equals("!AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("!AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AandBnotandC.png";
         }        
         //
         //
         // A or B and C - 5
-        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && booleanOperator2.equals("AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AorBandC.png";
         }   
         // A or B or C - 6
-        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && booleanOperator2.equals("OR") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AorBorC.png";
         }         
         // A or B not C - 7
-        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && booleanOperator2.equals("NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AorBnotC.png";
         }   
         // A or B not and C - 8
-        else if (!binAEmpty && booleanOperator1.equals("OR") && !binBEmpty && booleanOperator2.equals("!AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("!AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AorBnotandC.png";
         }   
         //
         //
         // A not B and C - 9
-        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && booleanOperator2.equals("AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBandC.png";
         }   
         // A not B or C - 10
-        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && booleanOperator2.equals("OR") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBorC.png";
         }         
         // A not B not C - 11
-        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && booleanOperator2.equals("NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && booleanOperatorBC.equals("NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBnotC.png";
         }   
         // A not B not not and C - 12
-        else if (!binAEmpty && booleanOperator1.equals("NOT") && !binBEmpty && booleanOperator2.equals("!AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && booleanOperatorBC.equals("!AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBnotandC.png";
         }   
         //
         //
         // A not and B and C - 13
-        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && booleanOperator2.equals("AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotandBandC.png";
         }   
         // A not and B or C - 14
-        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && booleanOperator2.equals("OR") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotandBorC.png";
         }         
         // A not and B not C - 15
-        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && booleanOperator2.equals("NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && booleanOperatorBC.equals("NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotandBnotC.png";
         }   
         // A not and B not not and C - 16
-        else if (!binAEmpty && booleanOperator1.equals("!AND") && !binBEmpty && booleanOperator2.equals("!AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && booleanOperatorBC.equals("!AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotandBnotandC.png";
         }        
         
@@ -3461,7 +3689,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     
     private void jComboBox_BooleanOperatorAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorAActionPerformed
         // Jamie:
-        // Vestigial
+        JComboBox comboBoxA =(JComboBox) evt.getSource();        
+        operatorA=(String)comboBoxA.getSelectedItem();
     }//GEN-LAST:event_jComboBox_BooleanOperatorAActionPerformed
 
     private void NumberDomainSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NumberDomainSliderStateChanged
@@ -4060,26 +4289,34 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         } */
     }//GEN-LAST:event_IncludeDomainEvalueTextBoxMouseClicked
 
-    private void jComboBox_BooleanOperator2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperator2ActionPerformed
+    private void jComboBox_BooleanOperatorBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorBCActionPerformed
         //
+        JComboBox comboBoxBC =(JComboBox) evt.getSource();        
+        operatorAB=(String)comboBoxBC.getSelectedItem();
         // This function calls the whichVennDiagram() function whenever a Boolean operator combo box is selected
         // or when query groups are added or deleted from the text box bins.
         whichVennDiagram();
-    }//GEN-LAST:event_jComboBox_BooleanOperator2ActionPerformed
+    }//GEN-LAST:event_jComboBox_BooleanOperatorBCActionPerformed
 
-    private void jComboBox_BooleanOperator1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperator1ActionPerformed
+    private void jComboBox_BooleanOperatorABActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorABActionPerformed
         //
+        JComboBox comboBoxAB =(JComboBox) evt.getSource();        
+        operatorAB=(String)comboBoxAB.getSelectedItem();
         // This function calls the whichVennDiagram() function whenever a Boolean operator combo box is selected
         // or when query groups are added or deleted from the text box bins.
         whichVennDiagram();
-    }//GEN-LAST:event_jComboBox_BooleanOperator1ActionPerformed
+    }//GEN-LAST:event_jComboBox_BooleanOperatorABActionPerformed
 
     private void jComboBox_BooleanOperatorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorBActionPerformed
         // TODO add your handling code here:
+        JComboBox comboBoxB =(JComboBox) evt.getSource();        
+        operatorB=(String)comboBoxB.getSelectedItem();
     }//GEN-LAST:event_jComboBox_BooleanOperatorBActionPerformed
 
     private void jComboBox_BooleanOperatorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorCActionPerformed
         // TODO add your handling code here:
+        JComboBox comboBoxC =(JComboBox) evt.getSource();        
+        operatorC=(String)comboBoxC.getSelectedItem();
     }//GEN-LAST:event_jComboBox_BooleanOperatorCActionPerformed
 
     private void AccuracyThresholdSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AccuracyThresholdSlider1StateChanged
@@ -4089,6 +4326,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void jButton_ClearBinAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearBinAActionPerformed
         // Jamie:
         // Button push clears text bin.
+        int size_delete_list=bin_indicesA.length;
+        for(int i=size_delete_list-1;i>=0;i--){                      
+           Object delete_group=JListModelBinA.getElementAt(bin_indicesA[i]);
+           JListModelBinA.removeElement(delete_group);
+       }
         //jTextArea_SearchBinA.setText("");
         whichVennDiagram();
     }//GEN-LAST:event_jButton_ClearBinAActionPerformed
@@ -4096,6 +4338,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void jButton_ClearBinBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearBinBActionPerformed
         // Jamie:
         // Button push clears text bin.
+        int size_delete_list=bin_indicesB.length;
+        for(int i=size_delete_list-1;i>=0;i--){                      
+           Object delete_group=JListModelBinB.getElementAt(bin_indicesB[i]);
+           JListModelBinB.removeElement(delete_group);
+       }
         //jTextArea_SearchBinB.setText("");
         whichVennDiagram();
 
@@ -4104,6 +4351,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void jButton_ClearBinCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearBinCActionPerformed
         // Jamie:
         // Button push clears text bin.
+        int size_delete_list=bin_indicesC.length;
+        for(int i=size_delete_list-1;i>=0;i--){                      
+           Object delete_group=JListModelBinC.getElementAt(bin_indicesC[i]);
+           JListModelBinC.removeElement(delete_group);
+       }
         //jTextArea_SearchBinC.setText("");
         whichVennDiagram();
 
@@ -4130,7 +4382,7 @@ String queryGroupName;
                 jTreeManageQueryGroup.setSelectionPath(grpNameNodePath);
                 jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
                 jScrollPane1.setViewportView(jTreeManageQueryGroup);
-                DefaultListModel jList_QueryGroupsListModel = (DefaultListModel) jList_QueryGroups.getModel();
+                DefaultListModel jList_QueryGroupsListModel =(DefaultListModel) jList_QueryGroups.getModel();
                 int insertIndex = jList_QueryGroupsListModel.getSize();
                 jList_QueryGroupsListModel.insertElementAt((String) queryGroupName, insertIndex);
                 jList_QueryGroups.setModel(jList_QueryGroupsListModel);
@@ -4226,6 +4478,100 @@ String queryGroupName;
         loadDBQueryGroups(connect);
         connect.closeDBConnect();
     }//GEN-LAST:event_jButton_DeleteGroupActionPerformed
+
+    private void jButton_AssignToBinAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AssignToBinAActionPerformed
+        // TODO add your handling code here:
+           // Get index value for the selected query group from Query Group List
+        
+        int[] selected_query_group_indices=jList_QueryGroups.getSelectedIndices();
+        
+        int current_index_binA= jListBinA.getSelectedIndex(); //check for last index value of BinA list
+        
+        if(current_index_binA==-1){            
+            current_index_binA=0;
+        }else{            
+           current_index_binA++; 
+        }
+        
+        int size_selected_array=selected_query_group_indices.length;
+                
+        for(int i=0;i<size_selected_array;i++){  
+            DefaultListModel jList_QueryGroupsListModel =(DefaultListModel) jList_QueryGroups.getModel();
+            Object selected_group=jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
+            JListModelBinA.addElement(selected_group);
+        }
+        whichVennDiagram();
+    }//GEN-LAST:event_jButton_AssignToBinAActionPerformed
+
+    private void jList_QueryGroupsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList_QueryGroupsValueChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jList_QueryGroupsValueChanged
+
+    private void jButton_AssignToBinBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AssignToBinBActionPerformed
+         // TODO add your handling code here:
+           // Get index value for the selected query group from Query Group List
+        
+        int[] selected_query_group_indices=jList_QueryGroups.getSelectedIndices();
+        
+        int current_index_binB= jListBinB.getSelectedIndex(); //check for last index value of BinA list
+        
+        if(current_index_binB==-1){            
+            current_index_binB=0;
+        }else{            
+           current_index_binB++; 
+        }
+        
+        int size_selected_array=selected_query_group_indices.length;     
+             
+        for(int i=0;i<size_selected_array;i++){  
+            DefaultListModel jList_QueryGroupsListModel =(DefaultListModel) jList_QueryGroups.getModel();
+            Object selected_group=jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
+            JListModelBinB.addElement(selected_group);
+        }
+        whichVennDiagram();
+    }//GEN-LAST:event_jButton_AssignToBinBActionPerformed
+
+    private void jButton_AssignToBinCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AssignToBinCActionPerformed
+        // TODO add your handling code here:
+        
+           // Get index value for the selected query group from Query Group List
+        
+        int[] selected_query_group_indices=jList_QueryGroups.getSelectedIndices();
+        
+        int current_index_binC= jListBinA.getSelectedIndex(); //check for last index value of BinA list
+        
+        if(current_index_binC==-1){            
+            current_index_binC=0;
+        }else{            
+           current_index_binC++; 
+        }
+        
+        int size_selected_array=selected_query_group_indices.length;        
+              
+        for(int i=0;i<size_selected_array;i++){  
+            DefaultListModel jList_QueryGroupsListModel =(DefaultListModel) jList_QueryGroups.getModel();
+            Object selected_group=jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
+            JListModelBinC.addElement(selected_group);
+        } 
+        whichVennDiagram();
+    }//GEN-LAST:event_jButton_AssignToBinCActionPerformed
+
+    private void jListBinAValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListBinAValueChanged
+        // TODO add your handling code here:
+          bin_indicesA=jListBinA.getSelectedIndices(); 
+          
+    }//GEN-LAST:event_jListBinAValueChanged
+
+    private void jListBinBValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListBinBValueChanged
+        // TODO add your handling code here:
+          bin_indicesB=jListBinB.getSelectedIndices(); 
+          
+    }//GEN-LAST:event_jListBinBValueChanged
+
+    private void jListBinCValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListBinCValueChanged
+        // TODO add your handling code here:
+          bin_indicesC=jListBinC.getSelectedIndices();          
+    }//GEN-LAST:event_jListBinCValueChanged
 
     
     // Anu:
@@ -4817,7 +5163,32 @@ String queryGroupName;
             g2d.fillRect(0, 0, w, h);
         }
     }
+       
+    
+    // get common name for taxa from the organism table
+    
+     // SQL Query to gen the common name for each Taxa in the query group 
+    public ResultSet getCommonNameForTaxa(String db, String inlist) {
+                // Query string for fetching common name for taxa in query group list for database
+         String query_get_common_name="Select distinct(common_name),querygrpname from OrganismInfo,querygrpinfo where querygrpname='"+(String) inlist+"' and querygrpvalue=organism_name";
          
+         //System.out.println(query_get_common_name);
+         
+         ResultSet listCommonName=null;       
+         
+          // result variable for sql query           
+          try {
+            // run sql command
+             DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+             Statement st = connect.createStatement(); 
+             listCommonName=connect.getData(query_get_common_name, st);      
+                 
+           } catch (Exception ex) {
+               System.out.println("Error" + ex);
+           } 
+         //returns result set for the data from sql table 
+        return listCommonName;  
+    }
 
     
     /**
@@ -4956,7 +5327,7 @@ String queryGroupName;
     private javax.swing.JButton jButtonAddQueryGroup;
     private javax.swing.JButton jButton_AssignToBinA;
     private javax.swing.JButton jButton_AssignToBinB;
-    private javax.swing.JButton jButton_AssignToBinB1;
+    private javax.swing.JButton jButton_AssignToBinC;
     private javax.swing.JButton jButton_BuildSQLquery;
     private javax.swing.JButton jButton_ClearBinA;
     private javax.swing.JButton jButton_ClearBinB;
@@ -4982,10 +5353,10 @@ String queryGroupName;
     private javax.swing.JCheckBox jCheckBox_UniqueResultsOnly;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox9;
-    private javax.swing.JComboBox jComboBox_BooleanOperator1;
-    private javax.swing.JComboBox jComboBox_BooleanOperator2;
     private javax.swing.JComboBox jComboBox_BooleanOperatorA;
+    private javax.swing.JComboBox jComboBox_BooleanOperatorAB;
     private javax.swing.JComboBox jComboBox_BooleanOperatorB;
+    private javax.swing.JComboBox jComboBox_BooleanOperatorBC;
     private javax.swing.JComboBox jComboBox_BooleanOperatorC;
     private javax.swing.JComboBox jComboBox_RecentDBList;
     private javax.swing.JComboBox jComboBox_SchemaTables;
@@ -5070,10 +5441,10 @@ String queryGroupName;
     private javax.swing.JLabel jLabel_UniversityOfToronto;
     private javax.swing.JLabel jLabel_UserName;
     private javax.swing.JLabel jLabel_port;
+    private javax.swing.JList jListBinA;
+    private javax.swing.JList jListBinB;
+    private javax.swing.JList jListBinC;
     private javax.swing.JList jList_QueryGroups;
-    private javax.swing.JList jList_QuerySearchBinA;
-    private javax.swing.JList jList_QuerySearchBinB;
-    private javax.swing.JList jList_QuerySearchBinC;
     private javax.swing.JList jList_QuickFindResults;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
