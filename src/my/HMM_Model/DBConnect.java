@@ -28,9 +28,10 @@ public class DBConnect {
             String connectorStr = "jdbc:mysql://" + ip + ":" + port + "/" + db;
             con = DriverManager.getConnection(connectorStr, username, password);
             isConnected = true;
+            jLabel_ConnectToDBStatus.setText("Connected");
         } catch (ClassNotFoundException | SQLException ex) {
             isConnected = false;
-            JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, "Could not connect to the database.\nPlease ensure that the database credentials are correct.");
             jLabel_ConnectToDBStatus.setText("Not Connected");
         }
     }

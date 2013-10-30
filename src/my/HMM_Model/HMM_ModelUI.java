@@ -72,8 +72,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     
     //DefaultListModel jList_QueryGroupsListModel = new DefaultListModel();
     ArrayList taxonomyCategoriesList = new ArrayList();
-    LinkedHashMap<String, ArrayList<String>> DBConnections;
+    LinkedHashMap<String, ArrayList<String>> DBConnections= new LinkedHashMap<String, ArrayList<String>>();
     DefaultListModel jList_QuickFindResultsListModel=new DefaultListModel();
+    DefaultComboBoxModel jComboBox_SchemaTablesmodel = new DefaultComboBoxModel();
+    DefaultComboBoxModel jComboBox_RecentDBListsmodel = new DefaultComboBoxModel();
 
     // Anu:
     //** Manage Query Group Variables 
@@ -117,6 +119,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
        folderSelector.setAcceptAllFileFilterUsed(false);
                       
        initComponents();
+       createDBConnectionsFolder();
+       readDBConnections();
+       
+       System.out.println("OUT DBConnectionsSize "+DBConnections.size());
+       loadRecentDBList();
        
     
        
@@ -590,6 +597,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_SelectDB.add(Password, gridBagConstraints);
 
         jButton_TestConnection.setText("Test Connection");
+        jButton_TestConnection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_TestConnectionActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 8;
@@ -641,6 +653,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 0, 6, 6);
         Container_SelectDB.add(jLabel_RecentDBs, gridBagConstraints);
 
+        jComboBox_RecentDBList.setModel(jComboBox_RecentDBListsmodel);
+        jComboBox_RecentDBList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox_RecentDBListItemStateChanged(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
@@ -649,6 +667,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_SelectDB.add(jComboBox_RecentDBList, gridBagConstraints);
 
         jButton_ClearRecentDBList.setText("Clear");
+        jButton_ClearRecentDBList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ClearRecentDBListActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 1;
@@ -714,6 +737,22 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(1, 0, 6, 0);
         Container_SelectDB.add(jLabel_IPAddress2, gridBagConstraints);
 
+        jComboBox_SchemaTables.setModel(jComboBox_SchemaTablesmodel);
+        jComboBox_SchemaTables.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jComboBox_SchemaTablesMouseReleased(evt);
+            }
+        });
+        jComboBox_SchemaTables.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_SchemaTablesActionPerformed(evt);
+            }
+        });
+        jComboBox_SchemaTables.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jComboBox_SchemaTablesPropertyChange(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 7;
@@ -721,6 +760,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_SelectDB.add(jComboBox_SchemaTables, gridBagConstraints);
 
         jButton_saveDBConnection.setText("Save Connection");
+        jButton_saveDBConnection.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_saveDBConnectionActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 2;
@@ -3213,6 +3257,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
             jScrollPane1.setViewportView(jTreeManageQueryGroup);
             loadDBQueryGroups(connect);
+            loadSchemataList(connect);
         }
         System.out.println("Username: " + user + "  Password Length: " + passStr);
         connect.closeDBConnect();
@@ -4429,16 +4474,20 @@ String queryGroupName;
 
         if ((searchFieldsparentPath.getPathCount() - 1) > 7) {
 
-            DefaultMutableTreeNode grpNameNode = addObject(parentNode, (Object) searchFieldsparentPath.getLastPathComponent(), QueryGrouptreeNode1, jTreeManageQueryGroup, (DefaultTreeModel) jTreeManageQueryGroup.getModel());
+            //DefaultMutableTreeNode grpNameNode = addObject(parentNode, (Object) searchFieldsparentPath.getLastPathComponent(), QueryGrouptreeNode1, jTreeManageQueryGroup, (DefaultTreeModel) jTreeManageQueryGroup.getModel());
             //jTreeManageQueryGroup.setSelectionPath(grpNameNodeParentPath);
-            TreeNode[] nodes = ((DefaultTreeModel) jTreeManageQueryGroup.getModel()).getPathToRoot(parentNode);
-            TreePath tpath = new TreePath(nodes);
-            jTreeManageQueryGroup.scrollPathToVisible(tpath);
-            jTreeManageQueryGroup.setSelectionPath(tpath);
+            //TreeNode[] nodes = ((DefaultTreeModel) jTreeManageQueryGroup.getModel()).getPathToRoot(parentNode);
+            //TreePath tpath = new TreePath(nodes);
+            //jTreeManageQueryGroup.scrollPathToVisible(tpath);
+            //jTreeManageQueryGroup.setSelectionPath(tpath);
             DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-            addQuerygrpvaluetodb(db, parentNode.toString(), grpNameNode.toString(), connect);
+            addQuerygrpvaluetodb(db, parentNode.toString(), searchFieldsparentPath.getLastPathComponent().toString(), connect);
+            LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
+             populateQueryGroupTree(queryGrpTree);
             loadDBQueryGroups(connect);
             connect.closeDBConnect();
+            jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
+            jScrollPane1.setViewportView(jTreeManageQueryGroup);
 
 
         } else {
@@ -4447,21 +4496,23 @@ String queryGroupName;
             DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
             ArrayList queryGrpValues = getQueryGrpValues(db, taxacount, searchFieldsparentPath.getLastPathComponent().toString(), connect);
             for (Object s : queryGrpValues) {
-                DefaultMutableTreeNode grpNameNode = addObject(parentNode, s, QueryGrouptreeNode1, jTreeManageQueryGroup, (DefaultTreeModel) jTreeManageQueryGroup.getModel());
+                //DefaultMutableTreeNode grpNameNode = addObject(parentNode, s, QueryGrouptreeNode1, jTreeManageQueryGroup, (DefaultTreeModel) jTreeManageQueryGroup.getModel());
                 //jTreeManageQueryGroup.setSelectionPath(grpNameNodeParentPath);
-                TreeNode[] nodes = ((DefaultTreeModel) jTreeManageQueryGroup.getModel()).getPathToRoot(parentNode);
-                TreePath tpath = new TreePath(nodes);
-                jTreeManageQueryGroup.scrollPathToVisible(tpath);
-                jTreeManageQueryGroup.setSelectionPath(tpath);
-                addQuerygrpvaluetodb(db, parentNode.toString(), grpNameNode.toString(), connect);
+                //TreeNode[] nodes = ((DefaultTreeModel) jTreeManageQueryGroup.getModel()).getPathToRoot(parentNode);
+                //TreePath tpath = new TreePath(nodes);
+                //jTreeManageQueryGroup.scrollPathToVisible(tpath);
+                //jTreeManageQueryGroup.setSelectionPath(tpath);
+                addQuerygrpvaluetodb(db, parentNode.toString(), s.toString(), connect);
             }
+            LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
+            populateQueryGroupTree(queryGrpTree);
             loadDBQueryGroups(connect);
             connect.closeDBConnect();
+            jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
+            jScrollPane1.setViewportView(jTreeManageQueryGroup);
         }
 
-        //jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
-        jScrollPane1.setViewportView(jTreeManageQueryGroup);
-
+       
     }//GEN-LAST:event_jButton_addtoquerygroupActionPerformed
 
     private void jButton_DeleteGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DeleteGroupActionPerformed
@@ -4572,6 +4623,93 @@ String queryGroupName;
         // TODO add your handling code here:
           bin_indicesC=jListBinC.getSelectedIndices();          
     }//GEN-LAST:event_jListBinCValueChanged
+
+    private void jButton_saveDBConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_saveDBConnectionActionPerformed
+        // TODO add your handling code here:
+        
+        user = UserName.getText().trim();
+        char[] pass = Password.getPassword();
+        passStr = new String(pass);
+        ip = IPAddress.getText().trim();
+        db = DBName.getText().trim();
+        dbport = portnumber.getText().trim();
+        ConnectionName = DBConnection.getText().trim();
+               
+        if((user.equals("") || passStr.equals("") || ip.equals("") || dbport.equals("") || ConnectionName.equals("")))
+        {
+            JOptionPane.showMessageDialog(null, "Please ensure all fields are filled in \nand the database credentials are correct.\n To test the database credentials click the test connection button.");
+        }
+        else
+        {
+            try{
+                addNewDBConnections();
+                readDBConnections();
+               loadRecentDBList();
+            }catch (Exception e) {
+            System.out.println(e);
+           }
+        }
+       
+    }//GEN-LAST:event_jButton_saveDBConnectionActionPerformed
+
+    private void jButton_TestConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TestConnectionActionPerformed
+        // TODO add your handling code here:
+        
+        user = UserName.getText().trim();
+        char[] pass = Password.getPassword();
+        passStr = new String(pass);
+        ip = IPAddress.getText().trim();
+        db = DBName.getText().trim();
+        dbport = portnumber.getText().trim();
+        ConnectionName = DBConnection.getText().trim();
+        DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+        isConnected= connect.isConnected();
+        if (isConnected) {
+           jLabel_ConnectionStatus.setText("Status: OK");
+        }
+        else
+        {
+            jLabel_ConnectionStatus.setText("Status: Not Connected");
+        }
+        connect.closeDBConnect();
+    }//GEN-LAST:event_jButton_TestConnectionActionPerformed
+
+    private void jComboBox_RecentDBListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_RecentDBListItemStateChanged
+        // TODO add your handling code here:
+        String recentDB =jComboBox_RecentDBListsmodel.getSelectedItem().toString();
+         ArrayList DBCreds=DBConnections.get(recentDB);
+         UserName.setText(DBCreds.get(0).toString());
+         IPAddress.setText(DBCreds.get(1).toString());
+         DBName.setText(DBCreds.get(3).toString());
+         portnumber.setText(DBCreds.get(2).toString());
+         DBConnection.setText(recentDB);
+        
+    }//GEN-LAST:event_jComboBox_RecentDBListItemStateChanged
+
+    private void jButton_ClearRecentDBListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearRecentDBListActionPerformed
+        // TODO add your handling code here:
+         UserName.setText("");
+         IPAddress.setText("");
+         DBName.setText("");
+         portnumber.setText("3306");
+         DBConnection.setText("");
+    }//GEN-LAST:event_jButton_ClearRecentDBListActionPerformed
+
+    private void jComboBox_SchemaTablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_SchemaTablesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_SchemaTablesActionPerformed
+
+    private void jComboBox_SchemaTablesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox_SchemaTablesPropertyChange
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox_SchemaTablesPropertyChange
+
+    private void jComboBox_SchemaTablesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox_SchemaTablesMouseReleased
+  //System.out.println("ACTIONCOMMAND "+evt.getActionCommand().toString());
+        String schema =jComboBox_SchemaTablesmodel.getSelectedItem().toString();
+         DBName.setText(schema);
+         db = DBName.getText().trim();        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox_SchemaTablesMouseReleased
 
     
     // Anu:
@@ -5068,7 +5206,55 @@ String queryGroupName;
 
     }
 
+    
+    public void loadSchemataList(DBConnect connect) {
 
+        String query = "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA";
+        //setting up query resultset
+        ResultSet schemataResultSet;
+               //creating the arraylist to store the results
+        ArrayList<Object> schemataList = new ArrayList<Object>();
+        try {
+            Statement st = connect.createStatement();
+            //run the query and store into resultset
+            schemataResultSet = connect.getData(query, st);
+            //iterate through the resultset and populate the speciesList variable 
+            while (schemataResultSet.next()) {
+                //getting the values from the resultset
+
+                String schema = schemataResultSet.getString("SCHEMA_NAME");
+               jComboBox_SchemaTablesmodel.addElement(schema);
+               System.out.println("DBName.getText().trim() "+DBName.getText().trim());
+               if(DBName.getText().trim().equalsIgnoreCase(schema))
+               {
+                   jComboBox_SchemaTablesmodel.setSelectedItem(schema);
+               }
+            }
+            schemataResultSet.close();
+            st.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+      }
+
+  
+   public void createDBConnectionsFolder()
+   {
+       try{
+            final String currentWorkingDirectory = new File(".").getCanonicalPath();
+            final File dir = new File(currentWorkingDirectory, "DBConnectionsCredentials");   
+           if(!dir.exists() && !dir.mkdirs())
+           {
+            dir.getParentFile().mkdirs();
+            File credsFile = new File(dir + "/DBCreds.txt");
+            credsFile.createNewFile();
+           }
+           }catch (IOException ex) {
+                ex.printStackTrace();
+       }
+   }
+
+   
     public void addNewDBConnections() throws IOException {
 
         final String currentWorkingDirectory = new File(".").getCanonicalPath();
@@ -5076,12 +5262,20 @@ String queryGroupName;
         if (!dir.exists() && !dir.mkdirs()) {
             throw new IOException("Unable to create " + dir.getAbsolutePath());
         } else {
-            File credsFile = new File(dir + "/test.txt");
-            String credentialsStr = ConnectionName + "\t" + user + "\t" + ip + "\t" + dbport + "\t" + db + "\n";
-            FileWriter fw = new FileWriter(credsFile.getAbsoluteFile(), true);
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(credentialsStr);
-            bw.close();
+            
+            if(!DBConnections.containsKey(DBConnection.getText().trim()))
+            {
+              File credsFile = new File(dir + "/DBCreds.txt");
+              String credentialsStr = ConnectionName + "\t" + user + "\t" + ip + "\t" + dbport + "\t" + db + "\n";
+              FileWriter fw = new FileWriter(credsFile.getAbsoluteFile(), true);
+              BufferedWriter bw = new BufferedWriter(fw);
+              bw.write(credentialsStr);
+              bw.close();
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "This connection name already exists.\nPlease select another name.");
+            }
+            
         }
     }
 
@@ -5093,9 +5287,9 @@ String queryGroupName;
         try {
             final String currentWorkingDirectory = new File(".").getCanonicalPath();
             final File dir = new File(currentWorkingDirectory, "DBConnectionsCredentials");
-            if (dir.exists() && dir.mkdirs()) {
+            if (dir.exists()) {
 
-                File credsFile = new File(dir + "/test.txt");
+                File credsFile = new File(dir + "/DBCreds.txt");
                 FileReader fr = new FileReader(credsFile.getAbsoluteFile());
                 //BufferedReader br = null;
                 br = new BufferedReader(fr);
@@ -5103,8 +5297,8 @@ String queryGroupName;
                 while ((sCurrentLine = br.readLine()) != null) {
                     System.out.println(sCurrentLine);
                     ArrayList<String> creds = new ArrayList<String>(Arrays.asList(sCurrentLine.split("\t")));
-                    String dbCOnnectionName = creds.remove(0);
-                    DBConnections.put(dbCOnnectionName, creds);
+                    String dbConnectionName = creds.remove(0);
+                    DBConnections.put(dbConnectionName, creds);
 
 
                 }
@@ -5122,9 +5316,28 @@ String queryGroupName;
                 ex.printStackTrace();
             }
         }
-
+System.out.println("IN DBConnectionsSize "+DBConnections.size());
     }
 
+    
+     public void loadRecentDBList()
+     {
+        
+        if(DBConnections.size()>0)
+        {
+          Set set = DBConnections.entrySet();
+          // Get an iterator to traverse the hashmap
+          Iterator i = set.iterator();
+          // Iterate through the hashmap
+          while (i.hasNext()) {
+             Map.Entry DBConnections = (Map.Entry) i.next();
+             
+              String recentDB = (String) DBConnections.getKey();
+               jComboBox_RecentDBListsmodel.addElement(recentDB);
+          }
+          jComboBox_RecentDBList.setModel(jComboBox_RecentDBListsmodel);
+        } 
+     }
     
     private TreePath findNodeTreePath(DefaultMutableTreeNode root, String s) {
     @SuppressWarnings("unchecked")
