@@ -2726,7 +2726,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 3, 0);
         Container_BooleanSearch.add(jButton_ClearBinC, gridBagConstraints);
 
-        jComboBox_BooleanOperatorBC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT", "!AND" }));
+        jComboBox_BooleanOperatorBC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "AND NOT", "OR NOT" }));
         jComboBox_BooleanOperatorBC.setSelectedItem("NOT");
         jComboBox_BooleanOperatorBC.setMaximumSize(new java.awt.Dimension(108, 27));
         jComboBox_BooleanOperatorBC.addActionListener(new java.awt.event.ActionListener() {
@@ -2740,7 +2740,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.weighty = 0.1;
         Container_BooleanSearch.add(jComboBox_BooleanOperatorBC, gridBagConstraints);
 
-        jComboBox_BooleanOperatorAB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT", "!AND" }));
+        jComboBox_BooleanOperatorAB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "AND NOT", "OR NOT" }));
         jComboBox_BooleanOperatorAB.setSelectedItem("OR");
         jComboBox_BooleanOperatorAB.setMaximumSize(new java.awt.Dimension(108, 27));
         jComboBox_BooleanOperatorAB.addActionListener(new java.awt.event.ActionListener() {
@@ -2975,6 +2975,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_QueryBuilder.add(jButton_SaveSearch, gridBagConstraints);
 
         jTextArea_SQLsearchQuery.setColumns(20);
+        jTextArea_SQLsearchQuery.setLineWrap(true);
         jTextArea_SQLsearchQuery.setRows(5);
         jTextArea_SQLsearchQuery.setMaximumSize(new java.awt.Dimension(500, 120));
         jTextArea_SQLsearchQuery.setPreferredSize(new java.awt.Dimension(240, 120));
@@ -3539,7 +3540,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_BuildSQLqueryActionPerformed
 
     private void jButton_NewSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NewSearchActionPerformed
-        // TODO add your handling code here:
+        jTextArea_SQLsearchQuery.setText("");
+        ((DefaultListModel)jListBinA.getModel()).clear();
+      ((DefaultListModel)jListBinB.getModel()).clear();
+        ((DefaultListModel)jListBinC.getModel()).clear();
+        whichVennDiagram();
+      
+        
     }//GEN-LAST:event_jButton_NewSearchActionPerformed
 
     private void IPAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IPAddressActionPerformed
