@@ -143,6 +143,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         HomologScan_buttonGroup = new javax.swing.ButtonGroup();
         AdjustHeader_buttonGroup = new javax.swing.ButtonGroup();
         InputGroup_buttonGroup = new javax.swing.ButtonGroup();
+        OutgroupFile_buttonGroup = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel_ConnectedIcon = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -193,13 +194,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
-        Container_SequenceDirectory = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
-        QueryDirectoryFileLoader = new javax.swing.JButton();
-        jLabel28 = new javax.swing.JLabel();
-        ReferenceDirectoryFolderPathTextBox = new javax.swing.JTextField();
-        ReferenceDirectoryFolderLoader = new javax.swing.JButton();
-        QueryDirectoryFolderPathTextBox = new javax.swing.JTextField();
+        Container_Taxonomy = new javax.swing.JPanel();
+        jLabel_TaxonomyFile = new javax.swing.JLabel();
+        TaxonomyFilePathTextBox = new javax.swing.JTextField();
+        TaxonomyFileLoader = new javax.swing.JButton();
         Container_Group = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         GroupFilePathTextBox = new javax.swing.JTextField();
@@ -304,6 +302,22 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        Container_SequenceDirectory1 = new javax.swing.JPanel();
+        jLabel37 = new javax.swing.JLabel();
+        QueryDirectoryFileLoader1 = new javax.swing.JButton();
+        jLabel39 = new javax.swing.JLabel();
+        ReferenceDirectoryFolderPathTextBox1 = new javax.swing.JTextField();
+        ReferenceDirectoryFolderLoader1 = new javax.swing.JButton();
+        QueryDirectoryFolderPathTextBox1 = new javax.swing.JTextField();
+        Container_OutgroupFile = new javax.swing.JPanel();
+        jLabel_TaxonomyFile1 = new javax.swing.JLabel();
+        OutgroupListPathTextBox = new javax.swing.JTextField();
+        OutgroupFileLoader = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jRadioButton7 = new javax.swing.JRadioButton();
+        jRadioButton8 = new javax.swing.JRadioButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         QueryBuilder = new javax.swing.JPanel();
         jPanel_BuildQueryGroup = new javax.swing.JPanel();
         jScrollPane_SearchFieldsScrollPanel = new javax.swing.JScrollPane();
@@ -800,9 +814,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         PipelineConfigScrollPanel.setOpaque(false);
 
         PipelineConfig.setBackground(new java.awt.Color(148, 197, 246));
-        PipelineConfig.setMaximumSize(new java.awt.Dimension(1200, 1800));
-        PipelineConfig.setMinimumSize(new java.awt.Dimension(1200, 1800));
-        PipelineConfig.setPreferredSize(new java.awt.Dimension(1200, 1767));
+        PipelineConfig.setMaximumSize(new java.awt.Dimension(1200, 2400));
+        PipelineConfig.setMinimumSize(new java.awt.Dimension(1200, 2400));
+        PipelineConfig.setPreferredSize(new java.awt.Dimension(1200, 1930));
         PipelineConfig.setVerifyInputWhenFocusTarget(false);
         PipelineConfig.setLayout(new java.awt.GridBagLayout());
 
@@ -901,49 +915,28 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridy = 7;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
         PipelineConfig.add(Container_Sequence, gridBagConstraints);
 
-        Container_SequenceDirectory.setBackground(new java.awt.Color(237, 236, 236));
-        Container_SequenceDirectory.setBorder(javax.swing.BorderFactory.createTitledBorder("Sequence Directory"));
-        Container_SequenceDirectory.setToolTipText("Analysis to perform in the pipeline.");
-        Container_SequenceDirectory.setLayout(new java.awt.GridBagLayout());
+        Container_Taxonomy.setBackground(new java.awt.Color(237, 236, 236));
+        Container_Taxonomy.setBorder(javax.swing.BorderFactory.createTitledBorder("Taxonomy"));
+        Container_Taxonomy.setToolTipText("Analysis to perform in the pipeline.");
+        Container_Taxonomy.setLayout(new java.awt.GridBagLayout());
 
-        jLabel27.setText("Reference Directory");
+        jLabel_TaxonomyFile.setText("Taxonomy File");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.insets = new java.awt.Insets(15, 25, 0, 66);
-        Container_SequenceDirectory.add(jLabel27, gridBagConstraints);
+        Container_Taxonomy.add(jLabel_TaxonomyFile, gridBagConstraints);
 
-        QueryDirectoryFileLoader.setText("Select");
-        QueryDirectoryFileLoader.addActionListener(new java.awt.event.ActionListener() {
+        TaxonomyFilePathTextBox.setToolTipText("Location to query genome directory.");
+        TaxonomyFilePathTextBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QueryDirectoryFileLoaderActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 10, 25);
-        Container_SequenceDirectory.add(QueryDirectoryFileLoader, gridBagConstraints);
-
-        jLabel28.setText("Query Directory");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(6, 25, 15, 66);
-        Container_SequenceDirectory.add(jLabel28, gridBagConstraints);
-
-        ReferenceDirectoryFolderPathTextBox.setToolTipText("Location to query genome directory.");
-        ReferenceDirectoryFolderPathTextBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReferenceDirectoryFolderPathTextBoxActionPerformed(evt);
+                TaxonomyFilePathTextBoxActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -951,13 +944,13 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.7;
-        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
-        Container_SequenceDirectory.add(ReferenceDirectoryFolderPathTextBox, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(10, 31, 0, 0);
+        Container_Taxonomy.add(TaxonomyFilePathTextBox, gridBagConstraints);
 
-        ReferenceDirectoryFolderLoader.setText("Select");
-        ReferenceDirectoryFolderLoader.addActionListener(new java.awt.event.ActionListener() {
+        TaxonomyFileLoader.setText("Select");
+        TaxonomyFileLoader.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReferenceDirectoryFolderLoaderActionPerformed(evt);
+                TaxonomyFileLoaderActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -965,25 +958,15 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 25);
-        Container_SequenceDirectory.add(ReferenceDirectoryFolderLoader, gridBagConstraints);
-
-        QueryDirectoryFolderPathTextBox.setToolTipText("Location to reference genome directory.");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.weightx = 0.8;
-        gridBagConstraints.insets = new java.awt.Insets(6, 0, 10, 0);
-        Container_SequenceDirectory.add(QueryDirectoryFolderPathTextBox, gridBagConstraints);
+        Container_Taxonomy.add(TaxonomyFileLoader, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
-        PipelineConfig.add(Container_SequenceDirectory, gridBagConstraints);
+        PipelineConfig.add(Container_Taxonomy, gridBagConstraints);
 
         Container_Group.setBackground(new java.awt.Color(237, 236, 236));
         Container_Group.setBorder(javax.swing.BorderFactory.createTitledBorder("Group"));
@@ -1188,7 +1171,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 7;
+        gridBagConstraints.gridy = 9;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
@@ -1261,7 +1244,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
@@ -1360,7 +1343,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridy = 10;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -1560,7 +1543,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridy = 12;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
@@ -1584,7 +1567,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
@@ -2222,7 +2205,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 9;
+        gridBagConstraints.gridy = 11;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
@@ -2279,7 +2262,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 11;
+        gridBagConstraints.gridy = 13;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.insets = new java.awt.Insets(5, 300, 22, 300);
@@ -2367,13 +2350,189 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         PipelineConfig.add(jLabel14, gridBagConstraints);
 
         jLabel15.setForeground(new java.awt.Color(103, 142, 180));
-        jLabel15.setText("10.");
+        jLabel15.setText("12");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel15, gridBagConstraints);
+
+        Container_SequenceDirectory1.setBackground(new java.awt.Color(237, 236, 236));
+        Container_SequenceDirectory1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sequence Directory"));
+        Container_SequenceDirectory1.setToolTipText("Analysis to perform in the pipeline.");
+        Container_SequenceDirectory1.setLayout(new java.awt.GridBagLayout());
+
+        jLabel37.setText("Reference Directory");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(15, 25, 0, 66);
+        Container_SequenceDirectory1.add(jLabel37, gridBagConstraints);
+
+        QueryDirectoryFileLoader1.setText("Select");
+        QueryDirectoryFileLoader1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QueryDirectoryFileLoader1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 10, 25);
+        Container_SequenceDirectory1.add(QueryDirectoryFileLoader1, gridBagConstraints);
+
+        jLabel39.setText("Query Directory");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(6, 25, 15, 66);
+        Container_SequenceDirectory1.add(jLabel39, gridBagConstraints);
+
+        ReferenceDirectoryFolderPathTextBox1.setToolTipText("Location to query genome directory.");
+        ReferenceDirectoryFolderPathTextBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReferenceDirectoryFolderPathTextBox1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.7;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
+        Container_SequenceDirectory1.add(ReferenceDirectoryFolderPathTextBox1, gridBagConstraints);
+
+        ReferenceDirectoryFolderLoader1.setText("Select");
+        ReferenceDirectoryFolderLoader1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReferenceDirectoryFolderLoader1ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 25);
+        Container_SequenceDirectory1.add(ReferenceDirectoryFolderLoader1, gridBagConstraints);
+
+        QueryDirectoryFolderPathTextBox1.setToolTipText("Location to reference genome directory.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.8;
+        gridBagConstraints.insets = new java.awt.Insets(6, 0, 10, 0);
+        Container_SequenceDirectory1.add(QueryDirectoryFolderPathTextBox1, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
+        PipelineConfig.add(Container_SequenceDirectory1, gridBagConstraints);
+
+        Container_OutgroupFile.setBackground(new java.awt.Color(237, 236, 236));
+        Container_OutgroupFile.setBorder(javax.swing.BorderFactory.createTitledBorder("Outgroup File"));
+        Container_OutgroupFile.setToolTipText("Analysis to perform in the pipeline.");
+        Container_OutgroupFile.setMaximumSize(new java.awt.Dimension(519, 80));
+        Container_OutgroupFile.setMinimumSize(new java.awt.Dimension(519, 100));
+        Container_OutgroupFile.setPreferredSize(new java.awt.Dimension(519, 100));
+        Container_OutgroupFile.setLayout(new java.awt.GridBagLayout());
+
+        jLabel_TaxonomyFile1.setText("Outgroup List");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 78);
+        Container_OutgroupFile.add(jLabel_TaxonomyFile1, gridBagConstraints);
+
+        OutgroupListPathTextBox.setToolTipText("Location to query genome directory.");
+        OutgroupListPathTextBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OutgroupListPathTextBoxActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 0.5;
+        gridBagConstraints.insets = new java.awt.Insets(0, 6, 0, 0);
+        Container_OutgroupFile.add(OutgroupListPathTextBox, gridBagConstraints);
+
+        OutgroupFileLoader.setText("Select");
+        OutgroupFileLoader.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OutgroupFileLoaderActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 25);
+        Container_OutgroupFile.add(OutgroupFileLoader, gridBagConstraints);
+
+        jLabel21.setText("Define Outgroup");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 25, 0, 78);
+        Container_OutgroupFile.add(jLabel21, gridBagConstraints);
+
+        OutgroupFile_buttonGroup.add(jRadioButton7);
+        jRadioButton7.setText("Yes");
+        jRadioButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton7ActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 7, 0, 0);
+        Container_OutgroupFile.add(jRadioButton7, gridBagConstraints);
+
+        OutgroupFile_buttonGroup.add(jRadioButton8);
+        jRadioButton8.setText("No");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 76, 0, 0);
+        Container_OutgroupFile.add(jRadioButton8, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.insets = new java.awt.Insets(5, 300, 10, 300);
+        PipelineConfig.add(Container_OutgroupFile, gridBagConstraints);
+
+        jLabel19.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel19.setText("10.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 11;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
-        PipelineConfig.add(jLabel15, gridBagConstraints);
+        PipelineConfig.add(jLabel19, gridBagConstraints);
+
+        jLabel20.setForeground(new java.awt.Color(103, 142, 180));
+        jLabel20.setText("11");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_END;
+        gridBagConstraints.insets = new java.awt.Insets(6, 256, 0, 9);
+        PipelineConfig.add(jLabel20, gridBagConstraints);
 
         PipelineConfigScrollPanel.setViewportView(PipelineConfig);
 
@@ -3272,9 +3431,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
-    private void ReferenceDirectoryFolderPathTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReferenceDirectoryFolderPathTextBoxActionPerformed
+    private void TaxonomyFilePathTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaxonomyFilePathTextBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ReferenceDirectoryFolderPathTextBoxActionPerformed
+    }//GEN-LAST:event_TaxonomyFilePathTextBoxActionPerformed
 
     private void GroupDistancePathTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupDistancePathTextBoxActionPerformed
         // TODO add your handling code here:
@@ -4069,22 +4228,22 @@ public class HMM_ModelUI extends javax.swing.JFrame {
      // Jamie: vestigial...
     }//GEN-LAST:event_ChimeraIdentityDefaultKeyPressed
 
-    private void ReferenceDirectoryFolderLoaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReferenceDirectoryFolderLoaderActionPerformed
+    private void TaxonomyFileLoaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaxonomyFileLoaderActionPerformed
         // Jamie:
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
-        int returnValue = folderSelector.showOpenDialog(HMM_ModelUI.this);
+        int returnValue = fileSelector.showOpenDialog(HMM_ModelUI.this);
         
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = folderSelector.getSelectedFile(); 
+            File file = fileSelector.getSelectedFile(); 
             // now add the file name to the text box
-            ReferenceDirectoryFolderPathTextBox.setText(file.getPath());
+            TaxonomyFilePathTextBox.setText(file.getPath());
         }
         else {
             System.out.println("Changed your mind, huh?");
         }
         
-    }//GEN-LAST:event_ReferenceDirectoryFolderLoaderActionPerformed
+    }//GEN-LAST:event_TaxonomyFileLoaderActionPerformed
 
     private void SequenceIdentityTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SequenceIdentityTextBoxActionPerformed
         // TODO add your handling code here:
@@ -4117,22 +4276,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         NumberDomainSlider.setValue(1);
         NumberDomainComboBox.setSelectedIndex(0);
     }//GEN-LAST:event_NumberDomainDefaultMouseClicked
-
-    private void QueryDirectoryFileLoaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryDirectoryFileLoaderActionPerformed
-    // Jamie:
-        // This function opens a file chooser window.
-        // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
-        int returnValue = folderSelector.showOpenDialog(HMM_ModelUI.this);
-        
-        if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = folderSelector.getSelectedFile(); 
-            // now add the file name to the text box
-            QueryDirectoryFolderPathTextBox.setText(file.getPath());
-        }
-        else {
-            System.out.println("Changed your mind, huh?");
-        }
-    }//GEN-LAST:event_QueryDirectoryFileLoaderActionPerformed
 
     private void HMMDatabaseFileSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HMMDatabaseFileSelectorActionPerformed
         // Jamie:
@@ -4717,6 +4860,42 @@ String queryGroupName;
          DBName.setText(schema);
          db = DBName.getText().trim();        // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_SchemaTablesMouseReleased
+
+    private void QueryDirectoryFileLoader1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryDirectoryFileLoader1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QueryDirectoryFileLoader1ActionPerformed
+
+    private void ReferenceDirectoryFolderPathTextBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReferenceDirectoryFolderPathTextBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReferenceDirectoryFolderPathTextBox1ActionPerformed
+
+    private void ReferenceDirectoryFolderLoader1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReferenceDirectoryFolderLoader1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReferenceDirectoryFolderLoader1ActionPerformed
+
+    private void OutgroupListPathTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutgroupListPathTextBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OutgroupListPathTextBoxActionPerformed
+
+    private void OutgroupFileLoaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OutgroupFileLoaderActionPerformed
+        // Jamie:
+        // This function opens a file chooser window.
+        // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
+        int returnValue = fileSelector.showOpenDialog(HMM_ModelUI.this);
+        
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+            File file = fileSelector.getSelectedFile(); 
+            // now add the file name to the text box
+            TaxonomyFilePathTextBox.setText(file.getPath());
+        }
+        else {
+            System.out.println("Changed your mind, huh?");
+        }
+    }//GEN-LAST:event_OutgroupFileLoaderActionPerformed
+
+    private void jRadioButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton7ActionPerformed
 
     
     // Anu:
@@ -5472,6 +5651,7 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JPanel Container_Database;
     private javax.swing.JPanel Container_Group;
     private javax.swing.JPanel Container_HMMERParameters;
+    private javax.swing.JPanel Container_OutgroupFile;
     private javax.swing.JPanel Container_QueryBuilder;
     private javax.swing.JPanel Container_QueryGroups;
     private javax.swing.JPanel Container_Reference;
@@ -5479,7 +5659,8 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JPanel Container_SaveLoadRun;
     private javax.swing.JPanel Container_SelectDB;
     private javax.swing.JPanel Container_Sequence;
-    private javax.swing.JPanel Container_SequenceDirectory;
+    private javax.swing.JPanel Container_SequenceDirectory1;
+    private javax.swing.JPanel Container_Taxonomy;
     private javax.swing.JPanel Container_Title;
     private javax.swing.JButton CoreGenomeAccuracyThresholdDefault;
     private javax.swing.JSlider CoreGenomeAccuracyThresholdSlider;
@@ -5515,6 +5696,9 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JComboBox NumberDomainComboBox;
     private javax.swing.JButton NumberDomainDefault;
     private javax.swing.JSlider NumberDomainSlider;
+    private javax.swing.JButton OutgroupFileLoader;
+    private javax.swing.ButtonGroup OutgroupFile_buttonGroup;
+    private javax.swing.JTextField OutgroupListPathTextBox;
     private javax.swing.JPasswordField Password;
     private javax.swing.JPanel PipelineConfig;
     private javax.swing.JScrollPane PipelineConfigScrollPanel;
@@ -5522,10 +5706,10 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JButton QueryCoverageDefault;
     private javax.swing.JSlider QueryCoverageSlider;
     private javax.swing.JTextField QueryCoverageTextBox;
-    private javax.swing.JButton QueryDirectoryFileLoader;
-    private javax.swing.JTextField QueryDirectoryFolderPathTextBox;
-    private javax.swing.JButton ReferenceDirectoryFolderLoader;
-    private javax.swing.JTextField ReferenceDirectoryFolderPathTextBox;
+    private javax.swing.JButton QueryDirectoryFileLoader1;
+    private javax.swing.JTextField QueryDirectoryFolderPathTextBox1;
+    private javax.swing.JButton ReferenceDirectoryFolderLoader1;
+    private javax.swing.JTextField ReferenceDirectoryFolderPathTextBox1;
     private javax.swing.JPanel Results;
     private javax.swing.JButton ResultsGroup;
     private javax.swing.JPanel Search;
@@ -5542,6 +5726,8 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JButton TargetCoverageDefault;
     private javax.swing.JSlider TargetCoverageSlider;
     private javax.swing.JTextField TargetCoverageTextBox;
+    private javax.swing.JButton TaxonomyFileLoader;
+    private javax.swing.JTextField TaxonomyFilePathTextBox;
     private javax.swing.JTextField UserName;
     private javax.swing.JLabel gradientBackgroundImage;
     private javax.swing.JButton jButtonAddQueryGroup;
@@ -5590,12 +5776,13 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel1_Subtitle;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
@@ -5605,7 +5792,9 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
@@ -5657,6 +5846,8 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JLabel jLabel_Results;
     private javax.swing.JLabel jLabel_Search;
     private javax.swing.JLabel jLabel_SearchString;
+    private javax.swing.JLabel jLabel_TaxonomyFile;
+    private javax.swing.JLabel jLabel_TaxonomyFile1;
     private javax.swing.JLabel jLabel_Title;
     private javax.swing.JLabel jLabel_UniversityOfToronto;
     private javax.swing.JLabel jLabel_UserName;
@@ -5676,6 +5867,8 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
     private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
+    private javax.swing.JRadioButton jRadioButton8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane_BinA;
