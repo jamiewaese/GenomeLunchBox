@@ -76,15 +76,19 @@ public class DBConnect {
         }
     }
     
-    public void updateConnectionIcon(JLabel jLabel_ConnectedIcon, JLabel jLabel_ConnectToDBStatus) {
+    public void updateConnectionIcon(JLabel jLabel_ConnectedIcon, JLabel jLabel_ConnectToDBStatus, JLabel jLabel_YouAreConnected) {
         // Jamie: update connection icon
         if (isConnected) {
              jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-connected.png")));
+             jLabel_ConnectedIcon.setToolTipText("Connected");
              jLabel_ConnectToDBStatus.setText("Connected");
+             jLabel_YouAreConnected.setText("You are connected.");
         }
         else {
              jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-idle.png"))); 
              jLabel_ConnectToDBStatus.setText("Connected");
+             jLabel_ConnectedIcon.setToolTipText("Not connected");
+             jLabel_YouAreConnected.setText("You are connected.");
         }
         
     }
