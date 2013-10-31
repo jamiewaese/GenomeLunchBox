@@ -25,6 +25,7 @@ import java.awt.EventQueue;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import javax.swing.BorderFactory;
@@ -182,6 +183,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jComboBox_SchemaTables = new javax.swing.JComboBox();
         jButton_saveDBConnection = new javax.swing.JButton();
         jLabel_ConnectToDB = new javax.swing.JLabel();
+        jLabel_YouAreConnected = new javax.swing.JLabel();
         PipelineConfigScrollPanel = new javax.swing.JScrollPane();
         PipelineConfig = new javax.swing.JPanel();
         Container_Analysis = new javax.swing.JPanel();
@@ -429,7 +431,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel_ConnectedIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/my/HMM_Model/DB-idle.png"))); // NOI18N
-        jLabel_ConnectedIcon.setToolTipText("Not connected to database.");
+        jLabel_ConnectedIcon.setToolTipText("This icon indicates if you are connected to the database or not.");
         jLabel_ConnectedIcon.setMaximumSize(new java.awt.Dimension(40, 40));
         jLabel_ConnectedIcon.setMinimumSize(new java.awt.Dimension(40, 40));
         jLabel_ConnectedIcon.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -600,6 +602,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(1, 0, 6, 0);
         Container_SelectDB.add(jLabel_Password, gridBagConstraints);
+
+        Password.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                PasswordKeyPressed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 5;
@@ -803,6 +811,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
         ConnectToDB.add(jLabel_ConnectToDB, gridBagConstraints);
+
+        jLabel_YouAreConnected.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel_YouAreConnected.setText(" ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        ConnectToDB.add(jLabel_YouAreConnected, gridBagConstraints);
 
         jTabbedPane1.addTab("Connect to DB", ConnectToDB);
 
@@ -3407,7 +3423,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         isConnected= connect.isConnected();
         if (isConnected) {
             
-            connect.updateConnectionIcon(jLabel_ConnectedIcon,jLabel_ConnectToDBStatus);
+            connect.updateConnectionIcon(jLabel_ConnectedIcon,jLabel_ConnectToDBStatus, jLabel_YouAreConnected);
             LinkedHashMap<String, ArrayList<String>> taxomonyTree = buildTaxonomyTree(connect, db);
             LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
             populateTaxonomyTree(taxomonyTree, connect);
@@ -3776,12 +3792,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             vennDiagramFilename += "2Venn_AorB.png";
         }
         // A not B (C empty)
-        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AnotB.png";
         }
         // A not and B (C empty)
-        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && binCEmpty) {
-            vennDiagramFilename += "2Venn_AnotandB.png";
+        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && binCEmpty) {
+            vennDiagramFilename += "2Venn_AornotB.png";
         }
         /////////////////// DOUBLE BINS B / C
         // B and C (A empty)
@@ -3793,12 +3809,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             vennDiagramFilename += "2Venn_BorC.png";
         }
         // B not C (A empty)
-        else if (binAEmpty && booleanOperatorBC.equals("NOT") && !binBEmpty && !binCEmpty) {
+        else if (binAEmpty && booleanOperatorBC.equals("AND NOT") && !binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_BnotC.png";
         }        
         // B not and C (A empty)
-        else if (binAEmpty && booleanOperatorBC.equals("!AND") && !binBEmpty && !binCEmpty) {
-            vennDiagramFilename += "2Venn_BnotandC.png";
+        else if (binAEmpty && booleanOperatorBC.equals("OR NOT") && !binBEmpty && !binCEmpty) {
+            vennDiagramFilename += "2Venn_BornotC.png";
         }
         /////////////////// DOUBLE BINS A / C
         // A and C (B empty)
@@ -3810,12 +3826,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             vennDiagramFilename += "2Venn_AorC.png";
         }
         // A not C (B empty)
-        else if (!binAEmpty && booleanOperatorBC.equals("NOT") && binBEmpty && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorBC.equals("AND NOT") && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_AnotC.png";
         }        
         // A not and C (B empty)
-        else if (!binAEmpty && booleanOperatorBC.equals("!AND") && binBEmpty && !binCEmpty) {
-            vennDiagramFilename += "2Venn_AnotandC.png";
+        else if (!binAEmpty && booleanOperatorBC.equals("OR NOT") && binBEmpty && !binCEmpty) {
+            vennDiagramFilename += "2Venn_AornotC.png";
         }   
         ///////////////// TRIPLE BINS A / B / C
         // A and B and C - 1
@@ -3827,12 +3843,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             vennDiagramFilename += "3Venn_AandBorC.png";
         }         
         // A and B not C - 3
-        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AandBnotC.png";
         }            
         // A and B not and C - 4
-        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("!AND") && !binCEmpty) {
-            vennDiagramFilename += "3Venn_AandBnotandC.png";
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_questionMark.png";
         }        
         //
         //
@@ -3845,49 +3861,52 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             vennDiagramFilename += "3Venn_AorBorC.png";
         }         
         // A or B not C - 7
-        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AorBnotC.png";
         }   
         // A or B not and C - 8
-        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("!AND") && !binCEmpty) {
-            vennDiagramFilename += "3Venn_AorBnotandC.png";
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_questionMark.png";
         }   
         //
         //
         // A not B and C - 9
-        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBandC.png";
         }   
         // A not B or C - 10
-        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBorC.png";
         }         
         // A not B not C - 11
-        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && booleanOperatorBC.equals("NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBnotC.png";
         }   
         // A not B not not and C - 12
-        else if (!binAEmpty && booleanOperatorAB.equals("NOT") && !binBEmpty && booleanOperatorBC.equals("!AND") && !binCEmpty) {
-            vennDiagramFilename += "3Venn_AnotBnotandC.png";
+        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_questionMark.png";
         }   
         //
         //
         // A not and B and C - 13
-        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
-            vennDiagramFilename += "3Venn_AnotandBandC.png";
+        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_questionMark.png";
         }   
         // A not and B or C - 14
-        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
-            vennDiagramFilename += "3Venn_AnotandBorC.png";
+        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_questionMark.png";
         }         
         // A not and B not C - 15
-        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && booleanOperatorBC.equals("NOT") && !binCEmpty) {
-            vennDiagramFilename += "3Venn_AnotandBnotC.png";
+        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_questionMark.png";
         }   
         // A not and B not not and C - 16
-        else if (!binAEmpty && booleanOperatorAB.equals("!AND") && !binBEmpty && booleanOperatorBC.equals("!AND") && !binCEmpty) {
-            vennDiagramFilename += "3Venn_AnotandBnotandC.png";
-        }        
+        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
+            vennDiagramFilename += "3Venn_questionMark.png";
+        }     
+        
+        else vennDiagramFilename += "3Venn_questionMark.png";
+
         
         // Finally, adjust the Venn diagram accordingly
         System.out.println(vennDiagramFilename);
@@ -4897,6 +4916,40 @@ String queryGroupName;
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton7ActionPerformed
 
+    private void PasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordKeyPressed
+        // Jamie: if enter key is pressed, do the same thing as if "Connect" was pressed.
+        // All of this is just a repeat of: void jButton_ConnectToDBActionPerformed(java.awt.event.ActionEvent evt)   
+        if ( evt.getKeyCode() == KeyEvent.VK_ENTER){
+        
+            user = UserName.getText().trim();
+            char[] pass = Password.getPassword();
+            passStr = new String(pass);
+            ip = IPAddress.getText().trim();
+            db = DBName.getText().trim();
+            dbport = portnumber.getText().trim();
+            ConnectionName = DBConnection.getText().trim();
+            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+            isConnected= connect.isConnected();
+            if (isConnected) {
+
+                connect.updateConnectionIcon(jLabel_ConnectedIcon,jLabel_ConnectToDBStatus, jLabel_YouAreConnected);
+                LinkedHashMap<String, ArrayList<String>> taxomonyTree = buildTaxonomyTree(connect, db);
+                LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
+                populateTaxonomyTree(taxomonyTree, connect);
+                populateQueryGroupTree(queryGrpTree);
+                jTree_SearchFields.setModel(new javax.swing.tree.DefaultTreeModel(searchQuerytreeNode1));
+                jScrollPane_SearchFieldsScrollPanel.setViewportView(jTree_SearchFields);
+                jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
+                jScrollPane1.setViewportView(jTreeManageQueryGroup);
+                loadDBQueryGroups(connect);
+                loadSchemataList(connect);
+            }
+            System.out.println("Username: " + user + "  Password Length: " + passStr);
+            connect.closeDBConnect();
+        }
+   
+    }//GEN-LAST:event_PasswordKeyPressed
+
     
     // Anu:
     // This function popuates the taxonomy tree on Query Search page.
@@ -5851,6 +5904,7 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JLabel jLabel_Title;
     private javax.swing.JLabel jLabel_UniversityOfToronto;
     private javax.swing.JLabel jLabel_UserName;
+    private javax.swing.JLabel jLabel_YouAreConnected;
     private javax.swing.JLabel jLabel_port;
     private javax.swing.JList jListBinA;
     private javax.swing.JList jListBinB;
