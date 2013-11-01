@@ -26,9 +26,11 @@ import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import javax.swing.BorderFactory;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.TreeNode;
 
 
@@ -94,14 +96,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     // Variable to delete items from binList    
     int [] bin_indicesA;
     int [] bin_indicesB;
-    int [] bin_indicesC;
-    
-    // Variable to get the selected boolean operators between binList
-    String operatorAB=null;
-    String operatorBC=null;
-    String operatorA=null;
-    String operatorB=null;
-    String operatorC=null;
+    int [] bin_indicesC;    
     
     // String to store SQL query for getting common name from database 
     String SQLWithQueryGroup=null;
@@ -3106,6 +3101,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jButton_SubmitSearch.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jButton_SubmitSearch.setText("Search");
+        jButton_SubmitSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SubmitSearchActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 5;
         gridBagConstraints.gridy = 1;
@@ -3289,18 +3289,15 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
         Results.add(jLabel_Results, gridBagConstraints);
 
+        jTable_ResultsWindow.setAutoCreateRowSorter(true);
         jTable_ResultsWindow.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTable_ResultsWindow.setAutoCreateRowSorter(true);
         jTable_ResultsWindow.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTable_ResultsWindow.setMaximumSize(new java.awt.Dimension(1024, 2400));
         jTable_ResultsWindow.setMinimumSize(new java.awt.Dimension(600, 300));
@@ -3528,189 +3525,218 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void jButton_BuildSQLqueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuildSQLqueryActionPerformed
         // TODO add your handling code here:
         // code to get list of query groups from each bin and use them to get taxa name from database
-        // It  will also create main SQL to search ortholog table //
+       // contains taxa information for query groups in BinA //
+        String BinA_sql_query = null;
         
-        String BinA_query = null; // contains taxa information for query groups in BinA //
-        
-        int list_size_binA=JListModelBinA.getSize();
-        
-        if(operatorA==null){            
-            operatorA=(String)jComboBox_BooleanOperatorA.getSelectedItem();
-        }
-        
+        int list_size_binA=JListModelBinA.getSize();     
+             
         if(list_size_binA != 0){
+            
+                       
+            String operatorA=(String)jComboBox_BooleanOperatorA.getSelectedItem();
+           
         
           for(int i=0;i<list_size_binA;i++){
            
-            Object inlistA=JListModelBinA.getElementAt(i); // get element in listA
+             Object inlistA=JListModelBinA.getElementAt(i); // get element in listA
                       
-            // get the common name of all taxa in current selected query group of list A              
+            // get the common name of all taxa in current selected query group of list A         
+                       
           ResultSet listCommonName=getCommonNameForTaxa(db,(String) inlistA);
           
-            String makeQueryWithCommonName=null;
+            
+            String SQLQueryAWithCommonName=null;
+            
             try {
                 while(listCommonName.next()){
                     // get common name for each resultset
                     String commonName=listCommonName.getString("common_name");
                     // if makeQueryWithCommonName is empty than
-                    if(makeQueryWithCommonName==null){ 
-                        // Because this is for BinA the value for profile is always 1
-                        makeQueryWithCommonName=commonName+"="+1; 
+                    if(SQLQueryAWithCommonName==null){ 
+                        // Because this is for BinA the value for profile is always 1                        
+                        SQLQueryAWithCommonName=commonName+"="+1;
                     }else{
-                        //Add AND operator between common names in same query group
-                        makeQueryWithCommonName=makeQueryWithCommonName+
+                        //Add AND operator between common names in same query group                                           
+                        SQLQueryAWithCommonName=SQLQueryAWithCommonName+
                                                 " "+
-                                                "AND"+
+                                                operatorA+
                                                 " "+
                                                 commonName+"="+1;
                     }
                 }
                 //Enclose in () brackets
-                makeQueryWithCommonName="("+makeQueryWithCommonName+")";
+                SQLQueryAWithCommonName="("+SQLQueryAWithCommonName+")";
                 
             } catch (SQLException ex) {
                 System.out.println("Error" + ex);
             }
             
             // Merge common names from each query group that are in same bin sperated by the operatorA
-            if(BinA_query==null){
-                BinA_query=makeQueryWithCommonName;                    
+            if(BinA_sql_query==null){
+                
+                BinA_sql_query=SQLQueryAWithCommonName;
             }else{
-              BinA_query=BinA_query+" "+operatorA+" "+makeQueryWithCommonName;  
+             
+              BinA_sql_query=BinA_sql_query+" "+operatorA+" "+SQLQueryAWithCommonName; 
             }                    
           }        
-          System.out.println ("("+BinA_query+")");
+          System.out.println ("("+BinA_sql_query+")");
         }
         /////////////////////////////////////////////////////////////////////////////////
-        // get all query group names from binB
+        // get all query group names from binB       
+       
+        String BinB_sql_query = null;
         
-        String BinB_query = null;
-        int list_size_binB=JListModelBinB.getSize();
-        
+        int list_size_binB=JListModelBinB.getSize();        
          
-        if(operatorB==null){            
-            operatorB=(String)jComboBox_BooleanOperatorB.getSelectedItem();
-        }
+                   
+         String   operatorB=(String)jComboBox_BooleanOperatorB.getSelectedItem();
+       
         
         //Build su-query for binA ////
         if(list_size_binB !=0){
+            
           for(int i=0;i<list_size_binB;i++){            
             Object inlistB=JListModelBinB.getElementAt(i);
             
+                       
              // get the common name of all taxa in current selected query group of list B              
             ResultSet listCommonName= getCommonNameForTaxa(db,(String) inlistB);
             
-            String makeQueryWithCommonName=null;
+            
+            String SQLQueryBWithCommonName=null;
+            
             try {
                 while(listCommonName.next()){
                     // get common name for each resultset
                     String commonName=listCommonName.getString("common_name");
                     // if makeQueryWithCommonName is empty than
-                    if(makeQueryWithCommonName==null){ 
-                        // Because this is for BinA the value for profile is always 1
-                        makeQueryWithCommonName=commonName+"="+1; 
+                    if(SQLQueryBWithCommonName==null){                            
+                        SQLQueryBWithCommonName=commonName+"="+1;
                     }else{
-                        //Add AND operator for between common names in same query group
-                        makeQueryWithCommonName=makeQueryWithCommonName+
+                        //Add AND operator for between common names in same query group                      
+                        SQLQueryBWithCommonName=SQLQueryBWithCommonName+
                                                 " "+
-                                                "AND"+
+                                                operatorB+
                                                 " "+
                                                 commonName+"="+1;
                     }
                 }
                 //Enclose in () brackets
-                makeQueryWithCommonName="("+makeQueryWithCommonName+")";
+                SQLQueryBWithCommonName="("+SQLQueryBWithCommonName+")";
                 
             } catch (SQLException ex) {
                System.out.println("Error" + ex);
             }
             
-            if(BinB_query==null){
-                BinB_query=makeQueryWithCommonName;
-            }else{
-              BinB_query=BinB_query+" "+operatorB+" "+makeQueryWithCommonName;  
+            if(BinB_sql_query==null){
+                
+                BinB_sql_query=SQLQueryBWithCommonName;
+            }else{              
+              BinB_sql_query=BinB_sql_query+" "+operatorB+" "+SQLQueryBWithCommonName;
             }                    
         }        
-           System.out.println ("("+BinB_query+")");      
+           System.out.println ("("+BinB_sql_query+")");      
         }
         ////////////////////////////////////////////////////////////////////////
         
-        // get all query group names from binC
-        
-         String BinC_query = null;
+        // get all query group names from binC        
+         
+         String BinC_sql_query = null;
         int list_size_binC=JListModelBinC.getSize();
         
          
-        if(operatorC==null){            
-            operatorC=(String)jComboBox_BooleanOperatorC.getSelectedItem();
-        }
+                  
+        String  operatorC=(String)jComboBox_BooleanOperatorC.getSelectedItem();
+       
         
         //Build su-query for binA ////
         if(list_size_binC !=0){
           for(int i=0;i<list_size_binC;i++){            
-            Object inlistC=JListModelBinC.getElementAt(i);
-            
+            Object inlistC=JListModelBinC.getElementAt(i);          
+                      
+                       
              // get the common name of all taxa in current selected query group of list C              
             ResultSet listCommonName= getCommonNameForTaxa(db,(String) inlistC);
             
-             String makeQueryWithCommonName=null;
+             
+             String SQLQueryCWithCommonName=null;
+             
             try {
                 while(listCommonName.next()){
                     // get common name for each resultset
                     String commonName=listCommonName.getString("common_name");
                     // if makeQueryWithCommonName is empty than
-                    if(makeQueryWithCommonName==null){ 
-                        // Because this is for BinA the value for profile is always 1
-                        makeQueryWithCommonName=commonName+"="+1; 
+                    if(SQLQueryCWithCommonName==null){ 
+                          
+                        SQLQueryCWithCommonName=commonName+"="+1;
                     }else{
-                        //Add AND operator for between common names in same query group
-                        makeQueryWithCommonName=makeQueryWithCommonName+
+                        //Add AND operator for between common names in same query group                       
+                        SQLQueryCWithCommonName=SQLQueryCWithCommonName+
                                                 " "+
-                                                "AND"+
+                                                operatorC+
                                                 " "+
                                                 commonName+"="+1;
                     }
                 }
                 //Enclose in () brackets
-                makeQueryWithCommonName="("+makeQueryWithCommonName+")";
+               SQLQueryCWithCommonName="("+SQLQueryCWithCommonName+")";
                 
             } catch (SQLException ex) {
                 System.out.println("Error" + ex);
             }
             
-            if(BinC_query==null){
-                BinC_query=makeQueryWithCommonName;
-            }else{
-              BinC_query=BinC_query+" "+operatorC+" "+makeQueryWithCommonName;  
-            }                    
+           if(BinC_sql_query==null){               
+                BinC_sql_query=SQLQueryCWithCommonName;
+            }else{              
+              BinC_sql_query=BinC_sql_query+" "+operatorC+" "+SQLQueryCWithCommonName;
+            }              
           }
         
-           System.out.println ("("+BinC_query+")");      
+           System.out.println ("("+BinC_sql_query+")");      
         } 
         ////////////////////////////////////////////////////////////////////////////////////
         
         // get operator between binA and bin B
         
-        if(operatorAB==null){            
-            operatorAB=(String)jComboBox_BooleanOperatorAB.getSelectedItem();
-        }            
+                   
+          String  operatorAB=(String)jComboBox_BooleanOperatorAB.getSelectedItem();
+                   
         //get operator between binB and binC
-        if(operatorBC==null){            
-            operatorBC=(String)jComboBox_BooleanOperatorBC.getSelectedItem();
-        }        
-        if(BinA_query!=null){            
-            SQLWithQueryGroup="("+BinA_query+")";
-        }
-        if((BinB_query!=null) && (BinA_query!=null)){            
-            SQLWithQueryGroup=SQLWithQueryGroup+" "+operatorAB+" "+"("+BinB_query+")";
-        }
-        if((BinB_query!=null) && (BinC_query!=null)){            
-            SQLWithQueryGroup=SQLWithQueryGroup+" "+operatorBC+" "+"("+BinC_query+")";
-        }
+                  
+          String  operatorBC=(String)jComboBox_BooleanOperatorBC.getSelectedItem();
         
+        
+       // SET OPERATOR BETWEEN THE BINS; If "AND NOT" / "OR NOT" is selected, respective
+       // operator is changed to AND / OR
+        if(BinA_sql_query!=null){
+          SQLWithQueryGroup="("+BinA_sql_query+")";  
+        }
+        if(BinB_sql_query!=null && BinA_sql_query!=null ){
+            if(operatorAB=="AND NOT"){                
+              BinB_sql_query=BinB_sql_query.replaceAll("=1", "=0");
+              operatorAB="AND";
+            }else if(operatorAB=="OR NOT"){
+              BinB_sql_query=BinB_sql_query.replaceAll("=1", "=0");
+              operatorAB="OR";
+            } 
+            SQLWithQueryGroup=SQLWithQueryGroup+" "+operatorAB+" "+"("+BinB_sql_query+")";
+        }
+        if(BinC_sql_query!=null && BinB_sql_query!=null){
+             if(operatorBC=="AND NOT"){                
+               BinC_sql_query=BinC_sql_query.replaceAll("=1", "=0"); 
+               operatorBC="AND";
+             }else if(operatorBC=="OR NOT"){
+               BinC_sql_query=BinC_sql_query.replaceAll("=1", "=0");
+               operatorBC="OR";
+             } 
+            SQLWithQueryGroup=SQLWithQueryGroup+" "+operatorBC+" "+"("+BinC_sql_query+")"; 
+        }      
+       
         //show created query in query editor        
-        System.out.println("("+SQLWithQueryGroup+")");        
-        jTextArea_SQLsearchQuery.setText("("+SQLWithQueryGroup+")");
+        System.out.println(SQLWithQueryGroup); 
+        // Add the generated sql to the text area for display and manual editing
+        jTextArea_SQLsearchQuery.setText(SQLWithQueryGroup); 
          
     }//GEN-LAST:event_jButton_BuildSQLqueryActionPerformed
 
@@ -3919,8 +3945,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     
     private void jComboBox_BooleanOperatorAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorAActionPerformed
         // Jamie:
-        JComboBox comboBoxA =(JComboBox) evt.getSource();        
-        operatorA=(String)comboBoxA.getSelectedItem();
+       // JComboBox comboBoxA =(JComboBox) evt.getSource();        
+       // operatorA=(String)comboBoxA.getSelectedItem();
     }//GEN-LAST:event_jComboBox_BooleanOperatorAActionPerformed
 
     private void NumberDomainSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NumberDomainSliderStateChanged
@@ -4505,8 +4531,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void jComboBox_BooleanOperatorBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorBCActionPerformed
         //
-        JComboBox comboBoxBC =(JComboBox) evt.getSource();        
-        operatorAB=(String)comboBoxBC.getSelectedItem();
+       // JComboBox comboBoxBC =(JComboBox) evt.getSource();        
+       // operatorBC=(String)comboBoxBC.getSelectedItem();
         // This function calls the whichVennDiagram() function whenever a Boolean operator combo box is selected
         // or when query groups are added or deleted from the text box bins.
         whichVennDiagram();
@@ -4514,8 +4540,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void jComboBox_BooleanOperatorABActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorABActionPerformed
         //
-        JComboBox comboBoxAB =(JComboBox) evt.getSource();        
-        operatorAB=(String)comboBoxAB.getSelectedItem();
+       // JComboBox comboBoxAB =(JComboBox) evt.getSource();        
+       // operatorAB=(String)comboBoxAB.getSelectedItem();
         // This function calls the whichVennDiagram() function whenever a Boolean operator combo box is selected
         // or when query groups are added or deleted from the text box bins.
         whichVennDiagram();
@@ -4523,14 +4549,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void jComboBox_BooleanOperatorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorBActionPerformed
         // TODO add your handling code here:
-        JComboBox comboBoxB =(JComboBox) evt.getSource();        
-        operatorB=(String)comboBoxB.getSelectedItem();
+     //   JComboBox comboBoxB =(JComboBox) evt.getSource();        
+     //   operatorB=(String)comboBoxB.getSelectedItem();
     }//GEN-LAST:event_jComboBox_BooleanOperatorBActionPerformed
 
     private void jComboBox_BooleanOperatorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorCActionPerformed
         // TODO add your handling code here:
-        JComboBox comboBoxC =(JComboBox) evt.getSource();        
-        operatorC=(String)comboBoxC.getSelectedItem();
+      //  JComboBox comboBoxC =(JComboBox) evt.getSource();        
+      //  operatorC=(String)comboBoxC.getSelectedItem();
     }//GEN-LAST:event_jComboBox_BooleanOperatorCActionPerformed
 
     private void AccuracyThresholdSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AccuracyThresholdSlider1StateChanged
@@ -4949,6 +4975,40 @@ String queryGroupName;
         }
    
     }//GEN-LAST:event_PasswordKeyPressed
+
+    private void jButton_SubmitSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SubmitSearchActionPerformed
+        // TODO add your handling code here:
+        String query_condition=jTextArea_SQLsearchQuery.getText();
+        
+        // Get result for the query 
+        ResultSet SearchResult=getSearchResult(db,query_condition);       
+   
+        ResultSetMetaData metSearchResult = null; 
+        int numberOfColumn=0;
+        
+        try {
+            metSearchResult = SearchResult.getMetaData();
+            numberOfColumn=metSearchResult.getColumnCount();
+            
+        } catch (SQLException ex) {
+            System.out.println("Error" + ex);
+        }        
+        //Show result in Jtable on Result page        
+        DefaultTableModel ResultTableModel=(DefaultTableModel) jTable_ResultsWindow.getModel();
+     
+        try {
+            while(SearchResult.next()){                
+                Object [] rowData= new Object[numberOfColumn];                
+                for (int i = 0; i < rowData.length; ++i){
+                   rowData[i] = SearchResult.getObject(i+1);
+                }
+                ResultTableModel.addRow(rowData);                 
+            }           
+            ResultTableModel.fireTableDataChanged();            
+        } catch (SQLException ex) {
+           System.out.println("Error" + ex);
+        }   
+    }//GEN-LAST:event_jButton_SubmitSearchActionPerformed
 
     
     // Anu:
@@ -5640,6 +5700,25 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
            } 
          //returns result set for the data from sql table 
         return listCommonName;  
+    }
+    
+    // get Search Result
+    public ResultSet getSearchResult(String db, String query_condition) {
+        
+        String SearchQuery="Select Distinct(Group_id) from Group_profile where "+query_condition;
+        ResultSet SearchResult=null;
+        
+        try {
+            // run sql command
+             DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+             Statement st = connect.createStatement(); 
+             SearchResult=connect.getData(SearchQuery, st);      
+                 
+           } catch (Exception ex) {
+               System.out.println("Error" + ex);
+           } 
+        
+        return SearchResult;
     }
 
     
