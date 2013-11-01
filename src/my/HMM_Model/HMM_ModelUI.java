@@ -33,8 +33,6 @@ import javax.swing.BorderFactory;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.TreeNode;
 
-
-
 /**
  *
  * @author anu
@@ -42,26 +40,20 @@ import javax.swing.tree.TreeNode;
 public class HMM_ModelUI extends javax.swing.JFrame {
 
     //** Global Variables   
-    
     // Jamie:
     // Global search variables:
     String booleanSearchMode = "AND"; // preset starting value as AND
-    
     // Anu:
-    
     DefaultTreeModel jTreeManageQueryGroupModel;
     DefaultTreeModel jTreeBuildQueryGroupModel;
     DefaultMutableTreeNode searchQuerytreeNode1;
     DefaultMutableTreeNode QueryGrouptreeNode1;
-     // Jamie:
+    // Jamie:
     //Create a file chooser. Taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
     final JFileChooser folderSelector = new JFileChooser();
     final JFileChooser fileSelector = new JFileChooser();
-    
     // Jamie:
     boolean isConnected = false; // this variable indicates whether we are connected to the database
-
- 
     // ** Global Database Variables
     String ip;
     String passStr;
@@ -72,57 +64,50 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     String ConnectionName;
     ArrayList taxonomyFields;
     //JLabel jLabel_ConnectionStatus;
-    
     //DefaultListModel jList_QueryGroupsListModel = new DefaultListModel();
     ArrayList taxonomyCategoriesList = new ArrayList();
-    LinkedHashMap<String, ArrayList<String>> DBConnections= new LinkedHashMap<String, ArrayList<String>>();
-    DefaultListModel jList_QuickFindResultsListModel=new DefaultListModel();
+    LinkedHashMap<String, ArrayList<String>> DBConnections = new LinkedHashMap<String, ArrayList<String>>();
+    DefaultListModel jList_QuickFindResultsListModel = new DefaultListModel();
     DefaultComboBoxModel jComboBox_SchemaTablesmodel = new DefaultComboBoxModel();
     DefaultComboBoxModel jComboBox_RecentDBListsmodel = new DefaultComboBoxModel();
-
     // Anu:
     //** Manage Query Group Variables 
-      // these are commented out because they were conflicting with teh JTree. Anu will address...
-  //  TreePath[] query_groups;
-  //  javax.swing.JScrollPane jScrollPane_SearchFieldsScrollPanel;
-  //  javax.swing.JTree jTree_SearchFields;
-
-  
+    // these are commented out because they were conflicting with teh JTree. Anu will address...
+    //  TreePath[] query_groups;
+    //  javax.swing.JScrollPane jScrollPane_SearchFieldsScrollPanel;
+    //  javax.swing.JTree jTree_SearchFields;
     //** Query Group List 
-    DefaultListModel JListModelBinA = new DefaultListModel();  
-    DefaultListModel JListModelBinB = new DefaultListModel();  
-    DefaultListModel JListModelBinC = new DefaultListModel(); 
-    
+    DefaultListModel JListModelBinA = new DefaultListModel();
+    DefaultListModel JListModelBinB = new DefaultListModel();
+    DefaultListModel JListModelBinC = new DefaultListModel();
     // Variable to delete items from binList    
-    int [] bin_indicesA;
-    int [] bin_indicesB;
-    int [] bin_indicesC;    
-    
+    int[] bin_indicesA;
+    int[] bin_indicesB;
+    int[] bin_indicesC;
     // String to store SQL query for getting common name from database 
-    String SQLWithQueryGroup=null;
-    
+    String SQLWithQueryGroup = null;
+
     // Resultset object for getting list of common names for each query group
     //ResultSet listCommonName;
-    
     /**
      * Creates new form HMM_ModelUI
      */
     public HMM_ModelUI() {
         // Jamie: initialize various elements that normally go in a setup() function
 
-       // initialize folderSelector so it only opens directories
-       folderSelector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-       folderSelector.setAcceptAllFileFilterUsed(false);
-                      
-       initComponents();
-       createDBConnectionsFolder();
-       readDBConnections();
-       
-       System.out.println("OUT DBConnectionsSize "+DBConnections.size());
-       loadRecentDBList();
-       
-    
-       
+        // initialize folderSelector so it only opens directories
+        folderSelector.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        folderSelector.setAcceptAllFileFilterUsed(false);
+
+        initComponents();
+        createDBConnectionsFolder();
+        readDBConnections();
+
+        System.out.println("OUT DBConnectionsSize " + DBConnections.size());
+        loadRecentDBList();
+
+
+
     }
 
     /**
@@ -388,6 +373,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jButton_SaveResults = new javax.swing.JButton();
         jButton_ClearResults = new javax.swing.JButton();
         ResultsGroup = new javax.swing.JButton();
+        jLabel22 = new javax.swing.JLabel();
         Help = new javax.swing.JPanel();
         jLabel_Help = new javax.swing.JLabel();
         jScrollPanel_HelpContentsScrollPanel = new javax.swing.JScrollPane();
@@ -556,6 +542,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jLabel_ConnectionName.getAccessibleContext().setAccessibleName("Name of Database Connection");
 
         portnumber.setText("3306");
+        portnumber.setToolTipText("Default is 3306");
         portnumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 portnumberActionPerformed(evt);
@@ -684,6 +671,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_SelectDB.add(jComboBox_RecentDBList, gridBagConstraints);
 
         jButton_ClearRecentDBList.setText("Clear");
+        jButton_ClearRecentDBList.setToolTipText("Remove from saved DB list");
         jButton_ClearRecentDBList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ClearRecentDBListActionPerformed(evt);
@@ -777,6 +765,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_SelectDB.add(jComboBox_SchemaTables, gridBagConstraints);
 
         jButton_saveDBConnection.setText("Save Connection");
+        jButton_saveDBConnection.setToolTipText("Save this connection information");
         jButton_saveDBConnection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_saveDBConnectionActionPerformed(evt);
@@ -2561,7 +2550,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jTreeBuildQueryGroupModel= new DefaultTreeModel(searchQuerytreeNode1);
         jTree_SearchFields=new JTree(jTreeBuildQueryGroupModel);
         jTree_SearchFields.setEditable(true);
-        jTree_SearchFields.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        jTree_SearchFields.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
         jTree_SearchFields.setShowsRootHandles(true);
         jScrollPane_SearchFieldsScrollPanel.setViewportView(jTree_SearchFields);
 
@@ -2691,7 +2680,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         QueryGrouptreeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Saved Query Groups");
         jTreeManageQueryGroupModel= new DefaultTreeModel(QueryGrouptreeNode1);        jTreeManageQueryGroup=new JTree(jTreeManageQueryGroupModel);
         jTreeManageQueryGroup.setEditable(true);
-        jTreeManageQueryGroup.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        jTreeManageQueryGroup.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
         jTreeManageQueryGroup.setShowsRootHandles(true);
         jScrollPane1.setViewportView(jTreeManageQueryGroup);
 
@@ -3140,9 +3129,19 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Container_QueryBuilder.add(jButton_NewSearch, gridBagConstraints);
 
         jButton_LoadSearch.setText("Load Search");
+        jButton_LoadSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_LoadSearchActionPerformed(evt);
+            }
+        });
         Container_QueryBuilder.add(jButton_LoadSearch, new java.awt.GridBagConstraints());
 
         jButton_SaveSearch.setText("Save Search");
+        jButton_SaveSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SaveSearchActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
@@ -3289,20 +3288,23 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 10, 0);
         Results.add(jLabel_Results, gridBagConstraints);
 
+        jScrollPane_ResultsWindowScrollPanel.setAutoscrolls(true);
+        jScrollPane_ResultsWindowScrollPanel.setMaximumSize(new java.awt.Dimension(454, 404));
+        jScrollPane_ResultsWindowScrollPanel.setMinimumSize(new java.awt.Dimension(454, 404));
+
         jTable_ResultsWindow.setAutoCreateRowSorter(true);
         jTable_ResultsWindow.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Gene Family ID", "Gene ID", "Organism", "Details on Demand"
             }
         ));
         jTable_ResultsWindow.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTable_ResultsWindow.setMaximumSize(new java.awt.Dimension(1024, 2400));
-        jTable_ResultsWindow.setMinimumSize(new java.awt.Dimension(600, 300));
-        jTable_ResultsWindow.setPreferredSize(new java.awt.Dimension(900, 300));
-        jTable_ResultsWindow.setRequestFocusEnabled(false);
+        jTable_ResultsWindow.setMinimumSize(new java.awt.Dimension(454, 404));
+        jTable_ResultsWindow.setPreferredSize(new java.awt.Dimension(900, 404));
         jTable_ResultsWindow.setRowMargin(2);
         jTable_ResultsWindow.setRowSelectionAllowed(false);
         jScrollPane_ResultsWindowScrollPanel.setViewportView(jTable_ResultsWindow);
@@ -3344,6 +3346,9 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 50);
         Results.add(ResultsGroup, gridBagConstraints);
+
+        jLabel22.setText("jLabel22");
+        Results.add(jLabel22, new java.awt.GridBagConstraints());
 
         jTabbedPane1.addTab("Results", Results);
 
@@ -3409,7 +3414,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     }//GEN-LAST:event_portnumberActionPerformed
 
     private void jButton_ConnectToDBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ConnectToDBActionPerformed
-       user = UserName.getText().trim();
+        user = UserName.getText().trim();
         char[] pass = Password.getPassword();
         passStr = new String(pass);
         ip = IPAddress.getText().trim();
@@ -3417,10 +3422,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         dbport = portnumber.getText().trim();
         ConnectionName = DBConnection.getText().trim();
         DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-        isConnected= connect.isConnected();
+        isConnected = connect.isConnected();
         if (isConnected) {
-            
-            connect.updateConnectionIcon(jLabel_ConnectedIcon,jLabel_ConnectToDBStatus, jLabel_YouAreConnected);
+
+            connect.updateConnectionIcon(jLabel_ConnectedIcon, jLabel_ConnectToDBStatus, jLabel_YouAreConnected);
             LinkedHashMap<String, ArrayList<String>> taxomonyTree = buildTaxonomyTree(connect, db);
             LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
             populateTaxonomyTree(taxomonyTree, connect);
@@ -3469,7 +3474,6 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     }//GEN-LAST:event_SequenceDatabasePathTextBoxActionPerformed
 
     private void CoreGenomeAccuracyThresholdTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdTextBoxActionPerformed
-        
     }//GEN-LAST:event_CoreGenomeAccuracyThresholdTextBoxActionPerformed
 
     private void SequenceEValueTextBoxTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SequenceEValueTextBoxTextBoxActionPerformed
@@ -3510,244 +3514,249 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void jButton_ClearSelectedItemsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearSelectedItemsActionPerformed
         // Anu: 
-       DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-        TreePath jTreeManageQueryGroupParentPath = jTreeManageQueryGroup.getSelectionPath();
-        DefaultMutableTreeNode queryGrpItem = (DefaultMutableTreeNode) (jTreeManageQueryGroupParentPath.getLastPathComponent());
-        DefaultMutableTreeNode queryGrpName = (DefaultMutableTreeNode) queryGrpItem.getParent();
-        removeQueryGrpItemFromTable(db, queryGrpName.toString(), queryGrpItem.toString(), connect);
-        LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
-        populateQueryGroupTree(queryGrpTree);
-        jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
-        jScrollPane1.setViewportView(jTreeManageQueryGroup);
+        DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+        TreePath[] jTreeManageQueryGroupParentPath = jTreeManageQueryGroup.getSelectionPaths();
+
+        for (TreePath selectedNodepath : jTreeManageQueryGroupParentPath) {
+
+            DefaultMutableTreeNode queryGrpItem = ((DefaultMutableTreeNode) selectedNodepath.getLastPathComponent());
+            DefaultMutableTreeNode queryGrpName = (DefaultMutableTreeNode) queryGrpItem.getParent();
+            removeQueryGrpItemFromTable(db, queryGrpName.toString(), queryGrpItem.toString(), connect);
+            LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
+            populateQueryGroupTree(queryGrpTree);
+            jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
+            jScrollPane1.setViewportView(jTreeManageQueryGroup);
+        }
+
         connect.closeDBConnect();
     }//GEN-LAST:event_jButton_ClearSelectedItemsActionPerformed
 
     private void jButton_BuildSQLqueryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BuildSQLqueryActionPerformed
         // TODO add your handling code here:
         // code to get list of query groups from each bin and use them to get taxa name from database
-       // contains taxa information for query groups in BinA //
+        // contains taxa information for query groups in BinA //
         String BinA_sql_query = null;
-        
-        int list_size_binA=JListModelBinA.getSize();     
-             
-        if(list_size_binA != 0){
-            
-                       
-            String operatorA=(String)jComboBox_BooleanOperatorA.getSelectedItem();
-           
-        
-          for(int i=0;i<list_size_binA;i++){
-           
-             Object inlistA=JListModelBinA.getElementAt(i); // get element in listA
-                      
-            // get the common name of all taxa in current selected query group of list A         
-                       
-          ResultSet listCommonName=getCommonNameForTaxa(db,(String) inlistA);
-          
-            
-            String SQLQueryAWithCommonName=null;
-            
-            try {
-                while(listCommonName.next()){
-                    // get common name for each resultset
-                    String commonName=listCommonName.getString("common_name");
-                    // if makeQueryWithCommonName is empty than
-                    if(SQLQueryAWithCommonName==null){ 
-                        // Because this is for BinA the value for profile is always 1                        
-                        SQLQueryAWithCommonName=commonName+"="+1;
-                    }else{
-                        //Add AND operator between common names in same query group                                           
-                        SQLQueryAWithCommonName=SQLQueryAWithCommonName+
-                                                " "+
-                                                operatorA+
-                                                " "+
-                                                commonName+"="+1;
+
+        int list_size_binA = JListModelBinA.getSize();
+
+        if (list_size_binA != 0) {
+
+
+            String operatorA = (String) jComboBox_BooleanOperatorA.getSelectedItem();
+
+
+            for (int i = 0; i < list_size_binA; i++) {
+
+                Object inlistA = JListModelBinA.getElementAt(i); // get element in listA
+
+                // get the common name of all taxa in current selected query group of list A         
+
+                ResultSet listCommonName = getCommonNameForTaxa(db, (String) inlistA);
+
+
+                String SQLQueryAWithCommonName = null;
+
+                try {
+                    while (listCommonName.next()) {
+                        // get common name for each resultset
+                        String commonName = listCommonName.getString("common_name");
+                        // if makeQueryWithCommonName is empty than
+                        if (SQLQueryAWithCommonName == null) {
+                            // Because this is for BinA the value for profile is always 1                        
+                            SQLQueryAWithCommonName = commonName + "=" + 1;
+                        } else {
+                            //Add AND operator between common names in same query group                                           
+                            SQLQueryAWithCommonName = SQLQueryAWithCommonName
+                                    + " "
+                                    + operatorA
+                                    + " "
+                                    + commonName + "=" + 1;
+                        }
                     }
+                    //Enclose in () brackets
+                    SQLQueryAWithCommonName = "(" + SQLQueryAWithCommonName + ")";
+
+                } catch (SQLException ex) {
+                    System.out.println("Error" + ex);
                 }
-                //Enclose in () brackets
-                SQLQueryAWithCommonName="("+SQLQueryAWithCommonName+")";
-                
-            } catch (SQLException ex) {
-                System.out.println("Error" + ex);
+
+                // Merge common names from each query group that are in same bin sperated by the operatorA
+                if (BinA_sql_query == null) {
+
+                    BinA_sql_query = SQLQueryAWithCommonName;
+                } else {
+
+                    BinA_sql_query = BinA_sql_query + " " + operatorA + " " + SQLQueryAWithCommonName;
+                }
             }
-            
-            // Merge common names from each query group that are in same bin sperated by the operatorA
-            if(BinA_sql_query==null){
-                
-                BinA_sql_query=SQLQueryAWithCommonName;
-            }else{
-             
-              BinA_sql_query=BinA_sql_query+" "+operatorA+" "+SQLQueryAWithCommonName; 
-            }                    
-          }        
-          System.out.println ("("+BinA_sql_query+")");
+            System.out.println("(" + BinA_sql_query + ")");
         }
         /////////////////////////////////////////////////////////////////////////////////
         // get all query group names from binB       
-       
+
         String BinB_sql_query = null;
-        
-        int list_size_binB=JListModelBinB.getSize();        
-         
-                   
-         String   operatorB=(String)jComboBox_BooleanOperatorB.getSelectedItem();
-       
-        
+
+        int list_size_binB = JListModelBinB.getSize();
+
+
+        String operatorB = (String) jComboBox_BooleanOperatorB.getSelectedItem();
+
+
         //Build su-query for binA ////
-        if(list_size_binB !=0){
-            
-          for(int i=0;i<list_size_binB;i++){            
-            Object inlistB=JListModelBinB.getElementAt(i);
-            
-                       
-             // get the common name of all taxa in current selected query group of list B              
-            ResultSet listCommonName= getCommonNameForTaxa(db,(String) inlistB);
-            
-            
-            String SQLQueryBWithCommonName=null;
-            
-            try {
-                while(listCommonName.next()){
-                    // get common name for each resultset
-                    String commonName=listCommonName.getString("common_name");
-                    // if makeQueryWithCommonName is empty than
-                    if(SQLQueryBWithCommonName==null){                            
-                        SQLQueryBWithCommonName=commonName+"="+1;
-                    }else{
-                        //Add AND operator for between common names in same query group                      
-                        SQLQueryBWithCommonName=SQLQueryBWithCommonName+
-                                                " "+
-                                                operatorB+
-                                                " "+
-                                                commonName+"="+1;
+        if (list_size_binB != 0) {
+
+            for (int i = 0; i < list_size_binB; i++) {
+                Object inlistB = JListModelBinB.getElementAt(i);
+
+
+                // get the common name of all taxa in current selected query group of list B              
+                ResultSet listCommonName = getCommonNameForTaxa(db, (String) inlistB);
+
+
+                String SQLQueryBWithCommonName = null;
+
+                try {
+                    while (listCommonName.next()) {
+                        // get common name for each resultset
+                        String commonName = listCommonName.getString("common_name");
+                        // if makeQueryWithCommonName is empty than
+                        if (SQLQueryBWithCommonName == null) {
+                            SQLQueryBWithCommonName = commonName + "=" + 1;
+                        } else {
+                            //Add AND operator for between common names in same query group                      
+                            SQLQueryBWithCommonName = SQLQueryBWithCommonName
+                                    + " "
+                                    + operatorB
+                                    + " "
+                                    + commonName + "=" + 1;
+                        }
                     }
+                    //Enclose in () brackets
+                    SQLQueryBWithCommonName = "(" + SQLQueryBWithCommonName + ")";
+
+                } catch (SQLException ex) {
+                    System.out.println("Error" + ex);
                 }
-                //Enclose in () brackets
-                SQLQueryBWithCommonName="("+SQLQueryBWithCommonName+")";
-                
-            } catch (SQLException ex) {
-               System.out.println("Error" + ex);
+
+                if (BinB_sql_query == null) {
+
+                    BinB_sql_query = SQLQueryBWithCommonName;
+                } else {
+                    BinB_sql_query = BinB_sql_query + " " + operatorB + " " + SQLQueryBWithCommonName;
+                }
             }
-            
-            if(BinB_sql_query==null){
-                
-                BinB_sql_query=SQLQueryBWithCommonName;
-            }else{              
-              BinB_sql_query=BinB_sql_query+" "+operatorB+" "+SQLQueryBWithCommonName;
-            }                    
-        }        
-           System.out.println ("("+BinB_sql_query+")");      
+            System.out.println("(" + BinB_sql_query + ")");
         }
         ////////////////////////////////////////////////////////////////////////
-        
+
         // get all query group names from binC        
-         
-         String BinC_sql_query = null;
-        int list_size_binC=JListModelBinC.getSize();
-        
-         
-                  
-        String  operatorC=(String)jComboBox_BooleanOperatorC.getSelectedItem();
-       
-        
+
+        String BinC_sql_query = null;
+        int list_size_binC = JListModelBinC.getSize();
+
+
+
+        String operatorC = (String) jComboBox_BooleanOperatorC.getSelectedItem();
+
+
         //Build su-query for binA ////
-        if(list_size_binC !=0){
-          for(int i=0;i<list_size_binC;i++){            
-            Object inlistC=JListModelBinC.getElementAt(i);          
-                      
-                       
-             // get the common name of all taxa in current selected query group of list C              
-            ResultSet listCommonName= getCommonNameForTaxa(db,(String) inlistC);
-            
-             
-             String SQLQueryCWithCommonName=null;
-             
-            try {
-                while(listCommonName.next()){
-                    // get common name for each resultset
-                    String commonName=listCommonName.getString("common_name");
-                    // if makeQueryWithCommonName is empty than
-                    if(SQLQueryCWithCommonName==null){ 
-                          
-                        SQLQueryCWithCommonName=commonName+"="+1;
-                    }else{
-                        //Add AND operator for between common names in same query group                       
-                        SQLQueryCWithCommonName=SQLQueryCWithCommonName+
-                                                " "+
-                                                operatorC+
-                                                " "+
-                                                commonName+"="+1;
+        if (list_size_binC != 0) {
+            for (int i = 0; i < list_size_binC; i++) {
+                Object inlistC = JListModelBinC.getElementAt(i);
+
+
+                // get the common name of all taxa in current selected query group of list C              
+                ResultSet listCommonName = getCommonNameForTaxa(db, (String) inlistC);
+
+
+                String SQLQueryCWithCommonName = null;
+
+                try {
+                    while (listCommonName.next()) {
+                        // get common name for each resultset
+                        String commonName = listCommonName.getString("common_name");
+                        // if makeQueryWithCommonName is empty than
+                        if (SQLQueryCWithCommonName == null) {
+
+                            SQLQueryCWithCommonName = commonName + "=" + 1;
+                        } else {
+                            //Add AND operator for between common names in same query group                       
+                            SQLQueryCWithCommonName = SQLQueryCWithCommonName
+                                    + " "
+                                    + operatorC
+                                    + " "
+                                    + commonName + "=" + 1;
+                        }
                     }
+                    //Enclose in () brackets
+                    SQLQueryCWithCommonName = "(" + SQLQueryCWithCommonName + ")";
+
+                } catch (SQLException ex) {
+                    System.out.println("Error" + ex);
                 }
-                //Enclose in () brackets
-               SQLQueryCWithCommonName="("+SQLQueryCWithCommonName+")";
-                
-            } catch (SQLException ex) {
-                System.out.println("Error" + ex);
+
+                if (BinC_sql_query == null) {
+                    BinC_sql_query = SQLQueryCWithCommonName;
+                } else {
+                    BinC_sql_query = BinC_sql_query + " " + operatorC + " " + SQLQueryCWithCommonName;
+                }
             }
-            
-           if(BinC_sql_query==null){               
-                BinC_sql_query=SQLQueryCWithCommonName;
-            }else{              
-              BinC_sql_query=BinC_sql_query+" "+operatorC+" "+SQLQueryCWithCommonName;
-            }              
-          }
-        
-           System.out.println ("("+BinC_sql_query+")");      
-        } 
+
+            System.out.println("(" + BinC_sql_query + ")");
+        }
         ////////////////////////////////////////////////////////////////////////////////////
-        
+
         // get operator between binA and bin B
-        
-                   
-          String  operatorAB=(String)jComboBox_BooleanOperatorAB.getSelectedItem();
-                   
+
+
+        String operatorAB = (String) jComboBox_BooleanOperatorAB.getSelectedItem();
+
         //get operator between binB and binC
-                  
-          String  operatorBC=(String)jComboBox_BooleanOperatorBC.getSelectedItem();
-        
-        
-       // SET OPERATOR BETWEEN THE BINS; If "AND NOT" / "OR NOT" is selected, respective
-       // operator is changed to AND / OR
-        if(BinA_sql_query!=null){
-          SQLWithQueryGroup="("+BinA_sql_query+")";  
+
+        String operatorBC = (String) jComboBox_BooleanOperatorBC.getSelectedItem();
+
+
+        // SET OPERATOR BETWEEN THE BINS; If "AND NOT" / "OR NOT" is selected, respective
+        // operator is changed to AND / OR
+        if (BinA_sql_query != null) {
+            SQLWithQueryGroup = "(" + BinA_sql_query + ")";
         }
-        if(BinB_sql_query!=null && BinA_sql_query!=null ){
-            if(operatorAB=="AND NOT"){                
-              BinB_sql_query=BinB_sql_query.replaceAll("=1", "=0");
-              operatorAB="AND";
-            }else if(operatorAB=="OR NOT"){
-              BinB_sql_query=BinB_sql_query.replaceAll("=1", "=0");
-              operatorAB="OR";
-            } 
-            SQLWithQueryGroup=SQLWithQueryGroup+" "+operatorAB+" "+"("+BinB_sql_query+")";
+        if (BinB_sql_query != null && BinA_sql_query != null) {
+            if (operatorAB == "AND NOT") {
+                BinB_sql_query = BinB_sql_query.replaceAll("=1", "=0");
+                operatorAB = "AND";
+            } else if (operatorAB == "OR NOT") {
+                BinB_sql_query = BinB_sql_query.replaceAll("=1", "=0");
+                operatorAB = "OR";
+            }
+            SQLWithQueryGroup = SQLWithQueryGroup + " " + operatorAB + " " + "(" + BinB_sql_query + ")";
         }
-        if(BinC_sql_query!=null && BinB_sql_query!=null){
-             if(operatorBC=="AND NOT"){                
-               BinC_sql_query=BinC_sql_query.replaceAll("=1", "=0"); 
-               operatorBC="AND";
-             }else if(operatorBC=="OR NOT"){
-               BinC_sql_query=BinC_sql_query.replaceAll("=1", "=0");
-               operatorBC="OR";
-             } 
-            SQLWithQueryGroup=SQLWithQueryGroup+" "+operatorBC+" "+"("+BinC_sql_query+")"; 
-        }      
-       
+        if (BinC_sql_query != null && BinB_sql_query != null) {
+            if (operatorBC == "AND NOT") {
+                BinC_sql_query = BinC_sql_query.replaceAll("=1", "=0");
+                operatorBC = "AND";
+            } else if (operatorBC == "OR NOT") {
+                BinC_sql_query = BinC_sql_query.replaceAll("=1", "=0");
+                operatorBC = "OR";
+            }
+            SQLWithQueryGroup = SQLWithQueryGroup + " " + operatorBC + " " + "(" + BinC_sql_query + ")";
+        }
+
         //show created query in query editor        
-        System.out.println(SQLWithQueryGroup); 
+        System.out.println(SQLWithQueryGroup);
         // Add the generated sql to the text area for display and manual editing
-        jTextArea_SQLsearchQuery.setText(SQLWithQueryGroup); 
-         
+        jTextArea_SQLsearchQuery.setText(SQLWithQueryGroup);
+
     }//GEN-LAST:event_jButton_BuildSQLqueryActionPerformed
 
     private void jButton_NewSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_NewSearchActionPerformed
         jTextArea_SQLsearchQuery.setText("");
-        ((DefaultListModel)jListBinA.getModel()).clear();
-      ((DefaultListModel)jListBinB.getModel()).clear();
-        ((DefaultListModel)jListBinC.getModel()).clear();
+        ((DefaultListModel) jListBinA.getModel()).removeAllElements();
+        ((DefaultListModel) jListBinB.getModel()).removeAllElements();
+        ((DefaultListModel) jListBinC.getModel()).removeAllElements();
         whichVennDiagram();
-      
-        
+
+
     }//GEN-LAST:event_jButton_NewSearchActionPerformed
 
     private void IPAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IPAddressActionPerformed
@@ -3759,21 +3768,20 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // This is vestigial. It can be removed if you remove the call to it as well.
     }//GEN-LAST:event_vennDiagramPropertyChange
 
-    
     private void whichVennDiagram() {
         // Jamie:
         //
         // This function gets whenever one of the BooleanOperator ComboBoxes are adjusted
         // It examines the contents of each search bin as well as the Boolean operators
         // and determines which Venn diagram to show.
-        
+
         // First, determine the contents of each element in the window.
         String booleanOperatorAB = jComboBox_BooleanOperatorAB.getSelectedItem().toString();
         String booleanOperatorBC = jComboBox_BooleanOperatorBC.getSelectedItem().toString();
-        
+
         //System.out.println("1: "+booleanOperatorAB);
         //System.out.println("2: "+booleanOperatorBC);
-        
+
         Boolean binBEmpty = false;
         if (jListBinB.getModel().getSize() == 0) {
             binBEmpty = true;
@@ -3786,182 +3794,146 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         if (jListBinA.getModel().getSize() == 0) {
             binAEmpty = true;
         }
-        
-         //System.out.println(binAEmpty +" "+binAEmpty+" "+binAEmpty);
-        
+
+        //System.out.println(binAEmpty +" "+binAEmpty+" "+binAEmpty);
+
         // Next, establish which Venn diagram to show based on settings
         String vennDiagramFilename = "/my/HMM_Model/";
         ///////////// ALL EMPTY
         if (binAEmpty && binBEmpty && binCEmpty) {
             vennDiagramFilename += "3Venn_empty.png";
-        }
-        //////////////// SINGLE BINS
+        } //////////////// SINGLE BINS
         // Only A
         else if (!binAEmpty && binBEmpty && binCEmpty) {
             vennDiagramFilename += "1Venn_A.png";
-        }
-        // Only B
+        } // Only B
         else if (binAEmpty && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "1Venn_B.png";
-        }
-        // Only C
+        } // Only C
         else if (binAEmpty && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "1Venn_C.png";
-        }
-        ///////////////////// DOUBLE BINS A / B
+        } ///////////////////// DOUBLE BINS A / B
         // A and B (C empty)
         else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AandB.png";
-        }
-        // A or B (C empty)
+        } // A or B (C empty)
         else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AorB.png";
-        }
-        // A not B (C empty)
+        } // A not B (C empty)
         else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AnotB.png";
-        }
-        // A not and B (C empty)
+        } // A not and B (C empty)
         else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && binCEmpty) {
             vennDiagramFilename += "2Venn_AornotB.png";
-        }
-        /////////////////// DOUBLE BINS B / C
+        } /////////////////// DOUBLE BINS B / C
         // B and C (A empty)
         else if (binAEmpty && booleanOperatorBC.equals("AND") && !binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_BandC.png";
-        }
-        // B or C (A empty)
+        } // B or C (A empty)
         else if (binAEmpty && booleanOperatorBC.equals("OR") && !binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_BorC.png";
-        }
-        // B not C (A empty)
+        } // B not C (A empty)
         else if (binAEmpty && booleanOperatorBC.equals("AND NOT") && !binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_BnotC.png";
-        }        
-        // B not and C (A empty)
+        } // B not and C (A empty)
         else if (binAEmpty && booleanOperatorBC.equals("OR NOT") && !binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_BornotC.png";
-        }
-        /////////////////// DOUBLE BINS A / C
+        } /////////////////// DOUBLE BINS A / C
         // A and C (B empty)
         else if (!binAEmpty && booleanOperatorBC.equals("AND") && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_AandC.png";
-        }
-        // A or C (B empty)
+        } // A or C (B empty)
         else if (!binAEmpty && booleanOperatorBC.equals("OR") && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_AorC.png";
-        }
-        // A not C (B empty)
+        } // A not C (B empty)
         else if (!binAEmpty && booleanOperatorBC.equals("AND NOT") && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_AnotC.png";
-        }        
-        // A not and C (B empty)
+        } // A not and C (B empty)
         else if (!binAEmpty && booleanOperatorBC.equals("OR NOT") && binBEmpty && !binCEmpty) {
             vennDiagramFilename += "2Venn_AornotC.png";
-        }   
-        ///////////////// TRIPLE BINS A / B / C
+        } ///////////////// TRIPLE BINS A / B / C
         // A and B and C - 1
         else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AandBandC.png";
-        }   
-        // A and B or C - 2
+        } // A and B or C - 2
         else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AandBorC.png";
-        }         
-        // A and B not C - 3
+        } // A and B not C - 3
         else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AandBnotC.png";
-        }            
-        // A and B not and C - 4
+        } // A and B not and C - 4
         else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_questionMark.png";
-        }        
-        //
+        } //
         //
         // A or B and C - 5
         else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AorBandC.png";
-        }   
-        // A or B or C - 6
+        } // A or B or C - 6
         else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AorBorC.png";
-        }         
-        // A or B not C - 7
+        } // A or B not C - 7
         else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AorBnotC.png";
-        }   
-        // A or B not and C - 8
+        } // A or B not and C - 8
         else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_questionMark.png";
-        }   
-        //
+        } //
         //
         // A not B and C - 9
         else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBandC.png";
-        }   
-        // A not B or C - 10
+        } // A not B or C - 10
         else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBorC.png";
-        }         
-        // A not B not C - 11
+        } // A not B not C - 11
         else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_AnotBnotC.png";
-        }   
-        // A not B not not and C - 12
+        } // A not B not not and C - 12
         else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_questionMark.png";
-        }   
-        //
+        } //
         //
         // A not and B and C - 13
         else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
             vennDiagramFilename += "3Venn_questionMark.png";
-        }   
-        // A not and B or C - 14
+        } // A not and B or C - 14
         else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
             vennDiagramFilename += "3Venn_questionMark.png";
-        }         
-        // A not and B not C - 15
+        } // A not and B not C - 15
         else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_questionMark.png";
-        }   
-        // A not and B not not and C - 16
+        } // A not and B not not and C - 16
         else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
             vennDiagramFilename += "3Venn_questionMark.png";
-        }     
-        
-        else vennDiagramFilename += "3Venn_questionMark.png";
+        } else {
+            vennDiagramFilename += "3Venn_questionMark.png";
+        }
 
-        
+
         // Finally, adjust the Venn diagram accordingly
         System.out.println(vennDiagramFilename);
         vennDiagram.setIcon(new javax.swing.ImageIcon(getClass().getResource(vennDiagramFilename)));
-        
-    }
-    
 
-    
-    
+    }
+
     private void jComboBox_BooleanOperatorAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorAActionPerformed
         // Jamie:
-       // JComboBox comboBoxA =(JComboBox) evt.getSource();        
-       // operatorA=(String)comboBoxA.getSelectedItem();
+        // JComboBox comboBoxA =(JComboBox) evt.getSource();        
+        // operatorA=(String)comboBoxA.getSelectedItem();
     }//GEN-LAST:event_jComboBox_BooleanOperatorAActionPerformed
 
     private void NumberDomainSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NumberDomainSliderStateChanged
         // Jamie: Use the value of the Slider to adjust value in TextField
         // if below 10, add another zero
         if (NumberDomainSlider.getValue() < 10) {
-            AccuracyThresholdTextBox.setText("0.0"+String.valueOf(NumberDomainSlider.getValue()));
+            AccuracyThresholdTextBox.setText("0.0" + String.valueOf(NumberDomainSlider.getValue()));
+        } else if (NumberDomainSlider.getValue() < 100) {
+            // else just show value
+            AccuracyThresholdTextBox.setText("0." + String.valueOf(NumberDomainSlider.getValue()));
+        } else {
+            AccuracyThresholdTextBox.setText(String.valueOf(NumberDomainSlider.getValue()));
         }
-        else if (NumberDomainSlider.getValue() < 100) {
-          // else just show value
-           AccuracyThresholdTextBox.setText("0."+String.valueOf(NumberDomainSlider.getValue()));
-        }
-        else {
-           AccuracyThresholdTextBox.setText(String.valueOf(NumberDomainSlider.getValue()));
-        }      
     }//GEN-LAST:event_NumberDomainSliderStateChanged
 
     private void SequenceIdentitySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_SequenceIdentitySliderStateChanged
@@ -3971,7 +3943,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void CoreGenomeAccuracyThresholdSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdSliderStateChanged
         // Jamie: Use the value of the Slider to adjust value in TextField
-        CoreGenomeAccuracyThresholdTextBox.setText(String.valueOf(CoreGenomeAccuracyThresholdSlider.getValue())); 
+        CoreGenomeAccuracyThresholdTextBox.setText(String.valueOf(CoreGenomeAccuracyThresholdSlider.getValue()));
     }//GEN-LAST:event_CoreGenomeAccuracyThresholdSliderStateChanged
 
     private void CoreGenomeAccuracyThresholdTextBoxInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdTextBoxInputMethodTextChanged
@@ -3982,55 +3954,55 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // Jamie: If user adjusts value of textBox, corresponding slider should change automatically
         // Taken from here: http://da2i.univ-lille1.fr/doc/tutorial-java/uiswing/components/slider.html
         if ("value".equals(evt.getPropertyName())) {
-            Number value = (Number)evt.getNewValue();
+            Number value = (Number) evt.getNewValue();
             if (CoreGenomeAccuracyThresholdSlider != null && value != null) {
                 CoreGenomeAccuracyThresholdSlider.setValue(value.intValue());
             }
-        }    
+        }
     }//GEN-LAST:event_CoreGenomeAccuracyThresholdTextBoxPropertyChange
 
     private void CoreGenomeAccuracyThresholdTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CoreGenomeAccuracyThresholdTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            CoreGenomeAccuracyThresholdSlider.setValue(CoreGenomeAccuracyThresholdSlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            CoreGenomeAccuracyThresholdSlider.setValue(CoreGenomeAccuracyThresholdSlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            CoreGenomeAccuracyThresholdSlider.setValue(CoreGenomeAccuracyThresholdSlider.getValue()+1);
-        } 
+        if (evt.getKeyCode() == 38) {
+            CoreGenomeAccuracyThresholdSlider.setValue(CoreGenomeAccuracyThresholdSlider.getValue() + 1);
+        }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
-            CoreGenomeAccuracyThresholdSlider.setValue( Integer.parseInt( CoreGenomeAccuracyThresholdTextBox.getText() ) );
+        if (evt.getKeyCode() == 10) {
+            CoreGenomeAccuracyThresholdSlider.setValue(Integer.parseInt(CoreGenomeAccuracyThresholdTextBox.getText()));
         }
     }//GEN-LAST:event_CoreGenomeAccuracyThresholdTextBoxKeyPressed
 
     private void AccuracyThresholdTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_AccuracyThresholdTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            NumberDomainSlider.setValue(NumberDomainSlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            NumberDomainSlider.setValue(NumberDomainSlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            NumberDomainSlider.setValue(NumberDomainSlider.getValue()+1);
+        if (evt.getKeyCode() == 38) {
+            NumberDomainSlider.setValue(NumberDomainSlider.getValue() + 1);
         }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
-            
+        if (evt.getKeyCode() == 10) {
+
             // get the text from the box
             String trimLeadingZero = AccuracyThresholdTextBox.getText();
 
             //remove leading Zero if there is one
-            if (trimLeadingZero.substring(0,1).equals("0")) {
+            if (trimLeadingZero.substring(0, 1).equals("0")) {
                 trimLeadingZero = trimLeadingZero.substring(1);
             }
             //remove leading . if there is one
-            if (trimLeadingZero.substring(0,1).equals(".")) {
+            if (trimLeadingZero.substring(0, 1).equals(".")) {
                 trimLeadingZero = trimLeadingZero.substring(1);
             }
-                        
-            NumberDomainSlider.setValue( Integer.parseInt( trimLeadingZero ) );
+
+            NumberDomainSlider.setValue(Integer.parseInt(trimLeadingZero));
         }
     }//GEN-LAST:event_AccuracyThresholdTextBoxKeyPressed
 
@@ -4042,32 +4014,32 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void SequenceIdentityTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SequenceIdentityTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40      
-        if ( evt.getKeyCode() == 40){
-            SequenceIdentitySlider.setValue(SequenceIdentitySlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            SequenceIdentitySlider.setValue(SequenceIdentitySlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            SequenceIdentitySlider.setValue(SequenceIdentitySlider.getValue()+1);
+        if (evt.getKeyCode() == 38) {
+            SequenceIdentitySlider.setValue(SequenceIdentitySlider.getValue() + 1);
         }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
-            SequenceIdentitySlider.setValue( Integer.parseInt( SequenceIdentityTextBox.getText() ) );
+        if (evt.getKeyCode() == 10) {
+            SequenceIdentitySlider.setValue(Integer.parseInt(SequenceIdentityTextBox.getText()));
         }
     }//GEN-LAST:event_SequenceIdentityTextBoxKeyPressed
 
     private void SequenceSimilarityTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SequenceSimilarityTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            SequenceSimilaritySlider.setValue(SequenceSimilaritySlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            SequenceSimilaritySlider.setValue(SequenceSimilaritySlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            SequenceSimilaritySlider.setValue(SequenceSimilaritySlider.getValue()+1);
+        if (evt.getKeyCode() == 38) {
+            SequenceSimilaritySlider.setValue(SequenceSimilaritySlider.getValue() + 1);
         }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
-            SequenceSimilaritySlider.setValue( Integer.parseInt( SequenceSimilarityTextBox.getText() ) );
+        if (evt.getKeyCode() == 10) {
+            SequenceSimilaritySlider.setValue(Integer.parseInt(SequenceSimilarityTextBox.getText()));
         }
     }//GEN-LAST:event_SequenceSimilarityTextBoxKeyPressed
 
@@ -4079,16 +4051,16 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void QueryCoverageTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_QueryCoverageTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            QueryCoverageSlider.setValue(QueryCoverageSlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            QueryCoverageSlider.setValue(QueryCoverageSlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            QueryCoverageSlider.setValue(QueryCoverageSlider.getValue()+1);
+        if (evt.getKeyCode() == 38) {
+            QueryCoverageSlider.setValue(QueryCoverageSlider.getValue() + 1);
         }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
-            QueryCoverageSlider.setValue( Integer.parseInt( QueryCoverageTextBox.getText() ) );
+        if (evt.getKeyCode() == 10) {
+            QueryCoverageSlider.setValue(Integer.parseInt(QueryCoverageTextBox.getText()));
         }
     }//GEN-LAST:event_QueryCoverageTextBoxKeyPressed
 
@@ -4100,16 +4072,16 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void TargetCoverageTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TargetCoverageTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            TargetCoverageSlider.setValue(TargetCoverageSlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            TargetCoverageSlider.setValue(TargetCoverageSlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            TargetCoverageSlider.setValue(TargetCoverageSlider.getValue()+1);
+        if (evt.getKeyCode() == 38) {
+            TargetCoverageSlider.setValue(TargetCoverageSlider.getValue() + 1);
         }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
-            TargetCoverageSlider.setValue( Integer.parseInt( TargetCoverageTextBox.getText() ) );
+        if (evt.getKeyCode() == 10) {
+            TargetCoverageSlider.setValue(Integer.parseInt(TargetCoverageTextBox.getText()));
         }
     }//GEN-LAST:event_TargetCoverageTextBoxKeyPressed
 
@@ -4121,16 +4093,16 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void MinimumPartialCoverageTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_MinimumPartialCoverageTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            MinimumPartialCoverageSlider.setValue(MinimumPartialCoverageSlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            MinimumPartialCoverageSlider.setValue(MinimumPartialCoverageSlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            MinimumPartialCoverageSlider.setValue(MinimumPartialCoverageSlider.getValue()+1);
+        if (evt.getKeyCode() == 38) {
+            MinimumPartialCoverageSlider.setValue(MinimumPartialCoverageSlider.getValue() + 1);
         }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
-            MinimumPartialCoverageSlider.setValue( Integer.parseInt( MinimumPartialCoverageTextBox.getText() ) );
+        if (evt.getKeyCode() == 10) {
+            MinimumPartialCoverageSlider.setValue(Integer.parseInt(MinimumPartialCoverageTextBox.getText()));
         }
     }//GEN-LAST:event_MinimumPartialCoverageTextBoxKeyPressed
 
@@ -4142,16 +4114,16 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void ChimeraIdentityTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChimeraIdentityTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            ChimeraIdentitySlider.setValue(ChimeraIdentitySlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            ChimeraIdentitySlider.setValue(ChimeraIdentitySlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            ChimeraIdentitySlider.setValue(ChimeraIdentitySlider.getValue()+1);
+        if (evt.getKeyCode() == 38) {
+            ChimeraIdentitySlider.setValue(ChimeraIdentitySlider.getValue() + 1);
         }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
-            ChimeraIdentitySlider.setValue( Integer.parseInt( ChimeraIdentityTextBox.getText() ) );
+        if (evt.getKeyCode() == 10) {
+            ChimeraIdentitySlider.setValue(Integer.parseInt(ChimeraIdentityTextBox.getText()));
         }
     }//GEN-LAST:event_ChimeraIdentityTextBoxKeyPressed
 
@@ -4163,29 +4135,27 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void ChimeraSimilarityTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChimeraSimilarityTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            ChimeraSimilaritySlider.setValue(ChimeraSimilaritySlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            ChimeraSimilaritySlider.setValue(ChimeraSimilaritySlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            ChimeraSimilaritySlider.setValue(ChimeraSimilaritySlider.getValue()+1);
+        if (evt.getKeyCode() == 38) {
+            ChimeraSimilaritySlider.setValue(ChimeraSimilaritySlider.getValue() + 1);
         }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
-            ChimeraSimilaritySlider.setValue( Integer.parseInt( ChimeraSimilarityTextBox.getText() ) );
+        if (evt.getKeyCode() == 10) {
+            ChimeraSimilaritySlider.setValue(Integer.parseInt(ChimeraSimilarityTextBox.getText()));
         }
     }//GEN-LAST:event_ChimeraSimilarityTextBoxKeyPressed
 
     private void ChimeraAccuracySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_ChimeraAccuracySliderStateChanged
         // Jamie: Use the value of the Slider to adjust value in TextField
         // if number is below 10, add another zero
-        if ( ChimeraAccuracySlider.getValue() < 10) {
-            ChimeraAccuracyTextBox.setText("0.0"+String.valueOf( ChimeraAccuracySlider.getValue()));
-        }
-        else if ( ChimeraAccuracySlider.getValue() < 100 )  {
-            ChimeraAccuracyTextBox.setText("0."+String.valueOf(ChimeraAccuracySlider.getValue()));
-        }
-        else if ( ChimeraAccuracySlider.getValue() == 100 )  {
+        if (ChimeraAccuracySlider.getValue() < 10) {
+            ChimeraAccuracyTextBox.setText("0.0" + String.valueOf(ChimeraAccuracySlider.getValue()));
+        } else if (ChimeraAccuracySlider.getValue() < 100) {
+            ChimeraAccuracyTextBox.setText("0." + String.valueOf(ChimeraAccuracySlider.getValue()));
+        } else if (ChimeraAccuracySlider.getValue() == 100) {
             ChimeraAccuracyTextBox.setText(String.valueOf(ChimeraAccuracySlider.getValue()));
         }
     }//GEN-LAST:event_ChimeraAccuracySliderStateChanged
@@ -4193,26 +4163,26 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void ChimeraAccuracyTextBoxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChimeraAccuracyTextBoxKeyPressed
         // Jamie: If user presses up and down arrow keys, the corresponding slider value adjusts accordingly.
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40){
-            ChimeraAccuracySlider.setValue(ChimeraAccuracySlider.getValue()-1);
+        if (evt.getKeyCode() == 40) {
+            ChimeraAccuracySlider.setValue(ChimeraAccuracySlider.getValue() - 1);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38){
-            ChimeraAccuracySlider.setValue(ChimeraAccuracySlider.getValue()+1);
+        if (evt.getKeyCode() == 38) {
+            ChimeraAccuracySlider.setValue(ChimeraAccuracySlider.getValue() + 1);
         }
         // if ENTER (which is keycode 10) then send value to slider
-        if ( evt.getKeyCode() == 10){
+        if (evt.getKeyCode() == 10) {
             String trimLeadingZero = ChimeraAccuracyTextBox.getText();
             //remove leading Zero if there is one
-            if (trimLeadingZero.substring(0,1).equals("0")) {
+            if (trimLeadingZero.substring(0, 1).equals("0")) {
                 trimLeadingZero = trimLeadingZero.substring(1);
             }
             //remove leading . if there is one
-            if (trimLeadingZero.substring(0,1).equals(".")) {
+            if (trimLeadingZero.substring(0, 1).equals(".")) {
                 trimLeadingZero = trimLeadingZero.substring(1);
             }
-            
-            ChimeraAccuracySlider.setValue( Integer.parseInt( trimLeadingZero ) );
+
+            ChimeraAccuracySlider.setValue(Integer.parseInt(trimLeadingZero));
         }
     }//GEN-LAST:event_ChimeraAccuracyTextBoxKeyPressed
 
@@ -4238,14 +4208,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // Jamie: when default button is pressed, restore default values to textBox and Slider
         // Values are hard-coded for now. Ideally there should be a lookup table.
         SequenceIdentitySlider.setValue(70);
-        SequenceIdentityTextBox.setText("70");        
+        SequenceIdentityTextBox.setText("70");
     }//GEN-LAST:event_SequenceIdentityDefaultMouseClicked
 
     private void SequenceSimilarityDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SequenceSimilarityDefaultMouseClicked
         // // Jamie: when default button is pressed, restore default values to textBox and Slider
         // Values are hard-coded for now. Ideally there should be a lookup table.
         SequenceSimilaritySlider.setValue(60);
-        SequenceSimilarityTextBox.setText("60");       
+        SequenceSimilarityTextBox.setText("60");
     }//GEN-LAST:event_SequenceSimilarityDefaultMouseClicked
 
     private void QueryCoverageDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QueryCoverageDefaultMouseClicked
@@ -4259,18 +4229,18 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // // Jamie: when default button is pressed, restore default values to textBox and Slider
         // Values are hard-coded for now. Ideally there should be a lookup table.
         TargetCoverageSlider.setValue(70);
-        TargetCoverageTextBox.setText("70");       
+        TargetCoverageTextBox.setText("70");
     }//GEN-LAST:event_TargetCoverageDefaultMouseClicked
 
     private void MinimumPartialCoverageDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MinimumPartialCoverageDefaultMouseClicked
         // // Jamie: when default button is pressed, restore default values to textBox and Slider
         // Values are hard-coded for now. Ideally there should be a lookup table.
         MinimumPartialCoverageSlider.setValue(5);
-        MinimumPartialCoverageTextBox.setText("5");       
+        MinimumPartialCoverageTextBox.setText("5");
     }//GEN-LAST:event_MinimumPartialCoverageDefaultMouseClicked
 
     private void ChimeraIdentityDefaultKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ChimeraIdentityDefaultKeyPressed
-     // Jamie: vestigial...
+        // Jamie: vestigial...
     }//GEN-LAST:event_ChimeraIdentityDefaultKeyPressed
 
     private void TaxonomyFileLoaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaxonomyFileLoaderActionPerformed
@@ -4278,16 +4248,15 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
         int returnValue = fileSelector.showOpenDialog(HMM_ModelUI.this);
-        
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = fileSelector.getSelectedFile(); 
+            File file = fileSelector.getSelectedFile();
             // now add the file name to the text box
             TaxonomyFilePathTextBox.setText(file.getPath());
-        }
-        else {
+        } else {
             System.out.println("Changed your mind, huh?");
         }
-        
+
     }//GEN-LAST:event_TaxonomyFileLoaderActionPerformed
 
     private void SequenceIdentityTextBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SequenceIdentityTextBoxActionPerformed
@@ -4298,7 +4267,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // // Jamie: when default button is pressed, restore default values to textBox and Slider
         // Values are hard-coded for now. Ideally there should be a lookup table.
         ChimeraIdentitySlider.setValue(50);
-        ChimeraIdentityTextBox.setText("50");   
+        ChimeraIdentityTextBox.setText("50");
     }//GEN-LAST:event_ChimeraIdentityDefaultMouseClicked
 
     private void ChimaraSimilarityDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ChimaraSimilarityDefaultMouseClicked
@@ -4327,13 +4296,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
         int returnValue = fileSelector.showOpenDialog(HMM_ModelUI.this);
-        
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = fileSelector.getSelectedFile(); 
+            File file = fileSelector.getSelectedFile();
             // now add the file name to the text box
             HMMDatabasePathTextBox.setText(file.getPath());
-        }
-        else {
+        } else {
             System.out.println("Changed your mind, huh?");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_HMMDatabaseFileSelectorActionPerformed
@@ -4343,13 +4311,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
         int returnValue = folderSelector.showOpenDialog(HMM_ModelUI.this);
-        
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = folderSelector.getSelectedFile(); 
+            File file = folderSelector.getSelectedFile();
             // now add the file name to the text box
             GroupAlignmentDirectoryPathTextBox.setText(file.getPath());
-        }
-        else {
+        } else {
             System.out.println("Changed your mind, huh?");
         }
     }//GEN-LAST:event_GroupAlignmentDirectoryFileSelectorActionPerformed
@@ -4359,13 +4326,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
         int returnValue = folderSelector.showOpenDialog(HMM_ModelUI.this);
-        
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = folderSelector.getSelectedFile(); 
+            File file = folderSelector.getSelectedFile();
             // now add the file name to the text box
             GroupModelDirectoryPathTextBox.setText(file.getPath());
-        }
-        else {
+        } else {
             System.out.println("Changed your mind, huh?");
         }
     }//GEN-LAST:event_GroupModelDirectoryFileSelectorActionPerformed
@@ -4375,13 +4341,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
         int returnValue = folderSelector.showOpenDialog(HMM_ModelUI.this);
-        
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = folderSelector.getSelectedFile(); 
+            File file = folderSelector.getSelectedFile();
             // now add the file name to the text box
             GroupSingletonDirectoryPathTextBox.setText(file.getPath());
-        }
-        else {
+        } else {
             System.out.println("Changed your mind, huh?");
         }
     }//GEN-LAST:event_GroupSingletonDirectoryFileSelectorActionPerformed
@@ -4391,15 +4356,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
         int returnValue = fileSelector.showOpenDialog(HMM_ModelUI.this);
-        
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = fileSelector.getSelectedFile(); 
+            File file = fileSelector.getSelectedFile();
             // now add the file name to the text box
             SequenceDatabasePathTextBox.setText(file.getPath());
-        }
-        else {
+        } else {
             System.out.println("Changed your mind, huh?");
-        }       
+        }
     }//GEN-LAST:event_SequenceDatabaseFileSelectorActionPerformed
 
     private void GroupFileFileSelectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GroupFileFileSelectorActionPerformed
@@ -4407,13 +4371,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
         int returnValue = fileSelector.showOpenDialog(HMM_ModelUI.this);
-        
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = fileSelector.getSelectedFile(); 
+            File file = fileSelector.getSelectedFile();
             // now add the file name to the text box
             GroupFilePathTextBox.setText(file.getPath());
-        }
-        else {
+        } else {
             System.out.println("Changed your mind, huh?");
         }
     }//GEN-LAST:event_GroupFileFileSelectorActionPerformed
@@ -4423,21 +4386,19 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
         int returnValue = fileSelector.showOpenDialog(HMM_ModelUI.this);
-        
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = fileSelector.getSelectedFile(); 
+            File file = fileSelector.getSelectedFile();
             // now add the file name to the text box
             GroupDistancePathTextBox.setText(file.getPath());
-        }
-        else {
+        } else {
             System.out.println("Changed your mind, huh?");
         }
     }//GEN-LAST:event_GroupDistanceFileSelectorActionPerformed
 
     private void jLabel_ConnectedIconPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jLabel_ConnectedIconPropertyChange
         // Jamie: 
-       // vestigial 
-       
+        // vestigial 
     }//GEN-LAST:event_jLabel_ConnectedIconPropertyChange
 
     private void SequenceEValueDefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SequenceEValueDefaultMouseClicked
@@ -4470,12 +4431,12 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         Double boxValue = Double.parseDouble(SequenceEValueTextBox.getText());
         //boxValue.setPrecision(4);
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40  && boxValue > 0.00001){
+        if (evt.getKeyCode() == 40 && boxValue > 0.00001) {
             boxValue = boxValue - 0.00001;
             SequenceEValueTextBox.setText(boxValue.toString());
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38 && boxValue < 1){
+        if (evt.getKeyCode() == 38 && boxValue < 1) {
             boxValue = boxValue + 0.00001;
             SequenceEValueTextBox.setText(boxValue.toString());
         }
@@ -4486,14 +4447,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         /// NOTE: THIS IS BUGGY. NUMBERS DON'T ADD/SUBTRACT PROPERLY...
         double boxValue = Double.parseDouble(DomainEValueTextBox.getText());
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40  && boxValue > 0.00001){
+        if (evt.getKeyCode() == 40 && boxValue > 0.00001) {
             boxValue = boxValue - 0.00001;
-            DomainEValueTextBox.setText(""+boxValue);
+            DomainEValueTextBox.setText("" + boxValue);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38 && boxValue < 1){
+        if (evt.getKeyCode() == 38 && boxValue < 1) {
             boxValue = boxValue + 0.00001;
-            DomainEValueTextBox.setText(""+boxValue);
+            DomainEValueTextBox.setText("" + boxValue);
         }
     }//GEN-LAST:event_DomainEValueTextBoxKeyPressed
 
@@ -4502,14 +4463,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         /// NOTE: THIS IS BUGGY. NUMBERS DON'T ADD/SUBTRACT PROPERLY...
         double boxValue = Double.parseDouble(IncludeSequenceEValueTextBox.getText());
         // DOWN ARROW is keycode 40
-        if ( evt.getKeyCode() == 40  && boxValue > 0.00001){
+        if (evt.getKeyCode() == 40 && boxValue > 0.00001) {
             boxValue = boxValue - 0.00001;
-            IncludeSequenceEValueTextBox.setText(""+boxValue);
+            IncludeSequenceEValueTextBox.setText("" + boxValue);
         }
         // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38 && boxValue < 1){
+        if (evt.getKeyCode() == 38 && boxValue < 1) {
             boxValue = boxValue + 0.00001;
-            IncludeSequenceEValueTextBox.setText(""+boxValue);
+            IncludeSequenceEValueTextBox.setText("" + boxValue);
         }
     }//GEN-LAST:event_IncludeSequenceEValueTextBoxKeyPressed
 
@@ -4519,20 +4480,20 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         double boxValue = Double.parseDouble(IncludeDomainEvalueTextBox.getText());
         // DOWN ARROW is keycode 40
       /*  if ( evt.getKeyCode() == 40  && boxValue > 0.00001){
-            boxValue = boxValue - 0.00001;
-            IncludeDomainEvalueTextBox.setText(""+boxValue);
-        }
-        // UP ARROW is keycode 38
-        if ( evt.getKeyCode() == 38 && boxValue < 1){
-            boxValue = boxValue + 0.00001;
-            IncludeDomainEvalueTextBox.setText(""+boxValue);
-        } */
+         boxValue = boxValue - 0.00001;
+         IncludeDomainEvalueTextBox.setText(""+boxValue);
+         }
+         // UP ARROW is keycode 38
+         if ( evt.getKeyCode() == 38 && boxValue < 1){
+         boxValue = boxValue + 0.00001;
+         IncludeDomainEvalueTextBox.setText(""+boxValue);
+         } */
     }//GEN-LAST:event_IncludeDomainEvalueTextBoxMouseClicked
 
     private void jComboBox_BooleanOperatorBCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorBCActionPerformed
         //
-       // JComboBox comboBoxBC =(JComboBox) evt.getSource();        
-       // operatorBC=(String)comboBoxBC.getSelectedItem();
+        // JComboBox comboBoxBC =(JComboBox) evt.getSource();        
+        // operatorBC=(String)comboBoxBC.getSelectedItem();
         // This function calls the whichVennDiagram() function whenever a Boolean operator combo box is selected
         // or when query groups are added or deleted from the text box bins.
         whichVennDiagram();
@@ -4540,8 +4501,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void jComboBox_BooleanOperatorABActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorABActionPerformed
         //
-       // JComboBox comboBoxAB =(JComboBox) evt.getSource();        
-       // operatorAB=(String)comboBoxAB.getSelectedItem();
+        // JComboBox comboBoxAB =(JComboBox) evt.getSource();        
+        // operatorAB=(String)comboBoxAB.getSelectedItem();
         // This function calls the whichVennDiagram() function whenever a Boolean operator combo box is selected
         // or when query groups are added or deleted from the text box bins.
         whichVennDiagram();
@@ -4549,14 +4510,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
     private void jComboBox_BooleanOperatorBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorBActionPerformed
         // TODO add your handling code here:
-     //   JComboBox comboBoxB =(JComboBox) evt.getSource();        
-     //   operatorB=(String)comboBoxB.getSelectedItem();
+        //   JComboBox comboBoxB =(JComboBox) evt.getSource();        
+        //   operatorB=(String)comboBoxB.getSelectedItem();
     }//GEN-LAST:event_jComboBox_BooleanOperatorBActionPerformed
 
     private void jComboBox_BooleanOperatorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorCActionPerformed
         // TODO add your handling code here:
-      //  JComboBox comboBoxC =(JComboBox) evt.getSource();        
-      //  operatorC=(String)comboBoxC.getSelectedItem();
+        //  JComboBox comboBoxC =(JComboBox) evt.getSource();        
+        //  operatorC=(String)comboBoxC.getSelectedItem();
     }//GEN-LAST:event_jComboBox_BooleanOperatorCActionPerformed
 
     private void AccuracyThresholdSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AccuracyThresholdSlider1StateChanged
@@ -4566,11 +4527,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void jButton_ClearBinAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearBinAActionPerformed
         // Jamie:
         // Button push clears text bin.
-        int size_delete_list=bin_indicesA.length;
-        for(int i=size_delete_list-1;i>=0;i--){                      
-           Object delete_group=JListModelBinA.getElementAt(bin_indicesA[i]);
-           JListModelBinA.removeElement(delete_group);
-       }
+        int size_delete_list = bin_indicesA.length;
+        for (int i = size_delete_list - 1; i >= 0; i--) {
+            Object delete_group = JListModelBinA.getElementAt(bin_indicesA[i]);
+            JListModelBinA.removeElement(delete_group);
+        }
         //jTextArea_SearchBinA.setText("");
         whichVennDiagram();
     }//GEN-LAST:event_jButton_ClearBinAActionPerformed
@@ -4578,11 +4539,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void jButton_ClearBinBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearBinBActionPerformed
         // Jamie:
         // Button push clears text bin.
-        int size_delete_list=bin_indicesB.length;
-        for(int i=size_delete_list-1;i>=0;i--){                      
-           Object delete_group=JListModelBinB.getElementAt(bin_indicesB[i]);
-           JListModelBinB.removeElement(delete_group);
-       }
+        int size_delete_list = bin_indicesB.length;
+        for (int i = size_delete_list - 1; i >= 0; i--) {
+            Object delete_group = JListModelBinB.getElementAt(bin_indicesB[i]);
+            JListModelBinB.removeElement(delete_group);
+        }
         //jTextArea_SearchBinB.setText("");
         whichVennDiagram();
 
@@ -4591,11 +4552,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private void jButton_ClearBinCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearBinCActionPerformed
         // Jamie:
         // Button push clears text bin.
-        int size_delete_list=bin_indicesC.length;
-        for(int i=size_delete_list-1;i>=0;i--){                      
-           Object delete_group=JListModelBinC.getElementAt(bin_indicesC[i]);
-           JListModelBinC.removeElement(delete_group);
-       }
+        int size_delete_list = bin_indicesC.length;
+        for (int i = size_delete_list - 1; i >= 0; i--) {
+            Object delete_group = JListModelBinC.getElementAt(bin_indicesC[i]);
+            JListModelBinC.removeElement(delete_group);
+        }
         //jTextArea_SearchBinC.setText("");
         whichVennDiagram();
 
@@ -4606,7 +4567,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_AssignToBinAComponentShown
 
     private void jButtonAddQueryGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddQueryGroupActionPerformed
-String queryGroupName;
+        String queryGroupName;
         queryGroupName = JOptionPane.showInputDialog(this, "Enter a name for your query group :", "Query Group Name", JOptionPane.PLAIN_MESSAGE);
 
         if ((queryGroupName != null) && (queryGroupName.length() > 0)) {
@@ -4622,7 +4583,7 @@ String queryGroupName;
                 jTreeManageQueryGroup.setSelectionPath(grpNameNodePath);
                 jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
                 jScrollPane1.setViewportView(jTreeManageQueryGroup);
-                DefaultListModel jList_QueryGroupsListModel =(DefaultListModel) jList_QueryGroups.getModel();
+                DefaultListModel jList_QueryGroupsListModel = (DefaultListModel) jList_QueryGroups.getModel();
                 int insertIndex = jList_QueryGroupsListModel.getSize();
                 jList_QueryGroupsListModel.insertElementAt((String) queryGroupName, insertIndex);
                 jList_QueryGroups.setModel(jList_QueryGroupsListModel);
@@ -4643,11 +4604,11 @@ String queryGroupName;
 
     private void jList_QuickFindResultsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList_QuickFindResultsValueChanged
         // TODO add your handling code here:
-        
-         Object selectedValue=jList_QuickFindResults.getSelectedValue();
+
+        Object selectedValue = jList_QuickFindResults.getSelectedValue();
         //DefaultMutableTreeNode treeNode = new DefaultMutableTreeNode(selectedValue);
-        TreePath selectedNodeTreePath=findNodeTreePath(searchQuerytreeNode1, (String) selectedValue);
-        System.out.println("IN jList_QuickFindResultsValueChanged "+selectedNodeTreePath);
+        TreePath selectedNodeTreePath = findNodeTreePath(searchQuerytreeNode1, (String) selectedValue);
+        System.out.println("IN jList_QuickFindResultsValueChanged " + selectedNodeTreePath);
         jTree_SearchFields.scrollPathToVisible(selectedNodeTreePath);
         jTree_SearchFields.setSelectionPath(selectedNodeTreePath);
         jScrollPane_SearchFieldsScrollPanel.setViewportView(jTree_SearchFields);
@@ -4655,64 +4616,56 @@ String queryGroupName;
 
     private void jButton_FindActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_FindActionPerformed
         DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-        loadSearchHits(connect,db);  
+        loadSearchHits(connect, db);
         connect.closeDBConnect();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton_FindActionPerformed
 
     private void jButton_addtoquerygroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_addtoquerygroupActionPerformed
-        // TODO add your handling code here:
-        
-         // TODO add your handling code here:
-        TreePath searchFieldsparentPath = jTree_SearchFields.getSelectionPath();
+        TreePath[] searchFieldsSelectionPath = jTree_SearchFields.getSelectionPaths();
+        System.out.println("searchFieldsparentPath " + searchFieldsSelectionPath.length);
         TreePath jTreeManageQueryGroupParentPath = jTreeManageQueryGroup.getSelectionPath();
-        DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) (jTreeManageQueryGroupParentPath.getLastPathComponent());
-
-        if ((searchFieldsparentPath.getPathCount() - 1) > 7) {
-
-            //DefaultMutableTreeNode grpNameNode = addObject(parentNode, (Object) searchFieldsparentPath.getLastPathComponent(), QueryGrouptreeNode1, jTreeManageQueryGroup, (DefaultTreeModel) jTreeManageQueryGroup.getModel());
-            //jTreeManageQueryGroup.setSelectionPath(grpNameNodeParentPath);
-            //TreeNode[] nodes = ((DefaultTreeModel) jTreeManageQueryGroup.getModel()).getPathToRoot(parentNode);
-            //TreePath tpath = new TreePath(nodes);
-            //jTreeManageQueryGroup.scrollPathToVisible(tpath);
-            //jTreeManageQueryGroup.setSelectionPath(tpath);
-            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-            addQuerygrpvaluetodb(db, parentNode.toString(), searchFieldsparentPath.getLastPathComponent().toString(), connect);
-            LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
-             populateQueryGroupTree(queryGrpTree);
-            loadDBQueryGroups(connect);
-            connect.closeDBConnect();
-            jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
-            jScrollPane1.setViewportView(jTreeManageQueryGroup);
-
-
+        if (jTreeManageQueryGroupParentPath == null || searchFieldsSelectionPath == null) {
+            JOptionPane.showMessageDialog(null, "Please ensure that a query group and\na search group are selected.");
         } else {
-            int taxacount = (searchFieldsparentPath.getPathCount() - 2);
-            System.out.println("taxacount " + taxacount + " searchFieldsparentPath.getLastPathComponent().toString() " + searchFieldsparentPath.getLastPathComponent().toString());
-            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-            ArrayList queryGrpValues = getQueryGrpValues(db, taxacount, searchFieldsparentPath.getLastPathComponent().toString(), connect);
-            for (Object s : queryGrpValues) {
-                //DefaultMutableTreeNode grpNameNode = addObject(parentNode, s, QueryGrouptreeNode1, jTreeManageQueryGroup, (DefaultTreeModel) jTreeManageQueryGroup.getModel());
-                //jTreeManageQueryGroup.setSelectionPath(grpNameNodeParentPath);
-                //TreeNode[] nodes = ((DefaultTreeModel) jTreeManageQueryGroup.getModel()).getPathToRoot(parentNode);
-                //TreePath tpath = new TreePath(nodes);
-                //jTreeManageQueryGroup.scrollPathToVisible(tpath);
-                //jTreeManageQueryGroup.setSelectionPath(tpath);
-                addQuerygrpvaluetodb(db, parentNode.toString(), s.toString(), connect);
-            }
-            LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
-            populateQueryGroupTree(queryGrpTree);
-            loadDBQueryGroups(connect);
-            connect.closeDBConnect();
-            jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
-            jScrollPane1.setViewportView(jTreeManageQueryGroup);
-        }
+            DefaultMutableTreeNode parentNode = (DefaultMutableTreeNode) (jTreeManageQueryGroupParentPath.getLastPathComponent());
+            for (TreePath selectedNodepath : searchFieldsSelectionPath) {
 
-       
+                if ((selectedNodepath.getPathCount() - 1) > 7) {
+
+                    DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+                    addQuerygrpvaluetodb(db, parentNode.toString(), selectedNodepath.getLastPathComponent().toString(), connect);
+                    LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
+                    populateQueryGroupTree(queryGrpTree);
+                    loadDBQueryGroups(connect);
+                    connect.closeDBConnect();
+
+                } else {
+                    int taxacount = (selectedNodepath.getPathCount() - 2);
+                    System.out.println("taxacount " + taxacount + " selectedTreeNodepath.getLastPathComponent().toString() " + selectedNodepath.getLastPathComponent().toString());
+                    DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+                    ArrayList queryGrpValues = getQueryGrpValues(db, taxacount, selectedNodepath.getLastPathComponent().toString(), connect);
+                    for (Object s : queryGrpValues) {
+                        addQuerygrpvaluetodb(db, parentNode.toString(), s.toString(), connect);
+                    }
+                    LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
+                    populateQueryGroupTree(queryGrpTree);
+                    loadDBQueryGroups(connect);
+                    connect.closeDBConnect();
+
+                }
+                TreePath selectedNodeTreePath = findNodeTreePath(QueryGrouptreeNode1, parentNode.toString());
+                jTreeManageQueryGroup.setModel(new DefaultTreeModel(QueryGrouptreeNode1));
+                jTreeManageQueryGroup.scrollPathToVisible(selectedNodeTreePath);
+                jTreeManageQueryGroup.setSelectionPath(selectedNodeTreePath);
+                jScrollPane1.setViewportView(jTreeManageQueryGroup);
+
+            }
+        }
     }//GEN-LAST:event_jButton_addtoquerygroupActionPerformed
 
     private void jButton_DeleteGroupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DeleteGroupActionPerformed
         // TODO add your handling code here:
-        
+
         DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
         TreePath jTreeManageQueryGroupParentPath = jTreeManageQueryGroup.getSelectionPath();
         DefaultMutableTreeNode queryGrpName = (DefaultMutableTreeNode) (jTreeManageQueryGroupParentPath.getLastPathComponent());
@@ -4726,27 +4679,7 @@ String queryGroupName;
     }//GEN-LAST:event_jButton_DeleteGroupActionPerformed
 
     private void jButton_AssignToBinAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AssignToBinAActionPerformed
-        // TODO add your handling code here:
-           // Get index value for the selected query group from Query Group List
-        
-        int[] selected_query_group_indices=jList_QueryGroups.getSelectedIndices();
-        
-        int current_index_binA= jListBinA.getSelectedIndex(); //check for last index value of BinA list
-        
-        if(current_index_binA==-1){            
-            current_index_binA=0;
-        }else{            
-           current_index_binA++; 
-        }
-        
-        int size_selected_array=selected_query_group_indices.length;
-                
-        for(int i=0;i<size_selected_array;i++){  
-            DefaultListModel jList_QueryGroupsListModel =(DefaultListModel) jList_QueryGroups.getModel();
-            Object selected_group=jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
-            JListModelBinA.addElement(selected_group);
-        }
-        whichVennDiagram();
+        populateBinA();
     }//GEN-LAST:event_jButton_AssignToBinAActionPerformed
 
     private void jList_QueryGroupsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList_QueryGroupsValueChanged
@@ -4754,24 +4687,24 @@ String queryGroupName;
     }//GEN-LAST:event_jList_QueryGroupsValueChanged
 
     private void jButton_AssignToBinBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AssignToBinBActionPerformed
-         // TODO add your handling code here:
-           // Get index value for the selected query group from Query Group List
-        
-        int[] selected_query_group_indices=jList_QueryGroups.getSelectedIndices();
-        
-        int current_index_binB= jListBinB.getSelectedIndex(); //check for last index value of BinA list
-        
-        if(current_index_binB==-1){            
-            current_index_binB=0;
-        }else{            
-           current_index_binB++; 
+        // TODO add your handling code here:
+        // Get index value for the selected query group from Query Group List
+
+        int[] selected_query_group_indices = jList_QueryGroups.getSelectedIndices();
+
+        int current_index_binB = jListBinB.getSelectedIndex(); //check for last index value of BinA list
+
+        if (current_index_binB == -1) {
+            current_index_binB = 0;
+        } else {
+            current_index_binB++;
         }
-        
-        int size_selected_array=selected_query_group_indices.length;     
-             
-        for(int i=0;i<size_selected_array;i++){  
-            DefaultListModel jList_QueryGroupsListModel =(DefaultListModel) jList_QueryGroups.getModel();
-            Object selected_group=jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
+
+        int size_selected_array = selected_query_group_indices.length;
+
+        for (int i = 0; i < size_selected_array; i++) {
+            DefaultListModel jList_QueryGroupsListModel = (DefaultListModel) jList_QueryGroups.getModel();
+            Object selected_group = jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
             JListModelBinB.addElement(selected_group);
         }
         whichVennDiagram();
@@ -4779,49 +4712,49 @@ String queryGroupName;
 
     private void jButton_AssignToBinCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AssignToBinCActionPerformed
         // TODO add your handling code here:
-        
-           // Get index value for the selected query group from Query Group List
-        
-        int[] selected_query_group_indices=jList_QueryGroups.getSelectedIndices();
-        
-        int current_index_binC= jListBinA.getSelectedIndex(); //check for last index value of BinA list
-        
-        if(current_index_binC==-1){            
-            current_index_binC=0;
-        }else{            
-           current_index_binC++; 
+
+        // Get index value for the selected query group from Query Group List
+
+        int[] selected_query_group_indices = jList_QueryGroups.getSelectedIndices();
+
+        int current_index_binC = jListBinA.getSelectedIndex(); //check for last index value of BinA list
+
+        if (current_index_binC == -1) {
+            current_index_binC = 0;
+        } else {
+            current_index_binC++;
         }
-        
-        int size_selected_array=selected_query_group_indices.length;        
-              
-        for(int i=0;i<size_selected_array;i++){  
-            DefaultListModel jList_QueryGroupsListModel =(DefaultListModel) jList_QueryGroups.getModel();
-            Object selected_group=jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
+
+        int size_selected_array = selected_query_group_indices.length;
+
+        for (int i = 0; i < size_selected_array; i++) {
+            DefaultListModel jList_QueryGroupsListModel = (DefaultListModel) jList_QueryGroups.getModel();
+            Object selected_group = jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
             JListModelBinC.addElement(selected_group);
-        } 
+        }
         whichVennDiagram();
     }//GEN-LAST:event_jButton_AssignToBinCActionPerformed
 
     private void jListBinAValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListBinAValueChanged
         // TODO add your handling code here:
-          bin_indicesA=jListBinA.getSelectedIndices(); 
-          
+        bin_indicesA = jListBinA.getSelectedIndices();
+
     }//GEN-LAST:event_jListBinAValueChanged
 
     private void jListBinBValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListBinBValueChanged
         // TODO add your handling code here:
-          bin_indicesB=jListBinB.getSelectedIndices(); 
-          
+        bin_indicesB = jListBinB.getSelectedIndices();
+
     }//GEN-LAST:event_jListBinBValueChanged
 
     private void jListBinCValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListBinCValueChanged
         // TODO add your handling code here:
-          bin_indicesC=jListBinC.getSelectedIndices();          
+        bin_indicesC = jListBinC.getSelectedIndices();
     }//GEN-LAST:event_jListBinCValueChanged
 
     private void jButton_saveDBConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_saveDBConnectionActionPerformed
         // TODO add your handling code here:
-        
+
         user = UserName.getText().trim();
         char[] pass = Password.getPassword();
         passStr = new String(pass);
@@ -4829,27 +4762,24 @@ String queryGroupName;
         db = DBName.getText().trim();
         dbport = portnumber.getText().trim();
         ConnectionName = DBConnection.getText().trim();
-               
-        if((user.equals("") || passStr.equals("") || ip.equals("") || dbport.equals("") || ConnectionName.equals("")))
-        {
+
+        if ((user.equals("") || passStr.equals("") || ip.equals("") || dbport.equals("") || ConnectionName.equals(""))) {
             JOptionPane.showMessageDialog(null, "Please ensure all fields are filled in \nand the database credentials are correct.\n To test the database credentials click the test connection button.");
-        }
-        else
-        {
-            try{
+        } else {
+            try {
                 addNewDBConnections();
                 readDBConnections();
-               loadRecentDBList();
-            }catch (Exception e) {
-            System.out.println(e);
-           }
+                loadRecentDBList();
+            } catch (Exception e) {
+                System.out.println(e);
+            }
         }
-       
+
     }//GEN-LAST:event_jButton_saveDBConnectionActionPerformed
 
     private void jButton_TestConnectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_TestConnectionActionPerformed
         // TODO add your handling code here:
-        
+
         user = UserName.getText().trim();
         char[] pass = Password.getPassword();
         passStr = new String(pass);
@@ -4858,12 +4788,10 @@ String queryGroupName;
         dbport = portnumber.getText().trim();
         ConnectionName = DBConnection.getText().trim();
         DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-        isConnected= connect.isConnected();
+        isConnected = connect.isConnected();
         if (isConnected) {
-           jLabel_ConnectionStatus.setText("Status: OK");
-        }
-        else
-        {
+            jLabel_ConnectionStatus.setText("Status: OK");
+        } else {
             jLabel_ConnectionStatus.setText("Status: Not Connected");
         }
         connect.closeDBConnect();
@@ -4871,23 +4799,23 @@ String queryGroupName;
 
     private void jComboBox_RecentDBListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox_RecentDBListItemStateChanged
         // TODO add your handling code here:
-        String recentDB =jComboBox_RecentDBListsmodel.getSelectedItem().toString();
-         ArrayList DBCreds=DBConnections.get(recentDB);
-         UserName.setText(DBCreds.get(0).toString());
-         IPAddress.setText(DBCreds.get(1).toString());
-         DBName.setText(DBCreds.get(3).toString());
-         portnumber.setText(DBCreds.get(2).toString());
-         DBConnection.setText(recentDB);
-        
+        String recentDB = jComboBox_RecentDBListsmodel.getSelectedItem().toString();
+        ArrayList DBCreds = DBConnections.get(recentDB);
+        UserName.setText(DBCreds.get(0).toString());
+        IPAddress.setText(DBCreds.get(1).toString());
+        DBName.setText(DBCreds.get(3).toString());
+        portnumber.setText(DBCreds.get(2).toString());
+        DBConnection.setText(recentDB);
+
     }//GEN-LAST:event_jComboBox_RecentDBListItemStateChanged
 
     private void jButton_ClearRecentDBListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearRecentDBListActionPerformed
         // TODO add your handling code here:
-         UserName.setText("");
-         IPAddress.setText("");
-         DBName.setText("");
-         portnumber.setText("3306");
-         DBConnection.setText("");
+        UserName.setText("");
+        IPAddress.setText("");
+        DBName.setText("");
+        portnumber.setText("3306");
+        DBConnection.setText("");
     }//GEN-LAST:event_jButton_ClearRecentDBListActionPerformed
 
     private void jComboBox_SchemaTablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_SchemaTablesActionPerformed
@@ -4896,14 +4824,13 @@ String queryGroupName;
 
     private void jComboBox_SchemaTablesPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jComboBox_SchemaTablesPropertyChange
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_jComboBox_SchemaTablesPropertyChange
 
     private void jComboBox_SchemaTablesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBox_SchemaTablesMouseReleased
-  //System.out.println("ACTIONCOMMAND "+evt.getActionCommand().toString());
-        String schema =jComboBox_SchemaTablesmodel.getSelectedItem().toString();
-         DBName.setText(schema);
-         db = DBName.getText().trim();        // TODO add your handling code here:
+        //System.out.println("ACTIONCOMMAND "+evt.getActionCommand().toString());
+        String schema = jComboBox_SchemaTablesmodel.getSelectedItem().toString();
+        DBName.setText(schema);
+        db = DBName.getText().trim();        // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_SchemaTablesMouseReleased
 
     private void QueryDirectoryFileLoader1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QueryDirectoryFileLoader1ActionPerformed
@@ -4927,13 +4854,12 @@ String queryGroupName;
         // This function opens a file chooser window.
         // taken from: http://docs.oracle.com/javase/tutorial/uiswing/components/filechooser.html
         int returnValue = fileSelector.showOpenDialog(HMM_ModelUI.this);
-        
+
         if (returnValue == JFileChooser.APPROVE_OPTION) {
-            File file = fileSelector.getSelectedFile(); 
+            File file = fileSelector.getSelectedFile();
             // now add the file name to the text box
             TaxonomyFilePathTextBox.setText(file.getPath());
-        }
-        else {
+        } else {
             System.out.println("Changed your mind, huh?");
         }
     }//GEN-LAST:event_OutgroupFileLoaderActionPerformed
@@ -4945,8 +4871,8 @@ String queryGroupName;
     private void PasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PasswordKeyPressed
         // Jamie: if enter key is pressed, do the same thing as if "Connect" was pressed.
         // All of this is just a repeat of: void jButton_ConnectToDBActionPerformed(java.awt.event.ActionEvent evt)   
-        if ( evt.getKeyCode() == KeyEvent.VK_ENTER){
-        
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
             user = UserName.getText().trim();
             char[] pass = Password.getPassword();
             passStr = new String(pass);
@@ -4955,10 +4881,10 @@ String queryGroupName;
             dbport = portnumber.getText().trim();
             ConnectionName = DBConnection.getText().trim();
             DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-            isConnected= connect.isConnected();
+            isConnected = connect.isConnected();
             if (isConnected) {
 
-                connect.updateConnectionIcon(jLabel_ConnectedIcon,jLabel_ConnectToDBStatus, jLabel_YouAreConnected);
+                connect.updateConnectionIcon(jLabel_ConnectedIcon, jLabel_ConnectToDBStatus, jLabel_YouAreConnected);
                 LinkedHashMap<String, ArrayList<String>> taxomonyTree = buildTaxonomyTree(connect, db);
                 LinkedHashMap<String, ArrayList<String>> queryGrpTree = buildQueryTree(connect, db);
                 populateTaxonomyTree(taxomonyTree, connect);
@@ -4973,47 +4899,82 @@ String queryGroupName;
             System.out.println("Username: " + user + "  Password Length: " + passStr);
             connect.closeDBConnect();
         }
-   
+
     }//GEN-LAST:event_PasswordKeyPressed
 
     private void jButton_SubmitSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SubmitSearchActionPerformed
         // TODO add your handling code here:
-        String query_condition=jTextArea_SQLsearchQuery.getText();
-        
+        String query_condition = jTextArea_SQLsearchQuery.getText();
+
         // Get result for the query 
-        ResultSet SearchResult=getSearchResult(db,query_condition);       
-   
-        ResultSetMetaData metSearchResult = null; 
-        int numberOfColumn=0;
-        
+        ResultSet SearchResult = getSearchResult(db, query_condition);
+
+        ResultSetMetaData metSearchResult = null;
+        int numberOfColumn = 0;
+
         try {
             metSearchResult = SearchResult.getMetaData();
-            numberOfColumn=metSearchResult.getColumnCount();
-            
+            numberOfColumn = metSearchResult.getColumnCount();
+
         } catch (SQLException ex) {
             System.out.println("Error" + ex);
-        }        
+        }
         //Show result in Jtable on Result page        
-        DefaultTableModel ResultTableModel=(DefaultTableModel) jTable_ResultsWindow.getModel();
-     
+        DefaultTableModel ResultTableModel = (DefaultTableModel) jTable_ResultsWindow.getModel();
+
         try {
-            while(SearchResult.next()){                
-                Object [] rowData= new Object[numberOfColumn];                
-                for (int i = 0; i < rowData.length; ++i){
-                   rowData[i] = SearchResult.getObject(i+1);
+            while (SearchResult.next()) {
+                Object[] rowData = new Object[numberOfColumn];
+                for (int i = 0; i < rowData.length; ++i) {
+                    rowData[i] = SearchResult.getObject(i + 1);
                 }
-                ResultTableModel.addRow(rowData);                 
-            }           
-            ResultTableModel.fireTableDataChanged();            
+                ResultTableModel.addRow(rowData);
+            }
+            ResultTableModel.fireTableDataChanged();
         } catch (SQLException ex) {
-           System.out.println("Error" + ex);
-        }   
+            System.out.println("Error" + ex);
+        }
     }//GEN-LAST:event_jButton_SubmitSearchActionPerformed
 
-    
+    private void jButton_LoadSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_LoadSearchActionPerformed
+        JFileChooser queryFileChooser = new JFileChooser();
+        int returnVal = queryFileChooser.showOpenDialog(HMM_ModelUI.this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = queryFileChooser.getSelectedFile();
+            try {
+                loadQueryFile(file);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Could not write query file.");
+            }
+            //This is where a real application would open the file.
+            System.out.println("Opening: " + file.getName());
+        } else {
+            System.out.println("Open command cancelled by user.");
+        }
+
+    }//GEN-LAST:event_jButton_LoadSearchActionPerformed
+
+    private void jButton_SaveSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveSearchActionPerformed
+        JFileChooser queryFileChooser = new JFileChooser();
+        int returnVal = queryFileChooser.showSaveDialog(HMM_ModelUI.this);
+
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = queryFileChooser.getSelectedFile();
+            try {
+                writeQueryfile(file);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Could not write query file.");
+            }
+            //This is where a real application would open the file.
+            System.out.println("Opening: " + file.getName());
+        } else {
+            System.out.println("Open command cancelled by user.");
+        }
+    }//GEN-LAST:event_jButton_SaveSearchActionPerformed
+
     // Anu:
     // This function popuates the taxonomy tree on Query Search page.
-          
     // Anu's code...
     /**
      * Remove all nodes except the root node.
@@ -5290,11 +5251,11 @@ String queryGroupName;
 
     public void createQueryGroupTable(String db, DBConnect connect) {
 
-        String query = "CREATE TABLE IF NOT EXISTS `" + db + "`.`querygrpinfo` ("
-                + "`querygrp_pk` int(11) NOT NULL AUTO_INCREMENT,"
-                + "`querygrpname` varchar(255) NOT NULL,"
-                + "`querygrpvalue` varchar(255) NOT NULL,"
-                + "  PRIMARY KEY (`querygrp_pk`))";
+        String query = "CREATE TABLE `" + db + "`.`querygrpinfo` ("
+                + "  `querygrpname` varchar(255) NOT NULL,"
+                + "  `querygrpvalue` varchar(255) NOT NULL,"
+                + "  PRIMARY KEY (`querygrpname`,`querygrpvalue`)"
+                + ") ENGINE=InnoDB DEFAULT CHARSET=latin1;";
         //setting up query resultset
         try {
             //DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
@@ -5466,8 +5427,8 @@ String queryGroupName;
         String query = "SELECT organism_name FROM " + db + ".OrganismInfo WHERE organism_name LIKE '%"
                 + searchvalue + "%' OR abbreviation_name LIKE '%" + searchvalue + "%' OR common_name LIKE '%"
                 + searchvalue + "%'";
-        
-        System.out.println("getSearchStrainsHits "+query);
+
+        System.out.println("getSearchStrainsHits " + query);
         //setting up query resultset
         try {
             DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
@@ -5485,15 +5446,15 @@ String queryGroupName;
 
         return searchStrainsHits;
     }
-    
-    public void loadSearchHits(DBConnect connect,String db) {
+
+    public void loadSearchHits(DBConnect connect, String db) {
 
 
-        if (connect.isConnected() && jTextField_QuickFind.getText().trim() !=null) {
+        if (connect.isConnected() && jTextField_QuickFind.getText().trim() != null) {
             DefaultListModel model = (DefaultListModel) jList_QuickFindResults.getModel();
             //DefaultListModel model = new DefaultListModel();
             model.clear();
-            ArrayList searchList = getSearchStrainsHits(db,jTextField_QuickFind.getText().trim());
+            ArrayList searchList = getSearchStrainsHits(db, jTextField_QuickFind.getText().trim());
 
             for (Object s : searchList) {
                 System.out.println("S: " + s);
@@ -5505,13 +5466,12 @@ String queryGroupName;
 
     }
 
-    
     public void loadSchemataList(DBConnect connect) {
 
         String query = "SELECT SCHEMA_NAME FROM information_schema.SCHEMATA";
         //setting up query resultset
         ResultSet schemataResultSet;
-               //creating the arraylist to store the results
+        //creating the arraylist to store the results
         ArrayList<Object> schemataList = new ArrayList<Object>();
         try {
             Statement st = connect.createStatement();
@@ -5522,38 +5482,33 @@ String queryGroupName;
                 //getting the values from the resultset
 
                 String schema = schemataResultSet.getString("SCHEMA_NAME");
-               jComboBox_SchemaTablesmodel.addElement(schema);
-               System.out.println("DBName.getText().trim() "+DBName.getText().trim());
-               if(DBName.getText().trim().equalsIgnoreCase(schema))
-               {
-                   jComboBox_SchemaTablesmodel.setSelectedItem(schema);
-               }
+                jComboBox_SchemaTablesmodel.addElement(schema);
+                System.out.println("DBName.getText().trim() " + DBName.getText().trim());
+                if (DBName.getText().trim().equalsIgnoreCase(schema)) {
+                    jComboBox_SchemaTablesmodel.setSelectedItem(schema);
+                }
             }
             schemataResultSet.close();
             st.close();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-      }
+    }
 
-  
-   public void createDBConnectionsFolder()
-   {
-       try{
+    public void createDBConnectionsFolder() {
+        try {
             final String currentWorkingDirectory = new File(".").getCanonicalPath();
-            final File dir = new File(currentWorkingDirectory, "DBConnectionsCredentials");   
-           if(!dir.exists() && !dir.mkdirs())
-           {
-            dir.getParentFile().mkdirs();
-            File credsFile = new File(dir + "/DBCreds.txt");
-            credsFile.createNewFile();
-           }
-           }catch (IOException ex) {
-                ex.printStackTrace();
-       }
-   }
+            final File dir = new File(currentWorkingDirectory, "DBConnectionsCredentials");
+            if (!dir.exists() && !dir.mkdirs()) {
+                dir.getParentFile().mkdirs();
+                File credsFile = new File(dir + "/DBCreds.txt");
+                credsFile.createNewFile();
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
-   
     public void addNewDBConnections() throws IOException {
 
         final String currentWorkingDirectory = new File(".").getCanonicalPath();
@@ -5561,20 +5516,18 @@ String queryGroupName;
         if (!dir.exists() && !dir.mkdirs()) {
             throw new IOException("Unable to create " + dir.getAbsolutePath());
         } else {
-            
-            if(!DBConnections.containsKey(DBConnection.getText().trim()))
-            {
-              File credsFile = new File(dir + "/DBCreds.txt");
-              String credentialsStr = ConnectionName + "\t" + user + "\t" + ip + "\t" + dbport + "\t" + db + "\n";
-              FileWriter fw = new FileWriter(credsFile.getAbsoluteFile(), true);
-              BufferedWriter bw = new BufferedWriter(fw);
-              bw.write(credentialsStr);
-              bw.close();
-            }else
-            {
+
+            if (!DBConnections.containsKey(DBConnection.getText().trim())) {
+                File credsFile = new File(dir + "/DBCreds.txt");
+                String credentialsStr = ConnectionName + "\t" + user + "\t" + ip + "\t" + dbport + "\t" + db + "\n";
+                FileWriter fw = new FileWriter(credsFile.getAbsoluteFile(), true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write(credentialsStr);
+                bw.close();
+            } else {
                 JOptionPane.showMessageDialog(null, "This connection name already exists.\nPlease select another name.");
             }
-            
+
         }
     }
 
@@ -5615,41 +5568,186 @@ String queryGroupName;
                 ex.printStackTrace();
             }
         }
-System.out.println("IN DBConnectionsSize "+DBConnections.size());
+        System.out.println("IN DBConnectionsSize " + DBConnections.size());
     }
 
-    
-     public void loadRecentDBList()
-     {
-        
-        if(DBConnections.size()>0)
-        {
-          Set set = DBConnections.entrySet();
-          // Get an iterator to traverse the hashmap
-          Iterator i = set.iterator();
-          // Iterate through the hashmap
-          while (i.hasNext()) {
-             Map.Entry DBConnections = (Map.Entry) i.next();
-             
-              String recentDB = (String) DBConnections.getKey();
-               jComboBox_RecentDBListsmodel.addElement(recentDB);
-          }
-          jComboBox_RecentDBList.setModel(jComboBox_RecentDBListsmodel);
-        } 
-     }
-    
-    private TreePath findNodeTreePath(DefaultMutableTreeNode root, String s) {
-    @SuppressWarnings("unchecked")
-    Enumeration<DefaultMutableTreeNode> e = root.depthFirstEnumeration();
-    while (e.hasMoreElements()) {
-        DefaultMutableTreeNode node = e.nextElement();
-        if (node.toString().equalsIgnoreCase(s)) {
-            return new TreePath(node.getPath());
+    public void loadRecentDBList() {
+
+        if (DBConnections.size() > 0) {
+            Set set = DBConnections.entrySet();
+            // Get an iterator to traverse the hashmap
+            Iterator i = set.iterator();
+            // Iterate through the hashmap
+            while (i.hasNext()) {
+                Map.Entry DBConnections = (Map.Entry) i.next();
+
+                String recentDB = (String) DBConnections.getKey();
+                jComboBox_RecentDBListsmodel.addElement(recentDB);
+            }
+            jComboBox_RecentDBList.setModel(jComboBox_RecentDBListsmodel);
         }
     }
-    return null;
-}
-    
+
+    private TreePath findNodeTreePath(DefaultMutableTreeNode root, String s) {
+        @SuppressWarnings("unchecked")
+        Enumeration<DefaultMutableTreeNode> e = root.depthFirstEnumeration();
+        while (e.hasMoreElements()) {
+            DefaultMutableTreeNode node = e.nextElement();
+            if (node.toString().equalsIgnoreCase(s)) {
+                return new TreePath(node.getPath());
+            }
+        }
+        return null;
+    }
+
+    public void writeQueryfile(File queryFile) throws IOException {
+
+        final String currentWorkingDirectory = new File(".").getCanonicalPath();
+        final File dir = new File(currentWorkingDirectory, "DBConnectionsCredentials");
+        if (!dir.exists() && !dir.mkdirs()) {
+            throw new IOException("Unable to create " + dir.getAbsolutePath());
+        } else {
+
+            //File credsFile = new File(dir + "/DBCreds.txt");
+            String binAValues = Arrays.asList(((DefaultListModel) jListBinA.getModel()).toArray()).toString().replaceAll("^\\[|\\]$", "");
+            String binBValues = Arrays.asList(((DefaultListModel) jListBinB.getModel()).toArray()).toString().replaceAll("^\\[|\\]$", "");
+            String binCValues = Arrays.asList(((DefaultListModel) jListBinC.getModel()).toArray()).toString().replaceAll("^\\[|\\]$", "");
+
+            String binAVerticalBooleanOperator = jComboBox_BooleanOperatorA.getSelectedItem().toString();
+            String binBVerticalBooleanOperator = jComboBox_BooleanOperatorB.getSelectedItem().toString();
+            String binCVerticalBooleanOperator = jComboBox_BooleanOperatorC.getSelectedItem().toString();
+
+            String binABHorizontalBooleanOperator = jComboBox_BooleanOperatorAB.getSelectedItem().toString();
+            String binBCHorizontalBooleanOperator = jComboBox_BooleanOperatorBC.getSelectedItem().toString();
+
+            String queryString = jTextArea_SQLsearchQuery.getText().trim();
+
+            FileWriter fw = new FileWriter(queryFile.getAbsoluteFile(), false);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write("#BINA:" + binAValues + "\n");
+            bw.write("#BINB:" + binBValues + "\n");
+            bw.write("#BINC:" + binCValues + "\n");
+            bw.write("#binAVerticalBooleanOperator:" + binAVerticalBooleanOperator + "\n");
+            bw.write("#binBVerticalBooleanOperator:" + binBVerticalBooleanOperator + "\n");
+            bw.write("#binCVerticalBooleanOperator:" + binCVerticalBooleanOperator + "\n");
+            bw.write("#binABHorizontalBooleanOperator:" + binABHorizontalBooleanOperator + "\n");
+            bw.write("#binBCHorizontalBooleanOperator:" + binBCHorizontalBooleanOperator + "\n");
+            bw.write(queryString + "\n");
+            bw.close();
+        }
+    }
+
+    public void loadQueryFile(File queryFile) {
+
+        BufferedReader br = null;
+
+
+        try {
+
+            if (queryFile.exists()) {
+
+                FileReader fr = new FileReader(queryFile.getAbsoluteFile());
+                //BufferedReader br = null;
+                br = new BufferedReader(fr);
+                String sCurrentLine;
+                while ((sCurrentLine = br.readLine()) != null) {
+                    if (sCurrentLine.startsWith("#")) {
+                        if (sCurrentLine.startsWith("#BINA")) {
+                            sCurrentLine = sCurrentLine.replace("#BINA:", "");
+                            Object[] binAListValues = Arrays.asList(sCurrentLine.split(", ")).toArray();
+                            System.out.println("binAListValues " + binAListValues + " SIZE " + binAListValues.length);
+                            DefaultListModel model = new DefaultListModel();
+
+                            for (Object qgrp : binAListValues) {
+
+                                System.out.println("STRING " + qgrp.toString());
+                                model.addElement(qgrp.toString());
+                            }
+                            jListBinA.setModel(model);
+
+                        } else if (sCurrentLine.startsWith("#BINB:")) {
+                            sCurrentLine = sCurrentLine.replace("#BINB:", "");
+                            Object[] binBListValues = Arrays.asList(sCurrentLine.split(", ")).toArray();
+                            System.out.println("binBListValues " + binBListValues + " SIZE " + binBListValues.length);
+                            DefaultListModel model = new DefaultListModel();
+
+                            for (Object qgrp : binBListValues) {
+
+                                System.out.println("STRING " + qgrp.toString());
+                                model.addElement(qgrp.toString());
+                            }
+                            jListBinB.setModel(model);
+
+                        } else if (sCurrentLine.startsWith("#BINC:")) {
+                            sCurrentLine = sCurrentLine.replace("#BINC:", "");
+                            Object[] binCListValues = Arrays.asList(sCurrentLine.split(", ")).toArray();
+                            System.out.println("binCListValues " + binCListValues + " SIZE " + binCListValues.length);
+                            DefaultListModel model = new DefaultListModel();
+
+                            for (Object qgrp : binCListValues) {
+
+                                System.out.println("STRING " + qgrp.toString());
+                                model.addElement(qgrp.toString());
+                            }
+                            jListBinC.setModel(model);
+
+                        } else if (sCurrentLine.startsWith("#binAVerticalBooleanOperator:")) {
+                            jComboBox_BooleanOperatorA.setSelectedItem(sCurrentLine.replace("#binAVerticalBooleanOperator:", ""));
+                        } else if (sCurrentLine.startsWith("#binBVerticalBooleanOperator:")) {
+                            jComboBox_BooleanOperatorB.setSelectedItem(sCurrentLine.replace("#binBVerticalBooleanOperator:", ""));
+                        } else if (sCurrentLine.startsWith("#binCVerticalBooleanOperator:")) {
+                            jComboBox_BooleanOperatorC.setSelectedItem(sCurrentLine.replace("#binCVerticalBooleanOperator:", ""));
+                        } else if (sCurrentLine.startsWith("#binABHorizontalBooleanOperator:")) {
+                            jComboBox_BooleanOperatorAB.setSelectedItem(sCurrentLine.replace("#binABHorizontalBooleanOperator:", ""));
+                        } else if (sCurrentLine.startsWith("#binBCHorizontalBooleanOperator:")) {
+                            jComboBox_BooleanOperatorBC.setSelectedItem(sCurrentLine.replace("#binBCHorizontalBooleanOperator:", ""));
+                        }
+
+                    } else {
+                        jTextArea_SQLsearchQuery.setText(sCurrentLine);
+                    }
+
+
+                }
+            }
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) {
+                    br.close();
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+        System.out.println("IN DBConnectionsSize " + DBConnections.size());
+    }
+
+    public void populateBinA() {
+        int[] selected_query_group_indices = jList_QueryGroups.getSelectedIndices();
+
+        int current_index_binA = jListBinA.getSelectedIndex(); //check for last index value of BinA list
+
+        if (current_index_binA == -1) {
+            current_index_binA = 0;
+        } else {
+            current_index_binA++;
+        }
+
+        int size_selected_array = selected_query_group_indices.length;
+
+        for (int i = 0; i < size_selected_array; i++) {
+            DefaultListModel jList_QueryGroupsListModel = (DefaultListModel) jList_QueryGroups.getModel();
+            Object selected_group = jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
+            JListModelBinA.addElement(selected_group);
+        }
+        whichVennDiagram();
+
+    }
+
     // Jamie: Gradient
     public class GradientPanel extends JPanel {
 
@@ -5670,58 +5768,55 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
             int w = getWidth();
             int h = getHeight();
             GradientPaint gp = new GradientPaint(
-                0, 0, color1, 0, h, color2);
+                    0, 0, color1, 0, h, color2);
             g2d.setPaint(gp);
             g2d.fillRect(0, 0, w, h);
         }
     }
-       
-    
+
     // get common name for taxa from the organism table
-    
-     // SQL Query to gen the common name for each Taxa in the query group 
+    // SQL Query to gen the common name for each Taxa in the query group 
     public ResultSet getCommonNameForTaxa(String db, String inlist) {
-                // Query string for fetching common name for taxa in query group list for database
-         String query_get_common_name="Select distinct(common_name),querygrpname from OrganismInfo,querygrpinfo where querygrpname='"+(String) inlist+"' and querygrpvalue=organism_name";
-         
-         //System.out.println(query_get_common_name);
-         
-         ResultSet listCommonName=null;       
-         
-          // result variable for sql query           
-          try {
-            // run sql command
-             DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-             Statement st = connect.createStatement(); 
-             listCommonName=connect.getData(query_get_common_name, st);      
-                 
-           } catch (Exception ex) {
-               System.out.println("Error" + ex);
-           } 
-         //returns result set for the data from sql table 
-        return listCommonName;  
-    }
-    
-    // get Search Result
-    public ResultSet getSearchResult(String db, String query_condition) {
-        
-        String SearchQuery="Select Distinct(Group_id) from Group_profile where "+query_condition;
-        ResultSet SearchResult=null;
-        
+        // Query string for fetching common name for taxa in query group list for database
+        String query_get_common_name = "Select distinct(common_name),querygrpname from OrganismInfo,querygrpinfo where querygrpname='" + (String) inlist + "' and querygrpvalue=organism_name";
+
+        //System.out.println(query_get_common_name);
+
+        ResultSet listCommonName = null;
+
+        // result variable for sql query           
         try {
             // run sql command
-             DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
-             Statement st = connect.createStatement(); 
-             SearchResult=connect.getData(SearchQuery, st);      
-                 
-           } catch (Exception ex) {
-               System.out.println("Error" + ex);
-           } 
-        
+            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+            Statement st = connect.createStatement();
+            listCommonName = connect.getData(query_get_common_name, st);
+
+        } catch (Exception ex) {
+            System.out.println("Error" + ex);
+        }
+        //returns result set for the data from sql table 
+        return listCommonName;
+    }
+
+    // get Search Result
+    public ResultSet getSearchResult(String db, String query_condition) {
+
+        String SearchQuery = "Select Distinct(Group_id) from Group_profile where " + query_condition;
+        ResultSet SearchResult = null;
+
+        try {
+            // run sql command
+            DBConnect connect = new DBConnect(ip, dbport, passStr, user, db, jLabel_ConnectToDBStatus, ConnectionName, jComboBox_RecentDBList);
+            Statement st = connect.createStatement();
+            SearchResult = connect.getData(SearchQuery, st);
+
+        } catch (Exception ex) {
+            System.out.println("Error" + ex);
+        }
+
         return SearchResult;
     }
 
-    
     /**
      * @param args the command line arguments
      */
@@ -5733,16 +5828,16 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
          */
         try {
             /* Jamie: This is the original 'lookandfeel' setting
-               for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-            */
+             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+             if ("Nimbus".equals(info.getName())) {
+             javax.swing.UIManager.setLookAndFeel(info.getClassName());
+             break;
+             }
+             }
+             */
             // this is the new setting, as in: http://stackoverflow.com/questions/14968806/why-does-my-gui-never-look-right
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            
+
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(HMM_ModelUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
@@ -5753,7 +5848,7 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
             java.util.logging.Logger.getLogger(HMM_ModelUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -5913,6 +6008,7 @@ System.out.println("IN DBConnectionsSize "+DBConnections.size());
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel29;
