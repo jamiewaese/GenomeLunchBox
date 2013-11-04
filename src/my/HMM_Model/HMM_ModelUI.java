@@ -311,6 +311,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         jScrollPane_QuickFindResultsScrollPane = new javax.swing.JScrollPane();
         jList_QuickFindResults = new javax.swing.JList();
         jTextField_QuickFind = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox();
         jPanel_ManageQueryGroups = new javax.swing.JPanel();
         jButton_DeleteGroup = new javax.swing.JButton();
         jButton_ClearSelectedItems = new javax.swing.JButton();
@@ -2557,7 +2558,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.1;
         gridBagConstraints.weighty = 1.0;
@@ -2572,7 +2573,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         gridBagConstraints.insets = new java.awt.Insets(33, 20, 10, 20);
@@ -2583,7 +2584,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 4;
         jPanel_BuildQueryGroup.add(jLabel3, gridBagConstraints);
 
         jButton_Find.setText("Quick Find");
@@ -2593,7 +2594,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.insets = new java.awt.Insets(33, 0, 10, 12);
         jPanel_BuildQueryGroup.add(jButton_Find, gridBagConstraints);
@@ -2603,8 +2604,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(6, 0, 0, 0);
         jPanel_BuildQueryGroup.add(jLabel17, gridBagConstraints);
@@ -2620,20 +2620,27 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.gridheight = 4;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 30;
         gridBagConstraints.ipady = 19;
+        gridBagConstraints.weighty = 0.3;
         gridBagConstraints.insets = new java.awt.Insets(0, 20, 20, 20);
         jPanel_BuildQueryGroup.add(jScrollPane_QuickFindResultsScrollPane, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.weightx = 0.3;
-        gridBagConstraints.insets = new java.awt.Insets(33, 20, 10, 0);
+        gridBagConstraints.insets = new java.awt.Insets(33, 0, 10, 0);
         jPanel_BuildQueryGroup.add(jTextField_QuickFind, gridBagConstraints);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(33, 20, 10, 0);
+        jPanel_BuildQueryGroup.add(jComboBox1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -4679,7 +4686,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_DeleteGroupActionPerformed
 
     private void jButton_AssignToBinAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AssignToBinAActionPerformed
-        populateBinA();
+        populateBin(jListBinA);
     }//GEN-LAST:event_jButton_AssignToBinAActionPerformed
 
     private void jList_QueryGroupsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList_QueryGroupsValueChanged
@@ -4690,49 +4697,11 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         // Get index value for the selected query group from Query Group List
 
-        int[] selected_query_group_indices = jList_QueryGroups.getSelectedIndices();
-
-        int current_index_binB = jListBinB.getSelectedIndex(); //check for last index value of BinA list
-
-        if (current_index_binB == -1) {
-            current_index_binB = 0;
-        } else {
-            current_index_binB++;
-        }
-
-        int size_selected_array = selected_query_group_indices.length;
-
-        for (int i = 0; i < size_selected_array; i++) {
-            DefaultListModel jList_QueryGroupsListModel = (DefaultListModel) jList_QueryGroups.getModel();
-            Object selected_group = jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
-            JListModelBinB.addElement(selected_group);
-        }
-        whichVennDiagram();
+       populateBin(jListBinB);
     }//GEN-LAST:event_jButton_AssignToBinBActionPerformed
 
     private void jButton_AssignToBinCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AssignToBinCActionPerformed
-        // TODO add your handling code here:
-
-        // Get index value for the selected query group from Query Group List
-
-        int[] selected_query_group_indices = jList_QueryGroups.getSelectedIndices();
-
-        int current_index_binC = jListBinA.getSelectedIndex(); //check for last index value of BinA list
-
-        if (current_index_binC == -1) {
-            current_index_binC = 0;
-        } else {
-            current_index_binC++;
-        }
-
-        int size_selected_array = selected_query_group_indices.length;
-
-        for (int i = 0; i < size_selected_array; i++) {
-            DefaultListModel jList_QueryGroupsListModel = (DefaultListModel) jList_QueryGroups.getModel();
-            Object selected_group = jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
-            JListModelBinC.addElement(selected_group);
-        }
-        whichVennDiagram();
+        populateBin(jListBinC);
     }//GEN-LAST:event_jButton_AssignToBinCActionPerformed
 
     private void jListBinAValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListBinAValueChanged
@@ -5726,28 +5695,24 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         System.out.println("IN DBConnectionsSize " + DBConnections.size());
     }
 
-    public void populateBinA() {
+    public void populateBin(JList binList) {
         int[] selected_query_group_indices = jList_QueryGroups.getSelectedIndices();
 
-        int current_index_binA = jListBinA.getSelectedIndex(); //check for last index value of BinA list
-
-        if (current_index_binA == -1) {
-            current_index_binA = 0;
-        } else {
-            current_index_binA++;
-        }
+   
 
         int size_selected_array = selected_query_group_indices.length;
 
         for (int i = 0; i < size_selected_array; i++) {
             DefaultListModel jList_QueryGroupsListModel = (DefaultListModel) jList_QueryGroups.getModel();
             Object selected_group = jList_QueryGroupsListModel.getElementAt(selected_query_group_indices[i]);
-            JListModelBinA.addElement(selected_group);
+            ((DefaultListModel)binList.getModel()).addElement(selected_group);
         }
         whichVennDiagram();
 
     }
 
+    
+     
     // Jamie: Gradient
     public class GradientPanel extends JPanel {
 
@@ -5984,6 +5949,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton_addtoquerygroup;
     private javax.swing.JButton jButton_saveDBConnection;
     private javax.swing.JCheckBox jCheckBox_UniqueResultsOnly;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JComboBox jComboBox9;
     private javax.swing.JComboBox jComboBox_BooleanOperatorA;
