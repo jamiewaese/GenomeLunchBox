@@ -2769,7 +2769,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jComboBox_BooleanOperatorA.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jComboBox_BooleanOperatorA.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox_BooleanOperatorA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR" }));
+        jComboBox_BooleanOperatorA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT" }));
         jComboBox_BooleanOperatorA.setSelectedItem("OR");
         jComboBox_BooleanOperatorA.setToolTipText("Boolean operator for items within this bin. Default is 'or'.");
         jComboBox_BooleanOperatorA.setMaximumSize(new java.awt.Dimension(77, 27));
@@ -2922,7 +2922,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jComboBox_BooleanOperatorB.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jComboBox_BooleanOperatorB.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox_BooleanOperatorB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR" }));
+        jComboBox_BooleanOperatorB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT" }));
         jComboBox_BooleanOperatorB.setSelectedItem("OR");
         jComboBox_BooleanOperatorB.setToolTipText("Boolean operator for items within this bin. Default is 'or'.");
         jComboBox_BooleanOperatorB.setMaximumSize(new java.awt.Dimension(77, 27));
@@ -2938,7 +2938,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
 
         jComboBox_BooleanOperatorC.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
         jComboBox_BooleanOperatorC.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox_BooleanOperatorC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR" }));
+        jComboBox_BooleanOperatorC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AND", "OR", "NOT" }));
         jComboBox_BooleanOperatorC.setSelectedItem("OR");
         jComboBox_BooleanOperatorC.setToolTipText("Boolean operator for items within this bin. Default is 'or'.");
         jComboBox_BooleanOperatorC.setMaximumSize(new java.awt.Dimension(77, 27));
