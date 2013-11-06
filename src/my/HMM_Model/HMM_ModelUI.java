@@ -1273,6 +1273,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         CoreGenomeAccuracyThresholdSlider.setPaintTicks(true);
         CoreGenomeAccuracyThresholdSlider.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 90.");
         CoreGenomeAccuracyThresholdSlider.setValue(90);
+        CoreGenomeAccuracyThresholdSlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        CoreGenomeAccuracyThresholdSlider.setMinimumSize(new java.awt.Dimension(190, 38));
         CoreGenomeAccuracyThresholdSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 CoreGenomeAccuracyThresholdSliderStateChanged(evt);
@@ -1617,6 +1619,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         NumberDomainSlider.setPaintTicks(true);
         NumberDomainSlider.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 0.85.");
         NumberDomainSlider.setValue(1);
+        NumberDomainSlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        NumberDomainSlider.setMinimumSize(new java.awt.Dimension(190, 38));
         NumberDomainSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 NumberDomainSliderStateChanged(evt);
@@ -1634,6 +1638,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         SequenceIdentitySlider.setPaintTicks(true);
         SequenceIdentitySlider.setToolTipText("Minimum sequence identity threshold. Default is 70.");
         SequenceIdentitySlider.setValue(70);
+        SequenceIdentitySlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        SequenceIdentitySlider.setMinimumSize(new java.awt.Dimension(190, 38));
         SequenceIdentitySlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 SequenceIdentitySliderStateChanged(evt);
@@ -1652,6 +1658,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         SequenceSimilaritySlider.setPaintTicks(true);
         SequenceSimilaritySlider.setToolTipText("Minimum sequence similarity threshold. Default is 60.");
         SequenceSimilaritySlider.setValue(60);
+        SequenceSimilaritySlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        SequenceSimilaritySlider.setMinimumSize(new java.awt.Dimension(190, 38));
         SequenceSimilaritySlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 SequenceSimilaritySliderStateChanged(evt);
@@ -1670,6 +1678,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         QueryCoverageSlider.setPaintTicks(true);
         QueryCoverageSlider.setToolTipText("Minimum query coverage threshold. Default is 70.");
         QueryCoverageSlider.setValue(70);
+        QueryCoverageSlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        QueryCoverageSlider.setMinimumSize(new java.awt.Dimension(190, 38));
         QueryCoverageSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 QueryCoverageSliderStateChanged(evt);
@@ -1688,6 +1698,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         TargetCoverageSlider.setPaintTicks(true);
         TargetCoverageSlider.setToolTipText("Minimum target coverage threshold. Default is 70.");
         TargetCoverageSlider.setValue(70);
+        TargetCoverageSlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        TargetCoverageSlider.setMinimumSize(new java.awt.Dimension(190, 38));
         TargetCoverageSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 TargetCoverageSliderStateChanged(evt);
@@ -1706,6 +1718,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         MinimumPartialCoverageSlider.setPaintTicks(true);
         MinimumPartialCoverageSlider.setToolTipText("Minimum threshold for partial homolog prediction. Default is 5.");
         MinimumPartialCoverageSlider.setValue(5);
+        MinimumPartialCoverageSlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        MinimumPartialCoverageSlider.setMinimumSize(new java.awt.Dimension(190, 38));
         MinimumPartialCoverageSlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 MinimumPartialCoverageSliderStateChanged(evt);
@@ -1724,6 +1738,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         ChimeraAccuracySlider.setPaintTicks(true);
         ChimeraAccuracySlider.setToolTipText("Minumum accuracy threshold for chimera prediction. Default is 0.85.");
         ChimeraAccuracySlider.setValue(85);
+        ChimeraAccuracySlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        ChimeraAccuracySlider.setMinimumSize(new java.awt.Dimension(190, 38));
         ChimeraAccuracySlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 ChimeraAccuracySliderStateChanged(evt);
@@ -1935,6 +1951,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         ChimeraIdentitySlider.setMinorTickSpacing(25);
         ChimeraIdentitySlider.setPaintTicks(true);
         ChimeraIdentitySlider.setToolTipText("Minimum identity for chimera prediction. Default is 50.");
+        ChimeraIdentitySlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        ChimeraIdentitySlider.setMinimumSize(new java.awt.Dimension(190, 38));
         ChimeraIdentitySlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 ChimeraIdentitySliderStateChanged(evt);
@@ -1952,6 +1970,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         ChimeraSimilaritySlider.setMinorTickSpacing(25);
         ChimeraSimilaritySlider.setPaintTicks(true);
         ChimeraSimilaritySlider.setToolTipText("Minimum similarity for chimera prediction. Default is 50.");
+        ChimeraSimilaritySlider.setMaximumSize(new java.awt.Dimension(190, 38));
+        ChimeraSimilaritySlider.setMinimumSize(new java.awt.Dimension(190, 38));
         ChimeraSimilaritySlider.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 ChimeraSimilaritySliderStateChanged(evt);
@@ -2192,6 +2212,8 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         AccuracyThresholdSlider1.setPaintTicks(true);
         AccuracyThresholdSlider1.setToolTipText("Minimum accuracy threshold for sequence alignment. Default is 0.85.");
         AccuracyThresholdSlider1.setValue(85);
+        AccuracyThresholdSlider1.setMaximumSize(new java.awt.Dimension(190, 38));
+        AccuracyThresholdSlider1.setMinimumSize(new java.awt.Dimension(190, 38));
         AccuracyThresholdSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 AccuracyThresholdSlider1StateChanged(evt);
@@ -3785,6 +3807,10 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // First, determine the contents of each element in the window.
         String booleanOperatorAB = jComboBox_BooleanOperatorAB.getSelectedItem().toString();
         String booleanOperatorBC = jComboBox_BooleanOperatorBC.getSelectedItem().toString();
+        
+        String booleanOperatorBinA = jComboBox_BooleanOperatorA.getSelectedItem().toString();
+        String booleanOperatorBinB = jComboBox_BooleanOperatorB.getSelectedItem().toString();
+        String booleanOperatorBinC = jComboBox_BooleanOperatorC.getSelectedItem().toString();
 
         //System.out.println("1: "+booleanOperatorAB);
         //System.out.println("2: "+booleanOperatorBC);
@@ -3809,111 +3835,171 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         ///////////// ALL EMPTY
         if (binAEmpty && binBEmpty && binCEmpty) {
             vennDiagramFilename += "3Venn_empty.png";
-        } //////////////// SINGLE BINS
+        } 
+        
+        //////////////// SINGLE BINS -- AND / OR 
         // Only A
-        else if (!binAEmpty && binBEmpty && binCEmpty) {
+        else if (!binAEmpty && !booleanOperatorBinA.equals("NOT") && binBEmpty && binCEmpty) {
             vennDiagramFilename += "1Venn_A.png";
         } // Only B
-        else if (binAEmpty && !binBEmpty && binCEmpty) {
+        else if (binAEmpty && !binBEmpty && !booleanOperatorBinB.equals("NOT") && binCEmpty) {
             vennDiagramFilename += "1Venn_B.png";
         } // Only C
-        else if (binAEmpty && binBEmpty && !binCEmpty) {
+        else if (binAEmpty && binBEmpty && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "1Venn_C.png";
-        } ///////////////////// DOUBLE BINS A / B
+        }
+        
+        //////////////// SINGLE BINS -- NOT 
+        // Only A
+        else if (!binAEmpty && booleanOperatorBinA.equals("NOT") && binBEmpty && binCEmpty) {
+            vennDiagramFilename += "1Venn_notA.png";
+        } // Only B
+        else if (binAEmpty && !binBEmpty && booleanOperatorBinB.equals("NOT") && binCEmpty) {
+            vennDiagramFilename += "1Venn_notB.png";
+        } // Only C
+        else if (binAEmpty && binBEmpty && !binCEmpty && booleanOperatorBinC.equals("NOT")) {
+            vennDiagramFilename += "1Venn_notC.png";
+        }
+        
+        
+        
+        
+        
+        ///////////////////// DOUBLE BINS A / B   AND/OR & AND/OR
         // A and B (C empty)
-        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && binCEmpty) {
+        else if (!binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorAB.equals("AND") && !binBEmpty && !booleanOperatorBinB.equals("NOT") && binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "2Venn_AandB.png";
         } // A or B (C empty)
-        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && binCEmpty) {
+        else if (!binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorAB.equals("OR") && !binBEmpty && !booleanOperatorBinB.equals("NOT") && binCEmpty) {
             vennDiagramFilename += "2Venn_AorB.png";
         } // A not B (C empty)
-        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && binCEmpty) {
+        else if (!binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorAB.equals("AND NOT") && !binBEmpty && !booleanOperatorBinB.equals("NOT") && binCEmpty) {
             vennDiagramFilename += "2Venn_AnotB.png";
         } // A not and B (C empty)
-        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && binCEmpty) {
+        else if (!binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorAB.equals("OR NOT") && !binBEmpty && !booleanOperatorBinB.equals("NOT") && binCEmpty) {
             vennDiagramFilename += "2Venn_AornotB.png";
-        } /////////////////// DOUBLE BINS B / C
+        } 
+        /////////////////// DOUBLE BINS B / C    AND/OR & AND/OR
         // B and C (A empty)
-        else if (binAEmpty && booleanOperatorBC.equals("AND") && !binBEmpty && !binCEmpty) {
+        else if (binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorBC.equals("AND") && !binBEmpty && !booleanOperatorBinB.equals("NOT") && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "2Venn_BandC.png";
         } // B or C (A empty)
-        else if (binAEmpty && booleanOperatorBC.equals("OR") && !binBEmpty && !binCEmpty) {
+        else if (binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorBC.equals("OR") && !binBEmpty && !booleanOperatorBinB.equals("NOT") && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "2Venn_BorC.png";
         } // B not C (A empty)
-        else if (binAEmpty && booleanOperatorBC.equals("AND NOT") && !binBEmpty && !binCEmpty) {
+        else if (binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorBC.equals("AND NOT") && !binBEmpty && !booleanOperatorBinB.equals("NOT") && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "2Venn_BnotC.png";
         } // B not and C (A empty)
-        else if (binAEmpty && booleanOperatorBC.equals("OR NOT") && !binBEmpty && !binCEmpty) {
+        else if (binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorBC.equals("OR NOT") && !binBEmpty && !booleanOperatorBinB.equals("NOT") && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "2Venn_BornotC.png";
-        } /////////////////// DOUBLE BINS A / C
+        } 
+        /////////////////// DOUBLE BINS A / C  AND/OR & AND/OR
         // A and C (B empty)
-        else if (!binAEmpty && booleanOperatorBC.equals("AND") && binBEmpty && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorBC.equals("AND") && binBEmpty && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "2Venn_AandC.png";
         } // A or C (B empty)
-        else if (!binAEmpty && booleanOperatorBC.equals("OR") && binBEmpty && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorBC.equals("OR") && binBEmpty && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "2Venn_AorC.png";
         } // A not C (B empty)
-        else if (!binAEmpty && booleanOperatorBC.equals("AND NOT") && binBEmpty && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorBC.equals("AND NOT") && binBEmpty && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "2Venn_AnotC.png";
         } // A not and C (B empty)
-        else if (!binAEmpty && booleanOperatorBC.equals("OR NOT") && binBEmpty && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorBC.equals("OR NOT") && binBEmpty && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "2Venn_AornotC.png";
-        } ///////////////// TRIPLE BINS A / B / C
+        } 
+        
+        ///////////////////// DOUBLE BINS A / B   NOT & AND/OR
+        // not A or B (C empty)
+        else if (!binAEmpty && booleanOperatorBinA.equals("NOT") && booleanOperatorAB.equals("OR") && !binBEmpty && !booleanOperatorBinB.equals("NOT") && binCEmpty) {
+            vennDiagramFilename += "2Venn_notAorB.png";
+        }
+        ///////////////////// DOUBLE BINS B / C   NOT & AND/OR
+        // not B or C (A empty)
+        else if (binAEmpty && !binBEmpty && booleanOperatorBinB.equals("NOT") && booleanOperatorBC.equals("OR") && !binCEmpty && !booleanOperatorBinC.equals("NOT")) {
+            vennDiagramFilename += "2Venn_notBorC.png";
+        }
+        ///////////////////// DOUBLE BINS A / C   NOT & AND/OR
+        // not A or B (C empty)
+        else if (!binAEmpty && booleanOperatorBinA.equals("NOT") && booleanOperatorBC.equals("OR") && binBEmpty && !booleanOperatorBinC.equals("NOT") && !binCEmpty) {
+            vennDiagramFilename += "2Venn_notAorC.png";
+        }        
+        
+
+                ///////////////////// DOUBLE BINS A / B   AND/OR & NOT
+        // A or not B (C empty)
+        else if (!binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBinB.equals("NOT") && binCEmpty) {
+            vennDiagramFilename += "2Venn_AornotB.png";
+        }
+        ///////////////////// DOUBLE BINS B / C    AND/OR & NOT
+        //  B or not C (A empty)
+        else if (binAEmpty && !binBEmpty && !booleanOperatorBinB.equals("NOT") && booleanOperatorBC.equals("OR") && !binCEmpty && booleanOperatorBinC.equals("NOT")) {
+            vennDiagramFilename += "2Venn_BornotC.png";
+        }
+        ///////////////////// DOUBLE BINS A / C   AND/OR & NOT
+        // A or not B (C empty)
+        else if (!binAEmpty && !booleanOperatorBinA.equals("NOT") && booleanOperatorBC.equals("OR") && binBEmpty && booleanOperatorBinC.equals("NOT") && !binCEmpty) {
+            vennDiagramFilename += "2Venn_AornotC.png";
+        }        
+        
+        
+        
+        ///////////////// TRIPLE BINS A / B / C  AND/OR & AND/OR & AND/OR
         // A and B and C - 1
-        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_AandBandC.png";
         } // A and B or C - 2
-        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_AandBorC.png";
         } // A and B not C - 3
-        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_AandBnotC.png";
         } // A and B not and C - 4
-        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_questionMark.png";
         } //
         //
-        // A or B and C - 5
-        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
+        // A or B and C - 5  AND/OR & AND/OR & AND/OR
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_AorBandC.png";
         } // A or B or C - 6
-        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_AorBorC.png";
         } // A or B not C - 7
-        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_AorBnotC.png";
         } // A or B not and C - 8
-        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_questionMark.png";
         } //
         //
-        // A not B and C - 9
-        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
+        // A not B and C - 9  AND/OR & AND/OR & AND/OR
+        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_AnotBandC.png";
         } // A not B or C - 10
-        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_AnotBorC.png";
         } // A not B not C - 11
-        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_AnotBnotC.png";
         } // A not B not not and C - 12
-        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("AND NOT") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_questionMark.png";
         } //
         //
-        // A not and B and C - 13
-        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty) {
+        // A not and B and C - 13  AND/OR & AND/OR & AND/OR
+        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("AND") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_questionMark.png";
         } // A not and B or C - 14
-        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("OR") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_questionMark.png";
         } // A not and B not C - 15
-        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("AND NOT") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_questionMark.png";
         } // A not and B not not and C - 16
-        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty) {
+        else if (!binAEmpty && booleanOperatorAB.equals("OR NOT") && !binBEmpty && booleanOperatorBC.equals("OR NOT") && !binCEmpty && !booleanOperatorBinA.equals("NOT") && !booleanOperatorBinB.equals("NOT") && !booleanOperatorBinC.equals("NOT")) {
             vennDiagramFilename += "3Venn_questionMark.png";
-        } else {
+        } 
+        else {
             vennDiagramFilename += "3Venn_questionMark.png";
         }
 
@@ -3928,6 +4014,7 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // Jamie:
         // JComboBox comboBoxA =(JComboBox) evt.getSource();        
         // operatorA=(String)comboBoxA.getSelectedItem();
+        whichVennDiagram();
     }//GEN-LAST:event_jComboBox_BooleanOperatorAActionPerformed
 
     private void NumberDomainSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_NumberDomainSliderStateChanged
@@ -4519,12 +4606,14 @@ public class HMM_ModelUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         //   JComboBox comboBoxB =(JComboBox) evt.getSource();        
         //   operatorB=(String)comboBoxB.getSelectedItem();
+        whichVennDiagram();
     }//GEN-LAST:event_jComboBox_BooleanOperatorBActionPerformed
 
     private void jComboBox_BooleanOperatorCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_BooleanOperatorCActionPerformed
         // TODO add your handling code here:
         //  JComboBox comboBoxC =(JComboBox) evt.getSource();        
         //  operatorC=(String)comboBoxC.getSelectedItem();
+        whichVennDiagram();
     }//GEN-LAST:event_jComboBox_BooleanOperatorCActionPerformed
 
     private void AccuracyThresholdSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_AccuracyThresholdSlider1StateChanged
